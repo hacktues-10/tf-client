@@ -10,22 +10,22 @@ const LINKS = [
 		href: '/',
 		title: 'Начало',
 	},
-	{
-		href: '/projects',
-		title: 'Проекти',
-	},
+	// {
+	// 	href: '/projects',
+	// 	title: 'Проекти',
+	// },
 	{
 		href: '/apply',
 		title: 'Кандидатстване',
 	},
-	{
-		href: '#schedule',
-		title: 'Програма',
-	},
-	{
-		href: '/projects',
-		title: 'Гласуване',
-	},
+	// {
+	// 	href: '#schedule',
+	// 	title: 'Програма',
+	// },
+	// {
+	// 	href: '/projects',
+	// 	title: 'Гласуване',
+	// },
 	{
 		href: '/tuestalks',
 		title: 'TUES Talks',
@@ -115,8 +115,8 @@ const Navigation = () => {
 							tues{' '}
 							<span className="font-origin font-normal bg-gradient text-transparent bg-clip-text ">
 								fest
-							</span>
-							{" "}2023
+							</span>{' '}
+							2023
 						</Link>
 					</div>
 					<div className="flex w-full items-center justify-between px-4">

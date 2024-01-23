@@ -1,39 +1,13 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-
-import Controls from './testimonial/Controls';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import Autoplay from 'embla-carousel-autoplay';
 import Quote from './testimonial/Quote';
-
+import { useRef } from 'react';
 import { TESTIMONIALS, TESTIMONIALS_TITLE } from '@/constants/home/testimonials';
 
 const Testimonial = () => {
-	const [currentTestimonial, setCurrentTestimonial] = useState<number | null>(null);
-
-	const handlePrev = () => {
-		if (currentTestimonial === null) return;
-
-		// check if currentTestimonial is at the first position
-		if (currentTestimonial === 0) {
-			setCurrentTestimonial(TESTIMONIALS.length - 1); // set to last element
-		} else {
-			setCurrentTestimonial(Math.abs(currentTestimonial - 1) % TESTIMONIALS.length);
-		}
-	};
-
-	const handleNext = () => {
-		if (currentTestimonial === null) return;
-
-		setCurrentTestimonial((currentTestimonial + 1) % TESTIMONIALS.length);
-	};
-
-	useEffect(() => {
-		if (currentTestimonial === null)
-			setCurrentTestimonial(Math.floor(Math.random() * TESTIMONIALS.length) % TESTIMONIALS.length);
-	}, []);
-
-	if (currentTestimonial === null) return null;
-
+	const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
 	return (
 		<section className="min-h-[36rem] w-full relative p-8 md:p-12">
 			<div className="min-h-full h-full flex flex-col justify-between gap-8">
@@ -41,15 +15,29 @@ const Testimonial = () => {
 					<h2 className="bg-gradient text-transparent font-black text-5xl bg-clip-text">
 						{TESTIMONIALS_TITLE}
 					</h2>
-					<Controls handlePrev={handlePrev} handleNext={handleNext} />
 				</div>
-				<div className="w-full relative flex items-center justify-center">
-					<Quote
-						img={TESTIMONIALS[currentTestimonial].img}
-						name={TESTIMONIALS[currentTestimonial].testimonyName}
-						text={TESTIMONIALS[currentTestimonial].testimonyBody}
-						desc={TESTIMONIALS[currentTestimonial].testimonyDesc}
-					/>
+				<div className="flex justify-center">
+					<Carousel
+						className="w-full max-w-5/6 lg:max-w-1/2"
+						plugins={[plugin.current]}
+						onMouseEnter={plugin.current.stop}
+						onMouseLeave={plugin.current.reset}
+					>
+						<CarouselContent className="">
+							{TESTIMONIALS.map((item) => (
+								<CarouselItem className="self-center" key={item.img}>
+									<Quote
+										img={item.img}
+										name={item.testimonyName}
+										text={item.testimonyBody}
+										desc={item.testimonyDesc}
+									/>
+								</CarouselItem>
+							))}
+						</CarouselContent>
+						<CarouselPrevious className="" />
+						<CarouselNext />
+					</Carousel>
 				</div>
 			</div>
 		</section>

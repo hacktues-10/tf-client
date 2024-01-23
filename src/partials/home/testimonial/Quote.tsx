@@ -4,6 +4,7 @@ const Quote = ({ img, name, text, desc }: { img: string; name: string; text: str
 	<div className="w-full relative max-w-3xl p-6 flex flex-col sm:flex-row items-stretch justify-start gap-4 rounded-lg bg-bg-color border border-stroke">
 		<div className="sm:w-32 shrink-0 flex flex-col items-center justify-center gap-4">
 			<Image
+				key={img}
 				src={img}
 				alt={name}
 				width={128}
