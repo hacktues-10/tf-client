@@ -139,7 +139,7 @@ function PodkrepqReadMore({
 			<DialogTrigger asChild>
 				<button className={readMoreClasses}>{readMoreText}</button>
 			</DialogTrigger>
-			<DialogContent>
+			<DialogContent className="bg-black">
 				<DialogHeader>
 					<DialogTitle>{name}</DialogTitle>
 				</DialogHeader>
