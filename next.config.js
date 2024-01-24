@@ -4,9 +4,6 @@ const nextConfig = {
 	reactStrictMode: true,
 	swcMinify: true,
 	optimizeFonts: false,
-	experimental: {
-		appDir: true,
-	},
 	async redirects() {
 		return [{
 			source: '/schedule',

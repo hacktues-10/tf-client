@@ -1,20 +1,25 @@
+import PodkrepqAutoDisplay from './sponsors/PodkrepqAutoDisplay';
 import SponsorGroup from './sponsors/SponsorGroup';
 
-import { SPONSORS } from '@/constants/home/sponsors';
-
+import { ALPHA_SPONSORS, GAMMA_SPONSORS, BETA_SPONSORS } from '@/constants/home/sponsors';
 const Sponsors = () => (
-	<section id="sponsors" className="p-8 md:p-12">
+	<section id="sponsors" className="p-8 md:p-12 mb-20">
 		<div className="py-4 pb-8">
 			<h2 className="bg-gradient text-transparent font-black text-5xl bg-clip-text">Спонсори</h2>
 		</div>
-		<div className="flex flex-col gap-8">
-			{SPONSORS.map(
-				(sponsor) =>
-					sponsor.sponsors.length > 0 && (
-						<SponsorGroup key={sponsor.type} type={sponsor.type} sponsors={sponsor.sponsors} />
-					)
-			)}
-		</div>
+		<h2 className="bg-gradient text-transparent font-black mt-32 mb-4 text-3xl text-center bg-clip-text">
+			Алфа Спонсори
+		</h2>
+		<PodkrepqAutoDisplay podkrepqshti={ALPHA_SPONSORS} />
+		<h2 className="bg-gradient text-transparent font-black text-3xl mb-4 mt-32 text-center bg-clip-text">
+			Бета Спонсори
+		</h2>
+
+		<PodkrepqAutoDisplay podkrepqshti={BETA_SPONSORS} />
+		<h2 className="bg-gradient text-transparent font-black text-3xl mt-32 mb-4 text-center bg-clip-text">
+			Гама Спонсори
+		</h2>
+		<PodkrepqAutoDisplay podkrepqshti={GAMMA_SPONSORS} />
 	</section>
 );
 
