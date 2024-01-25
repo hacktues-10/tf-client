@@ -6,8 +6,6 @@ import Schedule from '@/partials/home/Schedule';
 import Sponsors from '@/partials/home/Sponsors';
 import Testimonial from '@/partials/home/Testimonial';
 
-import Countdown from '@/components/countdown';
-
 import 'animate.css';
 
 export default function Home() {
@@ -15,7 +13,7 @@ export default function Home() {
 		<main className="max-w-screen-2xl m-auto">
 			<section
 				id="front-section"
-				className="p-4 py-32 w-full min-h-screen flex flex-col lg:flex-row items-center justify-center gap-4 md:gap-16"
+				className="p-4 py-32 w-full min-h-screen flex flex-col items-center justify-center gap-4 md:gap-16"
 			>
 				<div /* className="animate__animated animate__fadeInTopLeft" */>
 					<h1 className="!leading-none !tracking-wide text-8xl sm:text-8xl md:text-9xl text-center font-origin font-normal drop-shadow-lg">
@@ -29,17 +27,15 @@ export default function Home() {
 						</span>
 					</h1>
 				</div>
-				<div>
-					<Countdown />
-					<div className="flex flex-col sm:flex-row items-stretch gap-4 text-center">
-						<div className="w-full px-4 py-2 flex items-center justify-center gap-2 text-lg rounded-lg bg-bg-color border border-border">
-							<TbMapPin size={24} />
-							<p>{'София Тех Парк'}</p>
-						</div>
-						<div className="w-full px-4 py-2 flex items-center justify-center gap-2 text-lg rounded-lg bg-bg-color border border-border">
-							<TbClockHour4 size={24} />
-							<p>23 април от 10:30</p>
-						</div>
+
+				<div className="flex flex-col sm:flex-row items-stretch gap-4 text-center">
+					<div className="w-full px-4 py-2 flex items-center justify-center gap-2 text-lg rounded-lg bg-bg-color border border-border">
+						<TbMapPin size={24} />
+						<p>{'София Тех Парк'}</p>
+					</div>
+					<div className="w-full px-4 py-2 flex items-center justify-center gap-2 text-lg rounded-lg bg-bg-color border border-border">
+						<TbClockHour4 size={24} />
+						<p>23 април от 10:30</p>
 					</div>
 				</div>
 			</section>
