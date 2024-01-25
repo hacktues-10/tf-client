@@ -1,5 +1,4 @@
 import PodkrepqAutoDisplay from './sponsors/PodkrepqAutoDisplay';
-import SponsorGroup from './sponsors/SponsorGroup';
 
 import { ALPHA_SPONSORS, GAMMA_SPONSORS, BETA_SPONSORS } from '@/constants/home/sponsors';
 const Sponsors = () => (
