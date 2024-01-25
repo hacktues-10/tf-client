@@ -5,7 +5,7 @@ const PATH: {
 	url: string;
 }[] = [
 	{
-		name: 'TUES Fest 2023',
+		name: 'TUES Fest 2024',
 		url: '/',
 	},
 	{

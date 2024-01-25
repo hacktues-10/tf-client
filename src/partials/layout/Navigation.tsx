@@ -33,6 +33,21 @@ const LINKS = [
 	},
 ];
 
+const DESKTOP_LINKS = [
+	{
+		href: '/about',
+		title: 'За училището',
+	},
+	{
+		href: '/apply',
+		title: 'Кандидатстване',
+	},
+	{
+		href: '/tuestalks',
+		title: 'TUES Talks',
+	},
+];
+
 const Linky = ({ href, children }: { href: string; children: string }) => {
 	// const [selected, setSelected] = useState(false); - would've been used, but it was deemed unnecessary
 
@@ -51,9 +66,12 @@ const Linky = ({ href, children }: { href: string; children: string }) => {
 const Navigation = () => {
 	const [scrolled, setScrolled] = useState(false);
 	const [mobileOpen, setMobileOpen] = useState(false);
+	const [desktopOpen, setDesktopOpen] = useState(false);
 
 	const mobileMenuRef = useRef<HTMLDivElement>(null);
 	const mobileButtonRef = useRef<HTMLButtonElement>(null);
+	const desktopMenuRef = useRef<HTMLDivElement>(null);
+	const desktopButtonRef = useRef<HTMLButtonElement>(null);
 
 	const handleScroll = () => {
 		const offset = window.scrollY;
@@ -68,6 +86,7 @@ const Navigation = () => {
 		window.addEventListener('scroll', handleScroll);
 	}, []);
 
+	//if desktopOpen make mobileOpen false and vice versa
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
 			if (mobileOpen && mobileMenuRef.current && mobileButtonRef.current) {
@@ -78,13 +97,21 @@ const Navigation = () => {
 					setMobileOpen(false);
 				}
 			}
+			if (desktopOpen && desktopMenuRef.current && desktopButtonRef.current) {
+				if (
+					!desktopMenuRef.current.contains(event.target as Node) &&
+					!desktopButtonRef.current.contains(event.target as Node)
+				) {
+					setDesktopOpen(false);
+				}
+			}
 		};
 
 		document.addEventListener('mousedown', handleClickOutside);
 		return () => {
 			document.removeEventListener('mousedown', handleClickOutside);
 		};
-	}, [mobileOpen, mobileMenuRef, mobileButtonRef]);
+	}, [mobileOpen, mobileMenuRef, mobileButtonRef, desktopOpen, desktopMenuRef, desktopButtonRef]);
 
 	let navbarClasses = [
 		'header',
@@ -124,11 +151,14 @@ const Navigation = () => {
 						<div className="flex w-full items-center justify-between px-4">
 							<div>
 								<button
-									onClick={() => setMobileOpen(!mobileOpen)}
+									onClick={() => {
+										setMobileOpen(!mobileOpen);
+										setDesktopOpen(false);
+									}}
 									id="navbarToggler"
 									name="navbarToggler"
 									ref={mobileButtonRef}
-									className="absolute right-4 top-1/2 block translate-y-[-50%] rounded-lg px-3 py-3 ring-primary focus:ring-2 lg:hidden"
+									className="absolute right-4 top-1/2 block translate-y-[-50%] rounded-lg px-3 py-3 ring-primary focus:ring-2 sm:hidden"
 								>
 									<TbMenu2 size={32} />
 								</button>
@@ -136,11 +166,11 @@ const Navigation = () => {
 									id="navbarCollapse"
 									ref={mobileMenuRef}
 									className={
-										`absolute right-4 top-full w-full max-w-[250px] rounded-lg bg-bg-color shadow-lg lg:static lg:block lg:w-full lg:max-w-full lg:bg-transparent py-3 lg:py-0 lg:px-4 lg:shadow-none xl:px-6` +
+										`absolute right-4 top-full w-full max-w-[250px] rounded-lg bg-bg-color shadow-lg py-3 lg:py-0 lg:px-4 lg:shadow-none xl:px-6` +
 										(mobileOpen ? ' block' : ' hidden')
 									}
 								>
-									<ul className="block lg:flex">
+									<ul className="block">
 										{LINKS.map((link) => (
 											<li
 												className="group relative"
@@ -156,32 +186,44 @@ const Navigation = () => {
 									</ul>
 								</nav>
 							</div>
-							<div className="hidden justify-end pr-16 sm:flex lg:pr-0">
-								<Link
-									href="/about"
-									className="flex items-center justify-center rounded-md border-2 border-white py-3 px-6 text-base font-semibold text-white transition duration-300 ease-in-out hover:border-primary hover:bg-primary lg:px-4 xl:px-6"
+							<div className="hidden justify-end pr-16 sm:flex ">
+								<button
+									onClick={() => {
+										setDesktopOpen(!desktopOpen);
+										setMobileOpen(false);
+									}}
+									className="flex items-center justify-center rounded-md border-2 border-white py-3 px-6 text-base font-semibold text-white transition duration-300 ease-in-out hover:border-primary hover:bg-primary"
 								>
-									За ТУЕС
+									ТУЕС
 									<span className="pl-2">
 										<TbSchool size={24} />
 									</span>
-								</Link>
+								</button>
+								<nav
+									id="navbarCollapse"
+									ref={desktopMenuRef}
+									className={
+										`absolute right-4 top-full w-full max-w-[250px] rounded-lg bg-bg-color shadow-lg py-3` +
+										(desktopOpen ? 'block' : ' hidden')
+									}
+								>
+									<ul className="block">
+										{DESKTOP_LINKS.map((link) => (
+											<li
+												className="group relative"
+												onClick={() => setMobileOpen(false)}
+												key={link.title}
+											>
+												<Linky href={link.href}>{link.title}</Linky>
+											</li>
+										))}
+									</ul>
+								</nav>
 							</div>
 						</div>
 					</div>
 				</div>
 			</header>
-			<div className="header  top-16 left-0 flex z-50 w-full justify-center fixed">
-				<div
-					className={cn(
-						'self-center p-4',
-						scrolled && 'z-50 transition bg-dark bg-opacity-70 shadow-sticky backdrop-blur-lg duration-500',
-						!scrolled && 'bg-transparent z-50'
-					)}
-				>
-					<h1>12:23:23:23</h1>
-				</div>
-			</div>
 		</>
 	);
 };

@@ -13,7 +13,7 @@ const Socials = () => (
 					ТУЕС Фест е ежегодно изложение на проекти, създадени от талантливите ученици на ТУЕС.
 					<br />
 					<br />
-					23 април 2023 г., София Тех Парк.
+					23 април 2024 г., София Тех Парк.
 				</p>
 
 				<div className="flex items-center">
@@ -215,7 +215,7 @@ const Copyright = () => (
 	<div className="border-t border-stroke">
 		<div className="py-7 text-center">
 			<p className="text-base font-medium text-body-color">
-				&copy; Авторски права 2023 - TUES Fest, Всички права са запазени.
+				&copy; Авторски права 2024 - TUES Fest, Всички права са запазени.
 			</p>
 		</div>
 	</div>

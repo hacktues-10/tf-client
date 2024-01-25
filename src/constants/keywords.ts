@@ -1,1 +1,1 @@
-export const TITLE = 'TUES Fest 2023';
+export const TITLE = 'TUES Fest 2024';
