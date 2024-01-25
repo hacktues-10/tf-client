@@ -12,7 +12,7 @@ import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Card, CardContent, CardTitle } from '@/components/ui/card';
 const readMoreClasses =
-	'rounded-sm font-bold text-white ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2';
+	'rounded-sm font-bold text-white ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring text-black focus-visible:ring-offset-2';
 const readMoreText = 'Покажи повече';
 import { Podkrepqsht } from '@/constants/home/sponsors';
 
@@ -60,15 +60,15 @@ export default function PodkrepqAutoDisplay({
 			</ul>
 			<div className="ml-10 hidden h-96 items-center md:mt-10 md:flex md:w-[400px] lg:mt-20 lg:w-[600px]">
 				<Card className="flex w-full flex-col p-2">
-					<CardTitle className="pt-5 text-center text-white">{podkrepqshti[liveIndex].name}</CardTitle>
-					<CardContent className="h-full flex-shrink flex-grow p-5 text-white">
+					<CardTitle className="pt-5 text-center text-black">{podkrepqshti[liveIndex].name}</CardTitle>
+					<CardContent className="h-full flex-shrink flex-grow p-5 text-black">
 						<div className="h-full">
 							{shouldShowDescription(podkrepqshti[liveIndex].description) ? (
 								<>
 									<div className="flex h-24 flex-shrink flex-grow flex-col overflow-clip">
 										<div className="inline-flex h-full flex-1 flex-shrink flex-grow [mask-image:linear-gradient(to_bottom,white,calc(100%-20px),transparent)]">
 											{podkrepqshti[liveIndex].description.split('\n').map((p) => (
-												<p key={p} className="text-white">
+												<p key={p} className="text-black">
 													{p}
 												</p>
 											))}
@@ -139,7 +139,7 @@ function PodkrepqReadMore({
 			<DialogTrigger asChild>
 				<button className={readMoreClasses}>{readMoreText}</button>
 			</DialogTrigger>
-			<DialogContent className="bg-black">
+			<DialogContent className="bg-white">
 				<DialogHeader>
 					<DialogTitle>{name}</DialogTitle>
 				</DialogHeader>

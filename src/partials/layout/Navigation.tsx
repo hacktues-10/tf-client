@@ -11,26 +11,26 @@ const LINKS = [
 		href: '/',
 		title: 'Начало',
 	},
-	// {
-	// 	href: '/projects',
-	// 	title: 'Проекти',
-	// },
 	{
-		href: '/apply',
-		title: 'Кандидатстване',
+		href: '/projects',
+		title: 'Проекти',
 	},
 	// {
-	// 	href: '#schedule',
-	// 	title: 'Програма',
+	// 	href: '/apply',
+	// 	title: 'Кандидатстване',
 	// },
+	{
+		href: '#schedule',
+		title: 'Програма',
+	},
 	// {
 	// 	href: '/projects',
 	// 	title: 'Гласуване',
 	// },
-	{
-		href: '/tuestalks',
-		title: 'TUES Talks',
-	},
+	// {
+	// 	href: '/tuestalks',
+	// 	title: 'TUES Talks',
+	// },
 ];
 
 const DESKTOP_LINKS = [
@@ -54,9 +54,9 @@ const Linky = ({ href, children }: { href: string; children: string }) => {
 	return (
 		<Link
 			href={href}
-			className={`mx-8 flex py-2 text-base font-semibold whitespace-nowrap ${
-				/* selected ? 'text-white' : */ 'text-[#bababa]'
-			} group-hover:text-white lg:mr-0 lg:inline-flex lg:py-6 lg:px-0`}
+			className={`mx-8 flex py-2  text-base font-semibold whitespace-nowrap
+				text-[#bababa]
+			hover:text-white lg:mr-0 lg:inline-flex lg:py-7 lg:px-0`}
 		>
 			{children}
 		</Link>
@@ -133,8 +133,8 @@ const Navigation = () => {
 		<>
 			<header className={navbarClasses.join(' ')}>
 				<div className="container">
-					<div className="relative mx-[-16px] flex items-center justify-between">
-						<div className="w-60 max-w-full px-4">
+					<div className=" flex items-center ">
+						<div className="max-w-full px-4 flex justify-start">
 							<Link
 								href="/"
 								className={`header-logo block w-full font-origin text-xl whitespace-nowrap  ${
@@ -147,6 +147,18 @@ const Navigation = () => {
 								</span>{' '}
 								2023
 							</Link>
+							<div>
+								<ul className="hidden lg:flex">
+									{LINKS.map((link) => (
+										<li className="w-max group" key={link.title}>
+											<Linky href={link.href}>{link.title}</Linky>
+										</li>
+									))}
+								</ul>
+							</div>
+						</div>
+						<div id="countdown" className="flex justify-center w-full pl-8">
+							<h1>00:00:00:00</h1>
 						</div>
 						<div className="flex w-full items-center justify-between px-4">
 							<div>
