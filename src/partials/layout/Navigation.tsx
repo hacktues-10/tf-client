@@ -4,6 +4,7 @@ import Link from 'next/link';
 
 import { TbMenu2, TbSchool } from 'react-icons/tb';
 import { useEffect, useRef, useState } from 'react';
+import { cn } from '@/lib/utils';
 
 const LINKS = [
 	{
@@ -102,73 +103,86 @@ const Navigation = () => {
 	];
 
 	return (
-		<header className={navbarClasses.join(' ')}>
-			<div className="container">
-				<div className="relative mx-[-16px] flex items-center justify-between">
-					<div className="w-60 max-w-full px-4">
-						<Link
-							href="/"
-							className={`header-logo block w-full font-origin text-xl whitespace-nowrap  ${
-								scrolled ? ' py-4 lg:py-2' : ' py-5 lg:py-7'
-							}`}
-						>
-							tues{' '}
-							<span className="font-origin font-normal bg-gradient text-transparent bg-clip-text ">
-								fest
-							</span>{' '}
-							2023
-						</Link>
-					</div>
-					<div className="flex w-full items-center justify-between px-4">
-						<div>
-							<button
-								onClick={() => setMobileOpen(!mobileOpen)}
-								id="navbarToggler"
-								name="navbarToggler"
-								ref={mobileButtonRef}
-								className="absolute right-4 top-1/2 block translate-y-[-50%] rounded-lg px-3 py-3 ring-primary focus:ring-2 lg:hidden"
-							>
-								<TbMenu2 size={32} />
-							</button>
-							<nav
-								id="navbarCollapse"
-								ref={mobileMenuRef}
-								className={
-									`absolute right-4 top-full w-full max-w-[250px] rounded-lg bg-bg-color shadow-lg lg:static lg:block lg:w-full lg:max-w-full lg:bg-transparent py-3 lg:py-0 lg:px-4 lg:shadow-none xl:px-6` +
-									(mobileOpen ? ' block' : ' hidden')
-								}
-							>
-								<ul className="block lg:flex">
-									{LINKS.map((link) => (
-										<li
-											className="group relative"
-											onClick={() => setMobileOpen(false)}
-											key={link.title}
-										>
-											<Linky href={link.href}>{link.title}</Linky>
-										</li>
-									))}
-									<li className="sm:hidden group relative" onClick={() => setMobileOpen(false)}>
-										<Linky href="/about">За ТУЕС</Linky>
-									</li>
-								</ul>
-							</nav>
-						</div>
-						<div className="hidden justify-end pr-16 sm:flex lg:pr-0">
+		<>
+			<header className={navbarClasses.join(' ')}>
+				<div className="container">
+					<div className="relative mx-[-16px] flex items-center justify-between">
+						<div className="w-60 max-w-full px-4">
 							<Link
-								href="/about"
-								className="flex items-center justify-center rounded-md border-2 border-white py-3 px-6 text-base font-semibold text-white transition duration-300 ease-in-out hover:border-primary hover:bg-primary lg:px-4 xl:px-6"
+								href="/"
+								className={`header-logo block w-full font-origin text-xl whitespace-nowrap  ${
+									scrolled ? ' py-4 lg:py-2' : ' py-5 lg:py-7'
+								}`}
 							>
-								За ТУЕС
-								<span className="pl-2">
-									<TbSchool size={24} />
-								</span>
+								tues{' '}
+								<span className="font-origin font-normal bg-gradient text-transparent bg-clip-text ">
+									fest
+								</span>{' '}
+								2023
 							</Link>
+						</div>
+						<div className="flex w-full items-center justify-between px-4">
+							<div>
+								<button
+									onClick={() => setMobileOpen(!mobileOpen)}
+									id="navbarToggler"
+									name="navbarToggler"
+									ref={mobileButtonRef}
+									className="absolute right-4 top-1/2 block translate-y-[-50%] rounded-lg px-3 py-3 ring-primary focus:ring-2 lg:hidden"
+								>
+									<TbMenu2 size={32} />
+								</button>
+								<nav
+									id="navbarCollapse"
+									ref={mobileMenuRef}
+									className={
+										`absolute right-4 top-full w-full max-w-[250px] rounded-lg bg-bg-color shadow-lg lg:static lg:block lg:w-full lg:max-w-full lg:bg-transparent py-3 lg:py-0 lg:px-4 lg:shadow-none xl:px-6` +
+										(mobileOpen ? ' block' : ' hidden')
+									}
+								>
+									<ul className="block lg:flex">
+										{LINKS.map((link) => (
+											<li
+												className="group relative"
+												onClick={() => setMobileOpen(false)}
+												key={link.title}
+											>
+												<Linky href={link.href}>{link.title}</Linky>
+											</li>
+										))}
+										<li className="sm:hidden group relative" onClick={() => setMobileOpen(false)}>
+											<Linky href="/about">За ТУЕС</Linky>
+										</li>
+									</ul>
+								</nav>
+							</div>
+							<div className="hidden justify-end pr-16 sm:flex lg:pr-0">
+								<Link
+									href="/about"
+									className="flex items-center justify-center rounded-md border-2 border-white py-3 px-6 text-base font-semibold text-white transition duration-300 ease-in-out hover:border-primary hover:bg-primary lg:px-4 xl:px-6"
+								>
+									За ТУЕС
+									<span className="pl-2">
+										<TbSchool size={24} />
+									</span>
+								</Link>
+							</div>
 						</div>
 					</div>
 				</div>
+			</header>
+			<div className="header  top-16 left-0 flex z-50 w-full justify-center fixed">
+				<div
+					className={cn(
+						'self-center p-4',
+						scrolled && 'z-50 transition bg-dark bg-opacity-70 shadow-sticky backdrop-blur-lg duration-500',
+						!scrolled && 'bg-transparent z-50'
+					)}
+				>
+					<h1>12:23:23:23</h1>
+				</div>
 			</div>
-		</header>
+		</>
 	);
 };
 
