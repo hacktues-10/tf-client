@@ -1,23 +1,20 @@
 'use client';
-
 import Link from 'next/link';
 
-import { TbMenu2, TbSchool } from 'react-icons/tb';
+import { TbMenu2, TbMapPin, TbSchool } from 'react-icons/tb';
 import { useEffect, useRef, useState } from 'react';
-import { cn } from '@/lib/utils';
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { useDay } from '@/context/day';
+import { set } from 'zod';
 
 const LINKS = [
 	{
 		href: '/',
 		title: 'Начало',
 	},
-	{
-		href: '/projects',
-		title: 'Проекти',
-	},
 	// {
-	// 	href: '/apply',
-	// 	title: 'Кандидатстване',
+	// 	href: '/projects',
+	// 	title: 'Проекти',
 	// },
 	{
 		href: '#schedule',
@@ -27,16 +24,12 @@ const LINKS = [
 	// 	href: '/projects',
 	// 	title: 'Гласуване',
 	// },
-	// {
-	// 	href: '/tuestalks',
-	// 	title: 'TUES Talks',
-	// },
 ];
 
-const DESKTOP_LINKS = [
+const SCHOOL_LINKS = [
 	{
 		href: '/about',
-		title: 'За училището',
+		title: 'Училището',
 	},
 	{
 		href: '/apply',
@@ -49,14 +42,12 @@ const DESKTOP_LINKS = [
 ];
 
 const Linky = ({ href, children }: { href: string; children: string }) => {
-	// const [selected, setSelected] = useState(false); - would've been used, but it was deemed unnecessary
-
 	return (
 		<Link
 			href={href}
-			className={`mx-8 flex py-2  text-base font-semibold whitespace-nowrap
-				text-[#bababa]
-			hover:text-white lg:mr-0 lg:inline-flex lg:py-7 lg:px-0`}
+			className={`mx-8 flex py-2 text-base font-semibold whitespace-nowrap ${
+				/* selected ? 'text-white' : */ 'text-[#bababa]'
+			} group-hover:text-white lg:mr-0 lg:inline-flex lg:py-6 lg:px-0`}
 		>
 			{children}
 		</Link>
@@ -66,12 +57,14 @@ const Linky = ({ href, children }: { href: string; children: string }) => {
 const Navigation = () => {
 	const [scrolled, setScrolled] = useState(false);
 	const [mobileOpen, setMobileOpen] = useState(false);
+	const { day, setDay } = useDay();
+	const [dayValue, setDayValue] = useState(`day-${day}`);
+	const [isClient, setIsClient] = useState(false);
 	const [desktopOpen, setDesktopOpen] = useState(false);
-
-	const mobileMenuRef = useRef<HTMLDivElement>(null);
-	const mobileButtonRef = useRef<HTMLButtonElement>(null);
 	const desktopMenuRef = useRef<HTMLDivElement>(null);
 	const desktopButtonRef = useRef<HTMLButtonElement>(null);
+	const mobileMenuRef = useRef<HTMLDivElement>(null);
+	const mobileButtonRef = useRef<HTMLButtonElement>(null);
 
 	const handleScroll = () => {
 		const offset = window.scrollY;
@@ -82,11 +75,6 @@ const Navigation = () => {
 		}
 	};
 
-	useEffect(() => {
-		window.addEventListener('scroll', handleScroll);
-	}, []);
-
-	//if desktopOpen make mobileOpen false and vice versa
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
 			if (mobileOpen && mobileMenuRef.current && mobileButtonRef.current) {
@@ -113,6 +101,46 @@ const Navigation = () => {
 		};
 	}, [mobileOpen, mobileMenuRef, mobileButtonRef, desktopOpen, desktopMenuRef, desktopButtonRef]);
 
+	useEffect(() => {
+		if (typeof window !== 'undefined') {
+			localStorage.setItem('day', day.toString());
+			setDayValue(day == 1 ? 'day-1' : day == 2 ? 'day-2' : '');
+		}
+	}, [day]);
+
+	useEffect(() => {
+		setIsClient(true);
+		if (typeof window !== 'undefined') {
+			const storedDay = localStorage.getItem('day');
+			if (storedDay) {
+				setDay(parseInt(storedDay));
+				setDayValue(storedDay == '1' ? 'day-1' : storedDay == '2' ? 'day-2' : '');
+			}
+		}
+
+		window.addEventListener('scroll', handleScroll);
+	}, []);
+
+	useEffect(() => {
+		const handleResize = () => {
+			const buttonStyle = desktopButtonRef.current ? window.getComputedStyle(desktopButtonRef.current) : null;
+			if (buttonStyle?.display === 'none') {
+				setDesktopOpen(false);
+			}
+		};
+
+		window.addEventListener('resize', handleResize);
+		handleResize();
+
+		return () => {
+			window.removeEventListener('resize', handleResize);
+		};
+	}, []);
+
+	if (!isClient) {
+		return null;
+	}
+
 	let navbarClasses = [
 		'header',
 		'top-0',
@@ -130,113 +158,119 @@ const Navigation = () => {
 	];
 
 	return (
-		<>
-			<header className={navbarClasses.join(' ')}>
-				<div className="container">
-					<div className=" flex items-center ">
-						<div className="max-w-full px-4 flex justify-start">
-							<Link
-								href="/"
-								className={`header-logo block w-full font-origin text-xl whitespace-nowrap  ${
-									scrolled ? ' py-4 lg:py-2' : ' py-5 lg:py-7'
-								}`}
+		<header className={navbarClasses.join(' ')}>
+			<div className="container">
+				<div className="relative mx-[-16px] flex items-center justify-between">
+					<div className="w-60 max-w-full px-4">
+						<Link
+							href="/"
+							className={`header-logo block w-full font-origin text-xl whitespace-nowrap  ${
+								scrolled ? ' py-4 lg:py-2' : ' py-5 lg:py-7'
+							}`}
+						>
+							tues{' '}
+							<span className="font-origin font-normal bg-gradient text-transparent bg-clip-text ">
+								fest
+							</span>{' '}
+							2023
+						</Link>
+					</div>
+					<div className="flex w-full items-center justify-between px-4">
+						<div>
+							<button
+								onClick={() => setMobileOpen(!mobileOpen)}
+								id="navbarToggler"
+								name="navbarToggler"
+								ref={mobileButtonRef}
+								className="absolute right-4 top-1/2 block translate-y-[-50%] rounded-lg px-3 py-3 ring-primary focus:ring-2 lg:hidden"
 							>
-								tues{' '}
-								<span className="font-origin font-normal bg-gradient text-transparent bg-clip-text ">
-									fest
-								</span>{' '}
-								2023
-							</Link>
-							<div>
-								<ul className="hidden lg:flex">
+								<TbMenu2 size={32} />
+							</button>
+							<nav
+								id="navbarCollapse"
+								ref={mobileMenuRef}
+								className={
+									`absolute right-4 top-full w-full max-w-[250px] rounded-lg bg-bg-color shadow-lg lg:static lg:block lg:w-full lg:max-w-full lg:bg-transparent py-3 lg:py-0 lg:px-4 lg:shadow-none xl:px-6` +
+									(mobileOpen ? ' block' : ' hidden')
+								}
+							>
+								<ul className="block lg:flex">
 									{LINKS.map((link) => (
-										<li className="w-max group" key={link.title}>
+										<li
+											className="group relative"
+											onClick={() => setMobileOpen(false)}
+											key={link.title}
+										>
+											<Linky href={link.href}>{link.title}</Linky>
+										</li>
+									))}
+
+									{SCHOOL_LINKS.map((link) => (
+										<li
+											className="block lg:hidden group relative"
+											onClick={() => setMobileOpen(false)}
+										>
 											<Linky href={link.href}>{link.title}</Linky>
 										</li>
 									))}
 								</ul>
-							</div>
+							</nav>
 						</div>
-						<div id="countdown" className="flex justify-center w-full pl-8">
-							<h1>00:00:00:00</h1>
-						</div>
-						<div className="flex w-full items-center justify-between px-4">
-							<div>
-								<button
-									onClick={() => {
-										setMobileOpen(!mobileOpen);
-										setDesktopOpen(false);
-									}}
-									id="navbarToggler"
-									name="navbarToggler"
-									ref={mobileButtonRef}
-									className="absolute right-4 top-1/2 block translate-y-[-50%] rounded-lg px-3 py-3 ring-primary focus:ring-2 sm:hidden"
-								>
-									<TbMenu2 size={32} />
-								</button>
-								<nav
-									id="navbarCollapse"
-									ref={mobileMenuRef}
-									className={
-										`absolute right-4 top-full w-full max-w-[250px] rounded-lg bg-bg-color shadow-lg py-3 lg:py-0 lg:px-4 lg:shadow-none xl:px-6` +
-										(mobileOpen ? ' block' : ' hidden')
-									}
-								>
-									<ul className="block">
-										{LINKS.map((link) => (
-											<li
-												className="group relative"
-												onClick={() => setMobileOpen(false)}
-												key={link.title}
-											>
-												<Linky href={link.href}>{link.title}</Linky>
-											</li>
-										))}
-										<li className="sm:hidden group relative" onClick={() => setMobileOpen(false)}>
-											<Linky href="/about">За ТУЕС</Linky>
+						<div className="justify-end items-center pr-16 flex lg:pr-0">
+							<button
+								className="lg:w-44 w-full px-4 py-2 mr-2 hidden xl:flex items-center justify-center gap-2 text-md rounded-lg border border-border"
+								onClick={() => setDesktopOpen(!desktopOpen)}
+								ref={desktopButtonRef}
+							>
+								<TbSchool size={24} />
+								<p>{'За ТУЕС'}</p>
+							</button>
+							<nav
+								id="navbarCollapse"
+								ref={desktopMenuRef}
+								className={
+									`absolute right-96 top-full w-full max-w-[250px] rounded-lg bg-bg-color shadow-lg py-3` +
+									(desktopOpen ? ' block' : ' hidden')
+								}
+							>
+								<ul className="block">
+									{SCHOOL_LINKS.map((link) => (
+										<li
+											className="group relative"
+											onClick={() => setDesktopOpen(false)}
+											key={link.title}
+										>
+											<Linky href={link.href}>{link.title}</Linky>
 										</li>
-									</ul>
-								</nav>
-							</div>
-							<div className="hidden justify-end pr-16 sm:flex ">
-								<button
-									onClick={() => {
-										setDesktopOpen(!desktopOpen);
-										setMobileOpen(false);
-									}}
-									className="flex items-center justify-center rounded-md border-2 border-white py-3 px-6 text-base font-semibold text-white transition duration-300 ease-in-out hover:border-primary hover:bg-primary"
-								>
-									ТУЕС
-									<span className="pl-2">
-										<TbSchool size={24} />
-									</span>
-								</button>
-								<nav
-									id="navbarCollapse"
-									ref={desktopMenuRef}
-									className={
-										`absolute right-4 top-full w-full max-w-[250px] rounded-lg bg-bg-color shadow-lg py-3` +
-										(desktopOpen ? 'block' : ' hidden')
-									}
-								>
-									<ul className="block">
-										{DESKTOP_LINKS.map((link) => (
-											<li
-												className="group relative"
-												onClick={() => setMobileOpen(false)}
-												key={link.title}
-											>
-												<Linky href={link.href}>{link.title}</Linky>
-											</li>
-										))}
-									</ul>
-								</nav>
-							</div>
+									))}
+								</ul>
+							</nav>
+							<Link
+								href="https://maps.app.goo.gl/RHDd9NVx11hVvQVh6"
+								target="_blank"
+								className="lg:w-60 w-full px-4 py-2 mr-2 hidden sm:flex items-center justify-center gap-2 text-lg rounded-lg border border-border"
+							>
+								<TbMapPin size={24} />
+								<p>{'София Тех Парк'}</p>
+							</Link>
+
+							<Tabs defaultValue={`${dayValue}`}>
+								<TabsList>
+									<div className="flex border-2 rounded-lg  w-min">
+										<TabsTrigger value="day-1" onClick={() => setDay(1)} className="text-xl">
+											Ден 1
+										</TabsTrigger>
+										<TabsTrigger value="day-2" onClick={() => setDay(2)} className="text-xl">
+											Ден 2
+										</TabsTrigger>
+									</div>
+								</TabsList>
+							</Tabs>
 						</div>
 					</div>
 				</div>
-			</header>
-		</>
+			</div>
+		</header>
 	);
 };
 

@@ -29,7 +29,7 @@ export default function Home() {
 				</div>
 
 				<div className="flex flex-col sm:flex-row items-stretch gap-4 text-center">
-					<div className="w-full px-4 py-2 flex items-center justify-center gap-2 text-lg rounded-lg bg-bg-color border border-border">
+					<div className="w-full px-4 py-2 sm:hidden flex items-center justify-center gap-2 text-lg rounded-lg bg-bg-color border border-border">
 						<TbMapPin size={24} />
 						<p>{'София Тех Парк'}</p>
 					</div>

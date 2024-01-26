@@ -9,6 +9,7 @@ import './globals.css';
 import VoteProvider from '@/context/vote';
 import VotingLayout from '@/partials/layout/Voting';
 import { GrowthBookServerProvider } from '@/integrations/growthbook/GrowthBookServerProvider';
+import { DayProvider } from '@/context/day';
 
 export const metadata = {
 	title: {
@@ -120,14 +121,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				<link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="any"></link>
 			</head>
 			<body className="bg-black text-white">
-				<Navigation />
-				{/* <VoteProvider> */}
-				<GrowthBookServerProvider>{children}</GrowthBookServerProvider>
+				<DayProvider>
+					<Navigation />
+					{/* <VoteProvider> */}
+					{/*@ts-expect-error */}
+					<GrowthBookServerProvider>{children}</GrowthBookServerProvider>
 
-				{/* <VotingLayout /> */}
-				{/* </VoteProvider> */}
-				<Footer />
-				<Analytics />
+					{/* <VotingLayout /> */}
+					{/* </VoteProvider> */}
+					<Footer />
+					<Analytics />
+				</DayProvider>{' '}
 			</body>
 		</html>
 	);

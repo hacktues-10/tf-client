@@ -1,24 +1,18 @@
+'use client';
+
 import { LECTURES } from '@/info/lectures';
 import { IfTfFeatureOn } from '@/integrations/growthbook/components';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-
+import { useDay } from '@/context/day';
 function Schedule() {
+	const { day } = useDay();
+	const dayValue = `day-${day}`;
+
 	return (
 		<IfTfFeatureOn feature="schedule">
 			<section id="schedule" className='min-h-screen flex flex-col px-8 md:px-12 py-6 gap-16"'>
 				<h2 className="bg-gradient text-transparent font-black text-5xl bg-clip-text mb-8">Програма</h2>
-				<Tabs defaultValue="day-1" className="w-full">
-					<TabsList className="w-full justify-end ">
-						<div className="flex border-2 rounded-lg  w-min">
-							<TabsTrigger value="day-1" className="text-xl">
-								Ден 1
-							</TabsTrigger>
-							<TabsTrigger value="day-2" className="text-xl">
-								Ден 2
-							</TabsTrigger>
-						</div>
-					</TabsList>
-
+				<Tabs value={`${dayValue}`} className="w-full">
 					<TabsContent value="day-1">
 						<div className="flex flex-col gap-16 pt-4">
 							{LECTURES.map((item) => {
