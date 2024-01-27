@@ -70,7 +70,7 @@ const Moto = () => {
 				TUES{' '}
 				<span className="!leading-none !tracking-wide text-md text-center font-origin font-normal bg-gradient text-transparent bg-clip-text drop-shadow-lg">
 					FEST
-				</span>
+				</span>{' '}
 				<span className="!leading-none !tracking-wide text-md text-center font-origin font-normal drop-shadow-lg">
 					2024
 				</span>
