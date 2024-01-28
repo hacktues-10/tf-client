@@ -1,10 +1,15 @@
-import { TbBusinessplan, TbLiveView, TbQuestionMark, TbScale, TbSchool, TbTerminal2 } from 'react-icons/tb';
-
+import { TbBusinessplan, TbQuestionMark, TbScale, TbSchool, TbTerminal2 } from 'react-icons/tb';
+import { PiChalkboardTeacherLight } from 'react-icons/pi';
 export const EXPECTATIONS = [
 	{
 		icon: <TbTerminal2 size={34} />,
 		title: 'Интригуващи проекти',
 		text: `Разгледайте най-добрите технологични проекти на учениците от ТУЕС в сайта и на livestream програмата на ТУЕС Фест.`,
+	},
+	{
+		icon: <PiChalkboardTeacherLight size={34} />,
+		title: 'Tues Inspirational Talks',
+		text: `Тази година на ТУЕС Фест проведе на живо интересни лекции под формата на TED Talks. Може да се гледат както на живо, така и онлайн на нашият стрийм.`,
 	},
 	{
 		icon: <TbScale size={34} />,
@@ -25,10 +30,5 @@ export const EXPECTATIONS = [
 		icon: <TbBusinessplan size={34} />,
 		title: 'Връзка с бизнеса',
 		text: `Научете повече за тясната връзка с ИТ бизнеса, която е ключова за ТУЕС. Чуйте мнението и на бизнес партньорите на училището.`,
-	},
-	{
-		icon: <TbLiveView size={34} />,
-		title: 'На живо',
-		text: `Тази година ТУЕС Фест ще се проведе на живо във форум "Джон Атанасов" в София Тех Парк. Ще се радваме да ви видим!`,
 	},
 ];
