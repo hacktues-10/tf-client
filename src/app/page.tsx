@@ -7,10 +7,11 @@ import Sponsors from '@/partials/home/Sponsors';
 import Testimonial from '@/partials/home/Testimonial';
 
 import 'animate.css';
+import Statistics from '@/partials/home/Statistics';
 
 export default function Home() {
 	return (
-		<main className="max-w-screen-2xl m-auto">
+		<main className="m-auto">
 			<section
 				id="front-section"
 				className="p-4 py-32 w-full min-h-screen flex flex-col items-center justify-center gap-4 md:gap-16"
@@ -39,11 +40,16 @@ export default function Home() {
 					</div>
 				</div>
 			</section>
-			<About />
-			<Expectations />
-			<Schedule />
-			<Sponsors />
-			<Testimonial />
+			<div className="mx-6 md:mx-20">
+				<Statistics />
+			</div>
+
+			<div className="max-w-screen-2xl w-full m-auto">
+				<Expectations />
+				<Schedule />
+				<Sponsors />
+				<Testimonial />
+			</div>
 		</main>
 	);
 }
