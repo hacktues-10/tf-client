@@ -13,6 +13,7 @@ const About = () => (
 				<p className="">{ABOUT_TEXT}</p>
 				<Link
 					href={'https://tues.bg'}
+					target="_blank"
 					className="w-fit px-4 py-2 m-auto my-4 rounded-md text-xl bg-gradient font-bold uppercase hover:scale-105 transition-transform duration-300 shadow-2xl"
 				>
 					<span
