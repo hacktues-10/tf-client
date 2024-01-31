@@ -8,8 +8,8 @@ export const EXPECTATIONS = [
 	},
 	{
 		icon: <PiChalkboardTeacherLight size={34} />,
-		title: 'Tues Inspirational Talks',
-		text: `Тази година на ТУЕС Фест проведе на живо интересни лекции под формата на TED Talks. Може да се гледат както на живо, така и онлайн на нашият стрийм.`,
+		title: 'TUES Inspirational Talks',
+		text: `Тази година на ТУЕС Фест ще се проведат интересни лекции под формата на TED Talks. Може да се гледат както на живо, така и онлайн на нашият стрийм.`,
 	},
 	{
 		icon: <TbScale size={34} />,
