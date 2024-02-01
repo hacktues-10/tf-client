@@ -11,7 +11,7 @@ import Statistics from '@/partials/home/Statistics';
 
 export default function Home() {
 	return (
-		<main className="m-auto">
+		<main className="bg-repeat bg-[url(./bg.svg)]  m-auto">
 			<section
 				id="front-section"
 				className="p-4 py-32 w-full min-h-screen flex flex-col items-center justify-center gap-4 md:gap-16"

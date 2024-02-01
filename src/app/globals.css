@@ -4,7 +4,6 @@
  
 @layer base {
   :root {
-    --background:hsla(33, 100%, 53%, 1);;
     --foreground: 222.2 84% 4.9%;
 
     --card: 0 0% 100%;
@@ -36,7 +35,7 @@
   }
  
   .dark {
-    --background: 222.2 84% 4.9%;
+    /* --background: 222.2 84% 4.9%; */
     --foreground: 210 40% 98%;
  
     --card: 222.2 84% 4.9%;
@@ -71,17 +70,9 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply  text-foreground;
   }
   body {
-    background: var(--background);
-    background: hsla(33, 83%, 72%, 1);
-  
-    background: linear-gradient(90deg, hsla(33, 83%, 72%, 1) 2%, hsla(349, 66%, 43%, 1) 12%, hsla(33, 83%, 72%, 1) 23%, hsla(349, 66%, 43%, 1) 32%, hsla(33, 83%, 72%, 1) 42%, hsla(349, 66%, 43%, 1) 54%, hsla(33, 83%, 72%, 1) 65%, hsla(349, 66%, 43%, 1) 77%, hsla(33, 83%, 72%, 1) 89%, hsla(349, 66%, 43%, 1) 100%);
-
-    background: -moz-linear-gradient(90deg, hsla(33, 83%, 72%, 1) 2%, hsla(349, 66%, 43%, 1) 12%, hsla(33, 83%, 72%, 1) 23%, hsla(349, 66%, 43%, 1) 32%, hsla(33, 83%, 72%, 1) 42%, hsla(349, 66%, 43%, 1) 54%, hsla(33, 83%, 72%, 1) 65%, hsla(349, 66%, 43%, 1) 77%, hsla(33, 83%, 72%, 1) 89%, hsla(349, 66%, 43%, 1) 100%);
-    
-    background: -webkit-linear-gradient(90deg, hsla(33, 83%, 72%, 1) 2%, hsla(349, 66%, 43%, 1) 12%, hsla(33, 83%, 72%, 1) 23%, hsla(349, 66%, 43%, 1) 32%, hsla(33, 83%, 72%, 1) 42%, hsla(349, 66%, 43%, 1) 54%, hsla(33, 83%, 72%, 1) 65%, hsla(349, 66%, 43%, 1) 77%, hsla(33, 83%, 72%, 1) 89%, hsla(349, 66%, 43%, 1) 100%);
-    
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#F3BD7D", endColorstr="#B72641", GradientType=1 );}
+    /* @apply bg-background; */
+  }
   }

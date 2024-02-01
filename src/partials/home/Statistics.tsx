@@ -114,7 +114,7 @@ function History({
 			<div className="grid grid-cols-2 gap-1 gap-y-0 h-2/3 my-auto">
 				{FOLDERS.map((folder) => (
 					<div
-						className="p-5 hover:bg-gradient-to-br hover:from-primary hover:to-secondary hover:shadow-lg rounded-xl"
+						className="p-5 hover:bg-gradient-to-br hover:cursor-pointer hover:from-primary hover:to-secondary hover:shadow-lg rounded-xl"
 						key={folder.id}
 						onClick={() => setSelectedFolder(folder.id)}
 					>
