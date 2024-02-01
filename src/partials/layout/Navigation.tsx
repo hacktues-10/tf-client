@@ -164,15 +164,15 @@ const Navigation = () => {
 					<div className="w-60 max-w-full px-4">
 						<Link
 							href="/"
-							className={`header-logo block w-full font-origin text-xl whitespace-nowrap  ${
+							className={`header-logo font-zone99 block w-full text-xl whitespace-nowrap  ${
 								scrolled ? ' py-4 lg:py-2' : ' py-5 lg:py-7'
 							}`}
 						>
 							tues{' '}
-							<span className="font-origin font-normal bg-gradient text-transparent bg-clip-text ">
+							<span className="font-zone99 font-normal bg-gradient text-transparent bg-clip-text ">
 								fest
 							</span>{' '}
-							2023
+							2024
 						</Link>
 					</div>
 					<div className="flex w-full items-center justify-between px-4">

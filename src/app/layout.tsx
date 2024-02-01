@@ -120,7 +120,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				<link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="any"></link>
 			</head>
 			<body className=" text-white">
-				<div className="absolute inset-0 -z-50 w-full bg-repeat h-full bg-[url(./bg.svg)] bg-cover">
+				<div className="bg-repeat bg-[url(./bg.svg)]">
 					<DayProvider>
 						<Navigation />
 						{/* <VoteProvider> */}

@@ -11,19 +11,22 @@ import Statistics from '@/partials/home/Statistics';
 
 export default function Home() {
 	return (
-		<main className="bg-repeat bg-[url(./bg.svg)]  m-auto">
+		<main className="m-auto">
 			<section
 				id="front-section"
 				className="p-4 py-32 w-full min-h-screen flex flex-col items-center justify-center gap-4 md:gap-16"
 			>
-				<div /* className="animate__animated animate__fadeInTopLeft" */>
-					<h1 className="!leading-none !tracking-wide text-8xl sm:text-8xl md:text-9xl text-center font-origin font-normal drop-shadow-lg">
+				<div>
+					<h1 className="!leading-none !tracking-wide text-8xl sm:text-8xl md:text-9xl text-center  font-normal drop-shadow-lg">
 						TUES{' '}
-						<span className="!leading-none !tracking-wide text-8xl sm:text-8xl md:text-9xl text-center font-origin font-normal bg-gradient text-transparent bg-clip-text drop-shadow-lg">
+						<span className="!leading-none !tracking-wide text-8xl sm:text-8xl md:text-9xl font-warzone97 text-center  font-normal bg-gradient text-transparent bg-clip-text drop-shadow-lg">
 							FEST
 						</span>
 						<br className="text-3xl leading-none" />
-						<span className="!leading-none !tracking-wide text-7xl sm:text-7xl md:text-8xl text-center font-origin font-normal drop-shadow-lg">
+						<span
+							style={{ fontFamily: 'warzone97' }}
+							className="!leading-none !tracking-wide text-7xl sm:text-7xl md:text-8xl text-center  font-normal drop-shadow-lg"
+						>
 							2024
 						</span>
 					</h1>
