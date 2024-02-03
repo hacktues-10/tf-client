@@ -41,7 +41,7 @@ export const metadata = {
 const AboutPage = () => {
 	return (
 		<div className="max-w-screen-2xl min-h-screen m-auto p-8 md:p-12 !pt-28">
-			<div>
+			<div className='bg-stroke p-10 rounded-xl'>
 				<div className="md:pt-12 !pt-0 flex flex-col lg:flex-row items-center gap-8">
 					<div className="flex flex-col gap-4">
 						<h2 className="bg-gradient text-transparent font-black text-3xl sm:text-5xl bg-clip-text">
