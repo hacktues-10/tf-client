@@ -1,16 +1,16 @@
 export const metadata = {
 	title: {
 		default: 'Проекти',
-		template: '%s | ТУЕС Фест 2023',
+		template: '%s | ТУЕС Фест 2024',
 	},
 	description:
 		'Тук може да откриете проектите на учениците на ТУЕС. Тази година над 120 проекта ще бъдат представени само на 23 април в София Тех Парк - форум Джон Атанасов.',
 	keywords: [
 		'туес',
 		'туес фест',
-		'туес фест 2023',
+		'туес фест 2024',
 		'туесфест',
-		'туесфест 2023',
+		'туесфест 2024',
 		'туесфест.bg',
 		'проекти',
 		'ученически проекти',
@@ -29,7 +29,7 @@ export const metadata = {
 	],
 	twitter: {
 		card: 'summary_large_image',
-		title: 'Проекти | ТУЕС Фест 2023',
+		title: 'Проекти | ТУЕС Фест 2024',
 		description:
 			'Тук може да откриете проектите на учениците на ТУЕС. Тази година над 120 проекта ще бъдат представени само на 23 април в София Тех Парк - форум Джон Атанасов.',
 		creator: '@tuesfest',
@@ -37,11 +37,11 @@ export const metadata = {
 	},
 	assets: ['https://tuesfest.bg/favicon.png', 'https://tuesfest.bg/logo/motto.png', 'https://tuesfest.bg/assets'],
 	openGraph: {
-		title: 'Проекти | TUES Fest 2023',
+		title: 'Проекти | TUES Fest 2024',
 		description:
 			'Тук може да откриете проектите на учениците на ТУЕС. Тази година над 120 проекта ще бъдат представени само на 23 април в София Тех Парк - форум Джон Атанасов.',
 		url: `https://tuesfest.bg/projects`,
-		siteName: 'TUES Fest 2023',
+		siteName: 'TUES Fest 2024',
 		images: ['https://tuesfest.bg/logo/motto.png'],
 		locale: 'bg-BG',
 		type: 'website',

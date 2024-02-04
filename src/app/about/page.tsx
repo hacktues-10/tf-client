@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { Separator } from '@/components/ui/separator';
 import Link from 'next/link';
 
 import { TbBriefcase, TbHistory, TbSchool, TbTrophy } from 'react-icons/tb';
@@ -6,20 +7,20 @@ import { TbBriefcase, TbHistory, TbSchool, TbTrophy } from 'react-icons/tb';
 export const metadata = {
 	title: {
 		default: 'За ТУЕС',
-		template: '%s | TUES Fest 2023',
+		template: '%s | TUES Fest 2024',
 	},
 	description:
 		'Научете повече за най-доброто училище в България - Технологично училище "Електронни системи", което през 2022 беше с втори най-висок бал за страната. ТУЕС е училище с 35 години история, което е специализирано в областта на ИТ и единствено в България подготвя специалисти в областта на системно програмиране.',
 	keywords: [
 		'туес',
 		'туес фест',
-		'туес фест 2023',
+		'туес фест 2024',
 		'технологично училище електронни системи',
 		'технологично',
 		'училище',
 		'електронни',
 		'системи',
-		'туес 2023',
+		'туес 2024',
 		'кандидатстване',
 		'училища софия',
 		'училища',
@@ -41,12 +42,14 @@ export const metadata = {
 const AboutPage = () => {
 	return (
 		<div className="max-w-screen-2xl min-h-screen m-auto p-8 md:p-12 !pt-28">
-			<div>
+			<div className='bg-stroke p-10 rounded-xl'>
+			<h2 className="bg-gradient text-transparent pb-4 font-black text-3xl sm:text-5xl bg-clip-text">
+							За ТУЕС
+							<Separator className='bg-black h-1 rounded-lg mt-2 w-auto'/>
+						</h2>
+
 				<div className="md:pt-12 !pt-0 flex flex-col lg:flex-row items-center gap-8">
 					<div className="flex flex-col gap-4">
-						<h2 className="bg-gradient text-transparent font-black text-3xl sm:text-5xl bg-clip-text">
-							За ТУЕС
-						</h2>
 						<p className="text-md text-justify">
 							Технологично училище “Електронни системи” към Технически Университет - София вече над 30
 							години подготвя бъдещите лидери на ИТ сектора в България.
@@ -100,7 +103,9 @@ const AboutPage = () => {
 				<div className="pt-8 md:pt-12 flex flex-col gap-4">
 					<h3 className="bg-gradient text-transparent font-black text-3xl sm:text-5xl bg-clip-text pb-2 -mb-2">
 						Обучение
+						<Separator className='bg-black h-1 rounded-lg mt-2 w-auto'/>
 					</h3>
+
 					<p className="text-lg opacity-70">Освен специализирания учебен план ТУЕС предлага:</p>
 					<ul className="w-full flex flex-col gap-4">
 						<li className="p-4 rounded-xl text-md border border-stroke bg-bg-color">
@@ -135,13 +140,13 @@ const AboutPage = () => {
 								</li>
 							</ul>
 						</li>
-						<li className="p-4 rounded-xl text-md border border-stroke bg-bg-color">
+						{/* <li className="p-4 rounded-xl text-md border border-stroke bg-bg-color">
 							Възможност за участие в зелено и бяло училище.{' '}
-						</li>
+						</li> */}
 					</ul>
 				</div>
 				<div className="pt-8 md:pt-12">
-					<div className="bg-bg-color rounded-xl border border-stroke p-4 flex flex-col md:flex-row gap-4">
+					<div className="bg-bg-color rounded-xl border border-stroke p-8 flex flex-col md:flex-row gap-4">
 						<div className="w-full p-4 flex flex-col gap-4 items-center rounded-xl bg-[#353444] border border-stroke">
 							<TbSchool size={64} className="opacity-70" />
 							<p className="text-5xl font-black bg-gradient text-transparent bg-clip-text">2846</p>
@@ -167,7 +172,10 @@ const AboutPage = () => {
 				<div className="pt-8 md:pt-12 flex flex-col gap-4">
 					<h3 className="bg-gradient text-transparent font-black text-3xl sm:text-5xl bg-clip-text pb-2 -mb-2">
 						ТУЕС постига успехите си благодарение на
+						<Separator className='bg-black h-1 rounded-lg mt-2 w-auto'/>
 					</h3>
+
+
 					<ul className="w-full flex flex-col gap-4">
 						<li className="p-4 rounded-xl text-md border border-stroke bg-bg-color">
 							тясната интеграция с Технически университет - София
@@ -190,7 +198,9 @@ const AboutPage = () => {
 				<div className="pt-8 md:pt-12 flex flex-col gap-6">
 					<h2 className="bg-gradient text-transparent font-black text-3xl sm:text-5xl bg-clip-text">
 						HackTUES
+						<Separator className='bg-black h-1 rounded-lg mt-2 w-auto'/>
 					</h2>
+
 					<p className="text-justify">
 						HackTUES е едно от ключовите събития за ТУЕС, в което ученици от училището в отбори от по 3 - 5
 						участници в рамките на два дни създават от нулата свой ИТ проект по зададена тема и след това го

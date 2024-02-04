@@ -18,6 +18,9 @@ const Testimonial = () => {
 				</div>
 				<div className="flex justify-center">
 					<Carousel
+						opts={{
+							loop: true,
+						}}
 						className="w-full max-w-5/6 lg:max-w-1/2"
 						plugins={[plugin.current]}
 						onMouseEnter={plugin.current.stop}

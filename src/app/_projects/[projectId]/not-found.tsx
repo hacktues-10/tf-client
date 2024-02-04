@@ -6,7 +6,7 @@ export const metadata = {
 	openGraph: {
 		title: '404 - Няма такъв проект :(',
 		description: '404 - Няма такъв проект :(',
-		siteName: 'TUES Fest 2023',
+		siteName: 'TUES Fest 2024',
 	},
 };
 

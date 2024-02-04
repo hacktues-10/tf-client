@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 
-import { Picture } from '@/app/projects/[projectId]/page';
+import { Picture } from '@/app/_projects/[projectId]/page';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { TbChevronLeft, TbChevronRight, TbX } from 'react-icons/tb';
 

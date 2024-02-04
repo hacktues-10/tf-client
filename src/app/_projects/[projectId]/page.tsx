@@ -71,7 +71,7 @@ export async function generateMetadata({ params }: { params: { projectId: string
 		description: project.description,
 		twitter: {
 			card: 'summary_large_image',
-			title: `${project.name} | TUES Fest 2023`,
+			title: `${project.name} | TUES Fest 2024`,
 			description: project.description,
 			creator: '@tuesfest',
 			images: images?.map((image) => ({
@@ -79,10 +79,10 @@ export async function generateMetadata({ params }: { params: { projectId: string
 			})),
 		},
 		openGraph: {
-			title: `${project.name} | TUES Fest 2023`,
+			title: `${project.name} | TUES Fest 2024`,
 			description: project.description,
 			url: `https://tuesfest.bg/projects/${project.id}`,
-			siteName: 'TUES Fest 2023',
+			siteName: 'TUES Fest 2024',
 			images: images?.map((image) => ({
 				url: image.url,
 			})),
@@ -99,7 +99,7 @@ const ProjectPage = async ({ params }: { params: { projectId: string } }) => {
 
 	const path = [
 		{
-			name: 'TUES Fest 2023',
+			name: 'TUES Fest 2024',
 			url: '/',
 		},
 		{
@@ -123,7 +123,8 @@ const ProjectPage = async ({ params }: { params: { projectId: string } }) => {
 					{...project}
 					thumbnail={
 						project.has_thumbnail
-							? project.pictures?.find((picture) => picture.is_thumbnail)?.url ?? project.pictures?.[0]?.url
+							? project.pictures?.find((picture) => picture.is_thumbnail)?.url ??
+							  project.pictures?.[0]?.url
 							: project.pictures?.[0]?.url
 					}
 				/>

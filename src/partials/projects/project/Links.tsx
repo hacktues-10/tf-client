@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import { TbBrandGithub, TbGlobe } from 'react-icons/tb';
 
-import { Links } from '@/app/projects/[projectId]/page';
+import { Links } from '@/app/_projects/[projectId]/page';
 import { ReactNode } from 'react';
 
 const Linky = ({ text, url, icon }: { text: string; url: string; icon: ReactNode }) => (
