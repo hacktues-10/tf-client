@@ -135,13 +135,13 @@ const AboutPage = () => {
 								</li>
 							</ul>
 						</li>
-						<li className="p-4 rounded-xl text-md border border-stroke bg-bg-color">
+						{/* <li className="p-4 rounded-xl text-md border border-stroke bg-bg-color">
 							Възможност за участие в зелено и бяло училище.{' '}
-						</li>
+						</li> */}
 					</ul>
 				</div>
 				<div className="pt-8 md:pt-12">
-					<div className="bg-bg-color rounded-xl border border-stroke p-4 flex flex-col md:flex-row gap-4">
+					<div className="bg-bg-color rounded-xl border border-stroke p-8 flex flex-col md:flex-row gap-4">
 						<div className="w-full p-4 flex flex-col gap-4 items-center rounded-xl bg-[#353444] border border-stroke">
 							<TbSchool size={64} className="opacity-70" />
 							<p className="text-5xl font-black bg-gradient text-transparent bg-clip-text">2846</p>

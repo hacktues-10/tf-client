@@ -43,7 +43,7 @@ export default function Home() {
 					</div>
 				</div>
 			</section>
-			<div className="mx-6 md:mx-20">
+			<div className="max-w-screen-2xl 2xl:m-auto mx-6 md:mx-20">
 				<Statistics />
 			</div>
 
