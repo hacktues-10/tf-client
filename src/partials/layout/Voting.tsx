@@ -8,6 +8,7 @@ import { TbChevronDown, TbChevronUp, TbX } from 'react-icons/tb';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { CATEGORY } from '@/constants/projects/CATEGORY';
+import Image from 'next/image';
 
 const VotingModal = ({ closeModal }: { closeModal: () => void }) => {
 	const [info, setInfo] = useState({ name: '', email: '' });
@@ -180,7 +181,7 @@ const VotingCategory = ({ category, cat, error }: { category: Vote | null; cat: 
 			<div className="flex items-center gap-4">
 				<div className="shrink-0 break-words relative aspect-square w-12 h-12 bg-bg-color border border-border rounded-full flex items-center justify-center overflow-hidden">
 					<img
-						src={category.image}
+						src={category.image ?? ''}
 						alt={category.name}
 						className="aspect-square w-full h-full object-cover"
 					/>

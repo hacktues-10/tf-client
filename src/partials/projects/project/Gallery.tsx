@@ -182,7 +182,7 @@ const Gallery = ({ name, pictures }: { name: string; pictures: Picture[] }) => {
 									key={picture.url}
 									className="h-full shrink-0 overflow-hidden !aspect-square rounded-xl border-2 border-border"
 								>
-									<Image
+									<img
 										src={picture.url}
 										alt={`снимка ${index + 1} от проект ${name}`}
 										width={512}

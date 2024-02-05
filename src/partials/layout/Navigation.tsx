@@ -164,11 +164,12 @@ const Navigation = () => {
 					<div className="w-60 max-w-full px-4">
 						<Link
 							href="/"
-							className={`header-logo	 block w-full text-xl whitespace-nowrap  ${
+							className={`header-logo	 block w-full text-sm md:text-lg whitespace-nowrap  ${
 								scrolled ? ' py-4 lg:py-2' : ' py-5 lg:py-7'
 							}`}
+							style={{ fontFamily: 'warzone97', fontWeight: 800 }}
 						>
-							tues <span className=" font-normal bg-gradient text-transparent bg-clip-text ">fest</span>{' '}
+							TUES <span className=" font-normal bg-gradient text-transparent bg-clip-text ">Fest</span>{' '}
 							2024
 						</Link>
 					</div>
@@ -204,6 +205,7 @@ const Navigation = () => {
 
 									{SCHOOL_LINKS.map((link) => (
 										<li
+											key={link.title}
 											className="block lg:hidden group relative"
 											onClick={() => setMobileOpen(false)}
 										>

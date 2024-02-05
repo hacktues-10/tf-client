@@ -17,16 +17,16 @@ export default function Home() {
 				className="p-4 py-32 w-full min-h-screen flex flex-col items-center justify-center gap-4 md:gap-16"
 			>
 				<div>
-					<h1 className="!leading-none !tracking-wide text-8xl sm:text-8xl md:text-9xl text-center  font-normal drop-shadow-lg">
+					<h1
+						style={{ fontFamily: 'warzone97' }}
+						className="!leading-none !tracking-wide text-8xl sm:text-8xl md:text-9xl text-center font-normal drop-shadow-lg"
+					>
 						TUES{' '}
 						<span className="!leading-none !tracking-wide text-8xl sm:text-8xl md:text-9xl font-warzone97 text-center  font-normal bg-gradient text-transparent bg-clip-text drop-shadow-lg">
 							FEST
 						</span>
 						<br className="text-3xl leading-none" />
-						<span
-							style={{ fontFamily: 'warzone97' }}
-							className="!leading-none !tracking-wide text-7xl sm:text-7xl md:text-8xl text-center  font-normal drop-shadow-lg"
-						>
+						<span className="!leading-none !tracking-wide text-7xl sm:text-7xl md:text-8xl text-center  font-normal drop-shadow-lg">
 							2024
 						</span>
 					</h1>
