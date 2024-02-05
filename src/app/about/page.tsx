@@ -43,10 +43,10 @@ export const metadata = {
 const AboutPage = () => {
 	return (
 		<div className="max-w-screen-2xl min-h-screen m-auto p-8 md:p-12 !pt-28">
-			<div className="bg-stroke p-10 rounded-xl">
+			<div className="bg-stroke bg-clip-padding backdrop-filter backdrop-blur-none sm:backdrop-blur-md bg-opacity-40  p-10 rounded-xl">
 				<h2 className="bg-gradient text-transparent pb-4 font-black text-3xl sm:text-5xl bg-clip-text">
 					За ТУЕС
-					<Separator className="bg-black h-1 rounded-lg mt-2 w-auto" />
+					{/* <Separator className="bg-black h-1 rounded-lg mt-2 w-auto" /> */}
 				</h2>
 
 				<div className="md:pt-12 !pt-0 flex flex-col lg:flex-row items-center gap-8">
@@ -104,7 +104,7 @@ const AboutPage = () => {
 				<div className="pt-8 md:pt-12 flex flex-col gap-4">
 					<h3 className="bg-gradient text-transparent font-black text-3xl sm:text-5xl bg-clip-text pb-2 -mb-2">
 						Обучение
-						<Separator className="bg-black h-1 rounded-lg mt-2 w-auto" />
+						{/* <Separator className="bg-black h-1 rounded-lg mt-2 w-auto" /> */}
 					</h3>
 
 					<p className="text-lg opacity-70">Освен специализирания учебен план ТУЕС предлага:</p>
@@ -173,7 +173,7 @@ const AboutPage = () => {
 				<div className="pt-8 md:pt-12 flex flex-col gap-4">
 					<h3 className="bg-gradient text-transparent font-black text-3xl sm:text-5xl bg-clip-text pb-2 -mb-2">
 						ТУЕС постига успехите си благодарение на
-						<Separator className="bg-black h-1 rounded-lg mt-2 w-auto" />
+						{/* <Separator className="bg-black h-1 rounded-lg mt-2 w-auto" /> */}
 					</h3>
 
 					<ul className="w-full flex flex-col gap-4">
@@ -198,7 +198,7 @@ const AboutPage = () => {
 				<div className="pt-8 md:pt-12 flex flex-col gap-6">
 					<h2 className="bg-gradient text-transparent font-black text-3xl sm:text-5xl bg-clip-text">
 						HackTUES
-						<Separator className="bg-black h-1 rounded-lg mt-2 w-auto" />
+						{/* <Separator className="bg-black h-1 rounded-lg mt-2 w-auto" /> */}
 					</h2>
 
 					<p className="text-justify">
