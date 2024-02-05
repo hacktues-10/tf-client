@@ -85,7 +85,7 @@ export const metadata = {
 		creator: '@tuesfest',
 		images: ['https://tuesfest.bg/logo/motto.png'],
 	},
-	archives: ['https://2022.tuesfest.bg'],
+	archives: ['https://2022.tuesfest.bg', 'https://2021.tuesfest.bg', 'https://2020.tuesfest.bg'],
 	assets: ['https://tuesfest.bg/favicon.png', 'https://tuesfest.bg/logo/motto.png', 'https://tuesfest.bg/assets'],
 	openGraph: {
 		title: 'TUES Fest 2024',
