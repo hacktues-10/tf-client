@@ -1,0 +1,25 @@
+# *
+User-agent: *
+Allow: /
+
+# *
+User-agent: *
+Disallow: /api
+
+# *
+User-agent: *
+Disallow: /admin
+
+# *
+User-agent: *
+Disallow: /iskren
+
+# *
+User-agent: *
+Disallow: /auth
+
+# Host
+Host: https://tuesfest.bg
+
+# Sitemaps
+Sitemap: https://tuesfest.bg/sitemap.xml

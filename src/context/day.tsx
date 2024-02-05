@@ -1,6 +1,17 @@
 'use client';
 import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
-import { number } from 'zod';
+
+function getItem() {
+	try {
+		const dayLocal = localStorage.getItem('day');
+		if (dayLocal) {
+			return parseInt(dayLocal);
+		}
+		return 1;
+	} catch (e) {
+		return 1;
+	}
+}
 
 interface DayContextProps {
 	day: number;
@@ -12,26 +23,16 @@ const DayContext = createContext<DayContextProps>({
 	setDay: () => {},
 });
 export function DayProvider({ children }: { children: ReactNode }) {
-	try {
-		const [day, setDay] = useState(localStorage.getItem('day') ? parseInt(localStorage.getItem('day')!) : 1);
+	const [day, setDay] = useState(getItem());
 
-		useEffect(() => {
-			try {
-				const dayLocal = localStorage.getItem('day');
-				if (dayLocal) {
-					setDay(parseInt(dayLocal));
-				}
-			} catch (e) {
-				setDay(1);
-			}
-		}, [day]);
+	useEffect(() => {
+		const dayLocal = getItem();
+		if (dayLocal) {
+			setDay(dayLocal);
+		}
+	}, [day]);
 
-		return <DayContext.Provider value={{ day, setDay }}>{children}</DayContext.Provider>;
-	} catch (e) {
-		const [day, setDay] = useState(1);
-
-		return <DayContext.Provider value={{ day, setDay }}>{children}</DayContext.Provider>;
-	}
+	return <DayContext.Provider value={{ day, setDay }}>{children}</DayContext.Provider>;
 }
 
 export function useDay() {
