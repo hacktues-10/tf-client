@@ -21,6 +21,7 @@ const About = () => (
 						style={{
 							textShadow: '3px 3px 13px rgba(0, 0, 0, 0.4)',
 						}}
+						className="text-zinc"
 					>
 						{ABOUT_BUTTON}
 					</span>
@@ -29,11 +30,11 @@ const About = () => (
 			</div>
 			{/* Image */}
 			<div className="w-full">
-				<div className="animate__animated animate__backInRight bg-dark rounded-md overflow-hidden">
+				<div className="animate__animated animate__backInRight rounded-md overflow-hidden">
 					<img
 						src={ABOUT_IMAGE}
 						alt=""
-						className="w-full bg-dark rounded-md outline-none aspect-video shadow-2xl object-cover object-bottom"
+						className="w-full rounded-md outline-none aspect-video shadow-2xl object-cover object-bottom"
 					/>
 				</div>
 			</div>

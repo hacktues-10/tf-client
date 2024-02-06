@@ -153,7 +153,7 @@ const Navigation = () => {
 		'fixed',
 		'duration-500',
 		...(scrolled
-			? ['z-50', 'bg-dark', 'bg-opacity-70', 'shadow-sticky', 'backdrop-blur-lg', 'duration-500']
+			? ['z-50', 'bg-zinc', 'bg-opacity-40', 'shadow-sticky', 'backdrop-blur-sm', 'duration-500']
 			: ['bg-transparent', 'z-50']),
 	];
 
