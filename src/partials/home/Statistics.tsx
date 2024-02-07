@@ -20,7 +20,7 @@ export default function Statistics() {
 	const [selectedFolder, setSelectedFolder] = useState(8);
 
 	return (
-		<div className="w-full rounded-xl bg-black block">
+		<div className="w-full rounded-xl bg-zinc bg-clip-padding backdrop-filter backdrop-blur-none sm:backdrop-blur-sm bg-opacity-40  block">
 			<About />
 			<div className="px-2 md:px-6 lg:px-10 xl:px-14 ">
 				<h2 className="bg-gradient p-4 text-transparent font-black text-5xl bg-clip-text">
@@ -33,13 +33,13 @@ export default function Statistics() {
 						{STATISTICS.map((statistic) => (
 							<Card
 								key={statistic.title}
-								className={`my-4 pl-0 shadow-none pr-6 lg:p-6 pt-6 border-0 h-[300px] md:w-full lg:pr-10 text-white overflow-hidden bg-black rounded-xl`}
+								className={`my-4 pl-0 shadow-none pr-6 lg:p-6 pt-6 border-0 h-[300px] md:w-full lg:pr-10 text-white overflow-hidden bg-transparent rounded-xl`}
 							>
 								<div className="flex justify-center m-2">
 									<HeaderIcon icon={statistic.icon} />
 									<CardTitle className="ml-2">{statistic.title}</CardTitle>
 								</div>
-								<div className="bg-black">
+								<div className="bg-transparent">
 									<BarStatistic selectedFolder={selectedFolder} data={statistic.data} />
 								</div>
 							</Card>
@@ -113,7 +113,7 @@ function BarStatistic({
 				/>
 				<Bar dataKey="total" radius={[4, 4, 0, 0]}>
 					{data.map((entry, index) => (
-						<Cell key={`cell-${index}`} fill={folder?.name == entry.name ? '#1f77b4' : 'currentColor'} />
+						<Cell key={`cell-${index}`} fill={folder?.name == entry.name ? '#fbebb7' : 'currentColor'} />
 					))}
 				</Bar>
 			</BarChart>

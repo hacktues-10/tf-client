@@ -43,7 +43,7 @@ export const metadata = {
 const AboutPage = () => {
 	return (
 		<div className="max-w-screen-2xl min-h-screen m-auto p-8 md:p-12 !pt-28">
-			<div className="bg-stroke bg-clip-padding backdrop-filter backdrop-blur-none sm:backdrop-blur-md bg-opacity-40  p-10 rounded-xl">
+			<div className="bg-stroke bg-clip-padding backdrop-filter backdrop-blur-none sm:backdrop-blur-sm bg-opacity-40  p-10 rounded-xl">
 				<h2 className="bg-gradient text-transparent pb-4 font-black text-3xl sm:text-5xl bg-clip-text">
 					За ТУЕС
 					{/* <Separator className="bg-black h-1 rounded-lg mt-2 w-auto" /> */}

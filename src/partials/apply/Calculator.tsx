@@ -78,7 +78,7 @@ const Calculator = () => {
 	}, [calculator]);
 
 	return (
-		<div className="w-full md:w-full lg:w-96 xl:w-[38rem] shrink-0 relative z-10 overflow-hidden rounded-xl p-8 sm:p-10 flex flex-col gap-5 bg-stroke bg-clip-padding backdrop-filter backdrop-blur-none sm:backdrop-blur-md bg-opacity-40 ">
+		<div className="w-full md:w-full lg:w-96 xl:w-[38rem] shrink-0 relative z-10 overflow-hidden rounded-xl p-8 sm:p-10 flex flex-col gap-5 bg-stroke bg-clip-padding backdrop-filter backdrop-blur-none sm:backdrop-blur-sm bg-opacity-40 ">
 			<div className="w-fit flex flex-col gap-1">
 				<h2 className="bg-gradient text-transparent font-black sm:text-5xl text-3xl bg-clip-text">
 					Изчисли си БАЛ-а

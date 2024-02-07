@@ -32,23 +32,26 @@ module.exports = {
 			secondary: '#36B37E',
 			yellow: '#FBB040',
 			'body-color': '#A1A0AE',
-			gradient: 'linear-gradient(158.44deg, #68CBE9 7.17%, #7775B4 52.72%, #7B51A1 91.26%)',
+			gradient:
+				'linear-gradient(90deg, hsla(46, 89%, 85%, 1) 0%, hsla(10, 81%, 75%, 1) 66%, hsla(355, 78%, 65%, 1) 100%, hsla(6, 95%, 50%, 1) 100%, hsla(355, 78%, 65%, 1) 100%)',
 			error: '#FF0000',
+			zinc: 'rgb(55 65 81)',
 		},
 		extend: {
 			backgroundColor: {
-				'background': 'var(--background)',
-				'card': 'var(--card)',
-				'popover': 'var(--popover)',
-				'primary': 'var(--primary)',
-				'secondary': 'var(--secondary)',
-				'muted': 'var(--muted)',
-				'accent': 'var(--accent)',
-				'destructive': 'var(--destructive)',
-				'input': 'var(--input)',
-			  },
-			  textColor: {
-				'foreground': 'var(--foreground)',
+				background: 'var(--background)',
+				card: 'var(--card)',
+				popover: 'var(--popover)',
+				primary: 'var(--primary)',
+				secondary: 'var(--secondary)',
+				muted: 'var(--muted)',
+				accent: 'var(--accent)',
+				destructive: 'var(--destructive)',
+				input: 'var(--input)',
+				zinc: 'rgb(82 82 91)',
+			},
+			textColor: {
+				foreground: 'var(--foreground)',
 				'card-foreground': 'var(--card-foreground)',
 				'popover-foreground': 'var(--popover-foreground)',
 				'primary-foreground': 'var(--primary-foreground)',
@@ -56,18 +59,19 @@ module.exports = {
 				'muted-foreground': 'var(--muted-foreground)',
 				'accent-foreground': 'var(--accent-foreground)',
 				'destructive-foreground': 'var(--destructive-foreground)',
-			  },
-			  borderColor: {
-				'border': 'var(--border)',
-			  },
-			  ringColor: {
-				'ring': 'var(--ring)',
-			  },
-			  borderRadius: {
-				'radius': 'var(--radius)',
-			  },
+			},
+			borderColor: {
+				border: 'var(--border)',
+			},
+			ringColor: {
+				ring: 'var(--ring)',
+			},
+			borderRadius: {
+				radius: 'var(--radius)',
+			},
 			backgroundImage: (theme) => ({
-				gradient: 'linear-gradient(158.44deg, #68CBE9 7.17%, #7775B4 52.72%, #7B51A1 91.26%)',
+				gradient:
+					'linear-gradient(90deg, hsla(46, 89%, 85%, 1) 0%, hsla(10, 81%, 75%, 1) 66%, hsla(355, 78%, 65%, 1) 100%, hsla(6, 95%, 50%, 1) 100%, hsla(355, 78%, 65%, 1) 100%)',
 			}),
 			boxShadow: {
 				primary: '0px 4px 16px rgba(81, 66, 252, 0.4)',
