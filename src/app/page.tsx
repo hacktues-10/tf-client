@@ -14,19 +14,19 @@ export default function Home() {
 		<main className="m-auto">
 			<section
 				id="front-section"
-				className="p-4 py-32 w-full min-h-screen flex flex-col items-center justify-center gap-4 md:gap-16"
+				className="p-4 w-full min-h-screen flex flex-col items-center justify-center gap-4 md:gap-16 "
 			>
 				<div>
 					<h1
 						style={{ fontFamily: 'origin' }}
-						className="!leading-none !tracking-wide text-8xl sm:text-8xl md:text-9xl text-center font-normal drop-shadow-lg"
+						className="!leading-none border-2 border-[#F2F2F2] bg-clip-padding p-4 rounded-xl backdrop-filter backdrop-blur-none sm:backdrop-blur-sm bg-opacity-0 !tracking-wide text-8xl sm:text-8xl md:text-9xl text-center font-normal drop-shadow-lg"
 					>
 						TUES{' '}
 						<span className="!leading-none !tracking-wide text-8xl sm:text-8xl md:text-9xl font-warzone97 text-center  font-normal bg-gradient text-transparent bg-clip-text drop-shadow-lg">
 							FEST
 						</span>
-						<br className="text-3xl leading-none" />
-						<span className="!leading-none !tracking-wide text-7xl sm:text-7xl md:text-8xl text-center  font-normal drop-shadow-lg">
+						<br className="text-3xl" />
+						<span className="!leading-none p-2 !tracking-wide text-8xl sm:text-8xl md:text-9xl  font-normal drop-shadow-lg">
 							2024
 						</span>
 					</h1>
