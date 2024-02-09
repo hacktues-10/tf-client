@@ -10,7 +10,7 @@ function Schedule() {
 
 	return (
 		<IfTfFeatureOn feature="schedule">
-			<section id="schedule" className='min-h-screen flex flex-col px-8 md:px-12 py-6 gap-16"'>
+			<section id="schedule" className='relative z-50 min-h-screen flex flex-col px-8 md:px-12 py-6 gap-16"'>
 				<h2 className="bg-gradient text-transparent font-black text-5xl bg-clip-text mb-8">Програма</h2>
 				<Tabs value={`${dayValue}`} className="w-full">
 					<TabsContent value="day-1">

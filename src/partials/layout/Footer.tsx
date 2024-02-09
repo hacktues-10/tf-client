@@ -89,7 +89,7 @@ const Moto = () => {
 };
 
 const Footer = () => (
-	<footer className="bg-bg-color">
+	<footer className="relative z-50 bg-bg-color">
 		<div className="border-t block sm:flex w-full justify-center sm:justify-between border-stroke">
 			<div className="justify-center sm:justify-start pt-7 sm:py-7">
 				<Moto />

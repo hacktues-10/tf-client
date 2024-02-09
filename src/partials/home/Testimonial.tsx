@@ -9,7 +9,7 @@ import { TESTIMONIALS, TESTIMONIALS_TITLE } from '@/constants/home/testimonials'
 const Testimonial = () => {
 	const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
 	return (
-		<section className="min-h-[36rem] w-full relative p-8 md:p-12">
+		<section className="min-h-[36rem] w-full relative z-50 p-8 md:p-12">
 			<div className="min-h-full h-full flex flex-col justify-between gap-8">
 				<div className="flex flex-col sm:flex-row items-center justify-between gap-8">
 					<h2 className="bg-gradient text-transparent font-black text-5xl bg-clip-text">

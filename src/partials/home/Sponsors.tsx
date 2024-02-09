@@ -2,7 +2,7 @@ import PodkrepqAutoDisplay from './sponsors/PodkrepqAutoDisplay';
 
 import { ALPHA_SPONSORS, GAMMA_SPONSORS, BETA_SPONSORS } from '@/constants/home/sponsors';
 const Sponsors = () => (
-	<section id="sponsors" className="p-8 md:p-12 mb-20">
+	<section id="sponsors" className="relative z-50 p-8 md:p-12 mb-20">
 		<div className="py-4 pb-8">
 			<h2 className="bg-gradient text-transparent font-black text-5xl bg-clip-text">Спонсори</h2>
 		</div>
