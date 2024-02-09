@@ -68,17 +68,17 @@ const Moto = () => {
 		<div className="m-1 sm:pl-6">
 			<h1
 				className="!leading-none !tracking-wide text-md text-center font-origin font-normal drop-shadow-lg"
-				style={{ fontFamily: 'warzone97', fontWeight: 800 }}
+				style={{ fontFamily: 'origin', fontWeight: 800 }}
 			>
 				TUES{' '}
 				<span
-					style={{ fontFamily: 'warzone97', fontWeight: 800 }}
+					style={{ fontFamily: 'origin', fontWeight: 800 }}
 					className="!leading-none !tracking-wide text-md text-center font-origin font-normal bg-gradient text-transparent bg-clip-text drop-shadow-lg"
 				>
 					Fest
 				</span>{' '}
 				<span
-					style={{ fontFamily: 'warzone97', fontWeight: 800 }}
+					style={{ fontFamily: 'origin', fontWeight: 800 }}
 					className="!leading-none !tracking-wide text-md text-center font-origin font-normal drop-shadow-lg"
 				>
 					2024
@@ -89,7 +89,7 @@ const Moto = () => {
 };
 
 const Footer = () => (
-	<footer className="relative z-50 bg-bg-color">
+	<footer className="relative z-20 bg-bg-color">
 		<div className="border-t block sm:flex w-full justify-center sm:justify-between border-stroke">
 			<div className="justify-center sm:justify-start pt-7 sm:py-7">
 				<Moto />

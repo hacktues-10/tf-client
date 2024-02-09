@@ -167,7 +167,7 @@ const Navigation = () => {
 							className={`header-logo	 block w-full text-sm md:text-lg whitespace-nowrap  ${
 								scrolled ? ' py-4 lg:py-2' : ' py-5 lg:py-7'
 							}`}
-							style={{ fontFamily: 'warzone97', fontWeight: 800 }}
+							style={{ fontFamily: 'origin', fontWeight: 800 }}
 						>
 							TUES <span className=" font-normal bg-gradient text-transparent bg-clip-text ">Fest</span>{' '}
 							2024
