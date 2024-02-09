@@ -160,16 +160,17 @@ const Navigation = () => {
 	return (
 		<header className={navbarClasses.join(' ')}>
 			<div className="container">
-				<div className="relative mx-[-16px] flex items-center justify-between">
+				<div className="relative text-center mx-[-16px] flex items-center justify-between">
 					<div className="w-60 max-w-full px-4">
 						<Link
 							href="/"
-							className={`header-logo	 block w-full text-sm md:text-lg whitespace-nowrap  ${
+							className={`header-logo	 block w-full text-md md:text-lg whitespace-nowrap  ${
 								scrolled ? ' py-4 lg:py-2' : ' py-5 lg:py-7'
 							}`}
 							style={{ fontFamily: 'origin', fontWeight: 800 }}
 						>
 							TUES <span className=" font-normal bg-gradient text-transparent bg-clip-text ">Fest</span>{' '}
+							<br className="text-xl sm:hidden" />
 							2024
 						</Link>
 					</div>
@@ -254,7 +255,7 @@ const Navigation = () => {
 							</Link>
 
 							<Tabs defaultValue={`${dayValue}`}>
-								<TabsList>
+								<TabsList className="w-[200px] sm:w-min">
 									<div className="flex border-2 rounded-lg  w-min">
 										<TabsTrigger value="day-1" onClick={() => setDay(1)} className="text-xl">
 											Ден 1
