@@ -18,7 +18,7 @@ export default function Home() {
 			>
 				<div>
 					<h1
-						style={{ fontFamily: 'warzone97' }}
+						style={{ fontFamily: 'origin' }}
 						className="!leading-none !tracking-wide text-8xl sm:text-8xl md:text-9xl text-center font-normal drop-shadow-lg"
 					>
 						TUES{' '}
