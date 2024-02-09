@@ -23,7 +23,7 @@ export default function Statistics() {
 		<div className="w-full rounded-xl bg-zinc bg-clip-padding backdrop-filter backdrop-blur-none sm:backdrop-blur-sm bg-opacity-40  block">
 			<About />
 			<div className="px-2 md:px-6 lg:px-10 xl:px-14 ">
-				<h2 className="bg-gradient p-4 text-transparent font-black text-5xl bg-clip-text">
+				<h2 className="bg-gradient p-4 text-transparent font-black text-4xl sm:text-5xl bg-clip-text">
 					ТУЕС Фест през годините
 				</h2>
 				<div className="block lg:flex w-full">

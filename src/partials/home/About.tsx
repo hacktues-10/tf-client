@@ -10,7 +10,9 @@ const About = () => (
 		<div className="flex flex-col lg:flex-row gap-8 whitespace-pre-line items-center">
 			{/* Text info */}
 			<div className="w-full flex flex-col gap-4 text-justify">
-				<h2 className="bg-gradient text-transparent font-black text-5xl bg-clip-text">{ABOUT_TITLE}</h2>
+				<h2 className="bg-gradient text-transparent font-black text-4xl sm:text-5xl bg-clip-text">
+					{ABOUT_TITLE}
+				</h2>
 				<p className="">{ABOUT_TEXT}</p>
 				<Link
 					href={'https://tues.bg'}
