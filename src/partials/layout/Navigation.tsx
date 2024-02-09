@@ -216,7 +216,7 @@ const Navigation = () => {
 								</ul>
 							</nav>
 						</div>
-						<div className="justify-end items-center pr-16 flex lg:pr-0">
+						<div className="justify-end items-center pr-20 sm:pr-16 flex lg:pr-0">
 							<button
 								className="lg:w-44 w-full px-4 py-2 mr-2 hidden xl:flex items-center justify-center gap-2 text-md rounded-lg border border-border"
 								onClick={() => setDesktopOpen(!desktopOpen)}
