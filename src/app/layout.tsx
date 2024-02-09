@@ -4,12 +4,13 @@ import { Analytics } from '@vercel/analytics/react';
 import Footer from '@/partials/layout/Footer';
 import Navigation from '@/partials/layout/Navigation';
 
-import 'animate.css';
+import './animation.css';
 import './globals.css';
 import VoteProvider from '@/context/vote';
 import VotingLayout from '@/partials/layout/Voting';
 import { GrowthBookServerProvider } from '@/integrations/growthbook/GrowthBookServerProvider';
 import { DayProvider } from '@/context/day';
+import SullyAnimation from './SullyAnimation';
 export const metadata = {
 	title: {
 		default: 'TUES Fest 2024',
@@ -123,10 +124,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				<div className="bg-repeat bg-[url(./bg.svg)]">
 					<DayProvider>
 						<Navigation />
+						<SullyAnimation />
 						{/* <VoteProvider> */}
 						{/*@ts-expect-error */}
 						<GrowthBookServerProvider>{children}</GrowthBookServerProvider>
-
 						{/* <VotingLayout /> */}
 						{/* </VoteProvider> */}
 						<Footer />

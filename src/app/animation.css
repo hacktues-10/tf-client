@@ -1,0 +1,17 @@
+@keyframes moveAndRotate {
+	0% {
+		right: -10%;
+		bottom: -10%;
+		transform: rotate(0deg);
+	}
+	100% {
+		right: 100%;
+		bottom: 100%;
+		transform: rotate(360deg);
+	}
+}
+
+.image {
+	position: absolute;
+	animation: moveAndRotate 25s linear infinite;
+}
