@@ -168,9 +168,13 @@ const Navigation = () => {
 		'transition',
 		'fixed',
 		'duration-500',
-		...(scrolled
-			? ['z-50', 'bg-zinc', 'bg-opacity-40', 'shadow-sticky', 'backdrop-blur-sm', 'duration-500']
-			: ['bg-transparent', 'z-50']),
+		'z-50',
+		'bg-zinc',
+		'bg-opacity-0',
+		'shadow-sticky',
+		'backdrop-blur-md',
+		'duration-500',
+		...(scrolled ? ['bg-opacity-40'] : ['bg-opacity-0']),
 	];
 
 	return (
@@ -180,9 +184,7 @@ const Navigation = () => {
 					<div className="w-60 max-w-full px-2 sm:px-4">
 						<Link
 							href="/"
-							className={`header-logo	 block w-full text-md md:text-lg whitespace-nowrap  ${
-								scrolled ? ' py-4 lg:py-2' : ' py-5 lg:py-7'
-							}`}
+							className={`header-logo	 block w-full text-md md:text-lg whitespace-nowrap py-5 lg:py-7`}
 							style={{ fontFamily: 'origin', fontWeight: 800 }}
 						>
 							TUES <span className=" font-normal bg-gradient text-transparent bg-clip-text ">Fest</span>{' '}
@@ -289,7 +291,7 @@ const Navigation = () => {
 								</TabsList>
 							</Tabs>
 						</div>
-						<SullyHeader className=" absolute top-14 hidden lg:block lg:right-5  h-[200px]" />
+						<SullyHeader className="absolute top-14 hidden lg:block lg:right-5  h-[200px]" />
 					</div>
 				</div>
 			</div>

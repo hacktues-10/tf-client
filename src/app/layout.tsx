@@ -124,10 +124,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				<div className="bg-repeat bg-[url(./bg.svg)]">
 					<DayProvider>
 						<Navigation />
-						<SullyAnimation />
 						{/* <VoteProvider> */}
 						{/*@ts-expect-error */}
-						<GrowthBookServerProvider>{children}</GrowthBookServerProvider>
+						<GrowthBookServerProvider>
+							<SullyAnimation />
+							{children}
+						</GrowthBookServerProvider>
 						{/* <VotingLayout /> */}
 						{/* </VoteProvider> */}
 						<Footer />
