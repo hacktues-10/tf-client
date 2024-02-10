@@ -14,7 +14,7 @@ export default function Home() {
 		<main className="m-auto">
 			<section
 				id="front-section"
-				className="p-1 pt-20 sm:pt-4 sm:p-4 w-full min-h-screen flex flex-col items-center justify-center gap-4 md:gap-16 "
+				className="p-1 pt-10 sm:pt-4 sm:p-4 w-full min-h-screen flex flex-col items-center justify-center gap-4 md:gap-16 "
 			>
 				<div>
 					<h1
