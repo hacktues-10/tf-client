@@ -161,7 +161,7 @@ const Navigation = () => {
 		'header',
 		'top-0',
 		'left-0',
-		'py-2',
+		'py-1',
 		'flex',
 		'w-full',
 		'items-center',
@@ -184,7 +184,7 @@ const Navigation = () => {
 					<div className="w-60 max-w-full px-2 sm:px-4">
 						<Link
 							href="/"
-							className={`header-logo	 block w-full text-md md:text-lg whitespace-nowrap py-5 lg:py-7`}
+							className={`header-logo	 block w-full text-md md:text-lg whitespace-nowrap py-2 lg:py-7`}
 							style={{ fontFamily: 'origin', fontWeight: 800 }}
 						>
 							TUES <span className=" font-normal bg-gradient text-transparent bg-clip-text ">Fest</span>{' '}
@@ -199,7 +199,7 @@ const Navigation = () => {
 								id="navbarToggler"
 								name="navbarToggler"
 								ref={mobileButtonRef}
-								className="absolute right-4 top-1/2 block translate-y-[-50%] rounded-lg px-3 py-3 ring-primary focus:ring-2 lg:hidden"
+								className="absolute right-4 top-1/2 block translate-y-[-50%] rounded-lg px-2 py-2 ring-primary focus:ring-2 lg:hidden"
 							>
 								<TbMenu2 size={32} />
 							</button>
