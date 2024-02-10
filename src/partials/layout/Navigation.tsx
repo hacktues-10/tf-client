@@ -36,18 +36,34 @@ const SCHOOL_LINKS = [
 		title: 'Кандидатстване',
 	},
 	{
+		href: 'https://elsys-bg.org/uchilishteto/prepodavatelski-ekip',
+		title: 'Преподавателски екип',
+		target: '_blank',
+	},
+	{
 		href: '/tuestalks',
 		title: 'TUES Talks',
 	},
 ];
 
-const Linky = ({ href, children }: { href: string; children: string }) => {
+const Linky = ({
+	href,
+	children,
+	className,
+	target,
+}: {
+	href: string;
+	children: string;
+	className?: string | null;
+	target?: string | null;
+}) => {
 	return (
 		<Link
 			href={href}
-			className={`mx-8 flex py-2 text-base font-semibold whitespace-nowrap ${
-				/* selected ? 'text-white' : */ 'text-[#bababa]'
-			} group-hover:text-white lg:mr-0 lg:inline-flex lg:py-6 lg:px-0`}
+			target={target || '_self'}
+			className={`mx-2 flex text-center py-2 text-base font-semibold whitespace-nowrap 
+				text-[#bababa]
+			group-hover:text-white lg:mr-0 lg:inline-flex lg:py-6 lg:px-0 ${className}`}
 		>
 			{children}
 		</Link>
@@ -175,7 +191,7 @@ const Navigation = () => {
 						</Link>
 					</div>
 					<div className="flex w-min items-center justify-between sm:px-4">
-						<div>
+						<div className="lg:absolute lg:left-48  static">
 							<button
 								onClick={() => setMobileOpen(!mobileOpen)}
 								id="navbarToggler"
@@ -200,7 +216,9 @@ const Navigation = () => {
 											onClick={() => setMobileOpen(false)}
 											key={link.title}
 										>
-											<Linky href={link.href}>{link.title}</Linky>
+											<Linky className="!mx-4" href={link.href}>
+												{link.title}
+											</Linky>
 										</li>
 									))}
 
@@ -210,7 +228,9 @@ const Navigation = () => {
 											className="block lg:hidden group relative"
 											onClick={() => setMobileOpen(false)}
 										>
-											<Linky href={link.href}>{link.title}</Linky>
+											<Linky className="!mx-4" href={link.href}>
+												{link.title}
+											</Linky>
 										</li>
 									))}
 								</ul>
@@ -229,7 +249,7 @@ const Navigation = () => {
 								id="navbarCollapse"
 								ref={desktopMenuRef}
 								className={
-									`absolute right-96 top-full w-full max-w-[250px] rounded-lg bg-bg-color shadow-lg py-3` +
+									`absolute right-96 top-full w-full justify-center max-w-[250px] rounded-lg bg-bg-color shadow-lg py-3` +
 									(desktopOpen ? ' block' : ' hidden')
 								}
 							>
@@ -240,7 +260,9 @@ const Navigation = () => {
 											onClick={() => setDesktopOpen(false)}
 											key={link.title}
 										>
-											<Linky href={link.href}>{link.title}</Linky>
+											<Linky target={link.target} href={link.href}>
+												{link.title}
+											</Linky>
 										</li>
 									))}
 								</ul>
@@ -248,7 +270,7 @@ const Navigation = () => {
 							<Link
 								href="https://maps.app.goo.gl/RHDd9NVx11hVvQVh6"
 								target="_blank"
-								className="lg:w-60 w-full px-4 py-2 mr-2 hidden sm:flex items-center justify-center gap-2 text-lg rounded-lg border border-border"
+								className="md:w-60 w-full px-4 py-2 mr-2 hidden sm:flex items-center justify-center gap-2 text-lg rounded-lg border border-border"
 							>
 								<TbMapPin size={24} />
 								<p>{'София Тех Парк'}</p>

@@ -5,6 +5,7 @@ import Autoplay from 'embla-carousel-autoplay';
 import Quote from './testimonial/Quote';
 import { useRef } from 'react';
 import { TESTIMONIALS, TESTIMONIALS_TITLE } from '@/constants/home/testimonials';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 const Testimonial = () => {
 	const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
