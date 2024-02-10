@@ -14,7 +14,7 @@ export default function Home() {
 		<main className="m-auto">
 			<section
 				id="front-section"
-				className="p-1 sm:p-4 w-full min-h-screen flex flex-col items-center justify-center gap-4 md:gap-16 "
+				className="p-1 pt-20 sm:pt-4 sm:p-4 w-full min-h-screen flex flex-col items-center justify-center gap-4 md:gap-16 "
 			>
 				<div>
 					<h1
@@ -37,7 +37,7 @@ export default function Home() {
 						</div>
 						<div className="w-full px-4 py-2 flex items-center justify-center gap-2 backdrop-filter backdrop-blur-sm bg-opacity-0 text-lg rounded-lg  border border-border">
 							<TbClockHour4 size={24} />
-							<p>23 април от 10:30</p>
+							<p>20 и 21 април</p>
 						</div>
 					</div>
 				</div>
