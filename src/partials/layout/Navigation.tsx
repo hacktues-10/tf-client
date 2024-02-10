@@ -161,7 +161,7 @@ const Navigation = () => {
 		<header className={navbarClasses.join(' ')}>
 			<div className="container">
 				<div className="relative text-center mx-[-16px] flex items-center justify-between">
-					<div className="w-60 max-w-full sm:px-4">
+					<div className="w-60 max-w-full px-2 sm:px-4">
 						<Link
 							href="/"
 							className={`header-logo	 block w-full text-md md:text-lg whitespace-nowrap  ${
