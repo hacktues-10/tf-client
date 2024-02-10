@@ -1,10 +1,10 @@
 import Link from 'next/link';
-
+import SullySitting from '@/app/SullySitting';
 import { TbBrandLinktree } from 'react-icons/tb';
 import { Separator } from '@/components/ui/separator';
 
 const Socials = () => (
-	<div className=" flex items-center">
+	<div className="flex items-center">
 		<Link
 			href="https://facebook.com/HackTUES"
 			// name="social-link"
@@ -89,7 +89,7 @@ const Moto = () => {
 };
 
 const Footer = () => (
-	<footer className="relative z-20 bg-bg-color">
+	<footer className="mt-32 sm:mt-10 md:mt-14 lg:mt-0 relative z-20 bg-bg-color">
 		<div className="border-t block sm:flex w-full justify-center sm:justify-between border-stroke">
 			<div className="justify-center sm:justify-start pt-7 sm:py-7">
 				<Moto />
@@ -106,6 +106,7 @@ const Footer = () => (
 				<Socials />
 			</div>
 		</div>
+		<SullySitting className="absolute -top-[110px] sm:-top-[160px] sm:right-1/6 sm:h-[200px] sm:w-[200px] h-[140px] right-10" />
 	</footer>
 );
 
