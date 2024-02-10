@@ -1,3 +1,4 @@
+import { ScrollArea } from '@/components/ui/scroll-area';
 import Image from 'next/image';
 
 const Quote = ({ img, name, text, desc }: { img: string; name: string; text: string; desc: string }) => (
@@ -16,7 +17,12 @@ const Quote = ({ img, name, text, desc }: { img: string; name: string; text: str
 		</div>
 		<div className="w-full sm:w-[1px] h-[1px] sm:h-auto shrink-0 bg-stroke" />
 		<div className="flex flex-col justify-between gap-4">
-			<p className="text-justify">{text}</p>
+			{text.length > 300 && (
+				<ScrollArea className="h-[300px] md:h-[200px] ">
+					<p className="text-justify">{text}</p>
+				</ScrollArea>
+			)}
+			{text.length <= 300 && <p className="text-justify">{text}</p>}
 			<i className="opacity-50">{desc}</i>
 		</div>
 	</div>
