@@ -30,7 +30,7 @@ export default function Home() {
 							2024
 						</span>
 					</h1>
-					<div className="flex mx-1/4 mt-5 relative z-50 flex-col sm:flex-row items-stretch gap-4 text-center">
+					<div className="flex mx-1/4 mt-5 relative z-20 flex-col sm:flex-row items-stretch gap-4 text-center">
 						<div className="w-full px-4 py-2 sm:hidden flex items-center backdrop-filter backdrop-blur-sm bg-opacity-0 justify-center gap-2 text-lg rounded-lg border border-border">
 							<TbMapPin size={24} />
 							<p>{'София Тех Парк'}</p>

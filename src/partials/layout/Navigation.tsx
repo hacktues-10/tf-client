@@ -161,7 +161,7 @@ const Navigation = () => {
 		<header className={navbarClasses.join(' ')}>
 			<div className="container">
 				<div className="relative text-center mx-[-16px] flex items-center justify-between">
-					<div className="w-60 max-w-full px-4">
+					<div className="w-60 max-w-full sm:px-4">
 						<Link
 							href="/"
 							className={`header-logo	 block w-full text-md md:text-lg whitespace-nowrap  ${
@@ -174,7 +174,7 @@ const Navigation = () => {
 							2024
 						</Link>
 					</div>
-					<div className="flex w-full items-center justify-between px-4">
+					<div className="flex w-min items-center justify-between sm:px-4">
 						<div>
 							<button
 								onClick={() => setMobileOpen(!mobileOpen)}
