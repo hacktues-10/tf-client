@@ -20,7 +20,7 @@ export default function Statistics() {
 	const [selectedFolder, setSelectedFolder] = useState(8);
 
 	return (
-		<div className="w-full rounded-xl bg-zinc bg-clip-padding backdrop-filter backdrop-blur-none sm:backdrop-blur-sm bg-opacity-40  block">
+		<div className="w-full rounded-xl border-2 border-[#F2F2F2] bg-clip-padding  backdrop-filter backdrop-blur-sm bg-opacity-0 sm:backdrop-blur-md  block">
 			<About />
 			<div className="px-2 md:px-6 lg:px-10 xl:px-14 ">
 				<h2 className="bg-gradient p-4 text-transparent font-black text-4xl sm:text-5xl bg-clip-text">
@@ -33,7 +33,7 @@ export default function Statistics() {
 						{STATISTICS.map((statistic) => (
 							<Card
 								key={statistic.title}
-								className={`my-4 pl-0 shadow-none pr-6 lg:p-6 pt-6 border-0 h-[300px] md:w-full lg:pr-10 text-white overflow-hidden bg-transparent rounded-xl`}
+								className={`my-4 border border-[#FEFEFE] pl-0 bg-transparent shadow-none pr-6 lg:p-6 pt-6 h-[300px] md:w-full lg:pr-10 text-white overflow-hidden bg-clip-padding backdrop-filter backdrop-blur-sm md:backdrop-blur-md bg-opacity-0 rounded-xl`}
 							>
 								<div className="flex justify-center m-2">
 									<HeaderIcon icon={statistic.icon} />
@@ -53,13 +53,13 @@ export default function Statistics() {
 						{STATISTICS.map((statistic) => (
 							<Card
 								key={statistic.title}
-								className={`my-4 pl-0 shadow-none pr-6 lg:p-6 pt-6 border-0 h-[300px] md:w-full lg:pr-10 text-white overflow-hidden bg-black rounded-xl`}
+								className="my-4 pl-0 shadow-none pr-6 lg:p-6 pt-6 h-[300px] md:mt-10 md:w-full overflow-hidden border-2 border-[#F2F2F2] bg-clip-padding  backdrop-filter backdrop-blur-sm md:backdrop-blur-md bg-opacity-0 lg:pr-10 text-white rounded-xl"
 							>
 								<div className="flex justify-center m-2">
 									<HeaderIcon icon={statistic.icon} />
 									<CardTitle className="ml-2">{statistic.title}</CardTitle>
 								</div>
-								<div className="bg-black">
+								<div>
 									<BarStatistic selectedFolder={selectedFolder} data={statistic.data} />
 								</div>
 							</Card>
