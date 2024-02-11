@@ -16,7 +16,7 @@ export default function Home() {
 					<div className="hidden md:block border sm:border-2 border-[#F2F2F2] p-8 m-10  sm:m-0 bg-clip-padding rounded-xl backdrop-filter backdrop-blur-sm bg-opacity-0 drop-shadow-lg">
 						<TitleSVG className="w-full relative z-20" />
 					</div>
-					<div className="block md:hidden border sm:border-2 border-[#F2F2F2] p-8 m-10  sm:m-0 bg-clip-padding rounded-xl backdrop-filter backdrop-blur-sm bg-opacity-0 drop-shadow-lg">
+					<div className="block md:hidden border sm:border-2 border-[#F2F2F2] p-3 m-2  sm:m-0 bg-clip-padding rounded-xl backdrop-filter backdrop-blur-sm bg-opacity-0 drop-shadow-lg">
 						<img src={'/assets/TitleMobile.webp'} alt="titleMobile" className="w-full" />
 					</div>
 
