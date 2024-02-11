@@ -109,15 +109,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 		<html lang="bg">
 			<head>
 				<Script src="https://www.googletagmanager.com/gtag/js?id=G-1H1H1CR559" strategy="afterInteractive" />
-				<Script id="google-analytics" strategy="afterInteractive">
-					{`
-						window.dataLayer = window.dataLayer || [];
-						function gtag(){dataLayer.push(arguments);}
-						gtag('js', new Date());
-
-						gtag('config', 'G-1H1H1CR559');
-					`}
-				</Script>
 				<link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="any"></link>
 			</head>
 			<body className=" text-white">

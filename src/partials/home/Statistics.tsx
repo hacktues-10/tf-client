@@ -26,10 +26,10 @@ export default function Statistics() {
 				<h2 className="bg-gradient p-4 text-transparent font-black text-4xl sm:text-5xl bg-clip-text">
 					ТУЕС Фест през годините
 				</h2>
-				<div className="block lg:flex w-full">
+				<div className="block xl:flex w-full">
 					<History selectedFolder={selectedFolder} setSelectedFolder={setSelectedFolder} />
 
-					<div className="p-2 hidden lg:block w-full lg:w-1/3">
+					<div className="p-2 hidden xl:block w-full xl:w-1/3">
 						{STATISTICS.map((statistic) => (
 							<Card
 								key={statistic.title}
@@ -49,7 +49,7 @@ export default function Statistics() {
 						<ImagesContainer selectedFolder={selectedFolder} />
 					</div>
 					<ImagesContainer className="hidden xl:block" selectedFolder={selectedFolder} />
-					<div className="p-2 block lg:hidden w-full lg:w-1/3">
+					<div className="p-2 block lg:flex lg:gap-6 xl:hidden w-full xl:w-1/3">
 						{STATISTICS.map((statistic) => (
 							<Card
 								key={statistic.title}
@@ -129,8 +129,8 @@ function History({
 	setSelectedFolder: (id: number) => void;
 }) {
 	return (
-		<div className="align-middle flex w-full lg:w-1/6 justify-center lg:mx-10">
-			<div className="grid grid-cols-4 lg:grid-cols-2 gap-1 gap-y-0 h-2/3 my-auto">
+		<div className="align-middle flex w-full xl:w-1/6 justify-center xl:mx-10">
+			<div className="grid grid-cols-4 lg:grid-cols-8 xl:grid-cols-2 gap-1 gap-y-0 h-2/3 my-auto">
 				{FOLDERS.map((folder) => (
 					<div
 						className="p-5 hover:bg-gradient-to-br sm:hover:cursor-pointer sm:hover:bg-gradient sm:hover:text-black hover:shadow-lg rounded-xl"
@@ -177,16 +177,16 @@ function ImagesContainer({ selectedFolder, className }: { selectedFolder: number
 
 	if (folder) {
 		return (
-			<div className={`relative w-full lg:w-1/2 p-10 py-12 ${className}`}>
+			<div className={`relative w-full xl:w-1/2 p-10 py-12 ${className}`}>
 				<div
-					className={`scaleUp absolute overflow-hidden rounded-xl  w-[280px] sm:w-[310px]  lg:w-[360px] xl:w-[400px] 2xl:w-[450px] sm:left-6 xl:top-2/12 top-1/12 lg:left-0 left-2 z-20 ${
+					className={`scaleUp absolute overflow-hidden rounded-xl  w-[280px] sm:w-[310px]  lg:w-[360px] xl:w-[400px] 2xl:w-[450px] sm:left-6 lg:-top-4/12 lg:left-1/12 lg:overflow-visible xl:overflow-hidden xl:top-2/12 xl:left-6 top-1/12 left-2 z-20 ${
 						isFirstImageVisible ? 'visible' : 'hidden'
 					}`}
 				>
 					<Image key={`${folder.id} image 1`} alt={`${folder?.name} image 1`} src={folder.image1} />
 				</div>
 				<div
-					className={`scaleUp absolute bottom-1/12 w-[280px] sm:w-[310px]  lg:w-[360px] xl:w-[400px] 2xl:w-[450px] sm:right-6 overflow-hidden rounded-xl lg:right-10 right-2 z-30 ${
+					className={`scaleUp absolute bottom-1/12 w-[280px] sm:w-[310px]  lg:w-[360px] xl:w-[400px] 2xl:w-[450px] sm:right-6 overflow-hidden rounded-xl lg:-bottom-10 lg:right-1/12 lg:overflow-visible xl:overflow-hidden xl:bottom-10 xl:right-10 right-2 z-30 ${
 						isSecondImageVisible ? 'visible' : 'hidden'
 					}`}
 				>
