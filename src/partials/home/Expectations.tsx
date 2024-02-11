@@ -12,7 +12,7 @@ const Expectation = ({ icon, title, text }: { icon: JSX.Element; title: string; 
 
 const Expectations = () => (
 	<section id="expectations" className="relative z-20 flex flex-col p-8 md:px-12 gap-8">
-		<h2 className="bg-gradient text-transparent font-black text-5xl bg-clip-text">На ТУЕС ФЕСТ очаквайте</h2>
+		<h2 className="bg-gradient text-transparent font-black text-5xl bg-clip-text">На ТУЕС Фест очаквайте</h2>
 		<div className="flex flex-wrap items-stretch justify-center gap-4">
 			{EXPECTATIONS.map((expectation) => (
 				<Expectation key={expectation.title} {...expectation} />
