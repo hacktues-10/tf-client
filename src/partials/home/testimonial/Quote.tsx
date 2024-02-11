@@ -2,7 +2,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import Image from 'next/image';
 
 const Quote = ({ img, name, text, desc }: { img: string; name: string; text: string; desc: string }) => (
-	<div className="w-full relative max-w-3xl p-6 flex flex-col sm:flex-row items-stretch justify-start gap-4 rounded-lg backdrop-filter backdrop-blur-sm sm:backdrop-blur-md bg-opacity-0 border border-[#FEFEFE]">
+	<div className="w-full relative max-w-3xl p-6 flex flex-col sm:flex-row items-stretch justify-start gap-4 rounded-lg backdrop-filter backdrop-blur-sm sm:backdrop-blur-md bg-opacity-0 border sm:border-2 border-[#FEFEFE]">
 		<div className="sm:w-32 shrink-0 flex flex-col items-center justify-center gap-4">
 			<Image
 				key={img}
