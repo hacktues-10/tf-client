@@ -45,7 +45,7 @@ export default function Statistics() {
 							</Card>
 						))}
 					</div>
-					<div className="xl:hidden pt-28 pb-20">
+					<div className="xl:hidden pt-28 pb-28">
 						<ImagesContainer selectedFolder={selectedFolder} />
 					</div>
 					<ImagesContainer className="hidden xl:block" selectedFolder={selectedFolder} />
@@ -179,7 +179,7 @@ function ImagesContainer({ selectedFolder, className }: { selectedFolder: number
 		return (
 			<div className={`relative w-full xl:w-1/2 p-10 py-12 ${className}`}>
 				<div
-					className={`scaleUp absolute overflow-hidden rounded-xl  w-[280px] sm:w-[310px]  lg:w-[360px] xl:w-[400px] 2xl:w-[450px] sm:left-6 lg:-top-4/12 lg:left-1/12 lg:overflow-visible xl:overflow-hidden xl:top-2/12 xl:left-6 top-1/12 left-2 z-20 ${
+					className={`scaleUp absolute overflow-hidden rounded-xl  w-[280px] sm:w-[310px]  lg:w-[360px] xl:w-[400px] 2xl:w-[450px] sm:left-6 lg:-top-4/12 lg:left-1/12 lg:overflow-visible xl:overflow-hidden xl:top-2/12 xl:left-6 top-4/12 left-2 z-20 ${
 						isFirstImageVisible ? 'visible' : 'hidden'
 					}`}
 				>

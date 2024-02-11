@@ -169,12 +169,12 @@ const Navigation = () => {
 		'fixed',
 		'duration-500',
 		'z-50',
-		'bg-zinc',
+		'bg-[#1E1E1E]',
 		'bg-opacity-0',
 		'shadow-sticky',
 		'backdrop-blur-md',
 		'duration-500',
-		...(scrolled ? ['bg-opacity-40'] : ['bg-opacity-0']),
+		...(scrolled ? ['bg-opacity-60'] : ['bg-opacity-0']),
 	];
 
 	return (
