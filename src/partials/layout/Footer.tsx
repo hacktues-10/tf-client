@@ -89,8 +89,8 @@ const Moto = () => {
 };
 
 const Footer = () => (
-	<footer className="mt-32 sm:mt-10 md:mt-14 lg:mt-0 relative z-20 bg-bg-color">
-		<div className="border-t block sm:flex w-full justify-center sm:justify-between border-stroke">
+	<footer className="mt-32 sm:mt-10 md:mt-14 lg:mt-0 relative z-20 backdrop-filter backdrop-blur-sm sm:backdrop-blur-md bg-opacity-0 border-t sm:border-t-2 border-[#FEFEFE]">
+		<div className=" block sm:flex w-full justify-center sm:justify-between">
 			<div className="justify-center sm:justify-start pt-7 sm:py-7">
 				<Moto />
 			</div>
