@@ -4,7 +4,7 @@ export const SCHEDULE = [
 		end: '11:00',
 		title: 'Oткриваща церемония',
 		description:
-			'<p>Началото на тазгодишното издание на TUES Fest - <h4 class="font-origin inline bg-gradient bg-clip-text text-transparent">TUES Fest 2023</h3>, във <a href="https://goo.gl/maps/14J3ZJbvwqte5ycD7"><u><i>форум "Джон Атанасов", София Тех Парк</i></u></a> от 10:30 на 23 април. Започвайки с нашата директорка - Стела Стефанова.</p>',
+			'<p>Началото на тазгодишното издание на TUES Fest - <h4 class="font-origin inline bg-gradient bg-clip-text text-transparent">TUES Fest 2024</h3>, във <a href="https://goo.gl/maps/14J3ZJbvwqte5ycD7"><u><i>форум "Джон Атанасов", София Тех Парк</i></u></a> на 20 април.</p>',
 		icon: '',
 		pos: 'left',
 	},
@@ -36,7 +36,7 @@ export const SCHEDULE = [
 		end: '17:00',
 		title: 'Treasure Hunt',
 		description:
-			'На tues fest 2023 ще ви очаква един интересен и забавен Treasure Hunt, в който може да спечелите много награди. ',
+			'На tues fest 2024 ще ви очаква един интересен и забавен Treasure Hunt, в който може да спечелите много награди. ',
 		icon: '',
 		pos: 'right',
 	},
