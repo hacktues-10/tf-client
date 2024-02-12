@@ -17,7 +17,7 @@ export const metadata = {
 		template: '%s | TUES Fest 2024',
 	},
 	description:
-		'TUES Fest 2024 - ден на отворените врати на ТУЕС и изложение на ученически проекти. София Тех Парк - 23 април 2024.',
+		'TUES Fest 2024 - ден на отворените врати на ТУЕС и изложение на ученически проекти. София Тех Парк - 20 и 21 април 2024.',
 	keywords: [
 		'tues',
 		'tues fest',
@@ -70,6 +70,9 @@ export const metadata = {
 		'матури 7ми клас',
 		'матури 7 клас',
 		'кандидатстване 7 клас',
+		,
+		'батълботс',
+		'батълботс 2024',
 	],
 	viewport: 'width=device-width, initial-scale=1',
 	themeColor: '#141420',
@@ -82,7 +85,7 @@ export const metadata = {
 		card: 'summary_large_image',
 		title: 'TUES Fest 2024',
 		description:
-			'TUES Fest 2024 - ден на отворените врати на ТУЕС и изложение на ученически проекти. София Тех Парк - 23 април 2024.',
+			'TUES Fest 2024 - ден на отворените врати на ТУЕС и изложение на ученически проекти. София Тех Парк - 20 и 21 април 2024.',
 		creator: '@tuesfest',
 		images: ['https://tuesfest.bg/logo/motto.png'],
 	},
@@ -91,12 +94,12 @@ export const metadata = {
 	openGraph: {
 		title: 'TUES Fest 2024',
 		description:
-			'TUES Fest 2024 - ден на отворените врати на ТУЕС и изложение на ученически проекти. София Тех Парк - 23 април 2024.',
+			'TUES Fest 2024 - ден на отворените врати на ТУЕС и изложение на ученически проекти. София Тех Парк - 20 и 21 април 2024.',
 		url: 'https://tuesfest.bg',
 		siteName: 'TUES Fest 2024',
 		images: [
 			{
-				url: 'https://tuesfest.bg/logo/motto.png',
+				url: './logo/motto.png',
 			},
 		],
 		locale: 'bg-BG',
