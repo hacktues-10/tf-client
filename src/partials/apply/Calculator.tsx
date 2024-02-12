@@ -26,7 +26,7 @@ const CalculatorField = ({ name, label, min, max, value, error, onChange }: any)
 				type="number"
 				id={name}
 				name={name}
-				className="w-full rounded-md border border-stroke bg-[#353444] py-3 px-6 text-base font-medium text-body-color outline-none transition-all focus:bg-[#454457] focus:shadow-input appearance-none"
+				className="w-full rounded-md  border sm:border-2 border-[#F2F2F2] bg-transparent backdrop-blur-sm sm:backdrop-blur-md py-3 px-6 text-base font-medium text-body-color outline-none transition-all appearance-none"
 				min={min}
 				max={max}
 				value={value}
@@ -78,7 +78,7 @@ const Calculator = () => {
 	}, [calculator]);
 
 	return (
-		<div className="w-full md:w-full lg:w-96 xl:w-[38rem] shrink-0 relative z-10 overflow-hidden rounded-xl p-8 sm:p-10 flex flex-col gap-5 bg-stroke bg-clip-padding backdrop-filter backdrop-blur-none sm:backdrop-blur-sm bg-opacity-40 ">
+		<div className="w-full md:w-full lg:w-96 xl:w-[38rem] shrink-0 relative z-10 overflow-hidden rounded-xl p-8 sm:p-10 flex flex-col gap-5 border sm:border-2 border-[#F2F2F2] bg-clip-padding  backdrop-filter backdrop-blur-sm bg-opacity-0 drop-shadow-lg sm:backdrop-blur-sm ">
 			<div className="w-fit flex flex-col gap-1">
 				<h2 className="bg-gradient text-transparent font-black sm:text-5xl text-3xl bg-clip-text">
 					Изчисли си БАЛ-а
@@ -130,14 +130,14 @@ const Calculator = () => {
 					/>
 				</form>
 				{result !== 0 && (
-					<div className="w-48 h-48 p-8 bg-[#353444] border border-stroke aspect-square rounded-full flex items-center justify-center">
+					<div className="w-48 h-48 p-8  border sm:border-2 border-[#F2F2F2] backdrop-blur-sm sm:backdrop-blur-md aspect-square rounded-full flex items-center justify-center">
 						<p className="bg-gradient text-transparent font-black text-5xl bg-clip-text">
 							{result.toFixed(2)}
 						</p>
 					</div>
 				)}
 				{!result && result === 0 && (
-					<div className="w-48 h-48 p-8 bg-[#353444] border border-stroke aspect-square rounded-full flex items-center justify-center" />
+					<div className="w-48 h-48 p-8  border sm:border-2 border-[#F2F2F2] backdrop-blur-sm sm:backdrop-blur-md aspect-square rounded-full flex items-center justify-center" />
 				)}
 			</div>
 		</div>
