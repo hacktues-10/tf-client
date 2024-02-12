@@ -56,12 +56,12 @@ import sofiaTechParkLogo from '@/sponsors/partners/sofia-tech-park.png';
 
 const ALPHA_SPONSORS = [
 	{
-		name: 'Appolica',
-		logo: appolicaLogo,
-		url: 'https://www.appolica.com/',
+		name: 'A1',
+		logo: a1Logo,
+		url: 'https://www.a1.bg/',
+		supportedEditions: ['hacktues-security', 'hacktues-infinity', 'hacktues-gg'],
 		description:
-			'Запознайте се с Appolica – наш алфа спонсор и стартъп студио от София, което превръща идеи в реалност! От основаването си в София през 2015 г., компанията е движеща сила зад множество успешни стартъпи. С опит в повече от 30 страни и портфолио от успешни проекти в различни индустрии, Appolica е символ на иновативно мислене. Присъединявайки се към Hack TUES X, Appolica носи своята страст и експертиза в света на иновациите.',
-		supportedEditions: ['hacktues-security', 'hacktues-infinity'],
+			'А1 е водещ доставчик на дигитални услуги и телекомуникационни решения в България. Част сме от A1 Group, която оперира в 7 държави в Централна и Източна Европа, и América Móvil – един от най-големите доставчици на безжични услуги в света. А1 България е най-големият системен интегратор и най-голямата ICT компания в страната, както и лидер на пазара на телекомуникационни услуги по приходи, според класацията Digitalk 101. Ние сме компания, която си поставя високи цели и не се бои да ги изпълни. Работим в международен екип и споделяме наученото с всички компании в A1 Group. В екипа ни работят повече от 3600 професионалисти в различни направления. Разполагаме със сертификата Great Place To Work, който ни определя като един от най-добрите работодатели в Европа. Грижим се за своите служители, като в наше лице те виждат стабилна и бързоразвиваща се компания, която им предоставя възможности за развитие.',
 	},
 	{
 		name: 'Bosch Engineering Center Sofia',
@@ -93,12 +93,12 @@ const ALPHA_SPONSORS = [
 			'Eleven Ventures is one of the leading early-stage VCs in Southeast Europe, investing in startups since 2012. With 150+ collective investments over 11 years, Eleven’s team has been instrumental in catalysing the regional startup ecosystem. Eleven supports tech companies in four priority verticals - Future of Work, Fintech, Healthcare and Sustainable Food. Some of the startups which Eleven has backed include fintech unicorn Payhawk, Gtmhub, Dronamics, and SMSBump. For more information on Eleven Ventures, visit https://www.11.vc/. ',
 	},
 	{
-		name: 'LimeChain',
-		logo: limeChainLogo,
-		url: 'https://limechain.tech/',
+		name: 'GlobalFoundries Bulgaria',
+		logo: globalFoundriesLogo,
+		url: 'https://gf.com/',
 		description:
-			'LimeChain is a global leader in Web3 development and innovation, working with Fortune 500 clients and Web3 startups. We’re experts in crafting dApps, blockchain networks, and enterprise solutions using the latest Web3 technologies. With over 200 projects under our belt and a team of more than 120 industry experts, we are one of the companies with the most accumulated know-how in the Web3 space worldwide.',
-		supportedEditions: ['hacktues-security', 'hacktues-infinity'],
+			'GlobalFoundries: Българските инженери, които реализират иновации на глобално ниво в дизайна и производството на микрочипове. GlobalFoundries Bulgaria e локалният офис на една от водещите (топ 3) компании в света за производство на микрочипове и играе ключова роля в местната технологична сцена. Компанията намира, обучава и развива инженери чрез своята успешна стажантска програма. Като водещ производител на микрочипове, компанията не само създава технически специалисти в областта на микроелектрониката, но и допринася активно за местната екосистема инвестирайки в партньорства с техническите университети и гимназии в страната.',
+		supportedEditions: [],
 	},
 	{
 		name: 'SAP Labs България',
@@ -160,14 +160,6 @@ const BETA_SPONSORS = [
 			'DevriX е една от Топ 20 WordPress Development агенции в света, която подпомага развитието на платформата. Компанията работи по enterprise проекти с над 200М месечен трафик, технологични стартъпи, електронни магазини и други, предоставяйки стабилна платформа за развитие на бизнесите им. Компанията работи по Retainer модел, който позволява на клиентите изцяло да доверят техническите си процеси на доказани WordPress и бизнес експерти. Услугите на DevriX комбинират back-end и front-end разработка с поддръжка на WordPress, DevOps, UX, AdOps, дигитален маркетинг, уеб дизайн и управление на проекти.',
 	},
 	{
-		name: 'Experian България',
-		logo: experianLogo,
-		url: 'https://www.experian.bg/',
-		description:
-			'Ние сме Experian – глобален технологичен лидер в предоставянето на информация и аналитични услуги. Превръщаме информацията в ценни данни и създаваме софтуерни продукти, с които целим да направим бизнеса на нашите клиенти по-успешен, а животът на потребителите – по-добър. В основата на нашия успех стоят иновациите и талантливият ни екип от 21 700 души в 30 държави в света, посветени на мисията да осигурят по-добро финансово здраве и възможности за потребителите, като им помагат да разбират, управляват и защитават своите лични финанси и данни.',
-		supportedEditions: ['hacktues-security', 'hacktues-infinity', 'hacktues-gg', 'hacktues-6'],
-	},
-	{
 		name: 'Haemimont',
 		logo: haemimontLogo,
 		url: 'http://www.haemimont.com/',
@@ -182,14 +174,6 @@ const BETA_SPONSORS = [
 		supportedEditions: ['hacktues-security'],
 		description:
 			'ITGix е сертифициран ISO/ IEC 27001: 2013 доставчик на DevOps услуги с фокус върху автоматизацията, облачната миграция, консултантските дейности и поддръжката. Специализирани сме в контейнеризацията, мониторинга и изграждането на CI/CD интеграции. Работим с клиенти от целия свят, използваме най-новите технологии в IT сектора и се гордеем с успешно завършените си проекти и положителна обратна връзка, която получаваме от клиентите си. Ако мечтаеш за работа, която освен просперитет, да ти носи и удоволетворение, то твоето място е в АйТи Гикс. Целогодишно организираме стажове и се стремим да развиваме хората в екипа си посредством менторски програми, сертифициране и придобиване на практически знания.',
-	},
-	{
-		name: 'Sirma',
-		logo: sirmaLogo,
-		url: 'https://sirma.com/',
-		description:
-			'Сирма е най-големият български ИТ холдинг с 32 години пазарно присъствие. В Сирма създават високотехнологични иновативни решения, услуги и продукти в едни от най-динамичните стратегически вертикали: финансов сектор, производство на опаковки, здравеопазване и науки за живота, логистика и транспорт, хотелиерство и електронна търговия. Основните хоризонтални специализации на холдинга са в сферата на изкуствения интелект и управлението на знания, IT консултации и системна интеграция.',
-		supportedEditions: ['hacktues-security'],
 	},
 	{
 		name: 'Stam Soft',
@@ -208,7 +192,7 @@ const BETA_SPONSORS = [
 			'В Strypes Group, екипът ни e на първо място, а работата е вдъхновение. Сплотява ни страстта към иновациите и стремежът постоянно да растем и да покажем на света, че сме различни. Различни със своята култура, отношение към работата и хората, както и с постиженията си в бизнеса и технологичния свят. Ще откриеш мястото си при нас, независимо дали това е първата ти работа в ИТ сферата, или вече имаш дълъг опит зад гърба си.',
 	},
 	{
-		name: 'Telebid Pro', //TODO: Replace temp description
+		name: 'Telebid Pro',
 		logo: telebidProLogo,
 		url: 'https://telebid-pro.com/',
 		supportedEditions: [
@@ -233,39 +217,32 @@ const BETA_SPONSORS = [
 ];
 
 const GAMMA_SPONSORS = [
-	{
-		name: 'Accedia',
-		logo: accediaLogo,
-		url: 'https://accedia.com/',
-		description:
-			'Аксидиа e българска технологична компания, предоставяща консултантски услуги и разработка на софтуерни решения. Основана през 2012 от четирима партньори, днес в Аксидиа работят над 250 човека. Приятелската атмосфера и възможностите за професионално развитие нареждат компанията сред най-добрите ИТ работодатели в България. Екипът на Аксидиа има опит с широк спектър от технологии като .NET, Java, React.js, Angular и много други.',
-		supportedEditions: ['hacktues-security', 'hacktues-30x'],
-	},
-	{
-		name: 'Astea Solutions',
-		logo: asteaSolutionsLogo,
-		url: 'https://asteasolutions.com',
-		description:
-			'AsteaSolutions - експерти в разработката на софтуер и технологични решения! Техният успех се дължи на задружен екип от астейци, които обединяват умения и сили за иновации в различни индустрии и сфери. Споделят знание и инвестират в образование, защото вярват в младите умове!',
-		supportedEditions: [
-			'hacktues-security',
-			'hacktues-infinity',
-			'hacktues-gg',
-			'hacktues-6',
-			'hacktues-365',
-			'hacktues-30x',
-			'hacktues-3',
-			'hacktues-2',
-		],
-	},
-	{
-		name: 'GlobalFoundries Bulgaria',
-		logo: globalFoundriesLogo,
-		url: 'https://gf.com/',
-		description:
-			'GlobalFoundries: Българските инженери, които реализират иновации на глобално ниво в дизайна и производството на микрочипове. GlobalFoundries Bulgaria e локалният офис на една от водещите (топ 3) компании в света за производство на микрочипове и играе ключова роля в местната технологична сцена. Компанията намира, обучава и развива инженери чрез своята успешна стажантска програма. Като водещ производител на микрочипове, компанията не само създава технически специалисти в областта на микроелектрониката, но и допринася активно за местната екосистема инвестирайки в партньорства с техническите университети и гимназии в страната.',
-		supportedEditions: [],
-	},
+	// {
+	// 	name: 'Accedia',
+	// 	logo: accediaLogo,
+	// 	url: 'https://accedia.com/',
+	// 	description:
+	// 		'Аксидиа e българска технологична компания, предоставяща консултантски услуги и разработка на софтуерни решения. Основана през 2012 от четирима партньори, днес в Аксидиа работят над 250 човека. Приятелската атмосфера и възможностите за професионално развитие нареждат компанията сред най-добрите ИТ работодатели в България. Екипът на Аксидиа има опит с широк спектър от технологии като .NET, Java, React.js, Angular и много други.',
+	// 	supportedEditions: ['hacktues-security', 'hacktues-30x'],
+	// },
+	// {
+	// 	name: 'Astea Solutions',
+	// 	logo: asteaSolutionsLogo,
+	// 	url: 'https://asteasolutions.com',
+	// 	description:
+	// 		'AsteaSolutions - експерти в разработката на софтуер и технологични решения! Техният успех се дължи на задружен екип от астейци, които обединяват умения и сили за иновации в различни индустрии и сфери. Споделят знание и инвестират в образование, защото вярват в младите умове!',
+	// 	supportedEditions: [
+	// 		'hacktues-security',
+	// 		'hacktues-infinity',
+	// 		'hacktues-gg',
+	// 		'hacktues-6',
+	// 		'hacktues-365',
+	// 		'hacktues-30x',
+	// 		'hacktues-3',
+	// 		'hacktues-2',
+	// 	],
+	// },
+
 	{
 		name: 'Nemetschek Bulgaria',
 		logo: nemetschekLogo,
@@ -291,13 +268,37 @@ const GAMMA_SPONSORS = [
 		supportedEditions: ['hacktues-infinity'],
 	},
 	{
-		name: 'Progress',
-		logo: progressLogo,
-		url: 'https://www.progress.com/',
-		supportedEditions: ['hacktues-security', 'hacktues-infinity', 'hacktues-6', 'hacktues-365'],
+		name: 'Nemetschek Bulgaria',
+		logo: nemetschekLogo,
+		url: 'https://www.nemetschek.bg/',
 		description:
-			'В София се намира най-големият офис на Progress и в него се разработват голяма част от иновациите – изцяло нови продукти и в съществуващи продукти – които компанията пуска на пазара. Сред тях са платформата за дигитални преживявания Progress Sitefinity и водещите инструменти за разработчици Progress Telerik и Progress Kendo UI. Зад успеха на продуктите стои високият професионализъм, експертност и мотивация на хората, които работят в Progress.Работната среда е базирана на доверие, уважение и работа в екип и насърчава свободното споделяне на идеи и развитието на хората.',
+			"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+		supportedEditions: [
+			'hacktues-security',
+			'hacktues-infinity',
+			'hacktues-gg',
+			'hacktues-365',
+			'hacktues-30x',
+			'hacktues-3',
+			'hacktues',
+		],
 	},
+	{
+		name: 'Ocado Technology',
+		logo: ocadoTechnologyLogo,
+		url: 'https://www.ocadogroup.com/technology/technology-pioneers/',
+		description:
+			"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+		supportedEditions: ['hacktues-infinity'],
+	},
+	// {
+	// 	name: 'Progress',
+	// 	logo: progressLogo,
+	// 	url: 'https://www.progress.com/',
+	// 	supportedEditions: ['hacktues-security', 'hacktues-infinity', 'hacktues-6', 'hacktues-365'],
+	// 	description:
+	// 		'В София се намира най-големият офис на Progress и в него се разработват голяма част от иновациите – изцяло нови продукти и в съществуващи продукти – които компанията пуска на пазара. Сред тях са платформата за дигитални преживявания Progress Sitefinity и водещите инструменти за разработчици Progress Telerik и Progress Kendo UI. Зад успеха на продуктите стои високият професионализъм, експертност и мотивация на хората, които работят в Progress.Работната среда е базирана на доверие, уважение и работа в екип и насърчава свободното споделяне на идеи и развитието на хората.',
+	// },
 ];
 
 const PARTNERS = [
