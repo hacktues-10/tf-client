@@ -43,7 +43,7 @@ export const metadata = {
 const AboutPage = () => {
 	return (
 		<div className="max-w-screen-2xl min-h-screen m-auto p-8 md:p-12 !pt-28">
-			<div className="bg-stroke bg-clip-padding backdrop-filter backdrop-blur-none sm:backdrop-blur-sm bg-opacity-40  p-10 rounded-xl">
+			<div className="border sm:border-2 border-[#F2F2F2] bg-clip-padding rounded-xl backdrop-filter backdrop-blur-sm bg-opacity-0 drop-shadow-lg  p-10">
 				<h2 className="bg-gradient text-transparent pb-4 font-black text-3xl sm:text-5xl bg-clip-text">
 					За ТУЕС
 					{/* <Separator className="bg-black h-1 rounded-lg mt-2 w-auto" /> */}
@@ -58,10 +58,10 @@ const AboutPage = () => {
 						<div className="flex flex-col gap-4">
 							<h3 className="text-3xl font-bold">Специалности</h3>
 							<div className="flex gap-4 flex-col sm:flex-row">
-								<div className="relative bg-stroke hover:bg-gradient p-[2px] rounded-xl overflow-hidden">
+								<div className="relative border sm:border-2 border-[#F2F2F2] bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 drop-shadow-lg p-[2px] rounded-xl overflow-hidden">
 									<Link
 										href="https://elsys-bg.org/priem/specialnost-sistemno-programirane"
-										className="h-full relative flex flex-col gap-2 bg-bg-color p-3 rounded-xl"
+										className="h-full relative flex flex-col gap-2 bg-transparent backdrop-blur-md p-3 rounded-xl"
 									>
 										<h4 className="text-xl font-bold">Системно програмиране</h4>
 										<div className="w-full h-[1px] bg-stroke" />
@@ -71,10 +71,10 @@ const AboutPage = () => {
 										</p>
 									</Link>
 								</div>
-								<div className="relative bg-stroke hover:bg-gradient p-[2px] rounded-xl overflow-hidden">
+								<div className="relative border sm:border-2 border-[#F2F2F2] bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 drop-shadow-lg p-[2px] rounded-xl overflow-hidden">
 									<Link
 										href="https://elsys-bg.org/priem/specialnost-komputyrni-mreji"
-										className="relative h-full flex flex-col gap-2 bg-bg-color p-3 rounded-xl"
+										className="relative h-full flex flex-col gap-2 bg-transparent backdrop-blur-md p-3 rounded-xl"
 									>
 										<h4 className="text-xl font-bold">Компютърни мрежи</h4>
 										<div className="w-full h-[1px] bg-stroke" />
@@ -93,7 +93,7 @@ const AboutPage = () => {
 							</p>
 						</div>
 					</div>
-					<div className="w-full max-w-3xl lg:w-2/5 lg:block shrink-0 overflow-hidden bg-bg-color border border-stroke rounded-xl">
+					<div className="w-full max-w-3xl lg:w-2/5 lg:block shrink-0 overflow-hidden bg-bg-color bg-transparent border sm:border-2 border-[#F2F2F2] rounded-xl">
 						<img
 							src="/assets/about/about.jpg"
 							alt="Ученици на ТУЕС (Технологично училище “Електронни системи” към Технически Университет - София)"
@@ -107,66 +107,66 @@ const AboutPage = () => {
 						{/* <Separator className="bg-black h-1 rounded-lg mt-2 w-auto" /> */}
 					</h3>
 
-					<p className="text-lg opacity-70">Освен специализирания учебен план ТУЕС предлага:</p>
+					<p className="text-lg opacity-100">Освен специализирания учебен план ТУЕС предлага:</p>
 					<ul className="w-full flex flex-col gap-4">
-						<li className="p-4 rounded-xl text-md border border-stroke bg-bg-color">
+						<li className="p-4 rounded-xl text-md border sm:border-2 border-[#F2F2F2] bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-0 drop-shadow-lg">
 							Разширено изучаване на английски език.
 						</li>
-						<li className="p-4 rounded-xl text-md border border-stroke bg-bg-color">
+						<li className="p-4 rounded-xl text-md border sm:border-2 border-[#F2F2F2] bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-0 drop-shadow-lg">
 							Учебни програми, които покриват изискванията за задължителна подготовка по
 							общообразователните предмети.
 						</li>
-						<li className="p-4 flex flex-col gap-4 rounded-xl text-md border border-stroke bg-bg-color">
+						<li className="p-4 flex flex-col gap-4 rounded-xl text-md border sm:border-2 border-[#F2F2F2] bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-0 drop-shadow-lg">
 							<p className="text-lg">Извънкласни занимания:</p>
 							<ul className="w-full flex flex-col gap-4">
-								<li className="p-4 rounded-xl text-md border border-stroke bg-[#353444]">
+								<li className="p-4 rounded-xl text-md bg-transparent border sm:border-2 border-[#F2F2F2]">
 									Cisco академия за обучение в актуалните мрежови технологии
 								</li>
-								<li className="p-4 rounded-xl text-md border border-stroke bg-[#353444]">
+								<li className="p-4 rounded-xl text-md bg-transparent border sm:border-2 border-[#F2F2F2]">
 									вградени микроконтролерни системи на базата на ардуино
 								</li>
-								<li className="p-4 rounded-xl text-md border border-stroke bg-[#353444]">
+								<li className="p-4 rounded-xl text-md bg-transparent border sm:border-2 border-[#F2F2F2]">
 									участие в национални и международни състезания по програмиране, компютърни мрежи и
 									роботика
 								</li>
-								<li className="p-4 rounded-xl text-md border border-stroke bg-[#353444]">
+								<li className="p-4 rounded-xl text-md bg-transparent border sm:border-2 border-[#F2F2F2]">
 									възможност за изява на ежегодното състезание по програмиране HackTUES и изложението
 									на ученически проекти ТУЕС Фест
 								</li>
-								<li className="p-4 rounded-xl text-md border border-stroke bg-[#353444]">
+								<li className="p-4 rounded-xl text-md bg-transparent border sm:border-2 border-[#F2F2F2]">
 									работилници и лекции на различни теми, водени от професионалисти, завършили ТУЕС
 								</li>
-								<li className="p-4 rounded-xl text-md border border-stroke bg-[#353444]">
+								<li className="p-4 rounded-xl text-md bg-transparent border sm:border-2 border-[#F2F2F2]">
 									участие в много различни извънкласни клубове
 								</li>
 							</ul>
 						</li>
-						{/* <li className="p-4 rounded-xl text-md border border-stroke bg-bg-color">
+						{/* <li className="p-4 rounded-xl text-md border sm:border-2 border-[#F2F2F2] bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 drop-shadow-lg">
 							Възможност за участие в зелено и бяло училище.{' '}
 						</li> */}
 					</ul>
 				</div>
 				<div className="pt-8 md:pt-12">
-					<div className="bg-bg-color rounded-xl border border-stroke p-8 flex flex-col md:flex-row gap-4">
-						<div className="w-full p-4 flex flex-col gap-4 items-center rounded-xl bg-[#353444] border border-stroke">
-							<TbSchool size={64} className="opacity-70" />
+					<div className="bg-bg-color rounded-xl bg-transparent border sm:border-2 border-[#F2F2F2] p-8 flex flex-col md:flex-row gap-4">
+						<div className="w-full p-4 flex flex-col gap-4 items-center rounded-xl bg-[#353444] bg-transparent border sm:border-2 border-[#F2F2F2]">
+							<TbSchool size={64} className="opacity-100" />
 							<p className="text-5xl font-black bg-gradient text-transparent bg-clip-text">2846</p>
-							<p className="text-md opacity-70 text-center">завършили ученици</p>
+							<p className="font-semibold text-md opacity-100 text-center">завършили ученици</p>
 						</div>
-						<div className="w-full p-4 flex flex-col gap-4 items-center rounded-xl bg-[#353444] border border-stroke">
-							<TbTrophy size={64} className="opacity-70" />
+						<div className="w-full p-4 flex flex-col gap-4 items-center rounded-xl bg-[#353444] bg-transparent border sm:border-2 border-[#F2F2F2]">
+							<TbTrophy size={64} className="opacity-100" />
 							<p className="text-5xl font-black bg-gradient text-transparent bg-clip-text">87</p>
-							<p className="text-md opacity-70 text-center">награди и отличия</p>
+							<p className="font-semibold text-md opacity-100 text-center">награди и отличия</p>
 						</div>
-						<div className="w-full p-4 flex flex-col gap-4 items-center rounded-xl bg-[#353444] border border-stroke">
-							<TbBriefcase size={64} className="opacity-70" />
+						<div className="w-full p-4 flex flex-col gap-4 items-center rounded-xl bg-[#353444] bg-transparent border sm:border-2 border-[#F2F2F2]">
+							<TbBriefcase size={64} className="opacity-100" />
 							<p className="text-5xl font-black bg-gradient text-transparent bg-clip-text">140</p>
-							<p className="text-md opacity-70 text-center">стажа на година</p>
+							<p className="font-semibold text-md opacity-100 text-center">стажа на година</p>
 						</div>
-						<div className="w-full p-4 flex flex-col gap-4 items-center rounded-xl bg-[#353444] border border-stroke">
-							<TbHistory size={64} className="opacity-70" />
+						<div className="w-full p-4 flex flex-col gap-4 items-center rounded-xl bg-[#353444] bg-transparent border sm:border-2 border-[#F2F2F2]">
+							<TbHistory size={64} className="opacity-100" />
 							<p className="text-5xl font-black bg-gradient text-transparent bg-clip-text">35</p>
-							<p className="text-md opacity-70 text-center">годишна история</p>
+							<p className="font-semibold text-md opacity-100 text-center">годишна история</p>
 						</div>
 					</div>
 				</div>
@@ -177,19 +177,19 @@ const AboutPage = () => {
 					</h3>
 
 					<ul className="w-full flex flex-col gap-4">
-						<li className="p-4 rounded-xl text-md border border-stroke bg-bg-color">
+						<li className="p-4 rounded-xl text-md border sm:border-2 border-[#F2F2F2] bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 drop-shadow-lg">
 							тясната интеграция с Технически университет - София
 						</li>
-						<li className="p-4 rounded-xl text-md border border-stroke bg-bg-color">
+						<li className="p-4 rounded-xl text-md border sm:border-2 border-[#F2F2F2] bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 drop-shadow-lg">
 							гъвкавия си специализиран учебен план
 						</li>
-						<li className="p-4 rounded-xl text-md border border-stroke bg-bg-color">
+						<li className="p-4 rounded-xl text-md border sm:border-2 border-[#F2F2F2] bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 drop-shadow-lg">
 							преподаватели от университета и ИТ практици
 						</li>
-						<li className="p-4 rounded-xl text-md border border-stroke bg-bg-color">
+						<li className="p-4 rounded-xl text-md border sm:border-2 border-[#F2F2F2] bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 drop-shadow-lg">
 							активната роля на завършилите в живота на училището
 						</li>
-						<li className="p-4 rounded-xl text-md border border-stroke bg-bg-color">
+						<li className="p-4 rounded-xl text-md border sm:border-2 border-[#F2F2F2] bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 drop-shadow-lg">
 							тясната връзка с реалния бизнес за учебни и извънучебни занимания, практики по
 							специалността, дипломни проекти и др.
 						</li>
@@ -217,7 +217,7 @@ const AboutPage = () => {
 					<img
 						src="/assets/about/hacktues 9.jpg"
 						alt="HackTUES 9 организатори"
-						className="w-full max-w-3xl m-auto rounded-xl border border-stroke"
+						className="w-full max-w-3xl m-auto rounded-xl bg-transparent border sm:border-2 border-[#F2F2F2]"
 					/>
 					<p className="text-justify">
 						Това е първият и единствен по рода си хакатон в България, организиран от ученици за ученици.
