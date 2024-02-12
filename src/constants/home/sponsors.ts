@@ -9,6 +9,7 @@ import a1Logo from '@/sponsors/alpha/a1.png';
 //Media
 
 //Alpha sponsors
+import m2m from '@/sponsors/alpha/m2m.png';
 import appolicaLogo from '@/sponsors/alpha/appolica.png';
 import boschECSLogo from '@/sponsors/alpha/bosch-engineering-center-sofia.png';
 import codbexLogo from '@/sponsors/alpha/codbex-orange-logo.png';
@@ -22,6 +23,7 @@ import trading212Logo from '@/sponsors/alpha/trading212.png';
 //Alpha sponsors
 
 //Beta sponsors
+import storpool from '@/sponsors/beta/storpool.png';
 import chaosLogo from '@/sponsors/beta/chaos1.png';
 import devrixLogo from '@/sponsors/beta/devrix.png';
 import experianLogo from '@/sponsors/beta/experian.png';
@@ -53,16 +55,9 @@ import pureWaterLogo from '@/sponsors/partners/pure_water.png';
 import remoLogo from '@/sponsors/partners/remo-mebeli.png';
 import smartcomLogo from '@/sponsors/partners/smartcom.png';
 import sofiaTechParkLogo from '@/sponsors/partners/sofia-tech-park.png';
+import culligan from '@/sponsors/partners/culligan.jpg';
 
 const ALPHA_SPONSORS = [
-	{
-		name: 'A1',
-		logo: a1Logo,
-		url: 'https://www.a1.bg/',
-		supportedEditions: ['hacktues-security', 'hacktues-infinity', 'hacktues-gg'],
-		description:
-			'А1 е водещ доставчик на дигитални услуги и телекомуникационни решения в България. Част сме от A1 Group, която оперира в 7 държави в Централна и Източна Европа, и América Móvil – един от най-големите доставчици на безжични услуги в света. А1 България е най-големият системен интегратор и най-голямата ICT компания в страната, както и лидер на пазара на телекомуникационни услуги по приходи, според класацията Digitalk 101. Ние сме компания, която си поставя високи цели и не се бои да ги изпълни. Работим в международен екип и споделяме наученото с всички компании в A1 Group. В екипа ни работят повече от 3600 професионалисти в различни направления. Разполагаме със сертификата Great Place To Work, който ни определя като един от най-добрите работодатели в Европа. Грижим се за своите служители, като в наше лице те виждат стабилна и бързоразвиваща се компания, която им предоставя възможности за развитие.',
-	},
 	{
 		name: 'Bosch Engineering Center Sofia',
 		logo: boschECSLogo,
@@ -99,6 +94,13 @@ const ALPHA_SPONSORS = [
 		description:
 			'GlobalFoundries: Българските инженери, които реализират иновации на глобално ниво в дизайна и производството на микрочипове. GlobalFoundries Bulgaria e локалният офис на една от водещите (топ 3) компании в света за производство на микрочипове и играе ключова роля в местната технологична сцена. Компанията намира, обучава и развива инженери чрез своята успешна стажантска програма. Като водещ производител на микрочипове, компанията не само създава технически специалисти в областта на микроелектрониката, но и допринася активно за местната екосистема инвестирайки в партньорства с техническите университети и гимназии в страната.',
 		supportedEditions: [],
+	},
+	{
+		name: 'M2M Services',
+		logo: m2m,
+		url: 'https://m2mservices.com/',
+		description:
+			'We are a Bulgarian technology company with a global vision. We currently have offices in both Bulgaria and the US, as well as 15 years of experience, creating and implementing innovative communication and IoT solutions for the security industry.',
 	},
 	{
 		name: 'SAP Labs България',
@@ -184,6 +186,13 @@ const BETA_SPONSORS = [
 			'Stam Soft е софтуерна компания с над 10 години опит в разработката на мобилни и уеб приложения и уеб дизайн. През тези години, StamSoft са имали привилегията да работят със забележителни компании от различни точки по света, като Grohe, Changex, TokaCity, Prosieben1,  Steyr Mannlicher и други, създавайки за тях, приложения, с които те успяват да подобрят своето дигитално присъствие.',
 	},
 	{
+		name: 'StorPool',
+		logo: storpool,
+		url: 'https://storpool.com/',
+		description:
+			'StorPool Storage е българска компания, разработваща софтуерни решения за съхранение на данни в облачни среди. Ние помагаме на големи корпорации и доставчици на IT услуги, обслужващи милиони потребители в цял свят, да предоставят бързи и надеждни услуги на своите клиенти.',
+	},
+	{
 		name: 'Strypes Group',
 		logo: strypesLogo,
 		url: 'https://strypes.eu/',
@@ -217,32 +226,6 @@ const BETA_SPONSORS = [
 ];
 
 const GAMMA_SPONSORS = [
-	// {
-	// 	name: 'Accedia',
-	// 	logo: accediaLogo,
-	// 	url: 'https://accedia.com/',
-	// 	description:
-	// 		'Аксидиа e българска технологична компания, предоставяща консултантски услуги и разработка на софтуерни решения. Основана през 2012 от четирима партньори, днес в Аксидиа работят над 250 човека. Приятелската атмосфера и възможностите за професионално развитие нареждат компанията сред най-добрите ИТ работодатели в България. Екипът на Аксидиа има опит с широк спектър от технологии като .NET, Java, React.js, Angular и много други.',
-	// 	supportedEditions: ['hacktues-security', 'hacktues-30x'],
-	// },
-	// {
-	// 	name: 'Astea Solutions',
-	// 	logo: asteaSolutionsLogo,
-	// 	url: 'https://asteasolutions.com',
-	// 	description:
-	// 		'AsteaSolutions - експерти в разработката на софтуер и технологични решения! Техният успех се дължи на задружен екип от астейци, които обединяват умения и сили за иновации в различни индустрии и сфери. Споделят знание и инвестират в образование, защото вярват в младите умове!',
-	// 	supportedEditions: [
-	// 		'hacktues-security',
-	// 		'hacktues-infinity',
-	// 		'hacktues-gg',
-	// 		'hacktues-6',
-	// 		'hacktues-365',
-	// 		'hacktues-30x',
-	// 		'hacktues-3',
-	// 		'hacktues-2',
-	// 	],
-	// },
-
 	{
 		name: 'Nemetschek Bulgaria',
 		logo: nemetschekLogo,
@@ -291,14 +274,6 @@ const GAMMA_SPONSORS = [
 			"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
 		supportedEditions: ['hacktues-infinity'],
 	},
-	// {
-	// 	name: 'Progress',
-	// 	logo: progressLogo,
-	// 	url: 'https://www.progress.com/',
-	// 	supportedEditions: ['hacktues-security', 'hacktues-infinity', 'hacktues-6', 'hacktues-365'],
-	// 	description:
-	// 		'В София се намира най-големият офис на Progress и в него се разработват голяма част от иновациите – изцяло нови продукти и в съществуващи продукти – които компанията пуска на пазара. Сред тях са платформата за дигитални преживявания Progress Sitefinity и водещите инструменти за разработчици Progress Telerik и Progress Kendo UI. Зад успеха на продуктите стои високият професионализъм, експертност и мотивация на хората, които работят в Progress.Работната среда е базирана на доверие, уважение и работа в екип и насърчава свободното споделяне на идеи и развитието на хората.',
-	// },
 ];
 
 const PARTNERS = [
@@ -328,20 +303,13 @@ const PARTNERS = [
 		description:
 			'Асоциацията на завършилите ТУЕС е неправителствена организация, която има за цел да обедини и подпомага общността от завършили и настоящи ученици в Технологично училище "Електронни Системи" към ТУ - София (ТУЕС), преподаватели и приятели на училището. Учредена е през декември 2014 и работи активно от средата на 2015, като вече наброява над 1,000 членове и се е превърнала в двигател на редица събития и инициативи, ключови за ТУЕС общността.',
 	},
-	// {
-	//   name: "Comet Electronics",
-	//   logo: cometLogo,
-	//   url: "https://comet.bg/",
-	//   description:
-	//     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-	// },
 	{
-		name: 'Бони',
-		logo: boniLogo,
-		url: 'http://www.boniholding.com/',
+		name: 'Culligan Bulgaria',
+		logo: culligan,
+		url: 'https://www.culligan.bg/',
 		description:
-			"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-		supportedEditions: [],
+			'Culligan Bulgaria- всичко, от което се нуждаете, за да осигурите чиста, висококачествена вода за Вашия бизнес или домакинство. Водата, която обичате!<br>Ние в Culligan се ангажираме да изградим по-добър, по-устойчив свят чрез подобряване както на социалното, така и на нашето въздействие върху околната среда.  В Culligan вярваме, че по-чистата и по-здравословна вода може да допринесе за подобряване на живота на хората по света и е ключов двигател към решаването на някои от най-големите предизвикателства, които стоят в нашето бъдеще.',
+		supportedEditions: ['hacktues-security'],
 	},
 	{
 		name: 'Corporate Gifts',
@@ -350,14 +318,6 @@ const PARTNERS = [
 		description:
 			"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
 		supportedEditions: ['hacktues-security'],
-	},
-	{
-		name: 'Dominos',
-		logo: dominosLogo,
-		url: 'https://dominos.bg',
-		description:
-			"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-		supportedEditions: ['hacktues-security', 'hacktues-infinity', 'hacktues-gg', 'hacktues-6', 'hacktues-365'],
 	},
 	{
 		name: 'Мебели Ремо',
