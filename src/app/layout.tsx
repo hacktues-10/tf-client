@@ -99,7 +99,7 @@ export const metadata = {
 		siteName: 'TUES Fest 2024',
 		images: [
 			{
-				url: './logo/motto.png',
+				url: 'https:/tuesfest.bg/logo/motto.png',
 			},
 		],
 		locale: 'bg-BG',
