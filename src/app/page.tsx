@@ -11,7 +11,7 @@ import TitleSVG from './Title';
 export default function Home() {
 	return (
 		<main className="m-auto">
-			<section className="p-1 pt-4 sm:p-4 w-full min-h-screen flex flex-col items-center justify-center gap-4 md:gap-16 ">
+			<section className="p-1 pt-4 sm:p-4 w-full overflow-hidden min-h-screen flex flex-col items-center justify-center gap-4 md:gap-16 ">
 				<div className="w-11/12 sm:w-2/3 md:w-3/4 lg:w-1/2">
 					<div className="hidden md:block  p-8 m-10 sm:m-0 border sm:border-2 border-[#F2F2F2] bg-clip-padding rounded-xl backdrop-filter backdrop-blur-sm bg-opacity-0 drop-shadow-lg">
 						<TitleSVG className="w-full relative z-20" />

@@ -112,7 +112,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				<link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="any"></link>
 			</head>
 			<body className=" text-white">
-				<div className="bg-repeat bg-[url(./bg.svg)]">
+				<div className="bg-repeat bg-[url(./bg.svg)] w-full overflow-hidden">
 					<DayProvider>
 						<Navigation />
 						{/* <VoteProvider> */}
