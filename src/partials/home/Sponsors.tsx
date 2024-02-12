@@ -1,6 +1,6 @@
 import PodkrepqAutoDisplay from './sponsors/PodkrepqAutoDisplay';
 
-import { ALPHA_SPONSORS, GAMMA_SPONSORS, BETA_SPONSORS } from '@/constants/home/sponsors';
+import { ALPHA_SPONSORS, GAMMA_SPONSORS, BETA_SPONSORS, PARTNERS } from '@/constants/home/sponsors';
 const Sponsors = () => (
 	<section id="sponsors" className="relative z-20 p-8 md:p-12 mb-20">
 		<div className="py-4 pb-8">
@@ -15,10 +15,14 @@ const Sponsors = () => (
 		</h2>
 
 		<PodkrepqAutoDisplay podkrepqshti={BETA_SPONSORS} />
-		<h2 className="bg-gradient text-transparent font-black text-3xl mt-32 mb-4 text-center bg-clip-text">
+		<h2 className="bg-gradient text-transparent font-black text-3xl mb-4 mt-32 text-center bg-clip-text">
 			Гама Спонсори
 		</h2>
 		<PodkrepqAutoDisplay podkrepqshti={GAMMA_SPONSORS} />
+		<h2 className="bg-gradient text-transparent font-black text-3xl mt-32 mb-4 text-center bg-clip-text">
+			Партньори
+		</h2>
+		<PodkrepqAutoDisplay podkrepqshti={PARTNERS} />
 	</section>
 );
 
