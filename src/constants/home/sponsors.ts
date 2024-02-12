@@ -56,6 +56,14 @@ import sofiaTechParkLogo from '@/sponsors/partners/sofia-tech-park.png';
 
 const ALPHA_SPONSORS = [
 	{
+		name: 'A1',
+		logo: a1Logo,
+		url: 'https://www.a1.bg/',
+		supportedEditions: ['hacktues-security', 'hacktues-infinity', 'hacktues-gg'],
+		description:
+			'А1 е водещ доставчик на дигитални услуги и телекомуникационни решения в България. Част сме от A1 Group, която оперира в 7 държави в Централна и Източна Европа, и América Móvil – един от най-големите доставчици на безжични услуги в света. А1 България е най-големият системен интегратор и най-голямата ICT компания в страната, както и лидер на пазара на телекомуникационни услуги по приходи, според класацията Digitalk 101. Ние сме компания, която си поставя високи цели и не се бои да ги изпълни. Работим в международен екип и споделяме наученото с всички компании в A1 Group. В екипа ни работят повече от 3600 професионалисти в различни направления. Разполагаме със сертификата Great Place To Work, който ни определя като един от най-добрите работодатели в Европа. Грижим се за своите служители, като в наше лице те виждат стабилна и бързоразвиваща се компания, която им предоставя възможности за развитие.',
+	},
+	{
 		name: 'Bosch Engineering Center Sofia',
 		logo: boschECSLogo,
 		url: 'https://www.bosch.bg/ecs',
@@ -235,6 +243,30 @@ const GAMMA_SPONSORS = [
 	// 	],
 	// },
 
+	{
+		name: 'Nemetschek Bulgaria',
+		logo: nemetschekLogo,
+		url: 'https://www.nemetschek.bg/',
+		description:
+			"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+		supportedEditions: [
+			'hacktues-security',
+			'hacktues-infinity',
+			'hacktues-gg',
+			'hacktues-365',
+			'hacktues-30x',
+			'hacktues-3',
+			'hacktues',
+		],
+	},
+	{
+		name: 'Ocado Technology',
+		logo: ocadoTechnologyLogo,
+		url: 'https://www.ocadogroup.com/technology/technology-pioneers/',
+		description:
+			"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+		supportedEditions: ['hacktues-infinity'],
+	},
 	{
 		name: 'Nemetschek Bulgaria',
 		logo: nemetschekLogo,
