@@ -15,9 +15,17 @@ export default function Home() {
 				<div className="w-11/12 sm:w-2/3 md:w-3/4 lg:w-1/2">
 					<div className="hidden md:block  p-8 m-10 sm:m-0 border sm:border-2 border-[#F2F2F2] bg-clip-padding rounded-xl backdrop-filter backdrop-blur-sm bg-opacity-0 drop-shadow-lg">
 						<TitleSVG className="w-full relative z-20" />
+						{/* <div className="w-full flex">
+							<img src={'/35.png'} alt="35elsys" className="w-1/6 h-1/12" />
+							<img src={'/moto1.png'} alt="moto1" className="w-1/6 h-1/12" />
+						</div> */}
 					</div>
 					<div className="block md:hidden border sm:border-2 border-[#F2F2F2] p-3 m-2  sm:m-0 bg-clip-padding rounded-xl backdrop-filter backdrop-blur-sm bg-opacity-0 drop-shadow-lg">
 						<img src={'/assets/TitleMobile.webp'} alt="titleMobile" className="w-full" />
+						{/* <div className="w-full flex">
+							<img src={'/35.png'} alt="35elsys" className="w-1/6 h-1/12" />
+							<img src={'/moto1.png'} alt="moto1" className="w-1/6 h-1/12" />
+						</div> */}
 					</div>
 
 					<div className="flex mx-1/4 mt-5 relative z-20 flex-col sm:flex-row items-stretch gap-4 text-center">

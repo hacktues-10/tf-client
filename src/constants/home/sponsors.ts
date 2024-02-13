@@ -20,6 +20,7 @@ import sapLogo from '@/sponsors/alpha/sap.png';
 import stenikLogo from '@/sponsors/alpha/stenik.png';
 import tbsLogo from '@/sponsors/alpha/tbs.png';
 import trading212Logo from '@/sponsors/alpha/trading212.png';
+import yettelLogo from '@/sponsors/alpha/yettelLogo.png';
 //Alpha sponsors
 
 //Beta sponsors
@@ -34,6 +35,7 @@ import stamsoftLogo from '@/sponsors/beta/stamsoft.png';
 import strypesLogo from '@/sponsors/beta/strypes.png';
 import telebidProLogo from '@/sponsors/beta/telebidPro.png';
 import tumbaSolutionsLogo from '@/sponsors/beta/tumba-solutions.png';
+import ibm from '@/sponsors/beta/ibm.jpg';
 //Beta sponsors
 
 //Gamma sponsors
@@ -142,6 +144,13 @@ const ALPHA_SPONSORS = [
 		description:
 			'Trading 212 is a fintech company that democratises the financial markets with free, smart and easy to use apps, enabling anyone to trade Stocks, ETFs, Forex, Commodities, and more. We disrupted the stock brokerage industry by offering the first zero-commission stock trading service in the UK and Europe, unlocking the stock market for millions of people. Our mobile app has more than 15.000.000 downloads, which makes it one of the most popular trading apps in the world. Since 2016, Trading 212’s app has been the UK’s #1 trading app, and in 2017 it reached the #1 spot in Germany.',
 	},
+	{
+		name: 'Yettel Bulgaria',
+		logo: yettelLogo,
+		url: 'https://www.yettel.bg/',
+		description:
+			'През 2023 г. Yettel стана първия телеком в България, получил престижния международен сертификат Top Employer. Той се издава на база задълбочен и независим одит и отличава високото качество на работодателските ни политики и практики. Top Employer е поредното признание, че в основата на всичко, което правим като работодател, стои грижата за нашите служители, които откриват в Yettel свободата да бъдат себе си, да се развиват и да допринасят за реална промяна със своята работа.',
+	},
 ];
 
 const BETA_SPONSORS = [
@@ -168,6 +177,13 @@ const BETA_SPONSORS = [
 		description:
 			"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
 		supportedEditions: [],
+	},
+	{
+		name: 'IBM Bulgaria',
+		logo: ibm,
+		url: 'https://www.ibm.com/us-en',
+		description:
+			'В България, IBM има над 80 години присъствие на пазара. Именно в България, IBM развива най-големия си клиентски иновационен център в света, познат още като IBM TLS Client Innovation Center Sofia, в който се позиционират голяма популация от технически експерти, както и нашите лаборатории с оборудване от най-висок клас, които ползваме за обучения. През всичките тези години компанията работи с правителства, университети и училища,  за да помага на младите таланти в страната да развият ключови умения за успешна кариера в сектора.',
 	},
 	{
 		name: 'ITGix',
