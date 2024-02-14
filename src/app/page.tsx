@@ -4,9 +4,9 @@ import Expectations from '@/partials/home/Expectations';
 import Schedule from '@/partials/home/Schedule';
 import Sponsors from '@/partials/home/Sponsors';
 import Testimonial from '@/partials/home/Testimonial';
-
 import Statistics from '@/partials/home/Statistics';
 import Logos from '@/partials/home/Logos';
+
 export default function Home() {
 	return (
 		<main className="m-auto">
