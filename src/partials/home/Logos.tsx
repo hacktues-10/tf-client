@@ -24,7 +24,7 @@ export default function Logos() {
 					<img src={image} alt={image} className="w-2/3 h-1/12" />
 				</div>
 			</div>
-			<div className="block md:hidden border sm:border-2 border-[#F2F2F2] p-3 m-2  sm:m-0 bg-clip-padding rounded-xl backdrop-filter backdrop-blur-sm bg-opacity-0 drop-shadow-lg">
+			<div className="block md:hidden border sm:border-2 border-[#F2F2F2] p-3 m-2 mt-12 sm:m-0 bg-clip-padding rounded-xl backdrop-filter backdrop-blur-sm bg-opacity-0 drop-shadow-lg">
 				<img src={'/assets/TitleMobile.webp'} alt="titleMobile" className="w-full" />
 				<div className="w-full flex">
 					<img src={'/35.png'} alt="35elsys" className="w-2/6 h-1/12" />
