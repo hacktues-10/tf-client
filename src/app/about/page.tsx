@@ -215,7 +215,7 @@ const AboutPage = () => {
 						ясна представа за реалната работна обстановка.
 					</p>
 					<img
-						src="/assets/about/hacktues 9.jpg"
+						src="/assets/about/hacktuesX.png"
 						alt="HackTUES 9 организатори"
 						className="w-full max-w-3xl m-auto rounded-xl bg-transparent border sm:border-2 border-[#F2F2F2]"
 					/>
@@ -226,8 +226,12 @@ const AboutPage = () => {
 						събитието под менторството на АЗТУЕС и ръководството на ТУЕС.
 					</p>
 					<p className="text-justify">
-						Прочетете невероятната история на деветото му издание с тема Security{' '}
-						<Link href="https://tues.bg/novini-i-sybitija/novini/hack-tues-security-642">
+						Тази година ще се проведе{' '}
+						<span className="font-semibold bg-gradient text-transparent bg-clip-text">
+							десетото юбилейно издание
+						</span>
+						. Можете да видите повече информация{' '}
+						<Link href="https://hacktues.bg" target="_blank">
 							<u>тук</u>
 						</Link>
 						.
