@@ -6,8 +6,7 @@ export const env = createEnv({
         .enum(["development", "preview", "production"])
         .optional()
         .default("development"),
-  
-          },
+    },
 
     client: {
       NEXT_PUBLIC_GROWTHBOOK_API_HOST: z.string().url(),
