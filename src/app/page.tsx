@@ -16,7 +16,6 @@ export default function Home() {
 			<div className="max-w-screen-2xl 2xl:m-auto mx-6 md:mx-20">
 				<Statistics />
 			</div>
-
 			<div className="max-w-screen-2xl w-full m-auto">
 				<Expectations />
 				<Schedule />
