@@ -36,6 +36,7 @@ module.exports = {
 				'linear-gradient(90deg, hsla(46, 89%, 85%, 1) 0%, hsla(10, 81%, 75%, 1) 66%, hsla(355, 78%, 65%, 1) 100%, hsla(6, 95%, 50%, 1) 100%, hsla(355, 78%, 65%, 1) 100%)',
 			error: '#FF0000',
 			zinc: 'rgb(55 65 81)',
+			sand: 'hsl(38,100%,83%)',
 		},
 		extend: {
 			backgroundColor: {
