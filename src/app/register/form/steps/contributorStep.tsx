@@ -3,10 +3,10 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { contributorSchema } from '../schema';
+import StepButtons from './stepButtons';
 
 type ContributorSchema = z.infer<typeof contributorSchema>;
 
@@ -14,6 +14,7 @@ export default function ContributorStep({
 	defaultValues,
 	initialData,
 	onNext,
+	onPrev,
 	className,
 }: {
 	initialData: Partial<ContributorSchema>;
@@ -164,15 +165,7 @@ export default function ContributorStep({
 							</FormItem>
 						)}
 					/>
-
-					<Button
-						variant={'outline'}
-						onClick={() => onNext(form.getValues())}
-						className="bg-sand text-black hover:cursor-pointer"
-						type="submit"
-					>
-						Submit
-					</Button>
+					<StepButtons onNext={() => onNext(form.getValues())} onPrev={onPrev} />
 				</form>
 			</Form>
 		</div>

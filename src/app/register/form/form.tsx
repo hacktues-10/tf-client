@@ -79,7 +79,7 @@ export default function RegisterForm() {
 	}
 
 	return (
-		<div className="space-y-1">
+		<div className="space-y-1 w-full">
 			<ProjectStep
 				className={currentStep === 1 ? '' : 'hidden'}
 				defaultValues={defaultValues}

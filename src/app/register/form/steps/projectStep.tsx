@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { projectSchema } from '../schema';
 import { Textarea } from '@/components/ui/textarea';
+import StepButtons from './stepButtons';
 
 type ProjectSchema = z.infer<typeof projectSchema>;
 
@@ -15,6 +16,7 @@ export default function ProjectStep({
 	defaultValues,
 	initialData,
 	onNext,
+	onPrev,
 	className,
 }: {
 	initialData: Partial<ProjectSchema>;
@@ -80,14 +82,15 @@ export default function ProjectStep({
 							</FormItem>
 						)}
 					/>
+					<StepButtons onPrev={null} onNext={() => onNext(form.getValues())} />
 
-					<Button
+					{/* <Button
 						variant={'outline'}
 						onClick={() => onNext(form.getValues())}
 						className="bg-sand text-black hover:cursor-pointer"
 					>
 						Напред
-					</Button>
+					</Button> */}
 				</form>
 			</Form>
 		</div>
