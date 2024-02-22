@@ -4,24 +4,15 @@ import { z } from 'zod';
 
 const STUDENT_PARALELS = ['А', 'Б', 'В', 'Г'] as const;
 const STUDENT_GRADES = ['8', '9', '10', '11', '12'] as const;
-const MAX_FILE_SIZE = 5000000 as const;
+const MAX_FILE_SIZE = 5242880 as const;
 const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'] as const;
 
-const ImageValidation = z.object({
-	image: z
-		.any()
-		.refine((file) => file?.size <= MAX_FILE_SIZE, `Max image size is 5MB.`)
-		.refine(
-			(file) => ACCEPTED_IMAGE_TYPES.includes(file?.type),
-			'Само .jpg, .jpeg, .png and .webp файлови формати са поддържани.'
-		),
+const ImagesValidation = z.object({
+	images: z.array(z.any()),
 });
 
 const VideoValidation = z.object({
-	video: z
-		.any()
-		.refine((file) => file?.size <= MAX_FILE_SIZE, `Max video size is 5MB.`)
-		.refine((file) => file?.type === 'video/mp4', 'Само формат .mp4 е поддържан.'),
+	video: z.any(),
 });
 
 const contributorSchema = z.object({
@@ -63,8 +54,10 @@ const projectSchema = z.object({
 	github: z.string().url({ message: 'Невалиден GitHub URL' }),
 });
 
-const registrationSchema = contributorSchema.merge(projectSchema);
+const fileUploadSchema = ImagesValidation.merge(VideoValidation);
+
+const registrationSchema = contributorSchema.merge(projectSchema).merge(fileUploadSchema);
 
 export type RegistrationSchema = z.infer<typeof registrationSchema>;
 
-export { registrationSchema, contributorSchema, projectSchema };
+export { registrationSchema, contributorSchema, projectSchema, fileUploadSchema };

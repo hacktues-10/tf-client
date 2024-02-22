@@ -11,6 +11,7 @@ import { RegistrationSchema, registrationSchema } from './schema';
 import { useState, useReducer, useEffect } from 'react';
 import ProjectStep from './steps/projectStep';
 import ContributorStep from './steps/contributorStep';
+import FileUploadStep from './steps/filesUploadStep';
 
 const defaultValues = {
 	email: '',
@@ -22,6 +23,8 @@ const defaultValues = {
 	title: '',
 	description: '',
 	github: '',
+	images: Array<File>(),
+	video: File,
 } satisfies RegistrationSchema;
 
 export default function RegisterForm() {
@@ -87,8 +90,15 @@ export default function RegisterForm() {
 				onNext={handleNext}
 				onPrev={handlePrev}
 			/>
-			<ContributorStep
+			<FileUploadStep
 				className={currentStep === 2 ? '' : 'hidden'}
+				defaultValues={defaultValues}
+				initialData={formData}
+				onNext={handleNext}
+				onPrev={handlePrev}
+			/>
+			<ContributorStep
+				className={currentStep === 3 ? '' : 'hidden'}
 				defaultValues={defaultValues}
 				initialData={formData}
 				onNext={handleNext}

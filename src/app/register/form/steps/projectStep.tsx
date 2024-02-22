@@ -83,14 +83,6 @@ export default function ProjectStep({
 						)}
 					/>
 					<StepButtons onPrev={null} onNext={() => onNext(form.getValues())} />
-
-					{/* <Button
-						variant={'outline'}
-						onClick={() => onNext(form.getValues())}
-						className="bg-sand text-black hover:cursor-pointer"
-					>
-						Напред
-					</Button> */}
 				</form>
 			</Form>
 		</div>
