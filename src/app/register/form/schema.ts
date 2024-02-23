@@ -1,5 +1,6 @@
 'use client';
 
+import { error } from 'console';
 import { z } from 'zod';
 
 const STUDENT_PARALELS = ['А', 'Б', 'В', 'Г'] as const;
@@ -11,6 +12,11 @@ const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/web
 // 	console.log(url);
 // 	return true;
 // }, 'Your error message here')
+
+const FilesReal = z.object({
+	images: z.array(z.string()),
+	video: z.string(),
+});
 
 const ImagesValidation = z.object({
 	images: z
@@ -56,7 +62,7 @@ const VideoValidation = z.object({
 const contributorSchema = z.object({
 	email: z
 		.string()
-		.email()
+		.email({ message: 'Невалиден имейл' })
 		.refine(
 			(value) =>
 				[
@@ -79,8 +85,12 @@ const contributorSchema = z.object({
 		.min(3, { message: 'Фамилията трябва да е поне 3 символа' })
 		.max(20, { message: 'Фамилията трябва да е до 20 символа' })
 		.refine((name) => /^[А-Я][а-я]*$/.test(name), 'Фамилията трябва да е на кирилица и да започва с главна буква'),
-	grade: z.enum(STUDENT_GRADES),
-	parallel: z.enum(STUDENT_PARALELS),
+	grade: z.enum(STUDENT_GRADES, {
+		errorMap: (issue, ctx) => ({ message: 'Невалиден клас' }),
+	}),
+	parallel: z.enum(STUDENT_PARALELS, {
+		errorMap: (issue, ctx) => ({ message: 'Невалидна паралелка' }),
+	}),
 	phoneNumber: z.preprocess(
 		(val) => (typeof val === 'string' ? val.replace(/^\+359/, '0').replace(/\s/g, '') : val),
 		z
@@ -103,7 +113,7 @@ const projectSchema = z.object({
 		.refine((title) => /^[A-Z0-9А-Я]/.test(title), 'Името на проекта трябва да започва с главна буква или число'),
 	description: z
 		.string()
-		.min(10, { message: 'Невалидно описание на проекта. Трянва да е дълго поне 10 символа.' })
+		.min(10, { message: 'Невалидно описание на проекта. Трябва да е дълго поне 10 символа.' })
 		.max(500, { message: 'Невалидно описание на проекта' }),
 	github: z
 		.string()
@@ -113,8 +123,8 @@ const projectSchema = z.object({
 
 const fileUploadSchema = ImagesValidation.merge(VideoValidation);
 
-const registrationSchema = contributorSchema.merge(projectSchema).merge(fileUploadSchema);
+const registrationSchema = contributorSchema.merge(projectSchema).merge(FilesReal);
 
 export type RegistrationSchema = z.infer<typeof registrationSchema>;
 
-export { registrationSchema, contributorSchema, projectSchema, fileUploadSchema };
+export { FilesReal, registrationSchema, contributorSchema, projectSchema, fileUploadSchema };

@@ -28,16 +28,16 @@ export default function ProjectStep({
 }) {
 	const form = useForm<ProjectSchema>({
 		resolver: zodResolver(projectSchema),
-		defaultValues: {
-			title: '',
-			description: '',
-			github: '',
-		},
+		defaultValues: initialData,
 	});
 
 	function onSubmit(values: ProjectSchema) {
 		console.log(values);
 	}
+
+	useEffect(() => {
+		form.reset(initialData);
+	}, [initialData, form]);
 
 	return (
 		<div className={className}>
@@ -70,6 +70,19 @@ export default function ProjectStep({
 							</FormItem>
 						)}
 					/>
+					{/* <FormField
+						control={form.control}
+						name="type"
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>Линк към GitHub хранилище</FormLabel>
+								<FormControl>
+									<Input placeholder="https://github.com/dimitarNzhelev/elektrodvigatel" {...field} />
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/> */}
 					<FormField
 						control={form.control}
 						name="github"

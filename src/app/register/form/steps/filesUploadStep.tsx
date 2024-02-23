@@ -6,13 +6,13 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { fileUploadSchema } from '../schema';
+import { FilesReal, fileUploadSchema } from '../schema';
 import { Textarea } from '@/components/ui/textarea';
 import StepButtons from './stepButtons';
-import { useEffect, useState } from 'react';
-
-type FileUploadSchema = z.infer<typeof fileUploadSchema>;
-import Image from 'next/image';
+import { onSubmitImages, onSubmitVideo } from '../actions';
+type FileUploadSchema = z.infer<typeof FilesReal>;
+type FileCheckerSchema = z.infer<typeof fileUploadSchema>;
+import { useState } from 'react';
 
 export default function FileUploadStep({
 	defaultValues,
@@ -27,56 +27,55 @@ export default function FileUploadStep({
 	onPrev: () => void;
 	className?: string;
 }) {
-	const form = useForm<FileUploadSchema>({
+	const form = useForm<FileCheckerSchema>({
 		resolver: zodResolver(fileUploadSchema),
-		defaultValues: {
-			images: Array<File>(),
-			video: {
-				name: '',
-				size: 0,
-				type: '',
-				lastModified: 0,
-			},
-		},
+		defaultValues: initialData,
 	});
 
-	function onSubmit(values: FileUploadSchema) {
-		console.log(values);
+	const [targetImages, setTargetImages] = useState<FileList>();
+	const [targetVideo, setTargetVideo] = useState<File>();
+	async function onSubmit() {
+		if (targetImages) {
+			await onSubmitImages(targetImages);
+			const filesArray = Array.from(targetImages).map((file) => file.name);
+			form.setValue('images', filesArray);
+		} else {
+			console.log('No images');
+		}
+		if (targetVideo) {
+			await onSubmitVideo(targetVideo);
+
+			if (targetVideo?.type === 'video/mp4') {
+				form.setValue('video', targetVideo.name);
+			} else {
+				console.log('Invalid file');
+				form.setValue('video', '');
+			}
+		} else {
+			console.log('No video');
+		}
 	}
 
 	const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (e.target.files) {
-			console.log(e.target.files);
 			if (e.target.files && e.target.files.length > 5) {
 				alert('You can only upload a maximum of 5 files');
 				e.target.value = '';
 				return;
 			}
+
+			setTargetImages(e.target.files);
 			const filesArray = Array.from(e.target.files);
+
 			form.setValue('images', filesArray);
 		}
 	};
 
-	const handleVideoChange = (e: any) => {
+	const handleVideoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const file = e.target.files?.[0];
-		console.log(file);
-		if (file.type === 'video/mp4') {
-			console.log(file instanceof File);
-			form.setValue('video', file);
-		} else {
-			console.log('Invalid file');
-			form.setValue('video', {
-				name: '',
-				size: 0,
-				type: '',
-				lastModified: 0,
-			});
-		}
+		setTargetVideo(file);
+		if (file) form.setValue('video', file);
 	};
-
-	useEffect(() => {
-		console.log('video in form data', form.getValues('video'));
-	}, [form.getValues('video')]);
 
 	return (
 		<div className={className}>

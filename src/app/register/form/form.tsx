@@ -1,12 +1,4 @@
 'use client';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RegistrationSchema, registrationSchema } from './schema';
 import { useState, useReducer, useEffect } from 'react';
 import ProjectStep from './steps/projectStep';
@@ -23,13 +15,8 @@ const defaultValues = {
 	title: '',
 	description: '',
 	github: '',
-	images: Array<File>(),
-	video: {
-		name: '',
-		size: 0,
-		type: '',
-		lastModified: 0,
-	},
+	images: [''],
+	video: '',
 } satisfies RegistrationSchema;
 
 export default function RegisterForm() {
@@ -44,50 +31,92 @@ export default function RegisterForm() {
 
 	useEffect(() => {
 		try {
-			const loadedData = registrationSchema
-				.partial()
-				.parse(JSON.parse(localStorage.getItem('registrationData') ?? '{}'));
-			const localStorageCurrentStep = z
-				.object({
-					currentStep: z.number(),
-				})
-				.parse(JSON.parse(localStorage.getItem('registrationDataCurrentStep') ?? '{}')).currentStep;
+			const localData = JSON.parse(localStorage.getItem('registrationData') ?? '{}');
 
-			updateData(loadedData);
-			setCurrentStep(localStorageCurrentStep);
+			const localStorageCurrentStep = JSON.parse(
+				localStorage.getItem('registrationDataCurrentStep') ?? '{}'
+			).currentStep;
+			console.log('local', localData);
+			if (localStorageCurrentStep >= 1 && localStorageCurrentStep <= 3) {
+				setCurrentStep(localStorageCurrentStep);
+			}
+			updateData(localData);
 		} catch (e) {
+			console.log('error', e);
 			localStorage.removeItem('registrationDataCurrentStep');
 			localStorage.removeItem('registrationData');
 		}
 	}, []);
 
 	function handleNext(stepData: Partial<RegistrationSchema>) {
-		const loadedData = registrationSchema
-			.partial()
-			.parse(JSON.parse(localStorage.getItem('registrationData') || '{}'));
+		console.log('formData in next', formData);
+		if (currentStep != 2) {
+			const loadedData = registrationSchema
+				.partial()
+				.safeParse(JSON.parse(localStorage.getItem('registrationData') || '{}'));
 
-		localStorage.setItem(
-			'registrationData',
-			JSON.stringify({
-				...loadedData,
-				...stepData,
-			})
-		);
+			if (loadedData.success) {
+				localStorage.setItem(
+					'registrationData',
+					JSON.stringify({
+						...loadedData,
+						...stepData,
+					})
+				);
 
-		localStorage.setItem('registrationDataCurrentStep', JSON.stringify({ currentStep: currentStep + 1 }));
+				localStorage.setItem('registrationDataCurrentStep', JSON.stringify({ currentStep: currentStep + 1 }));
+			}
+			updateData({ ...formData, ...stepData });
+		} else {
+			updateData({
+				images: stepData.images,
+				video: stepData.video,
+			});
+		}
 
-		updateData(stepData);
 		setCurrentStep((prev) => prev + 1);
-		console.log(stepData);
 	}
 
 	useEffect(() => {
-		console.log(formData);
+		console.log('form data', formData);
 	}, [formData]);
 
 	function handlePrev() {
 		localStorage.setItem('registrationDataCurrentStep', JSON.stringify({ currentStep: currentStep - 1 }));
 		setCurrentStep((prev) => Math.max(prev - 1, 1));
+	}
+
+	async function handleSubmit(stepData: Partial<RegistrationSchema>) {
+		console.log('data before update', formData);
+
+		// const mergedData = { ...formData };
+		// for (const key in stepData) {
+		// 	if (
+		// 		stepData[key as keyof RegistrationSchema] !== '' &&
+		// 		stepData[key as keyof RegistrationSchema] != null &&
+		// 		!(
+		// 			Array.isArray(stepData[key as keyof RegistrationSchema]) &&
+		// 			stepData[key as keyof RegistrationSchema]?.length === 0
+		// 		) &&
+		// 		stepData[key as keyof RegistrationSchema]?.name !== ''
+		// 	) {
+		// 		mergedData[key] = stepData[key];
+		// 	}
+		// }
+
+		// updateData(mergedData);
+
+		// const finalData = {
+		// 	...mergedData,
+		// 	images: mergedData.images.map((image) => `${mergedData.title}-${image.name}`),
+		// 	video: `${mergedData.title}-${mergedData.video.name}`,
+		// };
+
+		// console.log(mergedData.video);
+
+		// console.log('final data', finalData);
+
+		// await RegisterProject(mergedData);
 	}
 
 	return (
@@ -110,7 +139,7 @@ export default function RegisterForm() {
 				className={currentStep === 3 ? '' : 'hidden'}
 				defaultValues={defaultValues}
 				initialData={formData}
-				onNext={handleNext}
+				onNext={handleSubmit}
 				onPrev={handlePrev}
 			/>
 		</div>

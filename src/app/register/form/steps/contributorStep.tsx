@@ -25,14 +25,7 @@ export default function ContributorStep({
 }) {
 	const form = useForm<ContributorSchema>({
 		resolver: zodResolver(contributorSchema),
-		defaultValues: {
-			email: '',
-			firstName: '',
-			lastName: '',
-			grade: '' as any,
-			parallel: '' as any,
-			phoneNumber: '',
-		},
+		defaultValues: initialData,
 	});
 
 	function onSubmit(values: ContributorSchema) {
@@ -165,7 +158,16 @@ export default function ContributorStep({
 							</FormItem>
 						)}
 					/>
-					<StepButtons onNext={() => onNext(form.getValues())} onPrev={onPrev} />
+					<StepButtons
+						onNext={() => {
+							form.trigger().then((isValid) => {
+								if (isValid) {
+									onNext(form.getValues());
+								}
+							});
+						}}
+						onPrev={onPrev}
+					/>
 				</form>
 			</Form>
 		</div>
