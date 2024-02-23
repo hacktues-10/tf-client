@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { projectSchema } from '../schema';
 import { Textarea } from '@/components/ui/textarea';
 import StepButtons from './stepButtons';
+import { useEffect } from 'react';
 
 type ProjectSchema = z.infer<typeof projectSchema>;
 
@@ -37,6 +38,12 @@ export default function ProjectStep({
 	function onSubmit(values: ProjectSchema) {
 		console.log(values);
 	}
+
+	const canSubmit =
+		form.watch('title') != defaultValues.title &&
+		form.watch('description') != defaultValues.description &&
+		form.watch('github') != defaultValues.github &&
+		projectSchema.safeParse(form.getValues()).success;
 
 	return (
 		<div className={className}>
@@ -82,7 +89,16 @@ export default function ProjectStep({
 							</FormItem>
 						)}
 					/>
-					<StepButtons onPrev={null} onNext={() => onNext(form.getValues())} />
+					<StepButtons
+						onPrev={null}
+						onNext={() => {
+							form.trigger().then((isValid) => {
+								if (isValid) {
+									onNext(form.getValues());
+								}
+							});
+						}}
+					/>{' '}
 				</form>
 			</Form>
 		</div>

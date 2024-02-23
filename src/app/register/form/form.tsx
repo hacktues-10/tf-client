@@ -12,6 +12,7 @@ import { useState, useReducer, useEffect } from 'react';
 import ProjectStep from './steps/projectStep';
 import ContributorStep from './steps/contributorStep';
 import FileUploadStep from './steps/filesUploadStep';
+import { TbPlayerPauseFilled } from 'react-icons/tb';
 
 const defaultValues = {
 	email: '',
@@ -24,7 +25,7 @@ const defaultValues = {
 	description: '',
 	github: '',
 	images: Array<File>(),
-	video: File,
+	video: typeof File,
 } satisfies RegistrationSchema;
 
 export default function RegisterForm() {
@@ -75,6 +76,10 @@ export default function RegisterForm() {
 		setCurrentStep((prev) => prev + 1);
 		console.log(stepData);
 	}
+
+	useEffect(() => {
+		console.log(formData);
+	}, [formData]);
 
 	function handlePrev() {
 		localStorage.setItem('registrationDataCurrentStep', JSON.stringify({ currentStep: currentStep - 1 }));

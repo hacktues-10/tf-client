@@ -7,6 +7,11 @@ const STUDENT_GRADES = ['8', '9', '10', '11', '12'] as const;
 const MAX_FILE_SIZE = 5242880 as const;
 const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'] as const;
 
+// .refine((url) => {
+// 	console.log(url);
+// 	return true;
+// }, 'Your error message here')
+
 const ImagesValidation = z.object({
 	images: z.array(z.any()),
 });
@@ -30,8 +35,17 @@ const contributorSchema = z.object({
 				].some((suffix) => value.endsWith(suffix)),
 			{ message: 'Невалиден имейл' }
 		),
-	firstName: z.string().min(2).max(50, { message: 'Невалидно име' }),
-	lastName: z.string().min(2).max(50, { message: 'Невалидна фамилия' }),
+	firstName: z
+		.string()
+		.min(3, { message: 'Името трябва да е поне 3 символа' })
+		.max(20, { message: 'Името трябва да е до 20 символа' })
+		.refine((name) => /^[А-Я][а-я]*$/.test(name), 'Името трябва да е на кирилица и да започва с главна буква'),
+
+	lastName: z
+		.string()
+		.min(3, { message: 'Фамилията трябва да е поне 3 символа' })
+		.max(20, { message: 'Фамилията трябва да е до 20 символа' })
+		.refine((name) => /^[А-Я][а-я]*$/.test(name), 'Фамилията трябва да е на кирилица и да започва с главна буква'),
 	grade: z.enum(STUDENT_GRADES),
 	parallel: z.enum(STUDENT_PARALELS),
 	phoneNumber: z.preprocess(
@@ -49,9 +63,19 @@ const contributorSchema = z.object({
 });
 
 const projectSchema = z.object({
-	title: z.string().min(2).max(50, { message: 'Невалидно име на проекта' }),
-	description: z.string().min(2).max(500, { message: 'Невалидно описание на проекта' }),
-	github: z.string().url({ message: 'Невалиден GitHub URL' }),
+	title: z
+		.string()
+		.min(3, { message: 'Името на проекта трянва да е дълго поне 3 символа.' })
+		.max(50, { message: 'Името на проекта трябва да е до 50 символа.' })
+		.refine((title) => /^[A-Z0-9А-Я]/.test(title), 'Името на проекта трябва да започва с главна буква или число'),
+	description: z
+		.string()
+		.min(10, { message: 'Невалидно описание на проекта. Трянва да е дълго поне 10 символа.' })
+		.max(500, { message: 'Невалидно описание на проекта' }),
+	github: z
+		.string()
+		.url({ message: 'Невалиден URL' })
+		.refine((url) => url.startsWith('https://github.com/'), 'Невалиден GitHub линк'),
 });
 
 const fileUploadSchema = ImagesValidation.merge(VideoValidation);
