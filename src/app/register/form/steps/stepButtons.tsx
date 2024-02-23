@@ -1,6 +1,14 @@
 import { Button } from '@/components/ui/button';
 
-export default function StepButtons({ onNext, onPrev }: { onNext: () => void; onPrev: (() => void) | null }) {
+export default function StepButtons({
+	onNext,
+	onPrev,
+	disableNext = false,
+}: {
+	onNext: () => void;
+	onPrev: (() => void) | null;
+	disableNext?: boolean;
+}) {
 	const isDisabled = onPrev === null;
 
 	return (
@@ -15,7 +23,12 @@ export default function StepButtons({ onNext, onPrev }: { onNext: () => void; on
 			>
 				Назад
 			</Button>
-			<Button type="submit" onClick={() => onNext()} className="bg-sand text-black hover:cursor-pointer">
+			<Button
+				type="submit"
+				onClick={() => onNext()}
+				disabled={disableNext}
+				className="bg-sand text-black hover:cursor-pointer"
+			>
 				Напред
 			</Button>
 		</div>

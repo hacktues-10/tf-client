@@ -1,18 +1,15 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import { number, z } from 'zod';
+import { UseFormReturn, useForm } from 'react-hook-form';
+import { number, set, z } from 'zod';
 
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { FilesReal, fileUploadSchema } from '../schema';
-import { Textarea } from '@/components/ui/textarea';
+import { FilesReal } from '../schema';
 import StepButtons from './stepButtons';
 import { onSubmitImages, onSubmitVideo } from '../actions';
 type FileUploadSchema = z.infer<typeof FilesReal>;
-type FileCheckerSchema = z.infer<typeof fileUploadSchema>;
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { init } from 'next/dist/compiled/webpack/webpack';
 
 export default function FileUploadStep({
 	defaultValues,
@@ -21,60 +18,108 @@ export default function FileUploadStep({
 	onPrev,
 	className,
 }: {
-	initialData: Partial<FileUploadSchema>;
+	initialData: {
+		images: string[];
+		video: string;
+		title: string;
+	};
 	defaultValues: FileUploadSchema;
 	onNext: (data: FileUploadSchema) => void;
 	onPrev: () => void;
 	className?: string;
 }) {
-	const form = useForm<FileCheckerSchema>({
-		resolver: zodResolver(fileUploadSchema),
+	const form = useForm<FileUploadSchema>({
+		resolver: zodResolver(FilesReal),
 		defaultValues: initialData,
 	});
 
 	const [targetImages, setTargetImages] = useState<FileList>();
 	const [targetVideo, setTargetVideo] = useState<File>();
+	const [validImages, setValidImages] = useState(false);
+	const [validVideo, setValidVideo] = useState(false);
+
+	const canSubmit = validImages && validVideo;
+
 	async function onSubmit() {
+		console.log(initialData.title);
+
 		if (targetImages) {
 			await onSubmitImages(targetImages);
-			const filesArray = Array.from(targetImages).map((file) => file.name);
-			form.setValue('images', filesArray);
 		} else {
 			console.log('No images');
 		}
 		if (targetVideo) {
 			await onSubmitVideo(targetVideo);
-
-			if (targetVideo?.type === 'video/mp4') {
-				form.setValue('video', targetVideo.name);
-			} else {
-				console.log('Invalid file');
-				form.setValue('video', '');
-			}
 		} else {
 			console.log('No video');
 		}
 	}
+	useEffect(() => {
+		console.log('initial data title', initialData.title);
+	}, [initialData.title]);
 
 	const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (e.target.files) {
 			if (e.target.files && e.target.files.length > 5) {
-				alert('You can only upload a maximum of 5 files');
+				form.setError('images', {
+					type: 'manual',
+					message: 'Можете да качите най-много 5 снимки',
+				});
+				setValidImages(false);
 				e.target.value = '';
 				return;
 			}
 
+			if (e.target.files) {
+				for (let i = 0; i < e.target.files.length; i++) {
+					if (!e.target.files[i].type.includes('image')) {
+						form.setError('images', {
+							type: 'manual',
+							message: 'Можете да качите само снимки в jpg, jpeg, png или webp формат',
+						});
+						setValidImages(false);
+						e.target.value = '';
+						return;
+					}
+				}
+			}
+			form.clearErrors('images');
 			setTargetImages(e.target.files);
-			const filesArray = Array.from(e.target.files);
-
+			const filesArray = Array.from(e.target.files).map((file) => `${initialData.title}-${file.name}`);
 			form.setValue('images', filesArray);
+			setValidImages(true);
 		}
 	};
 
 	const handleVideoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const file = e.target.files?.[0];
-		setTargetVideo(file);
-		if (file) form.setValue('video', file);
+
+		if (file) {
+			if (file.type !== 'video/mp4') {
+				form.setError('video', {
+					type: 'manual',
+					message: 'Можете да качите само видео в mp4 формат',
+				});
+				setValidVideo(false);
+				e.target.value = '';
+				return;
+			}
+
+			if (file.size > 52428800) {
+				form.setError('video', {
+					type: 'manual',
+					message: 'Видеото трябва да е по-малко от 50MB',
+				});
+				setValidVideo(false);
+				e.target.value = '';
+				return;
+			}
+			form.clearErrors('video');
+
+			setTargetVideo(file);
+			setValidVideo(true);
+			form.setValue('video', `${initialData.title}-${file.name}`);
+		}
 	};
 
 	return (
@@ -98,7 +143,9 @@ export default function FileUploadStep({
 										className="bg-sand text-black hover:cursor-pointer"
 									/>
 								</FormControl>
-								<FormMessage />
+								<FormMessage>
+									{form.formState.errors.images && 'Your error message for images'}
+								</FormMessage>
 							</FormItem>
 						)}
 					/>
@@ -123,6 +170,7 @@ export default function FileUploadStep({
 					/>
 					<StepButtons
 						onPrev={onPrev}
+						disableNext={!canSubmit}
 						onNext={() => {
 							form.trigger().then((isValid) => {
 								if (isValid) {

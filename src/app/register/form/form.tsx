@@ -50,29 +50,22 @@ export default function RegisterForm() {
 
 	function handleNext(stepData: Partial<RegistrationSchema>) {
 		console.log('formData in next', formData);
-		if (currentStep != 2) {
-			const loadedData = registrationSchema
-				.partial()
-				.safeParse(JSON.parse(localStorage.getItem('registrationData') || '{}'));
+		const loadedData = registrationSchema
+			.partial()
+			.safeParse(JSON.parse(localStorage.getItem('registrationData') || '{}'));
 
-			if (loadedData.success) {
-				localStorage.setItem(
-					'registrationData',
-					JSON.stringify({
-						...loadedData,
-						...stepData,
-					})
-				);
+		if (loadedData.success) {
+			localStorage.setItem(
+				'registrationData',
+				JSON.stringify({
+					...loadedData,
+					...stepData,
+				})
+			);
 
-				localStorage.setItem('registrationDataCurrentStep', JSON.stringify({ currentStep: currentStep + 1 }));
-			}
-			updateData({ ...formData, ...stepData });
-		} else {
-			updateData({
-				images: stepData.images,
-				video: stepData.video,
-			});
+			localStorage.setItem('registrationDataCurrentStep', JSON.stringify({ currentStep: currentStep + 1 }));
 		}
+		updateData({ ...formData, ...stepData });
 
 		setCurrentStep((prev) => prev + 1);
 	}
