@@ -27,12 +27,16 @@ export default function FileUploadStep({
 	onPrev: () => void;
 	className?: string;
 }) {
-	type ImagesTypes = Array<File>;
 	const form = useForm<FileUploadSchema>({
 		resolver: zodResolver(fileUploadSchema),
 		defaultValues: {
 			images: Array<File>(),
-			video: null,
+			video: {
+				name: '',
+				size: 0,
+				type: '',
+				lastModified: 0,
+			},
 		},
 	});
 
@@ -40,10 +44,9 @@ export default function FileUploadStep({
 		console.log(values);
 	}
 
-	const [selectedFile, setSelectedFile] = useState<string | null>(null);
-
 	const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (e.target.files) {
+			console.log(e.target.files);
 			if (e.target.files && e.target.files.length > 5) {
 				alert('You can only upload a maximum of 5 files');
 				e.target.value = '';
@@ -56,23 +59,24 @@ export default function FileUploadStep({
 
 	const handleVideoChange = (e: any) => {
 		const file = e.target.files?.[0];
-
-		if (file.type === 'video/mp4' && file.size <= 5242880) {
+		console.log(file);
+		if (file.type === 'video/mp4') {
 			console.log(file instanceof File);
 			form.setValue('video', file);
 		} else {
 			console.log('Invalid file');
-			form.setValue('video', '');
+			form.setValue('video', {
+				name: '',
+				size: 0,
+				type: '',
+				lastModified: 0,
+			});
 		}
 	};
 
-	const handleRemoveClick = () => {
-		setSelectedFile(null);
-	};
-
 	useEffect(() => {
-		console.log(selectedFile);
-	}, [selectedFile]);
+		console.log('video in form data', form.getValues('video'));
+	}, [form.getValues('video')]);
 
 	return (
 		<div className={className}>
@@ -95,6 +99,15 @@ export default function FileUploadStep({
 										className="bg-sand text-black hover:cursor-pointer"
 									/>
 								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<FormField
+						control={form.control}
+						name="video"
+						render={({ field }) => (
+							<FormItem>
 								<FormLabel className="mt-8">Видео</FormLabel>
 								<FormControl>
 									<Input
@@ -109,19 +122,16 @@ export default function FileUploadStep({
 							</FormItem>
 						)}
 					/>
-					{selectedFile && (
-						<div className="mt-2 relative">
-							<Image src={selectedFile} alt="Preview" width={500} height={500} />
-							<button
-								onClick={handleRemoveClick}
-								className="absolute top-0 right-0 bg-red-500 text-white py-1 px-2"
-								aria-label="Remove image"
-							>
-								X
-							</button>
-						</div>
-					)}
-					<StepButtons onPrev={onPrev} onNext={() => onNext(form.getValues())} />
+					<StepButtons
+						onPrev={onPrev}
+						onNext={() => {
+							form.trigger().then((isValid) => {
+								if (isValid) {
+									onNext(form.getValues());
+								}
+							});
+						}}
+					/>
 				</form>
 			</Form>
 		</div>

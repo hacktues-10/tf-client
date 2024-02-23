@@ -39,12 +39,6 @@ export default function ProjectStep({
 		console.log(values);
 	}
 
-	const canSubmit =
-		form.watch('title') != defaultValues.title &&
-		form.watch('description') != defaultValues.description &&
-		form.watch('github') != defaultValues.github &&
-		projectSchema.safeParse(form.getValues()).success;
-
 	return (
 		<div className={className}>
 			<Form {...form}>

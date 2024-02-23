@@ -12,7 +12,6 @@ import { useState, useReducer, useEffect } from 'react';
 import ProjectStep from './steps/projectStep';
 import ContributorStep from './steps/contributorStep';
 import FileUploadStep from './steps/filesUploadStep';
-import { TbPlayerPauseFilled } from 'react-icons/tb';
 
 const defaultValues = {
 	email: '',
@@ -25,7 +24,12 @@ const defaultValues = {
 	description: '',
 	github: '',
 	images: Array<File>(),
-	video: typeof File,
+	video: {
+		name: '',
+		size: 0,
+		type: '',
+		lastModified: 0,
+	},
 } satisfies RegistrationSchema;
 
 export default function RegisterForm() {

@@ -13,11 +13,44 @@ const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/web
 // }, 'Your error message here')
 
 const ImagesValidation = z.object({
-	images: z.array(z.any()),
+	images: z
+		.array(
+			z
+				.object({
+					name: z.string(),
+					size: z.number(),
+					type: z.string(),
+					lastModified: z.number(),
+				})
+				.refine((url) => {
+					console.log(url);
+					return true;
+				}, 'Your error message here')
+				.refine((file) => {
+					return ACCEPTED_IMAGE_TYPES.includes(file.type as (typeof ACCEPTED_IMAGE_TYPES)[number]);
+				}, 'Невалиден формат на снимка')
+				.refine((file) => {
+					return file.size <= MAX_FILE_SIZE;
+				}, 'Снимката трябва да е по-малка от 5MB')
+		)
+		.min(1, { message: 'Трябва да качите поне 1 снимка' })
+		.max(5, { message: 'Можете да качите максимум 5 снимки' }),
 });
 
 const VideoValidation = z.object({
-	video: z.any(),
+	video: z
+		.object({
+			name: z.string(),
+			size: z.number(),
+			type: z.string(),
+			lastModified: z.number(),
+		})
+		.refine((file) => {
+			return file.type !== '';
+		}, 'Трябва да качите видео задължително')
+		.refine((file) => {
+			return file.type === 'video/mp4';
+		}, 'Невалиден формат на видео'),
 });
 
 const contributorSchema = z.object({
