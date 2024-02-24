@@ -28,7 +28,13 @@ export async function RegisterProject(data: RegistrationSchema) {
 
 		const responseData = await response.json();
 		console.log('response', responseData);
-
+		if (responseData.error) {
+			if (responseData.error.message == 'This attribute must be unique') {
+				return { success: false, message: 'Проект с това име вече съществува' };
+			} else {
+				return { success: false, message: `Възникна грешка ${responseData.error.message}` };
+			}
+		}
 		return { success: true, message: 'Проектът е регистриран успешно' };
 	} catch (error) {
 		console.error('Error:', error);

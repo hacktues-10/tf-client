@@ -5,6 +5,8 @@ import ProjectStep from './steps/projectStep';
 import ContributorStep from './steps/contributorStep';
 import FileUploadStep from './steps/filesUploadStep';
 import { RegisterProject } from './service';
+import { useToast } from '@/components/ui/use-toast';
+import { useRouter } from 'next/navigation';
 const defaultValues = {
 	email: '',
 	firstName: '',
@@ -19,7 +21,6 @@ const defaultValues = {
 	images: [''],
 	video: '',
 } satisfies RegistrationSchema;
-
 export default function RegisterForm() {
 	const [currentStep, setCurrentStep] = useState(1);
 	const [formData, updateData] = useReducer(
@@ -29,6 +30,8 @@ export default function RegisterForm() {
 		}),
 		{ ...defaultValues }
 	);
+	const { toast } = useToast();
+	const router = useRouter();
 
 	useEffect(() => {
 		try {
@@ -83,10 +86,19 @@ export default function RegisterForm() {
 
 		const parsed = registrationSchema.parse(mergedData);
 		const res = await RegisterProject(parsed);
-
+		localStorage.removeItem('registrationData');
+		localStorage.removeItem('registrationDataCurrentStep');
+		console.log(res);
 		if (res.success) {
-			localStorage.removeItem('registrationData');
-			localStorage.removeItem('registrationDataCurrentStep');
+			toast({ title: 'Успешна регистрация', description: res.message, variant: 'sand' });
+			setTimeout(() => {
+				router.push('/');
+			}, 2000);
+		} else {
+			toast({ title: 'Грешка', description: res.message, variant: 'sand' });
+			setTimeout(() => {
+				window.location.reload();
+			}, 2000);
 		}
 	}
 

@@ -11,6 +11,7 @@ import VotingLayout from '@/partials/layout/Voting';
 import { GrowthBookServerProvider } from '@/integrations/growthbook/GrowthBookServerProvider';
 import { DayProvider } from '@/context/day';
 import SullyAnimation from './SullyAnimation';
+import { Toaster } from '@/components/ui/toaster';
 export const metadata = {
 	title: {
 		default: 'TUES Fest 2024',
@@ -126,6 +127,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 						</GrowthBookServerProvider>
 						{/* <VotingLayout /> */}
 						{/* </VoteProvider> */}
+						<Toaster />
 						<Footer />
 						<Analytics />
 					</DayProvider>
