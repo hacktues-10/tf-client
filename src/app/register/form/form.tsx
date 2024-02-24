@@ -82,7 +82,12 @@ export default function RegisterForm() {
 		updateData(mergedData);
 
 		const parsed = registrationSchema.parse(mergedData);
-		await RegisterProject(parsed);
+		const res = await RegisterProject(parsed);
+
+		if (res.success) {
+			localStorage.removeItem('registrationData');
+			localStorage.removeItem('registrationDataCurrentStep');
+		}
 	}
 
 	return (
