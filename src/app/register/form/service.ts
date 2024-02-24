@@ -27,7 +27,6 @@ export async function RegisterProject(data: RegistrationSchema) {
 		});
 
 		const responseData = await response.json();
-		console.log('response', responseData);
 		if (responseData.error) {
 			if (responseData.error.message == 'This attribute must be unique') {
 				return { success: false, message: 'Проект с това име вече съществува' };
@@ -36,7 +35,7 @@ export async function RegisterProject(data: RegistrationSchema) {
 			}
 		}
 		return { success: true, message: 'Проектът е регистриран успешно' };
-	} catch (error) {
+	} catch (error: any) {
 		console.error('Error:', error);
 		if (error.message === 'This attribute must be unique.') {
 			return { success: false, message: 'Проект с това име вече съществува' };
