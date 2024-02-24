@@ -17,6 +17,7 @@ const defaultValues = {
 	title: '',
 	description: '',
 	type: '' as any,
+	tshirt: '' as any,
 	github: '',
 	images: [''],
 	video: '',

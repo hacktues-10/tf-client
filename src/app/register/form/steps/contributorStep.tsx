@@ -83,6 +83,42 @@ export default function ContributorStep({
 					/>
 					<FormField
 						control={form.control}
+						name="tshirt"
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>Размер тениска</FormLabel>
+								<FormControl>
+									<Select onValueChange={field.onChange} value={field.value}>
+										<FormControl>
+											<SelectTrigger>
+												<SelectValue placeholder="Изберете размер тениска" />
+											</SelectTrigger>
+										</FormControl>
+										<SelectContent className="bg-black">
+											<SelectItem key="S" value="S">
+												S
+											</SelectItem>
+											<SelectItem key="M" value="M">
+												M
+											</SelectItem>
+											<SelectItem key="L" value="L">
+												L
+											</SelectItem>
+											<SelectItem key="XL" value="XL">
+												XL
+											</SelectItem>
+											<SelectItem key="XXL" value="XXL">
+												XXL
+											</SelectItem>
+										</SelectContent>
+									</Select>
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<FormField
+						control={form.control}
 						name="grade"
 						render={({ field }) => (
 							<FormItem>
@@ -163,6 +199,7 @@ export default function ContributorStep({
 							</FormItem>
 						)}
 					/>
+
 					<StepButtons
 						onNext={() => {
 							form.trigger().then((isValid) => {

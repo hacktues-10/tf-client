@@ -50,6 +50,9 @@ const contributorSchema = z.object({
 	parallel: z.enum(STUDENT_PARALELS, {
 		errorMap: (issue, ctx) => ({ message: 'Невалидна паралелка' }),
 	}),
+	tshirt: z.enum(['S', 'M', 'L', 'XL', 'XXL'], {
+		errorMap: (issue, ctx) => ({ message: 'Невалиден размер на тениската' }),
+	}),
 	phoneNumber: z.preprocess(
 		(val) => (typeof val === 'string' ? val.replace(/^\+359/, '0').replace(/\s/g, '') : val),
 		z

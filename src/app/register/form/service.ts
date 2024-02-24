@@ -13,7 +13,7 @@ export async function RegisterProject(data: RegistrationSchema) {
 		type: data.type,
 		images: imagesString,
 		video: data.video,
-		captain: `${data.firstName} ${data.lastName} ${data.grade}${data.parallel} ${data.email} ${data.phoneNumber}`,
+		captain: `${data.firstName} ${data.lastName} ${data.grade}${data.parallel} ${data.tshirt} ${data.email} '${data.phoneNumber}`,
 	};
 
 	try {
