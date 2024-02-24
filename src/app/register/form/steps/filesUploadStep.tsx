@@ -41,22 +41,29 @@ export default function FileUploadStep({
 	const canSubmit = validImages && validVideo;
 
 	async function onSubmit() {
-		console.log(initialData.title);
-
 		if (targetImages) {
-			await onSubmitImages(targetImages);
+			const renamedImages = Array.from(targetImages).map((file) => {
+				const newBlob = new Blob([file], { type: file.type });
+				const renamedFile = new File([newBlob], `${initialData.title}-${file.name}`, { type: file.type });
+
+				return renamedFile;
+			});
+
+			await onSubmitImages(renamedImages);
 		} else {
 			console.log('No images');
 		}
 		if (targetVideo) {
-			await onSubmitVideo(targetVideo);
+			const newBlob = new Blob([targetVideo], { type: targetVideo.type });
+			const renamedFile = new File([newBlob], `${initialData.title}-${targetVideo.name}`, {
+				type: targetVideo.type,
+			});
+
+			await onSubmitVideo(renamedFile);
 		} else {
 			console.log('No video');
 		}
 	}
-	useEffect(() => {
-		console.log('initial data title', initialData.title);
-	}, [initialData.title]);
 
 	const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (e.target.files) {

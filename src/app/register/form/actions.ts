@@ -1,5 +1,4 @@
-export async function onSubmitImages(files: FileList) {
-	console.log('files', files);
+export async function onSubmitImages(files: File[]) {
 	const formData = new FormData();
 	for (let i = 0; i < files.length; i++) {
 		formData.append('files', files[i]);
@@ -16,9 +15,6 @@ export async function onSubmitImages(files: FileList) {
 	if (!response.ok) {
 		console.error(`HTTP error! status: ${response.status}`);
 	}
-
-	const data = await response.json();
-	console.log(data);
 }
 
 export async function onSubmitVideo(file: File) {
@@ -36,7 +32,4 @@ export async function onSubmitVideo(file: File) {
 	if (!response.ok) {
 		console.error(`HTTP error! status: ${response.status}`);
 	}
-
-	const data = await response.json();
-	console.log(data);
 }

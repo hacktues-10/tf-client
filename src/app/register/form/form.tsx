@@ -4,7 +4,7 @@ import { useState, useReducer, useEffect } from 'react';
 import ProjectStep from './steps/projectStep';
 import ContributorStep from './steps/contributorStep';
 import FileUploadStep from './steps/filesUploadStep';
-
+import { RegisterProject } from './service';
 const defaultValues = {
 	email: '',
 	firstName: '',
@@ -49,16 +49,13 @@ export default function RegisterForm() {
 	}, []);
 
 	function handleNext(stepData: Partial<RegistrationSchema>) {
-		console.log('formData in next', formData);
-		const loadedData = registrationSchema
-			.partial()
-			.safeParse(JSON.parse(localStorage.getItem('registrationData') || '{}'));
+		const loadedData = JSON.parse(localStorage.getItem('registrationData') || '{}');
 
-		if (loadedData.success) {
+		if ((loadedData && currentStep === 1) || loadedData.success) {
 			localStorage.setItem(
 				'registrationData',
 				JSON.stringify({
-					...loadedData,
+					...loadedData.data,
 					...stepData,
 				})
 			);
@@ -70,9 +67,9 @@ export default function RegisterForm() {
 		setCurrentStep((prev) => prev + 1);
 	}
 
-	useEffect(() => {
-		console.log('form data', formData);
-	}, [formData]);
+	// useEffect(() => {
+	// 	console.log('form data', formData);
+	// }, [formData]);
 
 	function handlePrev() {
 		localStorage.setItem('registrationDataCurrentStep', JSON.stringify({ currentStep: currentStep - 1 }));
@@ -80,36 +77,11 @@ export default function RegisterForm() {
 	}
 
 	async function handleSubmit(stepData: Partial<RegistrationSchema>) {
-		console.log('data before update', formData);
+		const mergedData = { ...formData, images: stepData.images, video: stepData.video };
+		updateData(mergedData);
 
-		// const mergedData = { ...formData };
-		// for (const key in stepData) {
-		// 	if (
-		// 		stepData[key as keyof RegistrationSchema] !== '' &&
-		// 		stepData[key as keyof RegistrationSchema] != null &&
-		// 		!(
-		// 			Array.isArray(stepData[key as keyof RegistrationSchema]) &&
-		// 			stepData[key as keyof RegistrationSchema]?.length === 0
-		// 		) &&
-		// 		stepData[key as keyof RegistrationSchema]?.name !== ''
-		// 	) {
-		// 		mergedData[key] = stepData[key];
-		// 	}
-		// }
-
-		// updateData(mergedData);
-
-		// const finalData = {
-		// 	...mergedData,
-		// 	images: mergedData.images.map((image) => `${mergedData.title}-${image.name}`),
-		// 	video: `${mergedData.title}-${mergedData.video.name}`,
-		// };
-
-		// console.log(mergedData.video);
-
-		// console.log('final data', finalData);
-
-		// await RegisterProject(mergedData);
+		const parsed = registrationSchema.parse(mergedData);
+		await RegisterProject(parsed);
 	}
 
 	return (
@@ -121,14 +93,15 @@ export default function RegisterForm() {
 				onNext={handleNext}
 				onPrev={handlePrev}
 			/>
-			<FileUploadStep
+
+			<ContributorStep
 				className={currentStep === 2 ? '' : 'hidden'}
 				defaultValues={defaultValues}
 				initialData={formData}
 				onNext={handleNext}
 				onPrev={handlePrev}
 			/>
-			<ContributorStep
+			<FileUploadStep
 				className={currentStep === 3 ? '' : 'hidden'}
 				defaultValues={defaultValues}
 				initialData={formData}

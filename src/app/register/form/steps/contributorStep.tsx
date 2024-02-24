@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { contributorSchema } from '../schema';
 import StepButtons from './stepButtons';
+import { useEffect } from 'react';
 
 type ContributorSchema = z.infer<typeof contributorSchema>;
 
@@ -31,6 +32,10 @@ export default function ContributorStep({
 	function onSubmit(values: ContributorSchema) {
 		console.log(values);
 	}
+
+	useEffect(() => {
+		form.reset(initialData);
+	}, [initialData, form]);
 
 	return (
 		<div className={className}>
