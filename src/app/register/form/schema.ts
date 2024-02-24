@@ -78,6 +78,9 @@ const projectSchema = z.object({
 		.string()
 		.url({ message: 'Невалиден URL' })
 		.refine((url) => url.startsWith('https://github.com/'), 'Невалиден GitHub линк'),
+	type: z.enum(['Софтуер', 'Хардуер', 'Battle Bots', 'Компютърни мрежи'], {
+		errorMap: (issue, ctx) => ({ message: 'Невалиден тип на проекта' }),
+	}),
 });
 
 const registrationSchema = contributorSchema.merge(projectSchema).merge(FilesReal);

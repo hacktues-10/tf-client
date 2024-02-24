@@ -70,19 +70,39 @@ export default function ProjectStep({
 							</FormItem>
 						)}
 					/>
-					{/* <FormField
+					<FormField
 						control={form.control}
 						name="type"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Линк към GitHub хранилище</FormLabel>
+								<FormLabel>Тип на проекта</FormLabel>
 								<FormControl>
-									<Input placeholder="https://github.com/dimitarNzhelev/elektrodvigatel" {...field} />
+									<Select onValueChange={field.onChange} value={field.value}>
+										<FormControl>
+											<SelectTrigger>
+												<SelectValue placeholder="Изберете тип на проекта" />
+											</SelectTrigger>
+										</FormControl>
+										<SelectContent className="bg-black">
+											<SelectItem key="Софтуер" value="Софтуер">
+												Софтуер
+											</SelectItem>
+											<SelectItem key="Хардуер" value="Хардуер">
+												Хардуер
+											</SelectItem>
+											<SelectItem key="Battle Bots" value="Battle Bots">
+												Battle Bots
+											</SelectItem>
+											<SelectItem key="Компютърни мрежи" value="Компютърни мрежи">
+												Компютърни мрежи
+											</SelectItem>
+										</SelectContent>
+									</Select>
 								</FormControl>
 								<FormMessage />
 							</FormItem>
 						)}
-					/> */}
+					/>
 					<FormField
 						control={form.control}
 						name="github"

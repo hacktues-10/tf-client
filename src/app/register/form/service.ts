@@ -10,20 +10,32 @@ export async function RegisterProject(data: RegistrationSchema) {
 		title: data.title,
 		description: data.description,
 		github: data.github,
+		type: data.type,
 		images: imagesString,
 		video: data.video,
 		captain: `${data.firstName} ${data.lastName} ${data.grade}${data.parallel} ${data.email} ${data.phoneNumber}`,
 	};
 
-	const res = await fetch('http://localhost:1337/api/projects', {
-		method: 'POST',
-		headers: {
-			Authorization: `Bearer ${env.API_TOKEN_BACKEND}`,
-			'Content-Type': 'application/json',
-		},
-		body: JSON.stringify({ data: formData }),
-	})
-		.then((response) => response.json())
-		.then((data) => console.log('Adasdad', JSON.stringify(data)))
-		.catch((error) => console.error('Error:', error));
+	try {
+		const response = await fetch('http://localhost:1337/api/projects', {
+			method: 'POST',
+			headers: {
+				Authorization: `Bearer ${env.API_TOKEN_BACKEND}`,
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ data: formData }),
+		});
+
+		const responseData = await response.json();
+		console.log('response', responseData);
+
+		return { success: true, message: 'Проектът е регистриран успешно' };
+	} catch (error) {
+		console.error('Error:', error);
+		if (error.message === 'This attribute must be unique.') {
+			return { success: false, message: 'Проект с това име вече съществува' };
+		} else {
+			return { success: false, message: `Възникна грешка ${error.message}` };
+		}
+	}
 }

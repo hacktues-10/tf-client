@@ -14,6 +14,7 @@ const defaultValues = {
 	phoneNumber: '',
 	title: '',
 	description: '',
+	type: '' as any,
 	github: '',
 	images: [''],
 	video: '',
