@@ -10,7 +10,7 @@ export async function RegisterProject(data: RegistrationSchema) {
 	for (let i = 0; i < data.contributors.length; i++) {
 		contributosString += `${data.contributors[i].firstName};${data.contributors[i].lastName};${data.contributors[i].grade}${data.contributors[i].parallel};${data.contributors[i].tshirt};${data.contributors[i].email};'${data.contributors[i].phoneNumber}`;
 		if (i < data.contributors.length - 1) {
-			contributosString += '\n';
+			contributosString += '\r\n';
 		}
 	}
 

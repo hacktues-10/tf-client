@@ -8,6 +8,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { contributorSchema } from '../schema';
 import StepButtons from './stepButtons';
 import { useEffect } from 'react';
+import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 type ContributorSchema = z.infer<typeof contributorSchema>;
 
@@ -18,6 +20,9 @@ export default function ContributorStep({
 	index,
 	onPrev,
 	className,
+	setAddContributor,
+	addContributor,
+	currentStep,
 }: {
 	initialData: Partial<ContributorSchema>;
 	defaultValues: ContributorSchema;
@@ -25,6 +30,9 @@ export default function ContributorStep({
 	onNext: (data: ContributorSchema) => void;
 	onPrev: () => void;
 	className?: string;
+	addContributor: boolean;
+	setAddContributor: (state: boolean) => void;
+	currentStep: number;
 }) {
 	const form = useForm<ContributorSchema>({
 		resolver: zodResolver(contributorSchema),
@@ -43,6 +51,11 @@ export default function ContributorStep({
 		form.reset(initialData);
 	}, [initialData, form]);
 
+	useEffect(() => {
+		if (addContributor) {
+			onNext(form.getValues());
+		}
+	}, [addContributor, form, onNext]);
 	return (
 		<div className={className}>
 			<Form {...form}>
@@ -205,7 +218,22 @@ export default function ContributorStep({
 							</FormItem>
 						)}
 					/>
-
+					<Button
+						onClick={() => {
+							form.trigger().then((isValid) => {
+								console.log(form);
+								if (isValid) {
+									console.log('is valid');
+									setAddContributor(true);
+								} else {
+									console.log('is not valid');
+								}
+							});
+						}}
+						className={cn('bg-sand text-black hover:cursor-pointer', index >= 4 ? 'hidden' : '')}
+					>
+						Добави съотборник
+					</Button>
 					<StepButtons
 						onNext={() => {
 							form.trigger().then((isValid) => {

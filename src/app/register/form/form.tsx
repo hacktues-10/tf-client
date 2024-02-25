@@ -18,51 +18,6 @@ const defaultValues = {
 			phoneNumber: '',
 			tshirt: '' as any,
 		},
-		{
-			email: '',
-			firstName: '',
-			lastName: '',
-			grade: '' as any,
-			parallel: '' as any,
-			phoneNumber: '',
-			tshirt: '' as any,
-		},
-		{
-			email: '',
-			firstName: '',
-			lastName: '',
-			grade: '' as any,
-			parallel: '' as any,
-			phoneNumber: '',
-			tshirt: '' as any,
-		},
-		{
-			email: '',
-			firstName: '',
-			lastName: '',
-			grade: '' as any,
-			parallel: '' as any,
-			phoneNumber: '',
-			tshirt: '' as any,
-		},
-		{
-			email: '',
-			firstName: '',
-			lastName: '',
-			grade: '' as any,
-			parallel: '' as any,
-			phoneNumber: '',
-			tshirt: '' as any,
-		},
-		{
-			email: '',
-			firstName: '',
-			lastName: '',
-			grade: '' as any,
-			parallel: '' as any,
-			phoneNumber: '',
-			tshirt: '' as any,
-		},
 	],
 	project: {
 		title: '',
@@ -77,6 +32,7 @@ const defaultValues = {
 } satisfies RegistrationSchema;
 export default function RegisterForm() {
 	const [currentStep, setCurrentStep] = useState(1);
+	const [addContributor, setAddContributor] = useState(false);
 	const [formData, updateData] = useReducer(
 		(state: RegistrationSchema, update: Partial<RegistrationSchema>) => ({
 			...state,
@@ -106,9 +62,24 @@ export default function RegisterForm() {
 		}
 	}, []);
 
+	useEffect(() => {
+		console.log('modify in add contrib', addContributor);
+	}, [addContributor]);
+
 	function handleNext(stepData: Partial<RegistrationSchema>) {
-		console.log('stepData', stepData);
 		const loadedData = JSON.parse(localStorage.getItem('registrationData') || '{}');
+		console.log('loaded', loadedData);
+
+		console.log('currentStep', currentStep);
+		console.log('formData contributors.length', formData.contributors.length);
+		console.log('addContributor', addContributor);
+		if (currentStep - formData.contributors.length === 1 && addContributor) {
+			stepData.contributors = [...(stepData.contributors ?? []), defaultValues.contributors[0]];
+			setAddContributor(false);
+			console.log('in the if statement');
+		}
+
+		console.log('stepData in normal', stepData);
 
 		if ((loadedData && currentStep === 1) || loadedData.success) {
 			localStorage.setItem(
@@ -121,6 +92,7 @@ export default function RegisterForm() {
 
 			localStorage.setItem('registrationDataCurrentStep', JSON.stringify({ currentStep: currentStep + 1 }));
 		}
+
 		updateData(stepData);
 
 		setCurrentStep((prev) => prev + 1);
@@ -131,6 +103,10 @@ export default function RegisterForm() {
 		setCurrentStep((prev) => Math.max(prev - 1, 1));
 	}
 
+	useEffect(() => {
+		console.log('formData', formData);
+	}, [formData]);
+
 	async function handleSubmit(stepData: Partial<RegistrationSchema>) {
 		const mergedData = { ...formData, images: stepData.files?.images, video: stepData.files?.video };
 		updateData(mergedData);
@@ -139,7 +115,6 @@ export default function RegisterForm() {
 		const res = await RegisterProject(parsed);
 		localStorage.removeItem('registrationData');
 		localStorage.removeItem('registrationDataCurrentStep');
-		console.log(res);
 		if (res.success) {
 			toast({ title: 'Успешна регистрация', description: res.message, variant: 'sand' });
 			setTimeout(() => {
@@ -163,16 +138,22 @@ export default function RegisterForm() {
 				onPrev={handlePrev}
 			/>
 
-			<ContributorStep
-				className={currentStep === 2 ? '' : 'hidden'}
-				defaultValues={defaultValues}
-				index={0}
-				initialData={formData}
-				onNext={handleNext}
-				onPrev={handlePrev}
-			/>
+			{formData.contributors.map((contributor, index) => (
+				<ContributorStep
+					key={index}
+					className={currentStep === index + 2 ? '' : 'hidden'}
+					defaultValues={defaultValues}
+					index={index}
+					initialData={formData}
+					onNext={handleNext}
+					onPrev={handlePrev}
+					currentStep={currentStep}
+					setAddContributor={setAddContributor}
+					addContributor={addContributor}
+				/>
+			))}
 			<FileUploadStep
-				className={currentStep === 3 ? '' : 'hidden'}
+				className={currentStep === formData.contributors.length + 2 ? '' : 'hidden'}
 				defaultValues={defaultValues}
 				initialData={formData}
 				onNext={handleSubmit}
