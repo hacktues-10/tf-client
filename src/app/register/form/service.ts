@@ -4,16 +4,24 @@ import { RegistrationSchema } from './schema';
 import { env } from '../../../../env.mjs';
 
 export async function RegisterProject(data: RegistrationSchema) {
-	const imagesString = data.images.join(', ');
+	const imagesString = data.files.images.join(', ');
+
+	let contributosString = '';
+	for (let i = 0; i < data.contributors.length; i++) {
+		contributosString += `${data.contributors[i].firstName};${data.contributors[i].lastName};${data.contributors[i].grade}${data.contributors[i].parallel};${data.contributors[i].tshirt};${data.contributors[i].email};'${data.contributors[i].phoneNumber}`;
+		if (i < data.contributors.length - 1) {
+			contributosString += '\n';
+		}
+	}
 
 	const formData = {
-		title: data.title,
-		description: data.description,
-		github: data.github,
-		type: data.type,
+		title: data.project.title,
+		description: data.project.description,
+		github: data.project.github,
+		type: data.project.type,
 		images: imagesString,
-		video: data.video,
-		captain: `${data.firstName} ${data.lastName} ${data.grade}${data.parallel} ${data.tshirt} ${data.email} '${data.phoneNumber}`,
+		video: data.files.video,
+		contributors: contributosString,
 	};
 
 	try {

@@ -8,19 +8,72 @@ import { RegisterProject } from './service';
 import { useToast } from '@/components/ui/use-toast';
 import { useRouter } from 'next/navigation';
 const defaultValues = {
-	email: '',
-	firstName: '',
-	lastName: '',
-	grade: '' as any,
-	parallel: '' as any,
-	phoneNumber: '',
-	title: '',
-	description: '',
-	type: '' as any,
-	tshirt: '' as any,
-	github: '',
-	images: [''],
-	video: '',
+	contributors: [
+		{
+			email: '',
+			firstName: '',
+			lastName: '',
+			grade: '' as any,
+			parallel: '' as any,
+			phoneNumber: '',
+			tshirt: '' as any,
+		},
+		{
+			email: '',
+			firstName: '',
+			lastName: '',
+			grade: '' as any,
+			parallel: '' as any,
+			phoneNumber: '',
+			tshirt: '' as any,
+		},
+		{
+			email: '',
+			firstName: '',
+			lastName: '',
+			grade: '' as any,
+			parallel: '' as any,
+			phoneNumber: '',
+			tshirt: '' as any,
+		},
+		{
+			email: '',
+			firstName: '',
+			lastName: '',
+			grade: '' as any,
+			parallel: '' as any,
+			phoneNumber: '',
+			tshirt: '' as any,
+		},
+		{
+			email: '',
+			firstName: '',
+			lastName: '',
+			grade: '' as any,
+			parallel: '' as any,
+			phoneNumber: '',
+			tshirt: '' as any,
+		},
+		{
+			email: '',
+			firstName: '',
+			lastName: '',
+			grade: '' as any,
+			parallel: '' as any,
+			phoneNumber: '',
+			tshirt: '' as any,
+		},
+	],
+	project: {
+		title: '',
+		description: '',
+		type: '' as any,
+		github: '',
+	},
+	files: {
+		images: [''],
+		video: '',
+	},
 } satisfies RegistrationSchema;
 export default function RegisterForm() {
 	const [currentStep, setCurrentStep] = useState(1);
@@ -54,6 +107,7 @@ export default function RegisterForm() {
 	}, []);
 
 	function handleNext(stepData: Partial<RegistrationSchema>) {
+		console.log('stepData', stepData);
 		const loadedData = JSON.parse(localStorage.getItem('registrationData') || '{}');
 
 		if ((loadedData && currentStep === 1) || loadedData.success) {
@@ -67,14 +121,10 @@ export default function RegisterForm() {
 
 			localStorage.setItem('registrationDataCurrentStep', JSON.stringify({ currentStep: currentStep + 1 }));
 		}
-		updateData({ ...formData, ...stepData });
+		updateData(stepData);
 
 		setCurrentStep((prev) => prev + 1);
 	}
-
-	// useEffect(() => {
-	// 	console.log('form data', formData);
-	// }, [formData]);
 
 	function handlePrev() {
 		localStorage.setItem('registrationDataCurrentStep', JSON.stringify({ currentStep: currentStep - 1 }));
@@ -82,7 +132,7 @@ export default function RegisterForm() {
 	}
 
 	async function handleSubmit(stepData: Partial<RegistrationSchema>) {
-		const mergedData = { ...formData, images: stepData.images, video: stepData.video };
+		const mergedData = { ...formData, images: stepData.files?.images, video: stepData.files?.video };
 		updateData(mergedData);
 
 		const parsed = registrationSchema.parse(mergedData);
@@ -116,6 +166,7 @@ export default function RegisterForm() {
 			<ContributorStep
 				className={currentStep === 2 ? '' : 'hidden'}
 				defaultValues={defaultValues}
+				index={0}
 				initialData={formData}
 				onNext={handleNext}
 				onPrev={handlePrev}

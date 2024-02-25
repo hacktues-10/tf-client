@@ -19,9 +19,8 @@ export default function FileUploadStep({
 	className,
 }: {
 	initialData: {
-		images: string[];
-		video: string;
-		title: string;
+		files: { images: string[]; video: string };
+		project: { title: string };
 	};
 	defaultValues: FileUploadSchema;
 	onNext: (data: FileUploadSchema) => void;
@@ -44,7 +43,9 @@ export default function FileUploadStep({
 		if (targetImages) {
 			const renamedImages = Array.from(targetImages).map((file) => {
 				const newBlob = new Blob([file], { type: file.type });
-				const renamedFile = new File([newBlob], `${initialData.title}-${file.name}`, { type: file.type });
+				const renamedFile = new File([newBlob], `${initialData.project.title}-${file.name}`, {
+					type: file.type,
+				});
 
 				return renamedFile;
 			});
@@ -55,7 +56,7 @@ export default function FileUploadStep({
 		}
 		if (targetVideo) {
 			const newBlob = new Blob([targetVideo], { type: targetVideo.type });
-			const renamedFile = new File([newBlob], `${initialData.title}-${targetVideo.name}`, {
+			const renamedFile = new File([newBlob], `${initialData.project.title}-${targetVideo.name}`, {
 				type: targetVideo.type,
 			});
 
@@ -68,7 +69,7 @@ export default function FileUploadStep({
 	const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (e.target.files) {
 			if (e.target.files && e.target.files.length > 5) {
-				form.setError('images', {
+				form.setError('files.images', {
 					type: 'manual',
 					message: 'Можете да качите най-много 5 снимки',
 				});
@@ -80,7 +81,7 @@ export default function FileUploadStep({
 			if (e.target.files) {
 				for (let i = 0; i < e.target.files.length; i++) {
 					if (!e.target.files[i].type.includes('image')) {
-						form.setError('images', {
+						form.setError('files.images', {
 							type: 'manual',
 							message: 'Можете да качите само снимки в jpg, jpeg, png или webp формат',
 						});
@@ -90,10 +91,10 @@ export default function FileUploadStep({
 					}
 				}
 			}
-			form.clearErrors('images');
+			form.clearErrors('files.images');
 			setTargetImages(e.target.files);
-			const filesArray = Array.from(e.target.files).map((file) => `${initialData.title}-${file.name}`);
-			form.setValue('images', filesArray);
+			const filesArray = Array.from(e.target.files).map((file) => `${initialData.project.title}-${file.name}`);
+			form.setValue('files.images', filesArray);
 			setValidImages(true);
 		}
 	};
@@ -103,7 +104,7 @@ export default function FileUploadStep({
 
 		if (file) {
 			if (file.type !== 'video/mp4') {
-				form.setError('video', {
+				form.setError('files.video', {
 					type: 'manual',
 					message: 'Можете да качите само видео в mp4 формат',
 				});
@@ -113,7 +114,7 @@ export default function FileUploadStep({
 			}
 
 			if (file.size > 52428800) {
-				form.setError('video', {
+				form.setError('files.video', {
 					type: 'manual',
 					message: 'Видеото трябва да е по-малко от 50MB',
 				});
@@ -121,11 +122,11 @@ export default function FileUploadStep({
 				e.target.value = '';
 				return;
 			}
-			form.clearErrors('video');
+			form.clearErrors('files.video');
 
 			setTargetVideo(file);
 			setValidVideo(true);
-			form.setValue('video', `${initialData.title}-${file.name}`);
+			form.setValue('files.video', `${initialData.project.title}-${file.name}`);
 		}
 	};
 
@@ -136,7 +137,7 @@ export default function FileUploadStep({
 					<FormLabel className="text-xl">Регистрация на проект</FormLabel>
 					<FormField
 						control={form.control}
-						name="images"
+						name="files.images"
 						render={({ field }) => (
 							<FormItem>
 								<FormLabel>Снимки</FormLabel>
@@ -150,15 +151,13 @@ export default function FileUploadStep({
 										className="bg-sand text-black hover:cursor-pointer"
 									/>
 								</FormControl>
-								<FormMessage>
-									{form.formState.errors.images && 'Your error message for images'}
-								</FormMessage>
+								<FormMessage />
 							</FormItem>
 						)}
 					/>
 					<FormField
 						control={form.control}
-						name="video"
+						name="files.video"
 						render={({ field }) => (
 							<FormItem>
 								<FormLabel className="mt-8">Видео</FormLabel>

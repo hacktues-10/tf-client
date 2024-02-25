@@ -39,6 +39,9 @@ export default function ProjectStep({
 		form.reset(initialData);
 	}, [initialData, form]);
 
+	useEffect(() => {
+		console.log(form.getValues());
+	}, [form]);
 	return (
 		<div className={className}>
 			<Form {...form}>
@@ -46,7 +49,7 @@ export default function ProjectStep({
 					<FormLabel className="text-xl">Регистрация на проект</FormLabel>
 					<FormField
 						control={form.control}
-						name="title"
+						name="project.title"
 						render={({ field }) => (
 							<FormItem>
 								<FormLabel>Име на проекта</FormLabel>
@@ -59,7 +62,7 @@ export default function ProjectStep({
 					/>
 					<FormField
 						control={form.control}
-						name="description"
+						name="project.description"
 						render={({ field }) => (
 							<FormItem>
 								<FormLabel>Описание на проекта</FormLabel>
@@ -72,7 +75,7 @@ export default function ProjectStep({
 					/>
 					<FormField
 						control={form.control}
-						name="type"
+						name="project.type"
 						render={({ field }) => (
 							<FormItem>
 								<FormLabel>Тип на проекта</FormLabel>
@@ -105,7 +108,7 @@ export default function ProjectStep({
 					/>
 					<FormField
 						control={form.control}
-						name="github"
+						name="project.github"
 						render={({ field }) => (
 							<FormItem>
 								<FormLabel>Линк към GitHub хранилище</FormLabel>

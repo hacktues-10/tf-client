@@ -15,11 +15,13 @@ export default function ContributorStep({
 	defaultValues,
 	initialData,
 	onNext,
+	index,
 	onPrev,
 	className,
 }: {
 	initialData: Partial<ContributorSchema>;
 	defaultValues: ContributorSchema;
+	index: number;
 	onNext: (data: ContributorSchema) => void;
 	onPrev: () => void;
 	className?: string;
@@ -34,6 +36,10 @@ export default function ContributorStep({
 	}
 
 	useEffect(() => {
+		console.log(form.getValues());
+	}, [form]);
+
+	useEffect(() => {
 		form.reset(initialData);
 	}, [initialData, form]);
 
@@ -44,7 +50,7 @@ export default function ContributorStep({
 					<FormLabel className="text-xl">Регистрация на ученик</FormLabel>
 					<FormField
 						control={form.control}
-						name="email"
+						name={`contributors.${index}.email`}
 						render={({ field }) => (
 							<FormItem>
 								<FormLabel>Имейл (elsys)</FormLabel>
@@ -57,7 +63,7 @@ export default function ContributorStep({
 					/>
 					<FormField
 						control={form.control}
-						name="firstName"
+						name={`contributors.${index}.firstName`}
 						render={({ field }) => (
 							<FormItem>
 								<FormLabel>Първо име</FormLabel>
@@ -70,7 +76,7 @@ export default function ContributorStep({
 					/>
 					<FormField
 						control={form.control}
-						name="lastName"
+						name={`contributors.${index}.lastName`}
 						render={({ field }) => (
 							<FormItem>
 								<FormLabel>Фамилия</FormLabel>
@@ -83,7 +89,7 @@ export default function ContributorStep({
 					/>
 					<FormField
 						control={form.control}
-						name="tshirt"
+						name={`contributors.${index}.tshirt`}
 						render={({ field }) => (
 							<FormItem>
 								<FormLabel>Размер тениска</FormLabel>
@@ -119,7 +125,7 @@ export default function ContributorStep({
 					/>
 					<FormField
 						control={form.control}
-						name="grade"
+						name={`contributors.${index}.grade`}
 						render={({ field }) => (
 							<FormItem>
 								<FormLabel>Клас</FormLabel>
@@ -155,7 +161,7 @@ export default function ContributorStep({
 					/>
 					<FormField
 						control={form.control}
-						name="parallel"
+						name={`contributors.${index}.parallel`}
 						render={({ field }) => (
 							<FormItem>
 								<FormLabel>Паралелка</FormLabel>
@@ -188,7 +194,7 @@ export default function ContributorStep({
 					/>
 					<FormField
 						control={form.control}
-						name="phoneNumber"
+						name={`contributors.${index}.phoneNumber`}
 						render={({ field }) => (
 							<FormItem>
 								<FormLabel>Телефонен номер</FormLabel>
