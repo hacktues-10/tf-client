@@ -7,6 +7,7 @@ import FileUploadStep from './steps/filesUploadStep';
 import { RegisterProject } from './service';
 import { useToast } from '@/components/ui/use-toast';
 import { useRouter } from 'next/navigation';
+import { cn } from '@/lib/utils';
 const defaultValues = {
 	contributors: [
 		{
@@ -129,36 +130,43 @@ export default function RegisterForm() {
 	}
 
 	return (
-		<div className="space-y-1 w-full">
-			<ProjectStep
-				className={currentStep === 1 ? '' : 'hidden'}
-				defaultValues={defaultValues}
-				initialData={formData}
-				onNext={handleNext}
-				onPrev={handlePrev}
-			/>
-
-			{formData.contributors.map((contributor, index) => (
-				<ContributorStep
-					key={index}
-					className={currentStep === index + 2 ? '' : 'hidden'}
+		<div
+			className={cn(
+				'xl:w-1/4 w-5/6 md:w-3/4  bg-black flex z-30 m-5 p-5 rounded-xl',
+				currentStep === 2 && 'mt-28'
+			)}
+		>
+			<div className="space-y-1 w-full">
+				<ProjectStep
+					className={currentStep === 1 ? '' : 'hidden'}
 					defaultValues={defaultValues}
-					index={index}
 					initialData={formData}
 					onNext={handleNext}
 					onPrev={handlePrev}
-					currentStep={currentStep}
-					setAddContributor={setAddContributor}
-					addContributor={addContributor}
 				/>
-			))}
-			<FileUploadStep
-				className={currentStep === formData.contributors.length + 2 ? '' : 'hidden'}
-				defaultValues={defaultValues}
-				initialData={formData}
-				onNext={handleSubmit}
-				onPrev={handlePrev}
-			/>
+
+				{formData.contributors.map((contributor, index) => (
+					<ContributorStep
+						key={index}
+						className={currentStep === index + 2 ? '' : 'hidden'}
+						defaultValues={defaultValues}
+						index={index}
+						initialData={formData}
+						onNext={handleNext}
+						onPrev={handlePrev}
+						currentStep={currentStep}
+						setAddContributor={setAddContributor}
+						addContributor={addContributor}
+					/>
+				))}
+				<FileUploadStep
+					className={currentStep === formData.contributors.length + 2 ? '' : 'hidden'}
+					defaultValues={defaultValues}
+					initialData={formData}
+					onNext={handleSubmit}
+					onPrev={handlePrev}
+				/>
+			</div>
 		</div>
 	);
 }
