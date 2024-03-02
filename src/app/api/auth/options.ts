@@ -12,19 +12,11 @@ export const authOptions = {
 	providers: [
 		EmailProvider({
 			sendVerificationRequest: async ({ identifier, url, provider, theme }) => {
-				// if (
-				//   identifier.endsWith("@elsys-bg.org") ||
-				//   (await mentorWhitelist(identifier))
-				// )
-				// {
 				const result = await sendEmail(identifier, provider, url, theme);
 				const failed = result.rejected.concat(result.pending).filter(Boolean);
 				if (failed.length) {
 					throw new Error(`Email(s) (${failed.join(', ')}) could not be sent`);
 				}
-				// } else {
-				//   throw new Error(`Please use your @elsys-bg.org email to sign in.`);
-				// }
 			},
 		}),
 	],
@@ -33,7 +25,13 @@ export const authOptions = {
 			if (account?.provider !== 'email' || !user.email) {
 				return false;
 			}
-			const isValidElsysEmail = /(2019|2020|2021|2022|2023)\.@elsys-bg\.org$/.test(user.email);
+			const isValidElsysEmail = [
+				'2019@elsys-bg.org',
+				'2020@elsys-bg.org',
+				'2021@elsys-bg.org',
+				'2022@elsys-bg.org',
+				'2023@elsys-bg.org',
+			].some((suffix) => user.email?.endsWith(suffix));
 			if (!isValidElsysEmail) {
 				return false;
 			}

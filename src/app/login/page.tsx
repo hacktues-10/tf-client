@@ -6,28 +6,29 @@ import { getSession } from '../api/auth/session';
 import { IfTfFeatureOn } from '../_integrations/growthbook/components';
 import { Card } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
+import { SignInForm } from './form';
 
 export const metadata: Metadata = {
 	title: 'Регистрация',
-	description: 'Регистирайте се за участие в Hack TUES X',
+	description: 'Регистирайте се за участие в TUES Fest 2024',
 };
 
 export default async function SignUpPage() {
 	const session = await getSession();
+	console.log(session);
 	if (session) {
 		redirect('/signout');
 	}
 	return (
-		<section className="flex mt-96 w-full h-screen bg-bg-color max-w-sm flex-col gap-5">
-			<h1 className="text-center text-3xl font-extrabold">Регистрация</h1>
-			<IfTfFeatureOn feature="login">
-				<Card className="relative w-full p-6"></Card>
-				<Separator />
-			</IfTfFeatureOn>
-
-			<p className="text-center text-xl">
-				<Link href="/"></Link>
-			</p>
-		</section>
+		<div className="w-full min-h-screen flex justify-center align-middle">
+			<section className="flex z-40 rounded-xl w-full justify-center max-w-md flex-col gap-5">
+				{/* <IfTfFeatureOn feature="login"> */}
+				<Card className="bg-black w-full max-w-[90%] mx-auto font-semibold text-white p-6">
+					<h1 className="text-center text-3xl font-extrabold my-4">Регистрация</h1>
+					<SignInForm isRegister={false} />
+				</Card>
+				{/* </IfTfFeatureOn> */}
+			</section>
+		</div>
 	);
 }
