@@ -8,7 +8,7 @@ import './animation.css';
 import './globals.css';
 import VoteProvider from '@/context/vote';
 import VotingLayout from '@/partials/layout/Voting';
-import { GrowthBookServerProvider } from '@/integrations/growthbook/GrowthBookServerProvider';
+import { GrowthBookServerProvider } from '@/app/_integrations/growthbook/GrowthBookServerProvider';
 import { DayProvider } from '@/context/day';
 import SullyAnimation from './SullyAnimation';
 import { Toaster } from '@/components/ui/toaster';

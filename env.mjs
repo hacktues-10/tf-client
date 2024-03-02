@@ -4,6 +4,8 @@ export const env = createEnv({
 	server: {
 		VERCEL_ENV: z.enum(['development', 'preview', 'production']).optional().default('development'),
 		API_TOKEN_BACKEND: z.string().optional(),
+		NEXT_AUTH_SECRET: z.string(),
+		POSTGRES_URL: z.string().url(),
 	},
 
 	client: {

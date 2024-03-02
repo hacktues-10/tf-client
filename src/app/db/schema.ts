@@ -1,0 +1,41 @@
+import { date, integer, pgTable, serial, timestamp, varchar } from 'drizzle-orm/pg-core';
+
+import { db } from '.';
+
+export const users = pgTable('users', {
+	id: serial('id').primaryKey(),
+	email: varchar('email').notNull(),
+	emailVerified: date('email_verified', { mode: 'date' }),
+	participantId: serial('participant_id'),
+});
+
+export const accounts = pgTable('accounts', {
+	id: varchar('id').primaryKey().notNull(),
+	userId: varchar('user_id').notNull(),
+	type: varchar('type').notNull(),
+	provider: varchar('provider').notNull(),
+	providerAccountId: varchar('provider_account_id').notNull(),
+	refresh_token: varchar('refresh_token'),
+	access_token: varchar('access_token'),
+	created_at: timestamp('created_at').defaultNow().notNull(),
+	expires_at: integer('expires_at'),
+	token_type: varchar('token_type'),
+	scope: varchar('scope'),
+	id_token: varchar('id_token'),
+	session_state: varchar('session_state'),
+});
+
+export const sessions = pgTable('sessions', {
+	id: varchar('id').primaryKey().notNull(),
+	userId: integer('user_id').notNull(),
+	expires: date('expires', { mode: 'date' }).notNull(),
+	sessionToken: varchar('session_token').notNull(),
+});
+
+export const verificationTokens = pgTable('verification_tokens', {
+	identifier: varchar('identifier').notNull(),
+	token: varchar('token').notNull(),
+	expires: date('expires', { mode: 'date' }).notNull(),
+});
+
+export type DrizzleClient = typeof db;

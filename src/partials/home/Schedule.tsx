@@ -1,7 +1,7 @@
 'use client';
 
 import { LECTURES } from '@/info/lectures';
-import { IfTfFeatureOn } from '@/integrations/growthbook/components';
+import { IfTfFeatureOn } from '@/app/_integrations/growthbook/components';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useDay } from '@/context/day';
 function Schedule() {
