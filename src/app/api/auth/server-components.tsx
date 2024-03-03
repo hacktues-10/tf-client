@@ -1,11 +1,11 @@
-import { getHTSession } from "./session";
+import { getSession } from './session';
 
 export const IfHTSession = async ({ children }: React.PropsWithChildren) => {
-  const session = await getHTSession();
-  return session ? <>{children}</> : null;
+	const session = await getSession();
+	return session ? <>{children}</> : null;
 };
 
 export const IfNotHTSession = async ({ children }: React.PropsWithChildren) => {
-  const session = await getHTSession();
-  return session ? null : <>{children}</>;
+	const session = await getSession();
+	return session ? null : <>{children}</>;
 };
