@@ -11,7 +11,6 @@ export const env = createEnv({
 	client: {
 		NEXT_PUBLIC_GROWTHBOOK_API_HOST: z.string().url(),
 		NEXT_PUBLIC_GROWTHBOOK_CLIENT_KEY: z.string(),
-		// API_TOKEN_IMAGES: z.string(),
 	},
 	experimental__runtimeEnv: {
 		NEXT_PUBLIC_GROWTHBOOK_API_HOST: process.env.NEXT_PUBLIC_GROWTHBOOK_API_HOST,
