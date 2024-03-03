@@ -2,6 +2,8 @@
 import { RegistrationSchema } from './schema';
 
 import { env } from '../../../../env.mjs';
+import { db } from '@/app/db';
+import { projectsSubmission } from '@/app/db/schema';
 
 export async function RegisterProject(data: RegistrationSchema) {
 	const imagesString = data.files.images.join(', ');
@@ -14,34 +16,25 @@ export async function RegisterProject(data: RegistrationSchema) {
 		}
 	}
 
-	const formData = {
-		title: data.project.title,
-		description: data.project.description,
-		github: data.project.github,
-		type: data.project.type,
-		images: imagesString,
-		video: data.files.video,
-		contributors: contributosString,
-	};
-
 	try {
-		const response = await fetch('http://localhost:1337/api/projects', {
-			method: 'POST',
-			headers: {
-				Authorization: `Bearer ${env.API_TOKEN_BACKEND}`,
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({ data: formData }),
+		const responseData = await db.insert(projectsSubmission).values({
+			title: data.project.title,
+			description: data.project.description,
+			github: data.project.github,
+			type: data.project.type,
+			images: imagesString,
+			video: data.files.video,
+			contributors: contributosString,
 		});
 
-		const responseData = await response.json();
-		if (responseData.error) {
-			if (responseData.error.message == 'This attribute must be unique') {
-				return { success: false, message: 'Проект с това име вече съществува' };
-			} else {
-				return { success: false, message: `Възникна грешка ${responseData.error.message}` };
-			}
-		}
+		console.log(responseData);
+		// if (responseData.error) {
+		// 	if (responseData.error.message == 'This attribute must be unique') {
+		// 		return { success: false, message: 'Проект с това име вече съществува' };
+		// 	} else {
+		// 		return { success: false, message: `Възникна грешка ${responseData.error.message}` };
+		// 	}
+		// }
 		return { success: true, message: 'Проектът е регистриран успешно' };
 	} catch (error: any) {
 		console.error('Error:', error);

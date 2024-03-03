@@ -1,7 +1,7 @@
-import { date, integer, pgTable, serial, timestamp, varchar } from 'drizzle-orm/pg-core';
+import { date, integer, pgTable, pgEnum, serial, timestamp, varchar } from 'drizzle-orm/pg-core';
 
 import { db } from '.';
-
+export const typeEnum = pgEnum('type', ['Софтуер', 'Хардуер', 'Battle Bots', 'Компютърни мрежи']);
 export const users = pgTable('users', {
 	id: serial('id').primaryKey(),
 	email: varchar('email').notNull(),
@@ -36,6 +36,28 @@ export const verificationTokens = pgTable('verification_tokens', {
 	identifier: varchar('identifier').notNull(),
 	token: varchar('token').notNull(),
 	expires: date('expires', { mode: 'date' }).notNull(),
+});
+
+export const projectsSubmission = pgTable('projects_submission', {
+	id: serial('id').primaryKey(),
+	title: varchar('title').notNull(),
+	description: varchar('description').notNull(),
+	github: varchar('github').notNull(),
+	type: typeEnum('type'),
+	images: varchar('images').notNull(),
+	video: varchar('video').notNull(),
+	contributors: varchar('contributors').notNull(),
+});
+
+export const projects = pgTable('projects', {
+	id: serial('id').primaryKey(),
+	title: varchar('title').notNull(),
+	description: varchar('description').notNull(),
+	github: varchar('github').notNull(),
+	type: typeEnum('type'),
+	images: varchar('images').notNull(),
+	video: varchar('video').notNull(),
+	contributors: varchar('contributors').notNull(),
 });
 
 export type DrizzleClient = typeof db;

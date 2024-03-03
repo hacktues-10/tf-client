@@ -31,7 +31,7 @@ const defaultValues = {
 		video: '',
 	},
 } satisfies RegistrationSchema;
-export default function RegisterForm() {
+export default function RegisterForm({ email }: { email: string }) {
 	const [currentStep, setCurrentStep] = useState(1);
 	const [addContributor, setAddContributor] = useState(false);
 	const [formData, updateData] = useReducer(
@@ -51,7 +51,6 @@ export default function RegisterForm() {
 			const localStorageCurrentStep = JSON.parse(
 				localStorage.getItem('registrationDataCurrentStep') ?? '{}'
 			).currentStep;
-			console.log('local', localData);
 			if (localStorageCurrentStep >= 1 && localStorageCurrentStep <= 3) {
 				setCurrentStep(localStorageCurrentStep);
 			}
@@ -63,24 +62,12 @@ export default function RegisterForm() {
 		}
 	}, []);
 
-	useEffect(() => {
-		console.log('modify in add contrib', addContributor);
-	}, [addContributor]);
-
 	function handleNext(stepData: Partial<RegistrationSchema>) {
 		const loadedData = JSON.parse(localStorage.getItem('registrationData') || '{}');
-		console.log('loaded', loadedData);
-
-		console.log('currentStep', currentStep);
-		console.log('formData contributors.length', formData.contributors.length);
-		console.log('addContributor', addContributor);
 		if (currentStep - formData.contributors.length === 1 && addContributor) {
 			stepData.contributors = [...(stepData.contributors ?? []), defaultValues.contributors[0]];
 			setAddContributor(false);
-			console.log('in the if statement');
 		}
-
-		console.log('stepData in normal', stepData);
 
 		if ((loadedData && currentStep === 1) || loadedData.success) {
 			localStorage.setItem(
@@ -103,10 +90,6 @@ export default function RegisterForm() {
 		localStorage.setItem('registrationDataCurrentStep', JSON.stringify({ currentStep: currentStep - 1 }));
 		setCurrentStep((prev) => Math.max(prev - 1, 1));
 	}
-
-	useEffect(() => {
-		console.log('formData', formData);
-	}, [formData]);
 
 	async function handleSubmit(stepData: Partial<RegistrationSchema>) {
 		const mergedData = { ...formData, images: stepData.files?.images, video: stepData.files?.video };
@@ -132,7 +115,7 @@ export default function RegisterForm() {
 	return (
 		<div
 			className={cn(
-				'xl:w-1/4 w-5/6 md:w-3/4  bg-black flex z-30 m-5 p-5 rounded-xl',
+				'xl:w-1/4 w-5/6 md:w-3/4 m-5 mt-24 bg-black flex z-30  p-5 rounded-xl',
 				currentStep === 2 && 'mt-28'
 			)}
 		>
@@ -151,6 +134,7 @@ export default function RegisterForm() {
 						className={currentStep === index + 2 ? '' : 'hidden'}
 						defaultValues={defaultValues}
 						index={index}
+						email={email}
 						initialData={formData}
 						onNext={handleNext}
 						onPrev={handlePrev}

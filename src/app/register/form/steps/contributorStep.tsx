@@ -1,13 +1,13 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
+import { set, z } from 'zod';
 
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { contributorSchema } from '../schema';
 import StepButtons from './stepButtons';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
@@ -16,6 +16,7 @@ type ContributorSchema = z.infer<typeof contributorSchema>;
 export default function ContributorStep({
 	defaultValues,
 	initialData,
+	email,
 	onNext,
 	index,
 	onPrev,
@@ -26,6 +27,7 @@ export default function ContributorStep({
 }: {
 	initialData: Partial<ContributorSchema>;
 	defaultValues: ContributorSchema;
+	email: string;
 	index: number;
 	onNext: (data: ContributorSchema) => void;
 	onPrev: () => void;
@@ -34,6 +36,7 @@ export default function ContributorStep({
 	setAddContributor: (state: boolean) => void;
 	currentStep: number;
 }) {
+	const [isEmailDisabled, setIsEmailDisabled] = useState(false);
 	const form = useForm<ContributorSchema>({
 		resolver: zodResolver(contributorSchema),
 		defaultValues: initialData,
@@ -44,12 +47,12 @@ export default function ContributorStep({
 	}
 
 	useEffect(() => {
-		console.log(form.getValues());
-	}, [form]);
-
-	useEffect(() => {
 		form.reset(initialData);
-	}, [initialData, form]);
+		if (currentStep === 2) {
+			form.setValue(`contributors.0.email`, email);
+			setIsEmailDisabled(true);
+		}
+	}, [initialData, form, email, currentStep]);
 
 	useEffect(() => {
 		if (addContributor) {
@@ -68,7 +71,11 @@ export default function ContributorStep({
 							<FormItem>
 								<FormLabel>Имейл (elsys)</FormLabel>
 								<FormControl>
-									<Input placeholder="uchenik.2023@elsys-bg.org" {...field} />
+									<Input
+										// disabled={isEmailDisabled}
+										placeholder="uchenik.2023@elsys-bg.org"
+										{...field}
+									/>
 								</FormControl>
 								<FormMessage />
 							</FormItem>
