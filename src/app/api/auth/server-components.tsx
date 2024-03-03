@@ -9,3 +9,4 @@ export const IfNotHTSession = async ({ children }: React.PropsWithChildren) => {
 	const session = await getSession();
 	return session ? null : <>{children}</>;
 };
+//
