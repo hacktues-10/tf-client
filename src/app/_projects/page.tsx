@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { IfTfFeatureOff, IfTfFeatureOn } from '@/app/_integrations/growthbook/components';
 import NotFound from '../not-found';
 
+
 const PATH: {
 	name: string;
 	url: string;
