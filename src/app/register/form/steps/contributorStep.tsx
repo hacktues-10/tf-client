@@ -230,10 +230,7 @@ export default function ContributorStep({
 							form.trigger().then((isValid) => {
 								console.log(form);
 								if (isValid) {
-									console.log('is valid');
 									setAddContributor(true);
-								} else {
-									console.log('is not valid');
 								}
 							});
 						}}
@@ -249,7 +246,7 @@ export default function ContributorStep({
 								}
 							});
 						}}
-						onPrev={onPrev}
+						onPrev={null}
 					/>
 				</form>
 			</Form>
