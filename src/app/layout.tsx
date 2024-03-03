@@ -13,6 +13,7 @@ import { GrowthBookServerProvider } from '@/app/_integrations/growthbook/GrowthB
 import { DayProvider } from '@/context/day';
 import SullyAnimation from './SullyAnimation';
 import { Toaster } from '@/components/ui/toaster';
+
 export const metadata = {
 	title: {
 		default: 'TUES Fest 2024',
