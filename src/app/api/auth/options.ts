@@ -58,10 +58,10 @@ function html(params: { url: string; identifier: string; theme: Theme }) {
 	const { url, identifier, theme } = params;
 
 	const color = {
-		background: '#f9f9f9',
-		text: '#fff',
-		mainBackground: '#0F172A',
-		buttonBorder: '#fff',
+		background: '#fff',
+		text: '#000000',
+		mainBackground: '#fbebb7',
+		buttonBorder: '#000000',
 		buttonText: theme.buttonText || '#fff',
 	};
 
@@ -73,17 +73,18 @@ function html(params: { url: string; identifier: string; theme: Theme }) {
     font-size: 26px;
     display: inline-block;
     font-weight: bold;
-    background: #b01c32;
+    background: #ec626d;
+	border: 1px solid ${color.buttonBorder};
   `;
 
 	return `
   <body style="background: ${color.background};">
   <table width="100%" border="0" cellspacing="20" cellpadding="0"
-    style="background: ${color.mainBackground}; max-width: 600px; margin: auto; border-radius: 10px;">
+    style="background: ${color.mainBackground}; max-width: 600px; border: 1px solid ${color.buttonBorder}; margin: auto; border-radius: 10px;">
     <tr>
       <td align="center"
         style="padding: 10px 0px; font-size: 32px; font-family: Helvetica, Arial, sans-serif; color: ${color.text};">
-        Влезте в <strong>Hack TUES X</strong>
+        Влезте в <strong>TUES Fest 2024</strong>
       </td>
     </tr>
     <tr>
@@ -102,7 +103,7 @@ function html(params: { url: string; identifier: string; theme: Theme }) {
     <tr>
       <td align="center"
         style="padding: 0px 0px 10px 0px; font-size: 16px; line-height: 22px; font-family: Helvetica, Arial, sans-serif; color: ${color.text};">
-        Получавате това писмо, защото някой се е регистрирал с вашия адрес (${identifier}) в сайта на Hack TUES X. Ако не сте били вие, моля пренебрегнете това съобщение. При нужда се свържете с нас като пишете на hacktues@elsys-bg.org
+        Получавате това писмо, защото някой се опитва да влезе с вашия имейл адрес (${identifier}) в сайта на TUES Fest 2024. Ако не сте били вие, моля пренебрегнете това съобщение. При нужда се свържете с нас като пишете на hacktues@elsys-bg.org
       </td>
     </tr>
   </table>
@@ -113,20 +114,19 @@ function html(params: { url: string; identifier: string; theme: Theme }) {
 function text(params: { url: string; identifier: string; theme: Theme }) {
 	const { url, identifier } = params;
 
-	return `Влезте в Hack TUES X.
+	return `Влезте в TUES Fest 2024.
 
 За да продължите, моля посетете следния адрес:
 ${url}
 
-Получавате това писмо, защото някой се е регистрирал с вашия адрес (${identifier}) в сайта
-на Hack TUES X. Ако не сте били вие, моля пренебрегнете това съобщение.
+Получавате това писмо, защото някой се опитва да влезе с вашия имейл адрес (${identifier}) в сайта
+на TUES Fest 2024. Ако не сте били вие, моля пренебрегнете това съобщение.
 При нужда се свържете с нас като пишете на:
 hacktues@elsys-bg.org
 `;
 }
 
 async function sendEmail(identifier: string, provider: EmailConfig, url: string, theme: Theme) {
-	// const { token: accessToken } = await oAuth2Client.getAccessToken();
 	const transport = createTransport({
 		tls: {
 			rejectUnauthorized: false,
@@ -142,10 +142,10 @@ async function sendEmail(identifier: string, provider: EmailConfig, url: string,
 	return await transport.sendMail({
 		to: identifier,
 		from: {
-			name: 'Hack TUES X',
+			name: 'TUES Fest 2024',
 			address: 'noreply@hacktues.bg',
 		},
-		subject: `Влизане в Hack TUES X`,
+		subject: `Влизане в TUES Fest 2024`,
 		html: html({ url, identifier, theme }),
 		text: text({ url, identifier, theme }),
 		references: generateReferences(),
