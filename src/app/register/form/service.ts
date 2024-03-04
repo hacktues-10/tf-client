@@ -27,14 +27,6 @@ export async function RegisterProject(data: RegistrationSchema) {
 			contributors: contributosString,
 		});
 
-		console.log(responseData);
-		// if (responseData.error) {
-		// 	if (responseData.error.message == 'This attribute must be unique') {
-		// 		return { success: false, message: 'Проект с това име вече съществува' };
-		// 	} else {
-		// 		return { success: false, message: `Възникна грешка ${responseData.error.message}` };
-		// 	}
-		// }
 		return { success: true, message: 'Проектът е регистриран успешно' };
 	} catch (error: any) {
 		console.error('Error:', error);
