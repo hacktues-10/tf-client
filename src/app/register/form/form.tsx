@@ -93,9 +93,15 @@ export default function RegisterForm({ email }: { email: string }) {
 	}
 
 	async function handleSubmit(stepData: Partial<RegistrationSchema>) {
-		const mergedData = { ...formData, images: stepData.files?.images, video: stepData.files?.video };
+		const mergedData = {
+			...formData,
+			files: {
+				images: stepData.files?.images || [],
+				video: stepData.files?.video ?? '',
+				thumbnail: stepData.files?.thumbnail ?? '',
+			},
+		};
 		updateData(mergedData);
-
 		const parsed = registrationSchema.parse(mergedData);
 		const res = await RegisterProject(parsed);
 		localStorage.removeItem('registrationData');

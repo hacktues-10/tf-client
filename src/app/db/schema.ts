@@ -40,11 +40,12 @@ export const verificationTokens = pgTable('verification_tokens', {
 
 export const projectsSubmission = pgTable('projects_submission', {
 	id: serial('id').primaryKey(),
-	title: varchar('title').notNull(),
+	title: varchar('title').notNull().unique(),
 	description: varchar('description').notNull(),
 	github: varchar('github').notNull(),
 	type: typeEnum('type'),
 	images: varchar('images').notNull(),
+	thumbnail: varchar('thumbnail').notNull(),
 	video: varchar('video').notNull(),
 	contributors: varchar('contributors').notNull(),
 });
@@ -56,6 +57,7 @@ export const projects = pgTable('projects', {
 	github: varchar('github').notNull(),
 	type: typeEnum('type'),
 	images: varchar('images').notNull(),
+	thumbnail: varchar('thumbnail').notNull(),
 	video: varchar('video').notNull(),
 	contributors: varchar('contributors').notNull(),
 });

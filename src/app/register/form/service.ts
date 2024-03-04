@@ -1,7 +1,6 @@
 'use server';
 import { RegistrationSchema } from './schema';
 
-import { env } from '../../../../env.mjs';
 import { db } from '@/app/db';
 import { projectsSubmission } from '@/app/db/schema';
 
@@ -17,31 +16,20 @@ export async function RegisterProject(data: RegistrationSchema) {
 	}
 
 	try {
-		const responseData = await db.insert(projectsSubmission).values({
+		await db.insert(projectsSubmission).values({
 			title: data.project.title,
 			description: data.project.description,
 			github: data.project.github,
 			type: data.project.type,
+			thumbnail: data.files.thumbnail,
 			images: imagesString,
 			video: data.files.video,
 			contributors: contributosString,
 		});
 
-		console.log(responseData);
-		// if (responseData.error) {
-		// 	if (responseData.error.message == 'This attribute must be unique') {
-		// 		return { success: false, message: 'Проект с това име вече съществува' };
-		// 	} else {
-		// 		return { success: false, message: `Възникна грешка ${responseData.error.message}` };
-		// 	}
-		// }
 		return { success: true, message: 'Проектът е регистриран успешно' };
 	} catch (error: any) {
 		console.error('Error:', error);
-		if (error.message === 'This attribute must be unique.') {
-			return { success: false, message: 'Проект с това име вече съществува' };
-		} else {
-			return { success: false, message: `Възникна грешка ${error.message}` };
-		}
+		return { success: false, message: 'Проект с това име вече съществува' };
 	}
 }

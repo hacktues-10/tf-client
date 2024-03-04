@@ -72,7 +72,7 @@ export default function ContributorStep({
 								<FormLabel>Имейл (elsys)</FormLabel>
 								<FormControl>
 									<Input
-										// disabled={isEmailDisabled}
+										disabled={isEmailDisabled}
 										placeholder="uchenik.2023@elsys-bg.org"
 										{...field}
 									/>
@@ -228,7 +228,6 @@ export default function ContributorStep({
 					<Button
 						onClick={() => {
 							form.trigger().then((isValid) => {
-								console.log(form);
 								if (isValid) {
 									setAddContributor(true);
 								}

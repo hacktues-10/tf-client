@@ -24,7 +24,7 @@ export default function StepButtons({
 				Назад
 			</Button>
 			<Button
-				type="submit"
+				type="button"
 				onClick={() => onNext()}
 				disabled={disableNext}
 				className="bg-sand text-black hover:cursor-pointer"

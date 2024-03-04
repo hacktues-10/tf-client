@@ -42,8 +42,6 @@ export default function FileUploadStep({
 
 	async function onSubmit() {
 		if (targetImages) {
-			console.log('UPLOAD IMAGES');
-
 			const renamedImages = Array.from(targetImages).map((file) => {
 				const newBlob = new Blob([file], { type: file.type });
 				const renamedFile = new File([newBlob], `${initialData.project.title}-${file.name}`, {
@@ -61,12 +59,10 @@ export default function FileUploadStep({
 					method: 'PUT',
 					body: formData,
 				});
-				console.log('IMAGES', response);
 			}
 		}
 
 		if (targetVideo) {
-			console.log('UPLOAD VIDEO');
 			const newBlob = new Blob([targetVideo], { type: targetVideo.type });
 			const renamedFile = new File([newBlob], `${initialData.project.title}-${targetVideo.name}`, {
 				type: targetVideo.type,
@@ -79,12 +75,9 @@ export default function FileUploadStep({
 				method: 'PUT',
 				body: formData,
 			});
-			console.log('VIDEO', response);
 		}
 
 		if (targetThumbnail) {
-			console.log('UPLOAD THUMBNAIL');
-
 			const newBlob = new Blob([targetThumbnail], { type: targetThumbnail.type });
 			const renamedFile = new File([newBlob], `${initialData.project.title}-Thumbnail-${targetThumbnail.name}`, {
 				type: targetThumbnail.type,
@@ -97,7 +90,6 @@ export default function FileUploadStep({
 				method: 'PUT',
 				body: formData,
 			});
-			console.log('THUMBNAIL', response);
 		}
 	}
 
@@ -209,7 +201,7 @@ export default function FileUploadStep({
 	return (
 		<div className={className}>
 			<Form {...form}>
-				<form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-8">
+				<form className="w-full space-y-8">
 					<FormLabel className="text-xl">Регистрация на проект</FormLabel>
 					<FormField
 						control={form.control}
@@ -272,7 +264,8 @@ export default function FileUploadStep({
 					<StepButtons
 						onPrev={onPrev}
 						disableNext={!canSubmit}
-						onNext={() => {
+						onNext={async () => {
+							await onSubmit();
 							form.trigger().then((isValid) => {
 								if (isValid) {
 									onNext(form.getValues());
