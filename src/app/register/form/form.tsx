@@ -29,6 +29,7 @@ const defaultValues = {
 	files: {
 		images: [''],
 		video: '',
+		thumbnail: '',
 	},
 } satisfies RegistrationSchema;
 export default function RegisterForm({ email }: { email: string }) {

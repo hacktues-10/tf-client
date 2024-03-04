@@ -1,15 +1,14 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { UseFormReturn, useForm } from 'react-hook-form';
-import { number, set, z } from 'zod';
+import { z } from 'zod';
 
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { FilesReal } from '../schema';
 import StepButtons from './stepButtons';
-import { onSubmitImages, onSubmitVideo } from '../actions';
 type FileUploadSchema = z.infer<typeof FilesReal>;
 import { useEffect, useState } from 'react';
-import { init } from 'next/dist/compiled/webpack/webpack';
+import { getPreSignedUrl } from '../actions';
 
 export default function FileUploadStep({
 	defaultValues,
@@ -36,11 +35,15 @@ export default function FileUploadStep({
 	const [targetVideo, setTargetVideo] = useState<File>();
 	const [validImages, setValidImages] = useState(false);
 	const [validVideo, setValidVideo] = useState(false);
+	const [targetThumbnail, setTargetThumbnail] = useState<File>();
+	const [validThumbnail, setValidThumbnail] = useState(false);
 
-	const canSubmit = validImages && validVideo;
+	const canSubmit = validImages && validVideo && validThumbnail;
 
 	async function onSubmit() {
 		if (targetImages) {
+			console.log('UPLOAD IMAGES');
+
 			const renamedImages = Array.from(targetImages).map((file) => {
 				const newBlob = new Blob([file], { type: file.type });
 				const renamedFile = new File([newBlob], `${initialData.project.title}-${file.name}`, {
@@ -50,19 +53,51 @@ export default function FileUploadStep({
 				return renamedFile;
 			});
 
-			await onSubmitImages(renamedImages);
-		} else {
-			console.log('No images');
+			for (let i = 0; i < renamedImages.length; i++) {
+				const formData = new FormData();
+				formData.append('files', renamedImages[i]);
+				const url = await getPreSignedUrl({ name: renamedImages[i].name });
+				const response = await fetch(url, {
+					method: 'PUT',
+					body: formData,
+				});
+				console.log('IMAGES', response);
+			}
 		}
+
 		if (targetVideo) {
+			console.log('UPLOAD VIDEO');
 			const newBlob = new Blob([targetVideo], { type: targetVideo.type });
 			const renamedFile = new File([newBlob], `${initialData.project.title}-${targetVideo.name}`, {
 				type: targetVideo.type,
 			});
 
-			await onSubmitVideo(renamedFile);
-		} else {
-			console.log('No video');
+			const formData = new FormData();
+			formData.append('files', renamedFile);
+			const url = await getPreSignedUrl({ name: renamedFile.name });
+			const response = await fetch(url, {
+				method: 'PUT',
+				body: formData,
+			});
+			console.log('VIDEO', response);
+		}
+
+		if (targetThumbnail) {
+			console.log('UPLOAD THUMBNAIL');
+
+			const newBlob = new Blob([targetThumbnail], { type: targetThumbnail.type });
+			const renamedFile = new File([newBlob], `${initialData.project.title}-Thumbnail-${targetThumbnail.name}`, {
+				type: targetThumbnail.type,
+			});
+
+			const formData = new FormData();
+			formData.append('files', renamedFile);
+			const url = await getPreSignedUrl({ name: renamedFile.name });
+			const response = await fetch(url, {
+				method: 'PUT',
+				body: formData,
+			});
+			console.log('THUMBNAIL', response);
 		}
 	}
 
@@ -89,6 +124,16 @@ export default function FileUploadStep({
 						e.target.value = '';
 						return;
 					}
+
+					if (e.target.files[i].size > 20971520) {
+						form.setError('files.images', {
+							type: 'manual',
+							message: 'Снимките трябва да са по-малки от 20MB',
+						});
+						setValidImages(false);
+						e.target.value = '';
+						return;
+					}
 				}
 			}
 			form.clearErrors('files.images');
@@ -96,6 +141,37 @@ export default function FileUploadStep({
 			const filesArray = Array.from(e.target.files).map((file) => `${initialData.project.title}-${file.name}`);
 			form.setValue('files.images', filesArray);
 			setValidImages(true);
+		}
+	};
+
+	const handleThumbnailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const file = e.target.files?.[0];
+
+		if (file) {
+			if (!file.type.includes('image')) {
+				form.setError('files.thumbnail', {
+					type: 'manual',
+					message: 'Можете да качите само снимка в jpg, jpeg, png или webp формат',
+				});
+				setValidThumbnail(false);
+				e.target.value = '';
+				return;
+			}
+
+			if (file.size > 5242880) {
+				form.setError('files.thumbnail', {
+					type: 'manual',
+					message: 'Снимката трябва да е по-малка от 5MB',
+				});
+				setValidThumbnail(false);
+				e.target.value = '';
+				return;
+			}
+			form.clearErrors('files.thumbnail');
+
+			setTargetThumbnail(file);
+			setValidThumbnail(true);
+			form.setValue('files.thumbnail', `${initialData.project.title}-Thumbnail-${file.name}`);
 		}
 	};
 
@@ -113,10 +189,10 @@ export default function FileUploadStep({
 				return;
 			}
 
-			if (file.size > 52428800) {
+			if (file.size > 209715200) {
 				form.setError('files.video', {
 					type: 'manual',
-					message: 'Видеото трябва да е по-малко от 50MB',
+					message: 'Видеото трябва да е по-малко от 200MB',
 				});
 				setValidVideo(false);
 				e.target.value = '';
@@ -166,6 +242,25 @@ export default function FileUploadStep({
 										id="video"
 										accept=".mp4"
 										onChange={handleVideoChange}
+										type="file"
+										className="bg-sand text-black hover:cursor-pointer"
+									/>
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<FormField
+						control={form.control}
+						name="files.thumbnail"
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel className="mt-8">Thumbnail</FormLabel>
+								<FormControl>
+									<Input
+										id="thumbnail"
+										accept=".jpg, .jpeg, .png, .webp"
+										onChange={handleThumbnailChange}
 										type="file"
 										className="bg-sand text-black hover:cursor-pointer"
 									/>

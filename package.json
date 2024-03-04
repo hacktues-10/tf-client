@@ -12,6 +12,9 @@
 		"db:push": "drizzle-kit push:pg"
 	},
 	"dependencies": {
+		"@aws-sdk/client-s3": "^3.525.0",
+		"@aws-sdk/s3-request-presigner": "^3.525.0",
+		"@aws-sdk/signature-v4-crt": "^3.525.0",
 		"@growthbook/growthbook": "^0.32.0",
 		"@growthbook/growthbook-react": "^0.22.0",
 		"@hookform/resolvers": "^3.3.4",
@@ -60,6 +63,7 @@
 		"tailwindcss-animatecss": "^3.0.3",
 		"typescript": "5.0.2",
 		"uuid": "^9.0.1",
+		"zact": "^0.0.2",
 		"zod": "^3.22.4"
 	},
 	"devDependencies": {

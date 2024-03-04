@@ -6,6 +6,10 @@ export const env = createEnv({
 		API_TOKEN_BACKEND: z.string().optional(),
 		NEXT_AUTH_SECRET: z.string(),
 		POSTGRES_URL: z.string().url(),
+		R2_ACCOUNT_ID: z.string(),
+		S3_UPLOAD_KEY: z.string(),
+		S3_UPLOAD_SECRET: z.string(),
+		S3_UPLOAD_BUCKET: z.string(),
 	},
 
 	client: {

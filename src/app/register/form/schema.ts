@@ -17,6 +17,7 @@ const FilesReal = z.object({
 	files: z.object({
 		images: z.array(z.string()),
 		video: z.string(),
+		thumbnail: z.string(),
 	}),
 });
 
