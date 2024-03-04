@@ -1,6 +1,5 @@
 import Script from 'next/script';
 import { Analytics } from '@vercel/analytics/react';
-
 import Footer from '@/partials/layout/Footer';
 import Navigation from '@/partials/layout/Navigation';
 
