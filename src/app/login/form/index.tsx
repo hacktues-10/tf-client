@@ -22,7 +22,7 @@ export const SignInForm = (props: { isRegister: boolean }) => {
 	const form = useForm<z.infer<typeof signInSchema>>({
 		resolver: zodResolver(signInSchema),
 	});
-	const canSignInStudents = UseTFFeaturesIsOn('login');
+	const canSignInStudents = UseTFFeaturesIsOn('tf-register-projects');
 
 	const searchParams = useSearchParams();
 	const error = searchParams.get('error');
