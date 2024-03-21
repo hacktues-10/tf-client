@@ -36,6 +36,7 @@ import strypesLogo from '@/sponsors/beta/strypes.png';
 import telebidProLogo from '@/sponsors/beta/telebidPro.png';
 import tumbaSolutionsLogo from '@/sponsors/beta/tumba-solutions.png';
 import ibm from '@/sponsors/beta/ibm.jpg';
+import nettera from '@/sponsors/beta/nettera.png';
 //Beta sponsors
 
 //Gamma sponsors
@@ -238,6 +239,13 @@ const BETA_SPONSORS = [
 		url: 'https://www.tumba.solutions/',
 		description:
 			'Tumba Solutions е водеща компания в сферата на мобилните технологии. Разработваме висококачествени софтуерни решения в сфери като автономни превозни средства, градска мобилност, издателска, спортна и развлекателна индустрия.',
+	},
+	{
+		name: 'Neterra Telecommunications',
+		logo: nettera,
+		url: 'https://neterra.net/bg',
+		description:
+			'Нетера е глобален доставчик на свързаност и телекомуникационни решения, на който се доверяват някои от най-големите компании в света, както и малки и средни предприятия. Компанията предоставя международна свързаност, услуги за управление на мрежи и сигурност повече от 27 години чрез своята основна мрежа от над 200 точки на присъствие в 65+ държави. Нетера предлага бързи, надеждни и сигурни услуги за интернет достъп и свързаност, ИТ услуги, сървъри под наем, гъвкава облачна платформа, DDoS защита и платформа за GPS проследяване и отчитане на тол такси. Телеком операторът притежава и управлява четири независими дейта центъра и NetIX - глобална платформа за обмен на данни. Всички услуги са с експертна поддръжка 24/7. ',
 	},
 ];
 
