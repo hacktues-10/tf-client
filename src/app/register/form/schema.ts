@@ -16,8 +16,8 @@ const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/web
 const FilesReal = z.object({
 	files: z.object({
 		images: z.array(z.string()),
-		video: z.string(),
-		thumbnail: z.string(),
+		video: z.string().optional(),
+		thumbnail: z.string().optional(),
 	}),
 });
 

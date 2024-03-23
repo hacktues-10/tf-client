@@ -8,7 +8,6 @@ import { FilesReal } from '../schema';
 import StepButtons from './stepButtons';
 type FileUploadSchema = z.infer<typeof FilesReal>;
 import { useEffect, useState } from 'react';
-import { getPreSignedUrl } from '../actions';
 
 export default function FileUploadStep({
 	defaultValues,
@@ -38,10 +37,13 @@ export default function FileUploadStep({
 	const [targetThumbnail, setTargetThumbnail] = useState<File>();
 	const [validThumbnail, setValidThumbnail] = useState(false);
 
-	const canSubmit = validImages && validVideo && validThumbnail;
+	const canSubmit = validImages;
 
 	async function onSubmit() {
+		const formData = new FormData();
+
 		if (targetImages) {
+			console.log('images');
 			const renamedImages = Array.from(targetImages).map((file) => {
 				const newBlob = new Blob([file], { type: file.type });
 				const renamedFile = new File([newBlob], `${initialData.project.title}-${file.name}`, {
@@ -52,45 +54,34 @@ export default function FileUploadStep({
 			});
 
 			for (let i = 0; i < renamedImages.length; i++) {
-				const formData = new FormData();
-				formData.append('files', renamedImages[i]);
-				const url = await getPreSignedUrl({ name: renamedImages[i].name });
-				const response = await fetch(url, {
-					method: 'PUT',
-					body: formData,
-				});
+				formData.append('file', renamedImages[i], renamedImages[i].name);
 			}
 		}
 
 		if (targetVideo) {
+			console.log('video');
 			const newBlob = new Blob([targetVideo], { type: targetVideo.type });
 			const renamedFile = new File([newBlob], `${initialData.project.title}-${targetVideo.name}`, {
 				type: targetVideo.type,
 			});
 
-			const formData = new FormData();
-			formData.append('files', renamedFile);
-			const url = await getPreSignedUrl({ name: renamedFile.name });
-			const response = await fetch(url, {
-				method: 'PUT',
-				body: formData,
-			});
+			formData.append('file', renamedFile, renamedFile.name);
 		}
 
 		if (targetThumbnail) {
+			console.log('thumbnail');
 			const newBlob = new Blob([targetThumbnail], { type: targetThumbnail.type });
 			const renamedFile = new File([newBlob], `${initialData.project.title}-Thumbnail-${targetThumbnail.name}`, {
 				type: targetThumbnail.type,
 			});
-
-			const formData = new FormData();
-			formData.append('files', renamedFile);
-			const url = await getPreSignedUrl({ name: renamedFile.name });
-			const response = await fetch(url, {
-				method: 'PUT',
-				body: formData,
-			});
+			formData.append('file', renamedFile, renamedFile.name);
 		}
+
+		console.log('upload');
+		const res = await fetch('api/upload', {
+			method: 'POST',
+			body: formData,
+		});
 	}
 
 	const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
