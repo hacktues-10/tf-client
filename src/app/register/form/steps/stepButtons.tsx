@@ -4,10 +4,12 @@ export default function StepButtons({
 	onNext,
 	onPrev,
 	disableNext = false,
+	isLast = false,
 }: {
 	onNext: () => void;
 	onPrev: (() => void) | null;
 	disableNext?: boolean;
+	isLast?: boolean;
 }) {
 	const isDisabled = onPrev === null;
 	const [disable, setDisabled] = useState(disableNext);
@@ -31,7 +33,7 @@ export default function StepButtons({
 			<Button
 				type="button"
 				onClick={() => {
-					setDisabled(true);
+					if (isLast) setDisabled(true);
 					onNext();
 				}}
 				disabled={disable}

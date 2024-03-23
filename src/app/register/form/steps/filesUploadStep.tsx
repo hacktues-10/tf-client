@@ -40,10 +40,7 @@ export default function FileUploadStep({
 	const canSubmit = validImages;
 
 	async function onSubmit() {
-		const formData = new FormData();
-
 		if (targetImages) {
-			console.log('images');
 			const renamedImages = Array.from(targetImages).map((file) => {
 				const newBlob = new Blob([file], { type: file.type });
 				const renamedFile = new File([newBlob], `${initialData.project.title}-${file.name}`, {
@@ -52,36 +49,44 @@ export default function FileUploadStep({
 
 				return renamedFile;
 			});
+			const formData = new FormData();
 
 			for (let i = 0; i < renamedImages.length; i++) {
 				formData.append('file', renamedImages[i], renamedImages[i].name);
 			}
+			const res = await fetch('api/upload', {
+				method: 'POST',
+				body: formData,
+			});
 		}
 
 		if (targetVideo) {
-			console.log('video');
 			const newBlob = new Blob([targetVideo], { type: targetVideo.type });
 			const renamedFile = new File([newBlob], `${initialData.project.title}-${targetVideo.name}`, {
 				type: targetVideo.type,
 			});
+			const formData = new FormData();
 
 			formData.append('file', renamedFile, renamedFile.name);
+			const res = await fetch('api/upload', {
+				method: 'POST',
+				body: formData,
+			});
 		}
 
 		if (targetThumbnail) {
-			console.log('thumbnail');
 			const newBlob = new Blob([targetThumbnail], { type: targetThumbnail.type });
 			const renamedFile = new File([newBlob], `${initialData.project.title}-Thumbnail-${targetThumbnail.name}`, {
 				type: targetThumbnail.type,
 			});
-			formData.append('file', renamedFile, renamedFile.name);
-		}
+			const formData = new FormData();
 
-		console.log('upload');
-		const res = await fetch('api/upload', {
-			method: 'POST',
-			body: formData,
-		});
+			formData.append('file', renamedFile, renamedFile.name);
+			const res = await fetch('api/upload', {
+				method: 'POST',
+				body: formData,
+			});
+		}
 	}
 
 	const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -260,6 +265,7 @@ export default function FileUploadStep({
 					<StepButtons
 						onPrev={onPrev}
 						disableNext={!canSubmit}
+						isLast={true}
 						onNext={async () => {
 							await onSubmit();
 							form.trigger().then((isValid) => {
