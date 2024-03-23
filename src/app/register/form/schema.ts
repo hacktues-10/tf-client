@@ -43,7 +43,7 @@ const contributorSchema = z.object({
 				.min(3, { message: 'Името трябва да е поне 3 символа' })
 				.max(20, { message: 'Името трябва да е до 20 символа' })
 				.refine(
-					(name) => /^[А-Я][а-я]*$/.test(name),
+					(name) => /^[А-Я][а-я-]*[А-Я]*[а-я-]*$/.test(name),
 					'Името трябва да е на кирилица и да започва с главна буква'
 				),
 
@@ -90,10 +90,7 @@ const projectSchema = z.object({
 			.string()
 			.min(10, { message: 'Невалидно описание на проекта. Трябва да е дълго поне 10 символа.' })
 			.max(500, { message: 'Невалидно описание на проекта' }),
-		github: z
-			.string()
-			.url({ message: 'Невалиден URL' })
-			.refine((url) => url.startsWith('https://github.com/'), 'Невалиден GitHub линк'),
+		github: z.string().url({ message: 'Невалиден URL' }),
 		type: z.enum(['Софтуер', 'Хардуер', 'Battle Bots', 'Компютърни мрежи'], {
 			errorMap: (issue, ctx) => ({ message: 'Невалиден тип на проекта' }),
 		}),

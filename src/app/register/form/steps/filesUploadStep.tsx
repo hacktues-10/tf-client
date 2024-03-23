@@ -194,6 +194,7 @@ export default function FileUploadStep({
 			<Form {...form}>
 				<form className="w-full space-y-8">
 					<FormLabel className="text-xl">Регистрация на проект</FormLabel>
+
 					<FormField
 						control={form.control}
 						name="files.images"
@@ -252,6 +253,10 @@ export default function FileUploadStep({
 							</FormItem>
 						)}
 					/>
+					<FormDescription>
+						Можете да качите до 5 снимки, видео и thumbnail за вашия проект. Задължително е да качите
+						снимките на проекта си тук, а видеото и thumbnail-а ще можете да ги качите после.
+					</FormDescription>
 					<StepButtons
 						onPrev={onPrev}
 						disableNext={!canSubmit}

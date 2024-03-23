@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-
+import { useEffect, useState } from 'react';
 export default function StepButtons({
 	onNext,
 	onPrev,
@@ -10,6 +10,11 @@ export default function StepButtons({
 	disableNext?: boolean;
 }) {
 	const isDisabled = onPrev === null;
+	const [disable, setDisabled] = useState(disableNext);
+
+	useEffect(() => {
+		setDisabled(disableNext);
+	}, [disableNext]);
 
 	return (
 		<div className="flex justify-between">
@@ -25,8 +30,11 @@ export default function StepButtons({
 			</Button>
 			<Button
 				type="button"
-				onClick={() => onNext()}
-				disabled={disableNext}
+				onClick={() => {
+					setDisabled(true);
+					onNext();
+				}}
+				disabled={disable}
 				className="bg-sand text-black hover:cursor-pointer"
 			>
 				Напред

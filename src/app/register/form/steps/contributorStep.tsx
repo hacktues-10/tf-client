@@ -59,11 +59,14 @@ export default function ContributorStep({
 			onNext(form.getValues());
 		}
 	}, [addContributor, form, onNext]);
+
 	return (
 		<div className={className}>
 			<Form {...form}>
 				<form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-8">
-					<FormLabel className="text-xl">Регистрация на ученик</FormLabel>
+					<FormLabel className="text-xl">
+						Регистрация на ученик {initialData.contributors?.length}/5
+					</FormLabel>
 					<FormField
 						control={form.control}
 						name={`contributors.${index}.email`}

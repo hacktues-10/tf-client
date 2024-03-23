@@ -111,7 +111,7 @@ export default function ProjectStep({
 						name="project.github"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Линк към GitHub хранилище</FormLabel>
+								<FormLabel>Линк към хранилище</FormLabel>
 								<FormControl>
 									<Input placeholder="https://github.com/dimitarNzhelev/elektrodvigatel" {...field} />
 								</FormControl>

@@ -64,13 +64,13 @@ export default function RegisterForm({ email }: { email: string }) {
 	}, []);
 
 	function handleNext(stepData: Partial<RegistrationSchema>) {
+		const newStep = currentStep + 1;
 		const loadedData = JSON.parse(localStorage.getItem('registrationData') || '{}');
 		if (currentStep - formData.contributors.length === 1 && addContributor) {
 			stepData.contributors = [...(stepData.contributors ?? []), defaultValues.contributors[0]];
-			setAddContributor(false);
 		}
 
-		if ((loadedData && currentStep === 1) || loadedData.success) {
+		if ((loadedData && currentStep === 1) || Object.keys(loadedData).length !== 0) {
 			localStorage.setItem(
 				'registrationData',
 				JSON.stringify({
@@ -79,12 +79,12 @@ export default function RegisterForm({ email }: { email: string }) {
 				})
 			);
 
-			localStorage.setItem('registrationDataCurrentStep', JSON.stringify({ currentStep: currentStep + 1 }));
+			localStorage.setItem('registrationDataCurrentStep', JSON.stringify({ currentStep: newStep }));
 		}
 
 		updateData(stepData);
-
-		setCurrentStep((prev) => prev + 1);
+		setAddContributor(false);
+		setCurrentStep(newStep);
 	}
 
 	function handlePrev() {
