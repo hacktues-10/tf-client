@@ -42,6 +42,10 @@ const config = {
 					DEFAULT: 'hsl(var(--muted))',
 					foreground: 'hsl(var(--muted-foreground))',
 				},
+				sand: {
+					DEFAULT: 'hsl(var(--sand))',
+					foreground: 'hsl(var(--sand-foreground))',
+				},
 				accent: {
 					DEFAULT: 'hsl(var(--accent))',
 					foreground: 'hsl(var(--accent-foreground))',

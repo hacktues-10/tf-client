@@ -1,16 +1,18 @@
 import Script from 'next/script';
 import { Analytics } from '@vercel/analytics/react';
-
 import Footer from '@/partials/layout/Footer';
 import Navigation from '@/partials/layout/Navigation';
 
 import './animation.css';
 import './globals.css';
-import VoteProvider from '@/context/vote';
-import VotingLayout from '@/partials/layout/Voting';
-import { GrowthBookServerProvider } from '@/integrations/growthbook/GrowthBookServerProvider';
+// import VoteProvider from '@/context/vote';
+// import VotingLayout from '@/partials/layout/Voting';
+import AuthProvider from './_context/auth-provider';
+import { GrowthBookServerProvider } from '@/app/_integrations/growthbook/GrowthBookServerProvider';
 import { DayProvider } from '@/context/day';
 import SullyAnimation from './SullyAnimation';
+import { Toaster } from '@/components/ui/toaster';
+
 export const metadata = {
 	title: {
 		default: 'TUES Fest 2024',
@@ -115,20 +117,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				<link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="any"></link>
 			</head>
 			<body className=" text-white">
-				<div className="bg-repeat bg-[url(./bg.svg)] w-full overflow-hidden">
-					<DayProvider>
-						<Navigation />
-						{/* <VoteProvider> */}
-						{/*@ts-expect-error */}
-						<GrowthBookServerProvider>
-							<SullyAnimation />
-							{children}
-						</GrowthBookServerProvider>
-						{/* <VotingLayout /> */}
-						{/* </VoteProvider> */}
-						<Footer />
-						<Analytics />
-					</DayProvider>
+				<div className="bg-repeat bg-[url(./bg.svg)] w-full h-full items-center justify-center overflow-hidden">
+					<AuthProvider>
+						<DayProvider>
+							<Navigation />
+							{/* <VoteProvider> */}
+							{/*@ts-expect-error */}
+							<GrowthBookServerProvider>
+								<SullyAnimation />
+								{children}
+							</GrowthBookServerProvider>
+							{/* <VotingLayout /> */}
+							{/* </VoteProvider> */}
+							<Toaster />
+							<Footer />
+							<Analytics />
+						</DayProvider>
+					</AuthProvider>
 				</div>
 			</body>
 		</html>

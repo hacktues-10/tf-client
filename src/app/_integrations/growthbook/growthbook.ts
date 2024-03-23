@@ -1,7 +1,7 @@
 import { GrowthBook } from '@growthbook/growthbook';
 
 import { TFFeatures } from './features';
-import { env } from '../../../env.mjs';
+import { env } from '../../../../env.mjs';
 
 export const getServerSideGrowthBook = async (id?: string) => {
 	const growthbook = new GrowthBook<TFFeatures>({

@@ -1,6 +1,6 @@
 'use client';
 
-import { env } from '../../../env.mjs';
+import { env } from '../../../../env.mjs';
 import { PropsWithChildren, useEffect, useMemo } from 'react';
 import { Attributes, FeatureDefinitions, GrowthBook } from '@growthbook/growthbook';
 import { GrowthBookProvider } from '@growthbook/growthbook-react';
