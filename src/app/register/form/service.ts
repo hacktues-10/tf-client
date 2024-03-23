@@ -17,6 +17,7 @@ export async function RegisterProject(data: RegistrationSchema) {
 
 	try {
 		await db.insert(projectsSubmission).values({
+			//@ts-ignore
 			title: data.project.title,
 			description: data.project.description,
 			github: data.project.github,

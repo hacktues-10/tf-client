@@ -153,7 +153,13 @@ export default function RegisterForm({ email }: { email: string }) {
 				<FileUploadStep
 					className={currentStep === formData.contributors.length + 2 ? '' : 'hidden'}
 					defaultValues={defaultValues}
-					initialData={formData}
+					initialData={{
+						...formData,
+						files: {
+							...formData.files,
+							video: formData.files.video || '',
+						},
+					}}
 					onNext={handleSubmit}
 					onPrev={handlePrev}
 				/>
