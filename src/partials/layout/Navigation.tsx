@@ -16,10 +16,10 @@ const LINKS = [
 	// 	href: '/projects',
 	// 	title: 'Проекти',
 	// },
-	{
-		href: '#schedule',
-		title: 'Програма',
-	},
+	// {
+	// 	href: '#schedule',
+	// 	title: 'Програма',
+	// },
 	// {
 	// 	href: '/projects',
 	// 	title: 'Гласуване',
