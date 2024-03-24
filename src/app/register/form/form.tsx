@@ -6,10 +6,10 @@ import { useToast } from '@/components/ui/use-toast';
 import { cn } from '@/lib/utils';
 
 import { RegistrationSchema, registrationSchema } from './schema';
-import { RegisterProject } from './service';
+import ProjectStep from './steps/projectStep';
 import ContributorStep from './steps/contributorStep';
 import FileUploadStep from './steps/filesUploadStep';
-import ProjectStep from './steps/projectStep';
+import UploadContextProvider from '@/app/register/context/upload';
 
 const defaultValues = {
 	contributors: [
@@ -126,6 +126,21 @@ export default function RegisterForm({ email }: { email: string }) {
 	}
 
 	return (
+		<UploadContextProvider>
+			<div
+				className={cn(
+					'xl:w-1/4 w-5/6 md:w-3/4 m-5 mt-24 bg-black flex z-30  p-5 rounded-xl',
+					currentStep === 2 && 'mt-28'
+				)}
+			>
+				<div className="space-y-1 w-full">
+					<ProjectStep
+						className={currentStep === 1 ? '' : 'hidden'}
+						defaultValues={defaultValues}
+						initialData={formData}
+						onNext={handleNext}
+						onPrev={handlePrev}
+					/>
 		<div
 			className={cn(
 				'relative z-30 m-5 mt-24 flex w-5/6 rounded-xl bg-black  p-5 md:w-3/4 xl:w-1/4',
@@ -141,35 +156,36 @@ export default function RegisterForm({ email }: { email: string }) {
 					onPrev={handlePrev}
 				/>
 
-				{formData.contributors.map((contributor, index) => (
-					<ContributorStep
-						key={index}
-						className={currentStep === index + 2 ? '' : 'hidden'}
+					{formData.contributors.map((contributor, index) => (
+						<ContributorStep
+							key={index}
+							className={currentStep === index + 2 ? '' : 'hidden'}
+							defaultValues={defaultValues}
+							index={index}
+							email={email}
+							initialData={formData}
+							onNext={handleNext}
+							onPrev={handlePrev}
+							currentStep={currentStep}
+							setAddContributor={setAddContributor}
+							addContributor={addContributor}
+						/>
+					))}
+					<FileUploadStep
+						className={currentStep === formData.contributors.length + 2 ? '' : 'hidden'}
 						defaultValues={defaultValues}
-						index={index}
-						email={email}
-						initialData={formData}
-						onNext={handleNext}
+						initialData={{
+							...formData,
+							files: {
+								...formData.files,
+								video: formData.files.video || '',
+							},
+						}}
+						onNext={handleSubmit}
 						onPrev={handlePrev}
-						currentStep={currentStep}
-						setAddContributor={setAddContributor}
-						addContributor={addContributor}
 					/>
-				))}
-				<FileUploadStep
-					className={currentStep === formData.contributors.length + 2 ? '' : 'hidden'}
-					defaultValues={defaultValues}
-					initialData={{
-						...formData,
-						files: {
-							...formData.files,
-							video: formData.files.video || '',
-						},
-					}}
-					onNext={handleSubmit}
-					onPrev={handlePrev}
-				/>
+				</div>
 			</div>
-		</div>
+		</UploadContextProvider>
 	);
 }

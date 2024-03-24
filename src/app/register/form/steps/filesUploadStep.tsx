@@ -9,6 +9,7 @@ import { z } from 'zod';
 import { createPresignedUrl } from '../actions';
 import { FilesReal } from '../schema';
 import StepButtons from './stepButtons';
+import { useUploadContext } from '@/app/register/context/upload';
 
 type FileUploadSchema = z.infer<typeof FilesReal>;
 
@@ -42,30 +43,20 @@ export default function FileUploadStep({
 	const [validPenokarton, setValidPenokarton] = useState(false);
 	const [targetPenokarton, setTargetPenokarton] = useState<File>();
 
+	const { addUpload } = useUploadContext();
+
 	const canSubmit = validImages && validPenokarton;
 
 	async function onSubmit() {
+		const promises = [] as Promise<void>[];
+
 		if (targetImages) {
-			const renamedImages = Array.from(targetImages).map((file) => {
+			for (const file of Array.from(targetImages)) {
 				const newBlob = new Blob([file], { type: file.type });
 				const renamedFile = new File([newBlob], `${initialData.project.title}-${file.name}`, {
 					type: file.type,
 				});
-
-				return renamedFile;
-			});
-
-			for (let i = 0; i < renamedImages.length; i++) {
-				const presignedUrl = await createPresignedUrl(renamedImages[i].name);
-
-				const res = await fetch(presignedUrl, {
-					method: 'PUT',
-					body: renamedImages[i],
-				});
-
-				if (!res.ok) {
-					console.error('Error uploading image');
-				}
+				promises.push(addUpload(renamedFile, file.name));
 			}
 		}
 
@@ -74,17 +65,7 @@ export default function FileUploadStep({
 			const renamedFile = new File([newBlob], `${initialData.project.title}-${targetVideo.name}`, {
 				type: targetVideo.type,
 			});
-
-			const presignedUrl = await createPresignedUrl(renamedFile.name);
-
-			const res = await fetch(presignedUrl, {
-				method: 'PUT',
-				body: renamedFile,
-			});
-
-			if (!res.ok) {
-				console.error('Error uploading video');
-			}
+			promises.push(addUpload(renamedFile, targetVideo.name));
 		}
 
 		if (targetThumbnail) {
@@ -92,17 +73,7 @@ export default function FileUploadStep({
 			const renamedFile = new File([newBlob], `${initialData.project.title}-Thumbnail-${targetThumbnail.name}`, {
 				type: targetThumbnail.type,
 			});
-
-			const presignedUrl = await createPresignedUrl(renamedFile.name);
-
-			const res = await fetch(presignedUrl, {
-				method: 'PUT',
-				body: renamedFile,
-			});
-
-			if (!res.ok) {
-				console.error('Error uploading thumbnail');
-			}
+			promises.push(addUpload(renamedFile, targetThumbnail.name));
 		}
 
 		if (targetPenokarton) {
@@ -114,18 +85,10 @@ export default function FileUploadStep({
 					type: targetPenokarton.type,
 				}
 			);
-
-			const presignedUrl = await createPresignedUrl(renamedFile.name);
-
-			const res = await fetch(presignedUrl, {
-				method: 'PUT',
-				body: renamedFile,
-			});
-
-			if (!res.ok) {
-				console.error('Error uploading penokarton');
-			}
+			promises.push(addUpload(renamedFile));
 		}
+
+		await Promise.all(promises);
 	}
 
 	const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
