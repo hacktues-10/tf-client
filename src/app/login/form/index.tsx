@@ -55,7 +55,7 @@ export const SignInForm = (props: { isRegister: boolean }) => {
 		// TODO: use redirect: false
 		return signIn('email', {
 			...credentials,
-			callbackUrl: searchParams.get('callbackUrl') ?? '/',
+			callbackUrl: searchParams.get('callbackUrl') ?? '/register',
 		});
 	});
 
