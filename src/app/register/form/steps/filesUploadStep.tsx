@@ -8,6 +8,7 @@ import { FilesReal } from '../schema';
 import StepButtons from './stepButtons';
 type FileUploadSchema = z.infer<typeof FilesReal>;
 import { useEffect, useState } from 'react';
+import { createPresignedUrl } from '../actions';
 
 export default function FileUploadStep({
 	defaultValues,
@@ -49,15 +50,19 @@ export default function FileUploadStep({
 
 				return renamedFile;
 			});
-			const formData = new FormData();
 
 			for (let i = 0; i < renamedImages.length; i++) {
-				formData.append('file', renamedImages[i], renamedImages[i].name);
+				const presignedUrl = await createPresignedUrl(renamedImages[i].name);
+
+				const res = await fetch(presignedUrl, {
+					method: 'PUT',
+					body: renamedImages[i],
+				});
+
+				if (!res.ok) {
+					console.error('Error uploading image');
+				}
 			}
-			const res = await fetch('api/upload', {
-				method: 'POST',
-				body: formData,
-			});
 		}
 
 		if (targetVideo) {
@@ -65,13 +70,17 @@ export default function FileUploadStep({
 			const renamedFile = new File([newBlob], `${initialData.project.title}-${targetVideo.name}`, {
 				type: targetVideo.type,
 			});
-			const formData = new FormData();
 
-			formData.append('file', renamedFile, renamedFile.name);
-			const res = await fetch('api/upload', {
-				method: 'POST',
-				body: formData,
+			const presignedUrl = await createPresignedUrl(renamedFile.name);
+
+			const res = await fetch(presignedUrl, {
+				method: 'PUT',
+				body: renamedFile,
 			});
+
+			if (!res.ok) {
+				console.error('Error uploading video');
+			}
 		}
 
 		if (targetThumbnail) {
@@ -79,13 +88,17 @@ export default function FileUploadStep({
 			const renamedFile = new File([newBlob], `${initialData.project.title}-Thumbnail-${targetThumbnail.name}`, {
 				type: targetThumbnail.type,
 			});
-			const formData = new FormData();
 
-			formData.append('file', renamedFile, renamedFile.name);
-			const res = await fetch('api/upload', {
-				method: 'POST',
-				body: formData,
+			const presignedUrl = await createPresignedUrl(renamedFile.name);
+
+			const res = await fetch(presignedUrl, {
+				method: 'PUT',
+				body: renamedFile,
 			});
+
+			if (!res.ok) {
+				console.error('Error uploading thumbnail');
+			}
 		}
 	}
 
