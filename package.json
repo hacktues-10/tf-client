@@ -13,6 +13,7 @@
 	},
 	"dependencies": {
 		"@aws-sdk/client-s3": "^3.525.0",
+		"@aws-sdk/s3-request-presigner": "^3.540.0",
 		"@growthbook/growthbook": "^0.32.0",
 		"@growthbook/growthbook-react": "^0.22.0",
 		"@hookform/resolvers": "^3.3.4",
