@@ -43,7 +43,7 @@ export default function FileUploadStep({
 	const [validPenokarton, setValidPenokarton] = useState(false);
 	const [targetPenokarton, setTargetPenokarton] = useState<File>();
 
-	const { addUpload } = useUploadContext();
+	const { addUpload, hideDialog } = useUploadContext();
 
 	const canSubmit = validImages && validPenokarton;
 
@@ -89,6 +89,8 @@ export default function FileUploadStep({
 		}
 
 		await Promise.all(promises);
+
+		hideDialog();
 	}
 
 	const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -23,6 +23,9 @@ const UploadContext = createContext(
 		hideDialog: () => void;
 		isComplete: () => boolean;
 		hasErrors: () => boolean;
+		uploadingCount: number;
+		completedCount: number;
+		errorCount: number;
 	}
 );
 
@@ -75,6 +78,9 @@ function UploadContextProvider({ children }: { children: React.ReactNode }) {
 	const hideDialog = useCallback(() => setOngoingUploads((prev) => ({ ...prev, isDialogOpen: false })), []);
 	const isComplete = useCallback(() => ongoingUploads.files.every((f) => f.status === 'complete'), [ongoingUploads]);
 	const hasErrors = useCallback(() => ongoingUploads.files.some((f) => f.status === 'error'), [ongoingUploads]);
+	const uploadingCount = ongoingUploads.files.filter((f) => f.status === 'uploading').length;
+	const completedCount = ongoingUploads.files.filter((f) => f.status === 'complete').length;
+	const errorCount = ongoingUploads.files.filter((f) => f.status === 'error').length;
 
 	useEffect(() => {
 		const unsubscribes = subscribes.map((s) => s());
@@ -92,6 +98,9 @@ function UploadContextProvider({ children }: { children: React.ReactNode }) {
 				hideDialog,
 				isComplete,
 				hasErrors,
+				uploadingCount,
+				completedCount,
+				errorCount,
 			}}
 		>
 			{children}
