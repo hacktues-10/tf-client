@@ -31,8 +31,12 @@ const About = () => (
 				</p>
 				<p>
 					Следете страницата на събитието ето{' '}
-					<Link href="" className="text-sand font-semibold underline cursor-pointer">
-						тук
+					<Link
+						href="https://www.facebook.com/HackTUES"
+						target="_blank"
+						className="text-sand font-semibold underline cursor-pointer"
+					>
+						Hack TUES § TUES FEST
 					</Link>
 					!
 				</p>
