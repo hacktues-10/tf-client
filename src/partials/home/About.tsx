@@ -25,12 +25,12 @@ const About = () => (
 					предметите, които се изучават в ТУЕС към ТУ-София.
 				</p>
 				<p className="">
-					TUES FEST 2024 &quot;Explore your horizon & Celebration through Innovation&quot; се организира от
+					TUES FEST 2024 &quot;Expand your horizon & Celebration through Innovation&quot; се организира от
 					ученици за ученици! Доброволческият екип на организаторите вярват, че за поредна година ще покажат
 					на света какво е да си ученик в ТУЕС към ТУ - София.
 				</p>
 				<p>
-					Следете страницата на събитието ето{' '}
+					Следете страницата на събитието{' '}
 					<Link
 						href="https://www.facebook.com/HackTUES"
 						target="_blank"
