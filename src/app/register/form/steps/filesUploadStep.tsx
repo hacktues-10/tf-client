@@ -1,5 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { UseFormReturn, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
+import Link from 'next/link';
 import { z } from 'zod';
 
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
@@ -348,7 +349,15 @@ export default function FileUploadStep({
 					<FormDescription>
 						Можете да качите до 5 снимки, видео, thumbnail и пенокартон за вашия проект. Задължително е да
 						качите снимките на проекта и Пенокартона си тук, а видеото и thumbnail-а ще можете да ги качите
-						после.
+						после. Допълнителна информация можете да намерите{' '}
+						<Link
+							href="https://docs.google.com/document/d/1WKlx92MRsf17cE-lgwCfdETZQxh4x14npFX9rjsuZkI/edit?usp=sharing"
+							target="_blank"
+							className="text-sand underline font-semibold"
+						>
+							тук
+						</Link>
+						.
 					</FormDescription>
 					<StepButtons
 						onPrev={onPrev}
