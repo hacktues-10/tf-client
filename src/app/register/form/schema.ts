@@ -90,7 +90,7 @@ const projectSchema = z.object({
 		description: z
 			.string()
 			.min(10, { message: 'Невалидно описание на проекта. Трябва да е дълго поне 10 символа.' })
-			.max(500, { message: 'Невалидно описание на проекта' }),
+			.max(2048, { message: 'Твърде дълго описание на проекта.' }),
 		github: z.string().url({ message: 'Невалиден URL' }),
 		type: z.enum(['Софтуер', 'Хардуер', 'Battle Bots', 'Компютърни мрежи'], {
 			errorMap: (issue, ctx) => ({ message: 'Невалиден тип на проекта' }),
