@@ -7,7 +7,7 @@ import Image from 'next/image';
 
 const About = () => (
 	<section id="about" className="p-8 md:p-12">
-		<div className="flex flex-col lg:flex-row gap-8 whitespace-pre-line items-center">
+		<div className="flex flex-col lg:flex-row gap-8 whitespace-pre-line items-center mb-5">
 			{/* Text info */}
 			<div className="w-full flex flex-col gap-4 text-justify">
 				<h2 className="bg-gradient text-transparent font-black text-4xl sm:text-5xl bg-clip-text">
@@ -40,20 +40,7 @@ const About = () => (
 					</Link>
 					!
 				</p>
-				<Link
-					href={'https://tues.bg'}
-					target="_blank"
-					className="w-fit px-4 py-2 m-auto my-4 rounded-md text-xl bg-gradient font-bold uppercase hover:scale-105 transition-transform duration-300 shadow-2xl"
-				>
-					<span
-						style={{
-							textShadow: '3px 3px 13px rgba(0, 0, 0, 0.4)',
-						}}
-						className="text-zinc"
-					>
-						{ABOUT_BUTTON}
-					</span>
-				</Link>
+
 				{/* <i>{ABOUT_SUBTEXT}</i> */}
 			</div>
 			{/* Image */}
@@ -66,6 +53,22 @@ const About = () => (
 					/>
 				</div>
 			</div>
+		</div>
+		<div className="w-full lg:w-1/2 justify-center">
+			<Link
+				href={'https://tues.bg'}
+				target="_blank"
+				className="w-fit px-4 py-2 m-auto md:mx-1/4 my-4 rounded-md text-xl bg-gradient font-bold uppercase hover:scale-105 transition-transform duration-300 shadow-2xl"
+			>
+				<span
+					style={{
+						textShadow: '3px 3px 13px rgba(0, 0, 0, 0.4)',
+					}}
+					className="text-zinc"
+				>
+					{ABOUT_BUTTON}
+				</span>
+			</Link>
 		</div>
 	</section>
 );
