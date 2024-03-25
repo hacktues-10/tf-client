@@ -63,6 +63,9 @@ const ApplyPage = () => (
 						технологично училище от национално значение, което подготвя бъдещите лидери на ИТ сектора в
 						България и отвъд.
 					</p>
+					<p className="text-justify">
+						За 2023 година, ТУЕС се нареди на второ място по минимален бал на първо класиране в 7-и клас!
+					</p>
 					<div className="relative w-full flex flex-col lg:flex-row gap-8 items-start">
 						<div className="w-full flex flex-col gap-4">
 							<p className="text-lg">Кое прави ТУЕС уникално училище?</p>

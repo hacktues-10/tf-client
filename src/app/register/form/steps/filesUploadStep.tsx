@@ -332,7 +332,7 @@ export default function FileUploadStep({
 						name="files.penokarton"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel className="mt-8">Пенокартон (размер А2)</FormLabel>
+								<FormLabel className="mt-8">Пенокартон (размер А2, pdf формат)</FormLabel>
 								<FormControl>
 									<Input
 										id="penokarton"
@@ -348,7 +348,7 @@ export default function FileUploadStep({
 					/>
 					<FormDescription>
 						Можете да качите до 5 снимки, видео, thumbnail и пенокартон за вашия проект. Задължително е да
-						качите снимките на проекта и Пенокартона си тук, а видеото и thumbnail-а ще можете да ги качите
+						качите снимките на проекта и пенокартона си тук, а видеото и thumbnail-а ще можете да ги качите
 						после. Допълнителна информация можете да намерите{' '}
 						<Link
 							href="https://docs.google.com/document/d/1WKlx92MRsf17cE-lgwCfdETZQxh4x14npFX9rjsuZkI/edit?usp=sharing"

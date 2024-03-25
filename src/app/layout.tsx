@@ -116,8 +116,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				<Script src="https://www.googletagmanager.com/gtag/js?id=G-1H1H1CR559" strategy="afterInteractive" />
 				<link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="any"></link>
 			</head>
-			<body className=" text-white">
-				<div className="bg-repeat bg-[url(./bg.svg)] w-full h-full items-center justify-center overflow-hidden">
+			<body className=" text-white overflow-hidden bg-repeat bg-[url(./bg.svg)] w-screen overflow-y-scroll h-full items-center justify-center overflow-x-hidden">
+				<div className="">
 					<AuthProvider>
 						<DayProvider>
 							<Navigation />
