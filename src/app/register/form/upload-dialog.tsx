@@ -4,7 +4,6 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { useUploadContext } from '@/app/register/context/upload';
 import { useEffect, useState } from 'react';
 import invariant from 'tiny-invariant';
-import { Loader2 } from 'lucide-react';
 import { TbCheck, TbExclamationCircle, TbLoader2 } from 'react-icons/tb';
 import { cn } from '@/lib/utils';
 import { Progress } from '@/components/ui/progress';
@@ -20,7 +19,7 @@ export default function UploadDialog() {
 		totalCount: ongoingUploads.files.length,
 	});
 
-	const shouldBeShown = uploadingCount || errorCount;
+	const shouldBeShown = !!uploadingCount || !!errorCount;
 
 	useEffect(() => {
 		const timeout = setTimeout(() => {
@@ -29,7 +28,7 @@ export default function UploadDialog() {
 			}
 		}, 3000);
 		return () => clearTimeout(timeout);
-	}, [uploadingCount, errorCount, ongoingUploads.isDialogOpen, showDialog, autoOpen]);
+	}, [uploadingCount, errorCount, ongoingUploads.isDialogOpen, showDialog, autoOpen, shouldBeShown]);
 
 	return (
 		<Dialog
@@ -45,7 +44,7 @@ export default function UploadDialog() {
 			}}
 		>
 			{shouldBeShown && (
-				<DialogTrigger className="absolute bottom-0 right-0 p-4 cursor-pointer bg-[#5142FC] rounded-tl-lg text-white flex items-center gap-2">
+				<DialogTrigger className="absolute bottom-0 right-0 p-4 cursor-pointer bg-sand text-black rounded-tl-lg flex items-center gap-2">
 					{/*<Loader2 className="animate-spin shrink-0" />*/}
 					<OverlayIcon uploadingCount={uploadingCount} errorCount={errorCount} />
 					{resolveOverlayText({
