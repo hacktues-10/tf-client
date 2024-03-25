@@ -58,7 +58,7 @@ const About = () => (
 			<Link
 				href={'https://tues.bg'}
 				target="_blank"
-				className="w-fit px-4 py-2 m-auto md:mx-1/4 my-4 rounded-md text-xl bg-gradient font-bold uppercase hover:scale-105 transition-transform duration-300 shadow-2xl"
+				className="w-fit text-md px-4 py-2 m-auto md:mx-1/4 my-4 rounded-md sm:text-xl bg-gradient font-bold uppercase hover:scale-105 transition-transform duration-300 shadow-2xl"
 			>
 				<span
 					style={{
