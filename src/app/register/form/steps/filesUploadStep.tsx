@@ -37,8 +37,10 @@ export default function FileUploadStep({
 	const [validVideo, setValidVideo] = useState(false);
 	const [targetThumbnail, setTargetThumbnail] = useState<File>();
 	const [validThumbnail, setValidThumbnail] = useState(false);
+	const [validPenokarton, setValidPenokarton] = useState(false);
+	const [targetPenokarton, setTargetPenokarton] = useState<File>();
 
-	const canSubmit = validImages;
+	const canSubmit = validImages && validPenokarton;
 
 	async function onSubmit() {
 		if (targetImages) {
@@ -98,6 +100,28 @@ export default function FileUploadStep({
 
 			if (!res.ok) {
 				console.error('Error uploading thumbnail');
+			}
+		}
+
+		if (targetPenokarton) {
+			const newBlob = new Blob([targetPenokarton], { type: targetPenokarton.type });
+			const renamedFile = new File(
+				[newBlob],
+				`${initialData.project.title}-Penokarton-${targetPenokarton.name}`,
+				{
+					type: targetPenokarton.type,
+				}
+			);
+
+			const presignedUrl = await createPresignedUrl(renamedFile.name);
+
+			const res = await fetch(presignedUrl, {
+				method: 'PUT',
+				body: renamedFile,
+			});
+
+			if (!res.ok) {
+				console.error('Error uploading penokarton');
 			}
 		}
 	}
@@ -173,6 +197,37 @@ export default function FileUploadStep({
 			setTargetThumbnail(file);
 			setValidThumbnail(true);
 			form.setValue('files.thumbnail', `${initialData.project.title}-Thumbnail-${file.name}`);
+		}
+	};
+
+	const handlePenokartonChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const file = e.target.files?.[0];
+
+		if (file) {
+			if (file.type !== 'application/pdf') {
+				form.setError('files.penokarton', {
+					type: 'manual',
+					message: 'Можете да качите само pdf файл',
+				});
+				setValidPenokarton(false);
+				e.target.value = '';
+				return;
+			}
+
+			if (file.size > 20971520) {
+				form.setError('files.penokarton', {
+					type: 'manual',
+					message: 'Файлът трябва да е по-малък от 20MB',
+				});
+				setValidPenokarton(false);
+				e.target.value = '';
+				return;
+			}
+			form.clearErrors('files.penokarton');
+
+			setTargetPenokarton(file);
+			setValidPenokarton(true);
+			form.setValue('files.penokarton', `${initialData.project.title}-Penokarton-${file.name}`);
 		}
 	};
 
@@ -271,9 +326,29 @@ export default function FileUploadStep({
 							</FormItem>
 						)}
 					/>
+					<FormField
+						control={form.control}
+						name="files.penokarton"
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel className="mt-8">Пенокартон (размер А2)</FormLabel>
+								<FormControl>
+									<Input
+										id="penokarton"
+										accept=".pdf"
+										onChange={handlePenokartonChange}
+										type="file"
+										className="bg-sand text-black hover:cursor-pointer"
+									/>
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
 					<FormDescription>
-						Можете да качите до 5 снимки, видео и thumbnail за вашия проект. Задължително е да качите
-						снимките на проекта си тук, а видеото и thumbnail-а ще можете да ги качите после.
+						Можете да качите до 5 снимки, видео, thumbnail и пенокартон за вашия проект. Задължително е да
+						качите снимките на проекта и Пенокартона си тук, а видеото и thumbnail-а ще можете да ги качите
+						после.
 					</FormDescription>
 					<StepButtons
 						onPrev={onPrev}

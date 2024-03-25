@@ -39,9 +39,6 @@ export default function ProjectStep({
 		form.reset(initialData);
 	}, [initialData, form]);
 
-	useEffect(() => {
-		console.log(form.getValues());
-	}, [form]);
 	return (
 		<div className={className}>
 			<Form {...form}>
@@ -114,6 +111,19 @@ export default function ProjectStep({
 								<FormLabel>Линк към хранилище</FormLabel>
 								<FormControl>
 									<Input placeholder="https://github.com/dimitarNzhelev/elektrodvigatel" {...field} />
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<FormField
+						control={form.control}
+						name="project.demo"
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>Линк към демо (незадължително)</FormLabel>
+								<FormControl>
+									<Input placeholder="https://project.bg" {...field} />
 								</FormControl>
 								<FormMessage />
 							</FormItem>

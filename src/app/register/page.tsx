@@ -6,7 +6,7 @@ export default async function RegisterPage() {
 	const session = await getSession();
 
 	return (
-		<div className="min-h-screen relative z-50 items-center w-full flex justify-center self-center">
+		<div className="min-h-screen items-center w-full flex justify-center self-center">
 			<IfTfFeatureOn feature="tf-register-projects">
 				{session?.user?.email && <RegisterForm email={session?.user?.email} />}
 			</IfTfFeatureOn>

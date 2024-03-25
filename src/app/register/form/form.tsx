@@ -25,11 +25,13 @@ const defaultValues = {
 		description: '',
 		type: '' as any,
 		github: '',
+		demo: '',
 	},
 	files: {
 		images: [''],
 		video: '',
 		thumbnail: '',
+		penokarton: '',
 	},
 } satisfies RegistrationSchema;
 export default function RegisterForm({ email }: { email: string }) {
@@ -99,6 +101,7 @@ export default function RegisterForm({ email }: { email: string }) {
 				images: stepData.files?.images || [],
 				video: stepData.files?.video ?? '',
 				thumbnail: stepData.files?.thumbnail ?? '',
+				penokarton: stepData.files?.penokarton ?? '',
 			},
 		};
 		updateData(mergedData);
@@ -122,7 +125,7 @@ export default function RegisterForm({ email }: { email: string }) {
 	return (
 		<div
 			className={cn(
-				'xl:w-1/4 w-5/6 md:w-3/4 m-5 mt-24 bg-black flex z-30  p-5 rounded-xl',
+				'xl:w-1/4 w-5/6 md:w-3/4 m-5 mt-24 bg-black flex z-30  p-5 relative rounded-xl',
 				currentStep === 2 && 'mt-28'
 			)}
 		>

@@ -18,6 +18,7 @@ const FilesReal = z.object({
 		images: z.array(z.string()),
 		video: z.string().optional(),
 		thumbnail: z.string().optional(),
+		penokarton: z.string(),
 	}),
 });
 
@@ -94,6 +95,7 @@ const projectSchema = z.object({
 		type: z.enum(['Софтуер', 'Хардуер', 'Battle Bots', 'Компютърни мрежи'], {
 			errorMap: (issue, ctx) => ({ message: 'Невалиден тип на проекта' }),
 		}),
+		demo: z.string().optional(),
 	}),
 });
 

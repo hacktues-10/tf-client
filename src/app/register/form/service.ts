@@ -26,6 +26,8 @@ export async function RegisterProject(data: RegistrationSchema) {
 			images: imagesString,
 			video: data.files.video,
 			contributors: contributosString,
+			penokarton: data.files.penokarton,
+			demo: data.project.demo,
 		});
 
 		return { success: true, message: 'Проектът е регистриран успешно' };
