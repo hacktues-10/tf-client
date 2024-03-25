@@ -122,21 +122,21 @@ const AboutPage = () => {
 									Cisco академия за обучение в актуалните мрежови технологии
 								</li>
 								<li className="p-4 rounded-xl text-md bg-transparent border sm:border-2 border-[#F2F2F2]">
-									вградени микроконтролерни системи на базата на ардуино
+									Вградени микроконтролерни системи на базата на ардуино
 								</li>
 								<li className="p-4 rounded-xl text-md bg-transparent border sm:border-2 border-[#F2F2F2]">
-									участие в национални и международни състезания по програмиране, компютърни мрежи и
+									Участие в национални и международни състезания по програмиране, компютърни мрежи и
 									роботика
 								</li>
 								<li className="p-4 rounded-xl text-md bg-transparent border sm:border-2 border-[#F2F2F2]">
-									възможност за изява на ежегодното състезание по програмиране HackTUES и изложението
+									Възможност за изява на ежегодното състезание по програмиране HackTUES и изложението
 									на ученически проекти ТУЕС Фест
 								</li>
 								<li className="p-4 rounded-xl text-md bg-transparent border sm:border-2 border-[#F2F2F2]">
-									работилници и лекции на различни теми, водени от професионалисти, завършили ТУЕС
+									Работилници и лекции на различни теми, водени от професионалисти, завършили ТУЕС
 								</li>
 								<li className="p-4 rounded-xl text-md bg-transparent border sm:border-2 border-[#F2F2F2]">
-									участие в много различни извънкласни клубове
+									Участие в много различни извънкласни клубове
 								</li>
 							</ul>
 						</li>
@@ -177,19 +177,19 @@ const AboutPage = () => {
 
 					<ul className="w-full flex flex-col gap-4">
 						<li className="p-4 rounded-xl text-md border sm:border-2 border-[#F2F2F2] bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 drop-shadow-lg">
-							тясната интеграция с Технически университет - София
+							Тясната интеграция с Технически университет - София
 						</li>
 						<li className="p-4 rounded-xl text-md border sm:border-2 border-[#F2F2F2] bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 drop-shadow-lg">
-							гъвкавия си специализиран учебен план
+							Гъвкавия си специализиран учебен план
 						</li>
 						<li className="p-4 rounded-xl text-md border sm:border-2 border-[#F2F2F2] bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 drop-shadow-lg">
-							преподаватели от университета и ИТ практици
+							Преподаватели от университета и ИТ практици
 						</li>
 						<li className="p-4 rounded-xl text-md border sm:border-2 border-[#F2F2F2] bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 drop-shadow-lg">
-							активната роля на завършилите в живота на училището
+							Активната роля на завършилите в живота на училището
 						</li>
 						<li className="p-4 rounded-xl text-md border sm:border-2 border-[#F2F2F2] bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-0 drop-shadow-lg">
-							тясната връзка с реалния бизнес за учебни и извънучебни занимания, практики по
+							Тясната връзка с реалния бизнес за учебни и извънучебни занимания, практики по
 							специалността, дипломни проекти и др.
 						</li>
 					</ul>
