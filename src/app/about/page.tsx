@@ -94,7 +94,7 @@ const AboutPage = () => {
 					</div>
 					<div className="w-full max-w-3xl lg:w-2/5 lg:block shrink-0 overflow-hidden bg-bg-color bg-transparent border sm:border-2 border-[#F2F2F2] rounded-xl">
 						<img
-							src="/assets/about/about.jpg"
+							src="/assets/about/about.png"
 							alt="Ученици на ТУЕС (Технологично училище “Електронни системи” към Технически Университет - София)"
 							className="object-center w-full max-w-3xl"
 						/>
