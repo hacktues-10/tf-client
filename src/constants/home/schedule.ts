@@ -75,3 +75,46 @@ export const SCHEDULE = [
 		pos: 'right',
 	},
 ];
+
+export const LECTORS = [
+	{
+		name: 'Име Фамилия',
+		photo: 'https://via.placeholder.com/150',
+		about: 'Кратко описание на лектора',
+	},
+	{
+		name: 'Име Фамилия',
+		photo: 'https://via.placeholder.com/150',
+		about: 'Кратко описание на лектора',
+	},
+	{
+		name: 'Име Фамилия',
+		photo: 'https://via.placeholder.com/150',
+		about: 'Кратко описание на лектора',
+	},
+	{
+		name: 'Име Фамилия',
+		photo: 'https://via.placeholder.com/150',
+		about: 'Кратко описание на лектора',
+	},
+	{
+		name: 'Име Фамилия',
+		photo: 'https://via.placeholder.com/150',
+		about: 'Кратко описание на лектора',
+	},
+	{
+		name: 'Име Фамилия',
+		photo: 'https://via.placeholder.com/150',
+		about: 'Кратко описание на лектора',
+	},
+	{
+		name: 'Име Фамилия',
+		photo: 'https://via.placeholder.com/150',
+		about: 'Кратко описание на лектора',
+	},
+	{
+		name: 'Име Фамилия',
+		photo: 'https://via.placeholder.com/150',
+		about: 'Кратко описание на лектора',
+	},
+];
