@@ -26,6 +26,7 @@ const UploadContext = createContext(
 		uploadingCount: number;
 		completedCount: number;
 		errorCount: number;
+		clearCompleted: () => void;
 	}
 );
 
@@ -81,6 +82,12 @@ function UploadContextProvider({ children }: { children: React.ReactNode }) {
 	const uploadingCount = ongoingUploads.files.filter((f) => f.status === 'uploading').length;
 	const completedCount = ongoingUploads.files.filter((f) => f.status === 'complete').length;
 	const errorCount = ongoingUploads.files.filter((f) => f.status === 'error').length;
+	const clearCompleted = useCallback(() => {
+		setOngoingUploads((prev) => ({
+			...prev,
+			files: prev.files.filter((f) => f.status !== 'complete'),
+		}));
+	}, []);
 
 	useEffect(() => {
 		const unsubscribes = subscribes.map((s) => s());
@@ -101,6 +108,7 @@ function UploadContextProvider({ children }: { children: React.ReactNode }) {
 				uploadingCount,
 				completedCount,
 				errorCount,
+				clearCompleted,
 			}}
 		>
 			{children}
