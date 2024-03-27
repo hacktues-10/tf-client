@@ -16,10 +16,10 @@ const LINKS = [
 	// 	href: '/projects',
 	// 	title: 'Проекти',
 	// },
-	// {
-	// 	href: '#schedule',
-	// 	title: 'Програма',
-	// },
+	{
+		href: '#schedule',
+		title: 'Програма',
+	},
 	// {
 	// 	href: '/projects',
 	// 	title: 'Гласуване',
@@ -219,7 +219,11 @@ const Navigation = () => {
 											key={link.title}
 										>
 											<Linky className="!mx-4" href={link.href}>
-												{link.title}
+												{link.title == 'Програма'
+													? day == 1
+														? 'Лектори - Ден 1'
+														: 'Програма - Ден 2'
+													: link.title}
 											</Linky>
 										</li>
 									))}
