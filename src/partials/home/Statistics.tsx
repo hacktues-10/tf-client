@@ -1,20 +1,22 @@
 'use client';
+
 import { Card, CardContent, CardDescription, CardTitle } from '@/components/ui/card';
 import { STATISTICS } from '@/info/statistics';
-import { TbSTurnDown } from 'react-icons/tb';
-import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Cell } from 'recharts';
-import About from './About';
 import { BsPeople } from 'react-icons/bs';
-import { PiProjectorScreenChart } from 'react-icons/pi';
 import { FaRegBuilding } from 'react-icons/fa';
 import { GrAchievement } from 'react-icons/gr';
+import { PiProjectorScreenChart } from 'react-icons/pi';
+import { TbSTurnDown } from 'react-icons/tb';
+import { Bar, BarChart, Cell, ResponsiveContainer, XAxis, YAxis } from 'recharts';
+
+import About from './About';
+
 import './styles.css';
-import { useState } from 'react';
-import { FOLDERS } from '@/info/folders';
-import { FaRegFolder } from 'react-icons/fa';
-import { FaRegFolderOpen } from 'react-icons/fa';
+
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { useEffect } from 'react';
+import { FOLDERS } from '@/info/folders';
+import { FaRegFolder, FaRegFolderOpen } from 'react-icons/fa';
 
 export default function Statistics() {
 	const [selectedFolder, setSelectedFolder] = useState(8);

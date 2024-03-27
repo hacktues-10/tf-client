@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-
 import { CheckAuthenticationResponse } from '@/app/api/checkAuthentication/route';
 
 export async function middleware(request: NextRequest) {

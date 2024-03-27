@@ -1,11 +1,11 @@
 'use client';
-import Link from 'next/link';
 
-import { TbMenu2, TbMapPin, TbSchool } from 'react-icons/tb';
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
+import SullyHeader from '@/app/SullyHeader';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useDay } from '@/context/day';
-import SullyHeader from '@/app/SullyHeader';
+import { TbMapPin, TbMenu2, TbSchool } from 'react-icons/tb';
 
 const LINKS = [
 	{

@@ -1,7 +1,8 @@
+import { IfTfFeatureOff, IfTfFeatureOn } from '../_integrations/growthbook/components';
 import { getSession } from '../api/auth/session';
-import RegisterForm from './form/form';
-import { IfTfFeatureOn, IfTfFeatureOff } from '../_integrations/growthbook/components';
 import NotFound from '../not-found';
+import RegisterForm from './form/form';
+
 export default async function RegisterPage() {
 	const session = await getSession();
 

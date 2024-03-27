@@ -1,8 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
-import { Separator } from '@/components/ui/separator';
 import Image from 'next/image';
 import Link from 'next/link';
-
+import { Separator } from '@/components/ui/separator';
 import { TbBriefcase, TbHistory, TbSchool, TbTrophy } from 'react-icons/tb';
 
 export const metadata = {

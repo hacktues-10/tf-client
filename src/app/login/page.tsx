@@ -1,11 +1,11 @@
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
-
-import { getSession } from '../api/auth/session';
-import { IfTfFeatureOff, IfTfFeatureOn } from '../_integrations/growthbook/components';
 import { Card } from '@/components/ui/card';
-import { SignInForm } from './form';
+
+import { IfTfFeatureOff, IfTfFeatureOn } from '../_integrations/growthbook/components';
+import { getSession } from '../api/auth/session';
 import NotFound from '../not-found';
+import { SignInForm } from './form';
 
 export const metadata: Metadata = {
 	title: 'Регистрация',

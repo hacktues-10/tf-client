@@ -1,7 +1,7 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { TbShare } from 'react-icons/tb';
 
 const ShareButton = (): JSX.Element => {

@@ -1,17 +1,19 @@
 import Script from 'next/script';
-import { Analytics } from '@vercel/analytics/react';
 import Footer from '@/partials/layout/Footer';
 import Navigation from '@/partials/layout/Navigation';
+import { Analytics } from '@vercel/analytics/react';
 
 import './animation.css';
 import './globals.css';
+
+import { GrowthBookServerProvider } from '@/app/_integrations/growthbook/GrowthBookServerProvider';
+import { Toaster } from '@/components/ui/toaster';
+import { DayProvider } from '@/context/day';
+
 // import VoteProvider from '@/context/vote';
 // import VotingLayout from '@/partials/layout/Voting';
 import AuthProvider from './_context/auth-provider';
-import { GrowthBookServerProvider } from '@/app/_integrations/growthbook/GrowthBookServerProvider';
-import { DayProvider } from '@/context/day';
 import SullyAnimation from './SullyAnimation';
-import { Toaster } from '@/components/ui/toaster';
 
 export const metadata = {
 	title: {

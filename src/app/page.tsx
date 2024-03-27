@@ -1,11 +1,11 @@
 'use client';
 
 import Expectations from '@/partials/home/Expectations';
+import Logos from '@/partials/home/Logos';
 import Schedule from '@/partials/home/Schedule';
 import Sponsors from '@/partials/home/Sponsors';
-import Testimonial from '@/partials/home/Testimonial';
 import Statistics from '@/partials/home/Statistics';
-import Logos from '@/partials/home/Logos';
+import Testimonial from '@/partials/home/Testimonial';
 
 export default function Home() {
 	return (

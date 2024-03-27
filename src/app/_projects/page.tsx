@@ -1,10 +1,10 @@
 import { Suspense } from 'react';
-
-import Projects from '@/partials/projects/Projects';
-import ProjectsLoading from '@/partials/projects/loader/ProjectsLoading';
-import ProjectsPath from '@/partials/layout/ProjectsPath';
 import Link from 'next/link';
 import { IfTfFeatureOff, IfTfFeatureOn } from '@/app/_integrations/growthbook/components';
+import ProjectsPath from '@/partials/layout/ProjectsPath';
+import ProjectsLoading from '@/partials/projects/loader/ProjectsLoading';
+import Projects from '@/partials/projects/Projects';
+
 import NotFound from '../not-found';
 
 const PATH: {

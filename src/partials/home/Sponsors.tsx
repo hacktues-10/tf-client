@@ -1,6 +1,7 @@
+import { ALPHA_SPONSORS, BETA_SPONSORS, GAMMA_SPONSORS, PARTNERS } from '@/constants/home/sponsors';
+
 import PodkrepqAutoDisplay from './sponsors/PodkrepqAutoDisplay';
 
-import { ALPHA_SPONSORS, GAMMA_SPONSORS, BETA_SPONSORS, PARTNERS } from '@/constants/home/sponsors';
 const Sponsors = () => (
 	<section id="sponsors" className="relative z-20 mb-20 p-8 md:p-12">
 		<div className="py-4 pb-8">

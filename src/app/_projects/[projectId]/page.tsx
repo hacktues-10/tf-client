@@ -1,13 +1,12 @@
 import { Suspense } from 'react';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import ProjectsPath from '@/partials/layout/ProjectsPath';
-
-import MainInfo from '@/partials/projects/project/MainInfo';
-import Gallery from '@/partials/projects/project/Gallery';
-import Description from '@/partials/projects/project/Description';
-import LinksContainer from '@/partials/projects/project/Links';
 import Creators from '@/partials/projects/project/Creators';
-import Link from 'next/link';
+import Description from '@/partials/projects/project/Description';
+import Gallery from '@/partials/projects/project/Gallery';
+import LinksContainer from '@/partials/projects/project/Links';
+import MainInfo from '@/partials/projects/project/MainInfo';
 import { TbChevronLeft, TbChevronRight } from 'react-icons/tb';
 
 export type Links = {

@@ -1,8 +1,9 @@
 'use server';
-import { RegistrationSchema } from './schema';
 
 import { db } from '@/app/db';
 import { projectsSubmission } from '@/app/db/schema';
+
+import { RegistrationSchema } from './schema';
 
 export async function RegisterProject(data: RegistrationSchema) {
 	const imagesString = data.files.images.join(', ');

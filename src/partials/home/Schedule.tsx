@@ -1,9 +1,10 @@
 'use client';
 
-import { LECTURES } from '@/info/lectures';
 import { IfTfFeatureOn } from '@/app/_integrations/growthbook/components';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useDay } from '@/context/day';
+import { LECTURES } from '@/info/lectures';
+
 function Schedule() {
 	const { day } = useDay();
 	const dayValue = `day-${day}`;

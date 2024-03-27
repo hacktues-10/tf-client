@@ -1,5 +1,6 @@
-import { Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
+import { Button } from '@/components/ui/button';
+
 export default function StepButtons({
 	onNext,
 	onPrev,

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import SullySitting from '@/app/SullySitting';
-import { TbBrandLinktree } from 'react-icons/tb';
 import { Separator } from '@/components/ui/separator';
+import { TbBrandLinktree } from 'react-icons/tb';
 
 const Socials = () => (
 	<div className="flex items-center">

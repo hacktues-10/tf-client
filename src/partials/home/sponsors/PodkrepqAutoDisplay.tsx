@@ -3,18 +3,18 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Globe } from 'lucide-react';
-
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardTitle } from '@/components/ui/card';
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Podkrepqsht } from '@/constants/home/sponsors';
 // import { getHackathonById } from '../_configs/archive';
 // import { Podkrepqsht } from '../_configs/podkrepq';
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Card, CardContent, CardTitle } from '@/components/ui/card';
+import { Globe } from 'lucide-react';
+
 const readMoreClasses =
 	'rounded-sm font-bold text-black ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring text-black focus-visible:ring-offset-2';
 const readMoreText = 'Покажи повече';
-import { Podkrepqsht } from '@/constants/home/sponsors';
 
 export default function PodkrepqAutoDisplay({
 	podkrepqshti,

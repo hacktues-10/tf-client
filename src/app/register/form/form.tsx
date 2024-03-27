@@ -1,13 +1,16 @@
 'use client';
+
+import { useEffect, useReducer, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useToast } from '@/components/ui/use-toast';
+import { cn } from '@/lib/utils';
+
 import { RegistrationSchema, registrationSchema } from './schema';
-import { useState, useReducer, useEffect } from 'react';
-import ProjectStep from './steps/projectStep';
+import { RegisterProject } from './service';
 import ContributorStep from './steps/contributorStep';
 import FileUploadStep from './steps/filesUploadStep';
-import { RegisterProject } from './service';
-import { useToast } from '@/components/ui/use-toast';
-import { useRouter } from 'next/navigation';
-import { cn } from '@/lib/utils';
+import ProjectStep from './steps/projectStep';
+
 const defaultValues = {
 	contributors: [
 		{

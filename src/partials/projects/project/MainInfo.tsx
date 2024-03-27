@@ -1,9 +1,10 @@
-import { TYPE } from '@/constants/projects/TYPE';
+import ShareButton from '@/components/shareButton';
 import { CATEGORY } from '@/constants/projects/CATEGORY';
+import { TYPE } from '@/constants/projects/TYPE';
+import { TbShare } from 'react-icons/tb';
 
 import Video from './Video';
-import { TbShare } from 'react-icons/tb';
-import ShareButton from '@/components/shareButton';
+
 // import VoteButton from './VoteButton';
 
 const MainInfo = ({

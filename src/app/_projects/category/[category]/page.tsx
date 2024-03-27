@@ -1,11 +1,11 @@
 // IMPORTATN - THIS IS THE DUMBES SOLUTION, BUT I WANT SWEEEET SERVER COMPONENTS
 
 import { Suspense } from 'react';
-import { redirect } from 'next/navigation';
-import Projects from '@/partials/projects/Projects';
-import ProjectsLoading from '@/partials/projects/loader/ProjectsLoading';
-import ProjectsPath from '@/partials/layout/ProjectsPath';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
+import ProjectsPath from '@/partials/layout/ProjectsPath';
+import ProjectsLoading from '@/partials/projects/loader/ProjectsLoading';
+import Projects from '@/partials/projects/Projects';
 
 const PATH: {
 	name: string;

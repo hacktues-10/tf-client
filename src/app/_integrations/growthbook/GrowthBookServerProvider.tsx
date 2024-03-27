@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react';
 
-import { getServerSideGrowthBook } from './growthbook';
 import { env } from '../../../../env.mjs';
+import { getServerSideGrowthBook } from './growthbook';
 import { GrowthBookClientProvider } from './GrowthBookClientProvier';
 
 export async function GrowthBookServerProvider({ children }: PropsWithChildren<{}>) {

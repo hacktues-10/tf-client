@@ -1,5 +1,5 @@
-import { ScrollArea } from '@/components/ui/scroll-area';
 import Image from 'next/image';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 const Quote = ({ img, name, text, desc }: { img: string; name: string; text: string; desc: string }) => (
 	<div className="relative flex w-full max-w-3xl flex-col items-stretch justify-start gap-4 rounded-lg border border-[#FEFEFE] bg-opacity-0 p-6 backdrop-blur-sm backdrop-filter sm:flex-row sm:border-2 sm:backdrop-blur-md">

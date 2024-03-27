@@ -1,7 +1,9 @@
 import { Metadata } from 'next';
+import { Card } from '@/components/ui/card';
+
 // 'use client';
 import { IfHTSession, IfNotHTSession } from '../api/auth/components';
-import { Card } from '@/components/ui/card';
+
 export const metadata: Metadata = {
 	title: 'Потвърдете имейл адреса си',
 	description: 'Потвърдете вашия имейл адрес за да продължите',

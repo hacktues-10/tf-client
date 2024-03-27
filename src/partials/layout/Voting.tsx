@@ -1,14 +1,12 @@
 'use client';
 
-import { useVoteContext, Vote } from '@/context/vote';
 import { useEffect, useState } from 'react';
-
-import { TbChevronDown, TbChevronUp, TbX } from 'react-icons/tb';
-
-import { motion } from 'framer-motion';
+import Image from 'next/image';
 import Link from 'next/link';
 import { CATEGORY } from '@/constants/projects/CATEGORY';
-import Image from 'next/image';
+import { useVoteContext, Vote } from '@/context/vote';
+import { motion } from 'framer-motion';
+import { TbChevronDown, TbChevronUp, TbX } from 'react-icons/tb';
 
 const VotingModal = ({ closeModal }: { closeModal: () => void }) => {
 	const [info, setInfo] = useState({ name: '', email: '' });

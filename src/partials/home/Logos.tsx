@@ -1,10 +1,12 @@
 'use client';
-import { TbClockHour4, TbMapPin, TbBallpen } from 'react-icons/tb';
+
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { IfTfFeatureOn } from '@/app/_integrations/growthbook/components';
 import TitleSVG from '@/app/Title';
 import { useDay } from '@/context/day';
-import { useEffect, useState } from 'react';
-import { IfTfFeatureOn } from '@/app/_integrations/growthbook/components';
-import Link from 'next/link';
+import { TbBallpen, TbClockHour4, TbMapPin } from 'react-icons/tb';
+
 export default function Logos() {
 	const { day, setDay } = useDay();
 	const [image, setImage] = useState('');

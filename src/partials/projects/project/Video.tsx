@@ -2,6 +2,7 @@
 
 import { youtubeParse } from '@/utils/youtubeParser';
 import LiteYouTubeEmbed from 'react-lite-youtube-embed';
+
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
 
 const Video = ({ name, video }: { name: string; video: string }) => {

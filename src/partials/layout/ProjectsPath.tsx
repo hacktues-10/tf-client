@@ -1,7 +1,7 @@
 'use client';
 
-import Link from 'next/link';
 import { use, useEffect } from 'react';
+import Link from 'next/link';
 
 const ProjectsPath = ({
 	path,

@@ -1,10 +1,10 @@
 'use server';
 
-import Link from 'next/link';
 import Image from 'next/image';
-
-import { TbBrandYoutube } from 'react-icons/tb';
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import { TbBrandYoutube } from 'react-icons/tb';
+
 import Project from './project/Project';
 
 export interface Project {

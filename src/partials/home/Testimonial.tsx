@@ -1,11 +1,12 @@
 'use client';
 
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-import Autoplay from 'embla-carousel-autoplay';
-import Quote from './testimonial/Quote';
 import { useRef } from 'react';
-import { TESTIMONIALS, TESTIMONIALS_TITLE } from '@/constants/home/testimonials';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { TESTIMONIALS, TESTIMONIALS_TITLE } from '@/constants/home/testimonials';
+import Autoplay from 'embla-carousel-autoplay';
+
+import Quote from './testimonial/Quote';
 
 const Testimonial = () => {
 	const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));

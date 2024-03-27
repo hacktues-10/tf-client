@@ -1,8 +1,9 @@
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useVoteContext } from '@/context/vote';
-import VoteButton from './VoteButton';
 import { TbBrandYoutube } from 'react-icons/tb';
+
+import VoteButton from './VoteButton';
 
 const Project = ({
 	id,
