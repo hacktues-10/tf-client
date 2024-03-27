@@ -90,7 +90,7 @@ const ApplyPage = () => (
 					</div>
 					<i>
 						Научете повече за приема в ТУЕС и образователния модел на училището{' '}
-						<Link href="https://tues.bg/priem/red-i-uslovija-za-priem">
+						<Link href="https://elsys-bg.org/priem/red-i-uslovija-za-priem">
 							<u>тук.</u>
 						</Link>
 					</i>
@@ -131,7 +131,7 @@ const ApplyPage = () => (
 						</ul>
 						<i>
 							Научете повече за приема в ТУЕС{' '}
-							<Link href="https://tues.bg/priem/red-i-uslovija-za-priem">
+							<Link href="https://elsys-bg.org/priem/red-i-uslovija-za-priem">
 								<u>тук.</u>
 							</Link>
 						</i>

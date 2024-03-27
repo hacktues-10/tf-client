@@ -56,9 +56,9 @@ const About = () => (
 		</div>
 		<div className="w-full lg:w-1/2 justify-center">
 			<Link
-				href={'https://tues.bg'}
+				href={'https://elsys-bg.org'}
 				target="_blank"
-				className="w-fit text-md px-4 py-2 m-auto md:mx-1/4 my-4 rounded-md sm:text-xl bg-gradient font-bold uppercase hover:scale-105 transition-transform duration-300 shadow-2xl"
+				className="w-fit text-md px-4 py-2 m-auto md:mx-1/4 my-4 rounded-md text-nowrap sm:text-xl bg-gradient font-bold uppercase hover:scale-105 transition-transform duration-300 shadow-2xl"
 			>
 				<span
 					style={{
