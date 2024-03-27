@@ -9,9 +9,9 @@ export const metadata: Metadata = {
 
 export default function ConfirmEmailPage() {
 	return (
-		<div className="w-full min-h-screen flex justify-center align-middle">
-			<section className="flex z-40 rounded-xl w-full max-w-lg justify-center flex-col gap-5">
-				<Card className="flex w-full max-w-[90%] mx-auto flex-col bg-black text-white gap-3 p-6">
+		<div className="flex min-h-screen w-full justify-center align-middle">
+			<section className="z-40 flex w-full max-w-lg flex-col justify-center gap-5 rounded-xl">
+				<Card className="mx-auto flex w-full max-w-[90%] flex-col gap-3 bg-black p-6 text-white">
 					<IfNotHTSession>
 						<h1 className="text-center text-3xl font-extrabold">Потвърдете имейл адреса си!</h1>
 						<p className="text-center">

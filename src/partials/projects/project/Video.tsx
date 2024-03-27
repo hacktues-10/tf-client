@@ -9,7 +9,7 @@ const Video = ({ name, video }: { name: string; video: string }) => {
 
 	if (!id)
 		return (
-			<p className="w-full h-full flex items-center justify-center font-black text-4xl bg-gradient text-transparent bg-clip-text">
+			<p className="flex h-full w-full items-center justify-center bg-gradient bg-clip-text text-4xl font-black text-transparent">
 				{'няма видео :('}
 			</p>
 		);

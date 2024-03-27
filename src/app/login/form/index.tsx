@@ -63,9 +63,9 @@ export const SignInForm = (props: { isRegister: boolean }) => {
 		<Form {...form}>
 			<form method="post" onSubmit={handleSubmit} className="space-y-4 text-xl text-white">
 				{!!form.formState.errors.root && (
-					<div className="flex items-center justify-center gap-2 rounded-sm border border-destructive bg-destructive/10 p-3 text-destructive">
+					<div className="border-destructive bg-destructive/10 text-destructive flex items-center justify-center gap-2 rounded-sm border p-3">
 						<XOctagon className="h-4 w-4 shrink-0" />
-						<p className="max-w-full text-center text-md font-semibold">
+						<p className="text-md max-w-full text-center font-semibold">
 							{form.formState.errors.root.message}
 						</p>
 					</div>

@@ -20,22 +20,22 @@ const CATEGORIES = [
 ];
 
 const Category = ({ name, img }: { name: string; img: string }) => (
-	<div className="w-full sm:w-8/12 md:w-2/5 aspect-video relative hover:scale-105 duration-300">
-		<div className="w-full h-full absolute">
+	<div className="relative aspect-video w-full duration-300 hover:scale-105 sm:w-8/12 md:w-2/5">
+		<div className="absolute h-full w-full">
 			{/* <div className="w-full h-full bg-gradient-to-b from-black to-transparent" />
 			<div className="w-full h-full bg-gradient-to-t from-black to-transparent" /> */}
 		</div>
-		<div className="w-full h-full absolute flex items-center justify-center">
-			<h3 className="text-3xl font-bold text-center text-white drop-shadow-2xl">{name}</h3>
+		<div className="absolute flex h-full w-full items-center justify-center">
+			<h3 className="text-center text-3xl font-bold text-white drop-shadow-2xl">{name}</h3>
 		</div>
-		<img src={img} alt={name} className="w-full h-full  object-cover rounded-lg border border-stroke" />
+		<img src={img} alt={name} className="h-full w-full  rounded-lg border border-stroke object-cover" />
 	</div>
 );
 
 const ComingSoon = () => (
-	<div className="min-h-screen pt-32 pb-16 px-8 md:px-12 flex flex-col items-center gap-8">
-		<h2 className="bg-gradient text-transparent font-black text-5xl bg-clip-text">Очаквайте скоро</h2>
-		<div className="w-full h-full flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-4">
+	<div className="flex min-h-screen flex-col items-center gap-8 px-8 pb-16 pt-32 md:px-12">
+		<h2 className="bg-gradient bg-clip-text text-5xl font-black text-transparent">Очаквайте скоро</h2>
+		<div className="flex h-full w-full flex-col items-center justify-center gap-4 sm:flex-row sm:flex-wrap">
 			{CATEGORIES.map((category) => (
 				<Category key={category.name} {...category} />
 			))}

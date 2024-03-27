@@ -2,8 +2,8 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import Image from 'next/image';
 
 const Quote = ({ img, name, text, desc }: { img: string; name: string; text: string; desc: string }) => (
-	<div className="w-full relative max-w-3xl p-6 flex flex-col sm:flex-row items-stretch justify-start gap-4 rounded-lg backdrop-filter backdrop-blur-sm sm:backdrop-blur-md bg-opacity-0 border sm:border-2 border-[#FEFEFE]">
-		<div className="sm:w-32 shrink-0 flex flex-col items-center justify-center gap-4">
+	<div className="relative flex w-full max-w-3xl flex-col items-stretch justify-start gap-4 rounded-lg border border-[#FEFEFE] bg-opacity-0 p-6 backdrop-blur-sm backdrop-filter sm:flex-row sm:border-2 sm:backdrop-blur-md">
+		<div className="flex shrink-0 flex-col items-center justify-center gap-4 sm:w-32">
 			<Image
 				key={img}
 				src={img}
@@ -11,11 +11,11 @@ const Quote = ({ img, name, text, desc }: { img: string; name: string; text: str
 				width={128}
 				height={128}
 				priority
-				className="!w-32 !h-32 rounded-lg !aspect-square"
+				className="!aspect-square !h-32 !w-32 rounded-lg"
 			/>
-			<h3 className="text-lg font-bold text-gray-800 font-inter tracking-wide leading-6">{name}</h3>
+			<h3 className="text-gray-800 font-inter text-lg font-bold leading-6 tracking-wide">{name}</h3>
 		</div>
-		<div className="w-full sm:w-[1px] h-[1px] sm:h-auto shrink-0 bg-stroke" />
+		<div className="h-[1px] w-full shrink-0 bg-stroke sm:h-auto sm:w-[1px]" />
 		<div className="flex flex-col justify-between gap-4">
 			{text.length > 300 && (
 				<ScrollArea className="h-[300px] md:h-[200px] ">

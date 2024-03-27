@@ -53,7 +53,7 @@ const Projects = async ({ category }: { category: string }) => {
 	if (!projects || !projects?.length) return null;
 
 	return (
-		<div className="-mx-4 flex items-stretch justify-center flex-wrap">
+		<div className="-mx-4 flex flex-wrap items-stretch justify-center">
 			{projects.map((project) => (
 				// @ts-ignore
 				<Project key={project.id} category={category} {...project} />

@@ -10,13 +10,13 @@ import Logos from '@/partials/home/Logos';
 export default function Home() {
 	return (
 		<main className="m-auto">
-			<section className="p-1 pt-4 sm:p-4 w-full overflow-hidden min-h-screen flex flex-col items-center justify-center gap-4 md:gap-16 ">
+			<section className="flex min-h-screen w-full flex-col items-center justify-center gap-4 overflow-hidden p-1 pt-4 sm:p-4 md:gap-16 ">
 				<Logos />
 			</section>
-			<div className="max-w-screen-2xl 2xl:m-auto mx-6 md:mx-20">
+			<div className="mx-6 max-w-screen-2xl md:mx-20 2xl:m-auto">
 				<Statistics />
 			</div>
-			<div className="max-w-screen-2xl w-full m-auto">
+			<div className="m-auto w-full max-w-screen-2xl">
 				<Expectations />
 				<Schedule />
 				<Sponsors />

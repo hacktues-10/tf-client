@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 
-export default function ProjectsError({ error }: { error: Error; }) {
+export default function ProjectsError({ error }: { error: Error }) {
 	useEffect(() => {
 		// Log the error to an error reporting service
 		console.error(error);
@@ -12,10 +12,10 @@ export default function ProjectsError({ error }: { error: Error; }) {
 		<div>
 			<h2>Something went wrong!</h2>
 			<button
-				// onClick={
-				// 	// Attempt to recover by trying to re-render the segment
-				// 	() => reset()
-				// }
+			// onClick={
+			// 	// Attempt to recover by trying to re-render the segment
+			// 	() => reset()
+			// }
 			>
 				Try again
 			</button>

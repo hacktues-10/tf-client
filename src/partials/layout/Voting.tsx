@@ -39,32 +39,32 @@ const VotingModal = ({ closeModal }: { closeModal: () => void }) => {
 	};
 
 	return (
-		<div className="w-screen h-screen fixed top-0 left-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+		<div className="fixed left-0 top-0 z-50 flex h-screen w-screen items-center justify-center bg-black bg-opacity-50">
 			{!showLast && !showResult && (
-				<div className="w-full h-full flex items-center justify-center">
-					<div className="w-full max-w-2xl bg-bg-color border border-border rounded-lg p-4 z-50">
+				<div className="flex h-full w-full items-center justify-center">
+					<div className="z-50 w-full max-w-2xl rounded-lg border border-border bg-bg-color p-4">
 						<div className="flex items-center justify-between">
 							<h2 className="text-2xl font-bold">Още малко остава</h2>
 							<button
 								onClick={closeModal}
-								className="p-2 opacity-75 hover:opacity-100 duration-300 transition-all"
+								className="p-2 opacity-75 transition-all duration-300 hover:opacity-100"
 							>
 								<TbX size={24} />
 							</button>
 						</div>
-						<div className="w-full flex flex-col gap-4 mt-4">
-							<p className="-mt-2 opacity-70 text-sm">
+						<div className="mt-4 flex w-full flex-col gap-4">
+							<p className="-mt-2 text-sm opacity-70">
 								Моля, попълнете име и имейл, за да можем да ви изпратим линк за потвържение за
 								гласуването.
 							</p>
-							<div className="w-full flex flex-col gap-2">
+							<div className="flex w-full flex-col gap-2">
 								<label htmlFor="name" className="text-sm font-medium">
 									Име
 								</label>
 								<input
 									type="text"
 									id="name"
-									className={`w-full bg-bg-color border ${
+									className={`w-full border bg-bg-color ${
 										nameError ? 'border-error' : 'border-border'
 									} rounded-lg p-2`}
 									value={info.name}
@@ -73,14 +73,14 @@ const VotingModal = ({ closeModal }: { closeModal: () => void }) => {
 								/>
 								{votingError || (nameError && <p className="text-sm text-error">Моля, въведете име</p>)}
 							</div>
-							<div className="w-full flex flex-col gap-2">
+							<div className="flex w-full flex-col gap-2">
 								<label htmlFor="email" className="text-sm font-medium">
 									Имейл
 								</label>
 								<input
 									type="email"
 									id="email"
-									className={`w-full bg-bg-color border ${
+									className={`w-full border bg-bg-color ${
 										emailError ? 'border-error' : 'border-border'
 									} rounded-lg p-2`}
 									value={info.email}
@@ -92,7 +92,7 @@ const VotingModal = ({ closeModal }: { closeModal: () => void }) => {
 							</div>
 						</div>
 						<button
-							className="w-full mt-4 bg-primary-color text-white bg-border border border-stroke hover:bg-primary font-bold py-2 rounded-lg duration-300 transition-all"
+							className="bg-primary-color mt-4 w-full rounded-lg border border-stroke bg-border py-2 font-bold text-white transition-all duration-300 hover:bg-primary"
 							onClick={handleInfo}
 						>
 							Потвърди
@@ -101,23 +101,23 @@ const VotingModal = ({ closeModal }: { closeModal: () => void }) => {
 				</div>
 			)}
 			{showLast && (
-				<div className="w-full h-full fixed top-0 left-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-					<div className="w-full h-full flex items-center justify-center">
-						<div className="w-full max-w-2xl bg-bg-color border border-border rounded-lg p-4 z-50">
+				<div className="fixed left-0 top-0 z-50 flex h-full w-full items-center justify-center bg-black bg-opacity-50">
+					<div className="flex h-full w-full items-center justify-center">
+						<div className="z-50 w-full max-w-2xl rounded-lg border border-border bg-bg-color p-4">
 							<p className="text-error">
 								Сигурни ли сте, че искате да използвате{' '}
-								<span className="font-bold text-error underline italic">{info.email}</span>, за да
+								<span className="font-bold italic text-error underline">{info.email}</span>, за да
 								получите линк за потвърждение?
 							</p>
-							<div className="w-full flex items-center justify-between mt-4 gap-4">
+							<div className="mt-4 flex w-full items-center justify-between gap-4">
 								<button
-									className="w-1/2 bg-primary-color text-white bg-border border border-stroke hover:bg-primary font-bold py-2 rounded-lg duration-300 transition-all"
+									className="bg-primary-color w-1/2 rounded-lg border border-stroke bg-border py-2 font-bold text-white transition-all duration-300 hover:bg-primary"
 									onClick={handleVote}
 								>
 									Гласувай
 								</button>
 								<button
-									className="w-1/2 bg-bg-color border border-border rounded-lg p-2 duration-300 transition-all"
+									className="w-1/2 rounded-lg border border-border bg-bg-color p-2 transition-all duration-300"
 									onClick={() => setShowLast(false)}
 								>
 									Отказ
@@ -128,9 +128,9 @@ const VotingModal = ({ closeModal }: { closeModal: () => void }) => {
 				</div>
 			)}
 			{showResult && (
-				<div className="w-full h-full fixed top-0 left-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-					<div className="w-full h-full flex items-center justify-center">
-						<div className="w-full max-w-2xl bg-bg-color border border-border rounded-lg p-4 z-50">
+				<div className="fixed left-0 top-0 z-50 flex h-full w-full items-center justify-center bg-black bg-opacity-50">
+					<div className="flex h-full w-full items-center justify-center">
+						<div className="z-50 w-full max-w-2xl rounded-lg border border-border bg-bg-color p-4">
 							{votingError ? (
 								<p className="text-error">
 									Възникна грешка при гласуването. Моля, опитайте отново.
@@ -143,7 +143,7 @@ const VotingModal = ({ closeModal }: { closeModal: () => void }) => {
 								</p>
 							)}
 							<button
-								className="w-full mt-4 bg-primary-color text-white bg-border border border-stroke hover:bg-primary font-bold py-2 rounded-lg duration-300 transition-all"
+								className="bg-primary-color mt-4 w-full rounded-lg border border-stroke bg-border py-2 font-bold text-white transition-all duration-300 hover:bg-primary"
 								onClick={() => handleClose()}
 							>
 								ОК
@@ -163,13 +163,13 @@ const VotingCategory = ({ category, cat, error }: { category: Vote | null; cat: 
 		return (
 			<Link
 				href={`/projects/category/${cat}`}
-				className={`w-full flex items-center justify-between py-2 ${error ? '!text-error' : ''}`}
+				className={`flex w-full items-center justify-between py-2 ${error ? '!text-error' : ''}`}
 			>
 				<div className="flex items-center gap-4">
-					<div className="w-12 h-12 bg-bg-color border border-border rounded-full flex items-center justify-center" />
-					<p className={`font-bold text-md line-clamp-1 ${error ? '!text-error' : ''}`}>{CATEGORY[cat]}</p>
+					<div className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-bg-color" />
+					<p className={`text-md line-clamp-1 font-bold ${error ? '!text-error' : ''}`}>{CATEGORY[cat]}</p>
 				</div>
-				<p className="p-2 text-sm font-medium opacity-75 hover:opacity-100 duration-300 transition-all">
+				<p className="p-2 text-sm font-medium opacity-75 transition-all duration-300 hover:opacity-100">
 					{'<избери>'}
 				</p>
 			</Link>
@@ -177,25 +177,25 @@ const VotingCategory = ({ category, cat, error }: { category: Vote | null; cat: 
 	}
 
 	return (
-		<div className={`w-full flex items-center justify-between py-2 ${error ? '!text-error' : ''}`}>
+		<div className={`flex w-full items-center justify-between py-2 ${error ? '!text-error' : ''}`}>
 			<div className="flex items-center gap-4">
-				<div className="shrink-0 break-words relative aspect-square w-12 h-12 bg-bg-color border border-border rounded-full flex items-center justify-center overflow-hidden">
+				<div className="relative flex aspect-square h-12 w-12 shrink-0 items-center justify-center overflow-hidden break-words rounded-full border border-border bg-bg-color">
 					<img
 						src={category.image ?? ''}
 						alt={category.name}
-						className="aspect-square w-full h-full object-cover"
+						className="aspect-square h-full w-full object-cover"
 					/>
 				</div>
 				<Link
 					href={`/projects/${category.id}`}
 					title={category.name}
-					className={`font-bold text-md line-clamp-1 ${error ? '!text-error' : ''}`}
+					className={`text-md line-clamp-1 font-bold ${error ? '!text-error' : ''}`}
 				>
 					{category.name}
 				</Link>
 			</div>
 			<button
-				className="p-2 opacity-75 hover:opacity-100 duration-300 transition-all"
+				className="p-2 opacity-75 transition-all duration-300 hover:opacity-100"
 				onClick={() => removeVote(category.category as string)}
 			>
 				<TbX size={24} />
@@ -212,17 +212,17 @@ const VotingOverlay = ({ showModal }: { showModal: () => void }) => {
 	const { softwareError, embeddedError, battlebotError, networksError } = getErrors();
 
 	return (
-		<motion.div className="w-screen fixed z-10 bottom-5 right-0" animate={minimized}>
-			<div className="relative container">
-				<div className="w-full sm:w-fit absolute bottom-0 left-0 flex items-center justify-start">
+		<motion.div className="fixed bottom-5 right-0 z-10 w-screen" animate={minimized}>
+			<div className="container relative">
+				<div className="absolute bottom-0 left-0 flex w-full items-center justify-start sm:w-fit">
 					<div
-						className={`w-full mx-4 sm:w-96 ${
-							minimized ? 'h-16 flex items-center' : 'h-[26rem] pt-4'
-						} bg-bg-color border border-border p-2 rounded-xl bg-opacity-75  backdrop-blur-md duration-300 transition-all drop-shadow-lg`}
+						className={`mx-4 w-full sm:w-96 ${
+							minimized ? 'flex h-16 items-center' : 'h-[26rem] pt-4'
+						} rounded-xl border border-border bg-bg-color bg-opacity-75 p-2  drop-shadow-lg backdrop-blur-md transition-all duration-300`}
 					>
 						<div className={`relative ${minimized ? 'h-fit w-full shrink-0' : 'h-16'}`}>
-							<div className="relative w-full px-4 flex items-center justify-between">
-								<p className="font-bold text-2xl">
+							<div className="relative flex w-full items-center justify-between px-4">
+								<p className="text-2xl font-bold">
 									Твоят избор
 									<span className="ml-2 text-sm opacity-50">
 										{
@@ -237,7 +237,7 @@ const VotingOverlay = ({ showModal }: { showModal: () => void }) => {
 									</span>
 								</p>
 								<button
-									className="p-2 bg-bg-color border border-border rounded-full hover:bg-border hover:border-stroke bg-opacity-75 duration-300 transition-all"
+									className="rounded-full border border-border bg-bg-color bg-opacity-75 p-2 transition-all duration-300 hover:border-stroke hover:bg-border"
 									onClick={() => setMinimized(!minimized)}
 								>
 									{!minimized ? (
@@ -249,18 +249,18 @@ const VotingOverlay = ({ showModal }: { showModal: () => void }) => {
 							</div>
 						</div>
 						<div
-							className={`w-full px-4 flex flex-col gap-4 items-center justify-center ${
+							className={`flex w-full flex-col items-center justify-center gap-4 px-4 ${
 								minimized ? 'hidden' : 'block'
 							}`}
 						>
-							<div className="w-full flex flex-col divide-y divide-stroke">
+							<div className="flex w-full flex-col divide-y divide-stroke">
 								<VotingCategory category={embedded} cat="embedded" error={embeddedError} />
 								<VotingCategory category={software} cat="software" error={softwareError} />
 								<VotingCategory category={battlebot} cat="battlebot" error={battlebotError} />
 								<VotingCategory category={networks} cat="networks" error={networksError} />
 							</div>
 							<button
-								className="text-lg font-bold bg-primary px-6 py-2 border border-border rounded-xl flex items-center justify-center hover:bg-primary hover:border-stroke bg-opacity-75 duration-300 transition-all"
+								className="flex items-center justify-center rounded-xl border border-border bg-primary bg-opacity-75 px-6 py-2 text-lg font-bold transition-all duration-300 hover:border-stroke hover:bg-primary"
 								onClick={showModal}
 							>
 								Гласувай

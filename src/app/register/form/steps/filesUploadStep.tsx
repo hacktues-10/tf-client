@@ -353,7 +353,7 @@ export default function FileUploadStep({
 						<Link
 							href="https://docs.google.com/document/d/1WKlx92MRsf17cE-lgwCfdETZQxh4x14npFX9rjsuZkI/edit?usp=sharing"
 							target="_blank"
-							className="text-sand underline font-semibold"
+							className="font-semibold text-sand underline"
 						>
 							тук
 						</Link>

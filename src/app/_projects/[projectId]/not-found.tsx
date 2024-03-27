@@ -13,12 +13,12 @@ export const metadata = {
 export default function NotFound() {
 	return (
 		<div className="flex h-screen w-full flex-col items-center justify-center gap-8">
-			<h2 className="bg-gradient text-transparent bg-clip-text text-5xl font-black">
+			<h2 className="bg-gradient bg-clip-text text-5xl font-black text-transparent">
 				404 - Няма такъв проект :(
 			</h2>
 			<Link
 				href="/projects"
-				className="inline-flex items-center justify-center whitespace-nowrap rounded-md bg-[#353444] py-[10px] px-5 text-base font-semibold text-white transition-all hover:bg-primary"
+				className="inline-flex items-center justify-center whitespace-nowrap rounded-md bg-[#353444] px-5 py-[10px] text-base font-semibold text-white transition-all hover:bg-primary"
 			>
 				Върни се към проектите
 			</Link>

@@ -18,34 +18,34 @@ export default function Logos() {
 
 	return (
 		<div className="w-11/12 sm:w-2/3 md:w-3/4 lg:w-1/2">
-			<div className="hidden md:block p-8 m-10 sm:m-0 border sm:border-2 border-[#F2F2F2] bg-clip-padding rounded-xl backdrop-filter backdrop-blur-sm bg-opacity-0 drop-shadow-lg">
-				<TitleSVG className="w-full relative z-20" />
-				<div className="w-full flex">
-					<img src={'/35.png'} alt="35elsys" className="w-2/6 h-1/12" />
-					<img src={image} alt={image} className="w-2/3 h-1/12" />
+			<div className="m-10 hidden rounded-xl border border-[#F2F2F2] bg-opacity-0 bg-clip-padding p-8 drop-shadow-lg backdrop-blur-sm backdrop-filter sm:m-0 sm:border-2 md:block">
+				<TitleSVG className="relative z-20 w-full" />
+				<div className="flex w-full">
+					<img src={'/35.png'} alt="35elsys" className="h-1/12 w-2/6" />
+					<img src={image} alt={image} className="h-1/12 w-2/3" />
 				</div>
 			</div>
-			<div className="block md:hidden border sm:border-2 border-[#F2F2F2] p-3 m-2 mt-16 sm:m-0 bg-clip-padding rounded-xl backdrop-filter backdrop-blur-sm bg-opacity-0 drop-shadow-lg">
+			<div className="m-2 mt-16 block rounded-xl border border-[#F2F2F2] bg-opacity-0 bg-clip-padding p-3 drop-shadow-lg backdrop-blur-sm backdrop-filter sm:m-0 sm:border-2 md:hidden">
 				<img src={'/assets/TitleMobile.webp'} alt="titleMobile" className="w-full" />
-				<div className="w-full flex">
-					<img src={'/35.png'} alt="35elsys" className="w-2/6 h-1/12" />
-					<img src={image} alt={image} className="w-2/3 h-1/12" />
+				<div className="flex w-full">
+					<img src={'/35.png'} alt="35elsys" className="h-1/12 w-2/6" />
+					<img src={image} alt={image} className="h-1/12 w-2/3" />
 				</div>
 			</div>
 
-			<div className="flex mx-1/6 mt-5 relative z-20 flex-col sm:flex-row items-stretch gap-4 text-center">
-				<div className="w-full px-4 py-2 sm:hidden flex items-center backdrop-filter backdrop-blur-sm bg-opacity-0 justify-center gap-2 text-lg rounded-lg border sm:border-2 border-[#FEFEFE]">
+			<div className="relative z-20 mx-1/6 mt-5 flex flex-col items-stretch gap-4 text-center sm:flex-row">
+				<div className="flex w-full items-center justify-center gap-2 rounded-lg border border-[#FEFEFE] bg-opacity-0 px-4 py-2 text-lg backdrop-blur-sm backdrop-filter sm:hidden sm:border-2">
 					<TbMapPin size={24} />
 					<p>{'София Тех Парк'}</p>
 				</div>
-				<div className="w-full px-4 py-2 flex items-center justify-center gap-2 backdrop-filter backdrop-blur-sm bg-opacity-0 text-lg rounded-lg  border sm:border-2 border-[#FEFEFE]">
+				<div className="flex w-full items-center justify-center gap-2 rounded-lg border border-[#FEFEFE] bg-opacity-0 px-4 py-2 text-lg  backdrop-blur-sm backdrop-filter sm:border-2">
 					<TbClockHour4 size={24} />
 					<p>20 и 21 април</p>
 				</div>
 				<IfTfFeatureOn feature="tf-register-projects">
 					<Link
 						href="/register"
-						className="w-full px-4 py-2 flex bg-[#fbebb7] items-center justify-center gap-2 text-lg rounded-lg border text-black sm:border-2 border-black cursor-pointer"
+						className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg border border-black bg-[#fbebb7] px-4 py-2 text-lg text-black sm:border-2"
 					>
 						<TbBallpen size={24} />
 						<p>Регистрирай проект</p>

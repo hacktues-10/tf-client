@@ -143,9 +143,7 @@ function PodkrepqReadMore({
 				<DialogHeader>
 					<DialogTitle>{name}</DialogTitle>
 				</DialogHeader>
-				{description?.split('\n').map((p) => (
-					<p key={p}>{p}</p>
-				))}
+				{description?.split('\n').map((p) => <p key={p}>{p}</p>)}
 				<DialogFooter>
 					<Button asChild variant="outline">
 						<Link href={url} target="_blank">
@@ -192,7 +190,7 @@ function PodkrepqLogo({
 						? (e) => {
 								e.preventDefault();
 								onClick();
-						  }
+							}
 						: undefined
 				}
 				tabIndex={[prevIndex, liveIndex, nextIndex].includes(index) ? 0 : -1}

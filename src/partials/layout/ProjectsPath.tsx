@@ -19,8 +19,8 @@ const ProjectsPath = ({
 	return (
 		<section className="pt-28">
 			<div className="container">
-				<div className="rounded-lg border-2 border-stroke bg-bg-color py-5 px-8">
-					<ul className="flex items-cente text-ellipsis  flex-wrap gap-3">
+				<div className="rounded-lg border-2 border-stroke bg-bg-color px-8 py-5">
+					<ul className="items-cente flex flex-wrap  gap-3 text-ellipsis">
 						{path.map((item) => (
 							<>
 								{item?.url ? (

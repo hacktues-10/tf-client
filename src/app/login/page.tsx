@@ -19,11 +19,11 @@ export default async function SignUpPage() {
 		redirect('/');
 	}
 	return (
-		<div className="w-full min-h-screen flex justify-center align-middle">
-			<section className="flex z-40 rounded-xl w-full justify-center max-w-md flex-col gap-5">
+		<div className="flex min-h-screen w-full justify-center align-middle">
+			<section className="z-40 flex w-full max-w-md flex-col justify-center gap-5 rounded-xl">
 				<IfTfFeatureOn feature="tf-register-projects">
-					<Card className="bg-black w-full max-w-[90%] mx-auto font-semibold text-white p-6">
-						<h1 className="text-center text-3xl font-extrabold my-4">Регистрация</h1>
+					<Card className="mx-auto w-full max-w-[90%] bg-black p-6 font-semibold text-white">
+						<h1 className="my-4 text-center text-3xl font-extrabold">Регистрация</h1>
 						<SignInForm isRegister={false} />
 					</Card>
 				</IfTfFeatureOn>
