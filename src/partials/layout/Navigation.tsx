@@ -240,7 +240,7 @@ const Navigation = () => {
 						</div>
 						<div className="flex items-center justify-end pr-20 sm:pr-16 lg:pr-0">
 							<button
-								className="text-md mr-2 hidden w-full items-center justify-center gap-2 rounded-lg border border-border px-4 py-2 lg:w-44 xl:flex"
+								className="text-md mr-3 hidden h-full w-full items-center justify-center gap-2 rounded-lg border border-border px-4 py-2 text-lg lg:w-44 xl:flex"
 								onClick={() => setDesktopOpen(!desktopOpen)}
 								ref={desktopButtonRef}
 							>
