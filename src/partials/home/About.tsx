@@ -1,16 +1,16 @@
 import Link from 'next/link';
-
 import { ABOUT_BUTTON, ABOUT_IMAGE, ABOUT_SUBTEXT, ABOUT_TEXT, ABOUT_TITLE } from '@/constants/home/about';
 
 import 'animate.css';
+
 import Image from 'next/image';
 
 const About = () => (
 	<section id="about" className="p-8 md:p-12">
-		<div className="flex flex-col lg:flex-row gap-8 whitespace-pre-line items-center mb-5">
+		<div className="mb-5 flex flex-col items-center gap-8 whitespace-pre-line lg:flex-row">
 			{/* Text info */}
-			<div className="w-full flex flex-col gap-4 text-justify">
-				<h2 className="bg-gradient text-transparent font-black text-4xl sm:text-5xl bg-clip-text">
+			<div className="flex w-full flex-col gap-4 text-justify">
+				<h2 className="bg-gradient bg-clip-text text-4xl font-black text-transparent sm:text-5xl">
 					{ABOUT_TITLE}
 				</h2>
 				<p className="">
@@ -34,7 +34,7 @@ const About = () => (
 					<Link
 						href="https://www.facebook.com/HackTUES"
 						target="_blank"
-						className="text-sand font-semibold underline cursor-pointer"
+						className="cursor-pointer font-semibold text-sand underline"
 					>
 						Hack TUES § TUES FEST
 					</Link>
@@ -45,20 +45,20 @@ const About = () => (
 			</div>
 			{/* Image */}
 			<div className="w-full">
-				<div className="animate__animated animate__backInRight rounded-md overflow-hidden">
+				<div className="animate__backInRight overflow-hidden rounded-md animate__animated">
 					<img
 						src={ABOUT_IMAGE}
 						alt=""
-						className="w-full rounded-md outline-none aspect-video shadow-2xl object-cover object-bottom"
+						className="aspect-video w-full rounded-md object-cover object-bottom shadow-2xl outline-none"
 					/>
 				</div>
 			</div>
 		</div>
-		<div className="w-full lg:w-1/2 justify-center">
+		<div className="w-full justify-center lg:w-1/2">
 			<Link
 				href={'https://elsys-bg.org'}
 				target="_blank"
-				className="w-fit text-md px-4 py-2 m-auto md:mx-1/4 my-4 rounded-md text-nowrap sm:text-xl bg-gradient font-bold uppercase hover:scale-105 transition-transform duration-300 shadow-2xl"
+				className="text-md m-auto my-4 w-fit text-nowrap rounded-md bg-gradient px-4 py-2 font-bold uppercase shadow-2xl transition-transform duration-300 hover:scale-105 sm:text-xl md:mx-1/4"
 			>
 				<span
 					style={{

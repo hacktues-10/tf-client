@@ -1,23 +1,20 @@
+.fadeInUp {
+	animation-name: fadeInUp;
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+}
 
+@keyframes scaleInUp {
+	0% {
+		transform: scale(0.1);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
 
-  .fadeInUp {
-    animation-name: fadeInUp;
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
-  } 
-
-  @keyframes scaleInUp {
-    0% {
-      transform: scale(0.1);
-    }
-    100% {
-      transform: scale(1.00);
-    }
-  }
-
-
-  .scaleUp {
-    animation-name: scaleInUp;
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
-  }
+.scaleUp {
+	animation-name: scaleInUp;
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+}

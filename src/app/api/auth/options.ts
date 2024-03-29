@@ -1,11 +1,11 @@
 import 'server-only';
 
+import { db } from '@/app/db';
+import { DrizzleAdapter } from '@/app/db/adapter';
 import { NextAuthOptions, Theme } from 'next-auth';
 import EmailProvider, { EmailConfig } from 'next-auth/providers/email';
 import { createTransport } from 'nodemailer';
 
-import { db } from '@/app/db';
-import { DrizzleAdapter } from '@/app/db/adapter';
 import { env } from '../../../../env.mjs';
 
 export const authOptions = {

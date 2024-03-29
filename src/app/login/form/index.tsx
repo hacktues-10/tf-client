@@ -2,16 +2,16 @@
 
 import { useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { UseTFFeaturesIsOn } from '@/app/_integrations/growthbook/utlis';
+import { Button } from '@/components/ui/button';
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { XOctagon } from 'lucide-react';
 import { signIn } from 'next-auth/react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { Button } from '@/components/ui/button';
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { UseTFFeaturesIsOn } from '@/app/_integrations/growthbook/utlis';
 const signInSchema = z.object({
 	email: z.string({ required_error: 'Празен имейл адрес' }).email({
 		message: 'Невалиден имейл адрес',
@@ -63,9 +63,9 @@ export const SignInForm = (props: { isRegister: boolean }) => {
 		<Form {...form}>
 			<form method="post" onSubmit={handleSubmit} className="space-y-4 text-xl text-white">
 				{!!form.formState.errors.root && (
-					<div className="flex items-center justify-center gap-2 rounded-sm border border-destructive bg-destructive/10 p-3 text-destructive">
+					<div className="border-destructive bg-destructive/10 text-destructive flex items-center justify-center gap-2 rounded-sm border p-3">
 						<XOctagon className="h-4 w-4 shrink-0" />
-						<p className="max-w-full text-center text-md font-semibold">
+						<p className="text-md max-w-full text-center font-semibold">
 							{form.formState.errors.root.message}
 						</p>
 					</div>

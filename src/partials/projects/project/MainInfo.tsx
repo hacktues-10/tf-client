@@ -1,9 +1,10 @@
-import { TYPE } from '@/constants/projects/TYPE';
+import ShareButton from '@/components/shareButton';
 import { CATEGORY } from '@/constants/projects/CATEGORY';
+import { TYPE } from '@/constants/projects/TYPE';
+import { TbShare } from 'react-icons/tb';
 
 import Video from './Video';
-import { TbShare } from 'react-icons/tb';
-import ShareButton from '@/components/shareButton';
+
 // import VoteButton from './VoteButton';
 
 const MainInfo = ({
@@ -21,17 +22,17 @@ const MainInfo = ({
 	id: number;
 	thumbnail: string;
 }) => (
-	<div className="w-full flex gap-4 max-w-screen-lg">
-		<div className="shrink w-full bg-bg-color rounded-xl border-2 border-border">
+	<div className="flex w-full max-w-screen-lg gap-4">
+		<div className="w-full shrink rounded-xl border-2 border-border bg-bg-color">
 			<div className="relative aspect-video overflow-hidden rounded-xl border-b-2 border-b-border">
 				{/* Share Button */}
 				<ShareButton />
 				<Video name={name} video={video} />
 			</div>
-			<div className="px-8 py-4 flex items-center justify-between">
-				<h2 className="font-bold text-2xl">{name}</h2>
+			<div className="flex items-center justify-between px-8 py-4">
+				<h2 className="text-2xl font-bold">{name}</h2>
 				<div className="flex items-center gap-4">
-					<div className="text-sm text-right opacity-70">
+					<div className="text-right text-sm opacity-70">
 						{TYPE[type]}, {CATEGORY[category]}
 					</div>
 					{/* <VoteButton id={id} name={name} thumbnail={thumbnail} category={category} /> */}

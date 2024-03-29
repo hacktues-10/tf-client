@@ -1,13 +1,12 @@
 import { Suspense } from 'react';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import ProjectsPath from '@/partials/layout/ProjectsPath';
-
-import MainInfo from '@/partials/projects/project/MainInfo';
-import Gallery from '@/partials/projects/project/Gallery';
-import Description from '@/partials/projects/project/Description';
-import LinksContainer from '@/partials/projects/project/Links';
 import Creators from '@/partials/projects/project/Creators';
-import Link from 'next/link';
+import Description from '@/partials/projects/project/Description';
+import Gallery from '@/partials/projects/project/Gallery';
+import LinksContainer from '@/partials/projects/project/Links';
+import MainInfo from '@/partials/projects/project/MainInfo';
 import { TbChevronLeft, TbChevronRight } from 'react-icons/tb';
 
 export type Links = {
@@ -118,13 +117,13 @@ const ProjectPage = async ({ params }: { params: { projectId: string } }) => {
 				<ProjectsPath path={path} />
 			</Suspense>
 
-			<div className="container pt-8 flex flex-col gap-4 items-center">
+			<div className="container flex flex-col items-center gap-4 pt-8">
 				<MainInfo
 					{...project}
 					thumbnail={
 						project.has_thumbnail
 							? project.pictures?.find((picture) => picture.is_thumbnail)?.url ??
-							  project.pictures?.[0]?.url
+								project.pictures?.[0]?.url
 							: project.pictures?.[0]?.url
 					}
 				/>
@@ -133,13 +132,13 @@ const ProjectPage = async ({ params }: { params: { projectId: string } }) => {
 				<LinksContainer {...project} />
 				<Creators {...project} />
 			</div>
-			<div className="w-screen fixed z-10 bottom-5 right-0">
-				<div className="relative container">
+			<div className="fixed bottom-5 right-0 z-10 w-screen">
+				<div className="container relative">
 					<div className="absolute bottom-0 right-4 flex items-center justify-center gap-4">
 						{project.prev_id !== undefined && project.prev_id !== 0 && (
 							<Link
 								href={`/projects/${project.prev_id}`}
-								className="bg-bg-color border border-border p-2 rounded-xl hover:bg-border hover:border-stroke bg-opacity-75  backdrop-blur-md"
+								className="rounded-xl border border-border bg-bg-color bg-opacity-75 p-2 backdrop-blur-md hover:border-stroke  hover:bg-border"
 							>
 								<TbChevronLeft size={32} />
 							</Link>
@@ -147,7 +146,7 @@ const ProjectPage = async ({ params }: { params: { projectId: string } }) => {
 						{project.next_id !== undefined && project.next_id !== 0 && (
 							<Link
 								href={`/projects/${project.next_id}`}
-								className="bg-bg-color border border-border p-2 rounded-xl hover:bg-border hover:border-stroke bg-opacity-75 backdrop-blur-md"
+								className="rounded-xl border border-border bg-bg-color bg-opacity-75 p-2 backdrop-blur-md hover:border-stroke hover:bg-border"
 							>
 								<TbChevronRight size={32} />
 							</Link>

@@ -1,15 +1,16 @@
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { z } from 'zod';
-
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+
+import { createPresignedUrl } from '../actions';
 import { FilesReal } from '../schema';
 import StepButtons from './stepButtons';
+
 type FileUploadSchema = z.infer<typeof FilesReal>;
-import { useEffect, useState } from 'react';
-import { createPresignedUrl } from '../actions';
 
 export default function FileUploadStep({
 	defaultValues,
@@ -353,7 +354,7 @@ export default function FileUploadStep({
 						<Link
 							href="https://docs.google.com/document/d/1WKlx92MRsf17cE-lgwCfdETZQxh4x14npFX9rjsuZkI/edit?usp=sharing"
 							target="_blank"
-							className="text-sand underline font-semibold"
+							className="font-semibold text-sand underline"
 						>
 							тук
 						</Link>

@@ -46,7 +46,7 @@ export function DrizzleAdapter(client: DrizzleClient): Adapter {
 				? {
 						...res,
 						id: res.id.toString(),
-				  }
+					}
 				: null;
 		},
 

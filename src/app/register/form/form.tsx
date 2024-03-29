@@ -1,13 +1,16 @@
 'use client';
+
+import { useEffect, useReducer, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useToast } from '@/components/ui/use-toast';
+import { cn } from '@/lib/utils';
+
 import { RegistrationSchema, registrationSchema } from './schema';
-import { useState, useReducer, useEffect } from 'react';
-import ProjectStep from './steps/projectStep';
+import { RegisterProject } from './service';
 import ContributorStep from './steps/contributorStep';
 import FileUploadStep from './steps/filesUploadStep';
-import { RegisterProject } from './service';
-import { useToast } from '@/components/ui/use-toast';
-import { useRouter } from 'next/navigation';
-import { cn } from '@/lib/utils';
+import ProjectStep from './steps/projectStep';
+
 const defaultValues = {
 	contributors: [
 		{
@@ -125,11 +128,11 @@ export default function RegisterForm({ email }: { email: string }) {
 	return (
 		<div
 			className={cn(
-				'xl:w-1/4 w-5/6 md:w-3/4 m-5 mt-24 bg-black flex z-30  p-5 relative rounded-xl',
+				'relative z-30 m-5 mt-24 flex w-5/6 rounded-xl bg-black  p-5 md:w-3/4 xl:w-1/4',
 				currentStep === 2 && 'mt-28'
 			)}
 		>
-			<div className="space-y-1 w-full">
+			<div className="w-full space-y-1">
 				<ProjectStep
 					className={currentStep === 1 ? '' : 'hidden'}
 					defaultValues={defaultValues}

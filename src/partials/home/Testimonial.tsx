@@ -1,19 +1,20 @@
 'use client';
 
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-import Autoplay from 'embla-carousel-autoplay';
-import Quote from './testimonial/Quote';
 import { useRef } from 'react';
-import { TESTIMONIALS, TESTIMONIALS_TITLE } from '@/constants/home/testimonials';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { TESTIMONIALS, TESTIMONIALS_TITLE } from '@/constants/home/testimonials';
+import Autoplay from 'embla-carousel-autoplay';
+
+import Quote from './testimonial/Quote';
 
 const Testimonial = () => {
 	const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
 	return (
-		<section className="min-h-[36rem] w-full relative z-20 p-8 md:p-12">
-			<div className="min-h-full h-full flex flex-col justify-between gap-8">
-				<div className="flex flex-col sm:flex-row items-center justify-between gap-8">
-					<h2 className="bg-gradient text-transparent font-black text-5xl bg-clip-text">
+		<section className="relative z-20 min-h-[36rem] w-full p-8 md:p-12">
+			<div className="flex h-full min-h-full flex-col justify-between gap-8">
+				<div className="flex flex-col items-center justify-between gap-8 sm:flex-row">
+					<h2 className="bg-gradient bg-clip-text text-5xl font-black text-transparent">
 						{TESTIMONIALS_TITLE}
 					</h2>
 				</div>

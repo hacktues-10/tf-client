@@ -1,6 +1,6 @@
-import Calculator from '@/partials/apply/Calculator';
 import Image from 'next/image';
 import Link from 'next/link';
+import Calculator from '@/partials/apply/Calculator';
 
 export const metadata = {
 	title: {
@@ -51,11 +51,11 @@ export const metadata = {
 };
 
 const ApplyPage = () => (
-	<div className="max-w-screen-2xl min-h-screen m-auto pt-28">
+	<div className="m-auto min-h-screen max-w-screen-2xl pt-28">
 		<div className="">
-			<div className="p-8 md:p-12 !pt-0">
-				<div className="p-8 sm:p-10 rounded-xl flex flex-col border sm:border-2 border-[#F2F2F2] bg-clip-padding  backdrop-filter backdrop-blur-sm bg-opacity-0 drop-shadow-lg sm:backdrop-blur-sm  gap-4">
-					<h2 className="bg-gradient text-transparent font-black text-3xl sm:text-5xl bg-clip-text">
+			<div className="p-8 !pt-0 md:p-12">
+				<div className="flex flex-col gap-4 rounded-xl border border-[#F2F2F2] bg-opacity-0 bg-clip-padding p-8  drop-shadow-lg backdrop-blur-sm backdrop-filter sm:border-2 sm:p-10  sm:backdrop-blur-sm">
+					<h2 className="bg-gradient bg-clip-text text-3xl font-black text-transparent sm:text-5xl">
 						Защо ТУЕС?
 					</h2>
 					<p className="text-justify">
@@ -66,25 +66,25 @@ const ApplyPage = () => (
 					<p className="text-justify">
 						За 2023 година, ТУЕС се нареди на второ място по минимален бал на първо класиране в 7-и клас!
 					</p>
-					<div className="relative w-full flex flex-col lg:flex-row gap-8 items-start">
-						<div className="w-full flex flex-col gap-4">
+					<div className="relative flex w-full flex-col items-start gap-8 lg:flex-row">
+						<div className="flex w-full flex-col gap-4">
 							<p className="text-lg">Кое прави ТУЕС уникално училище?</p>
-							<ul className="w-full flex flex-col gap-4">
-								<li className="p-4 rounded-xl text-md  border sm:border-2 border-[#F2F2F2] backdrop-blur-sm sm:backdrop-blur-md">
+							<ul className="flex w-full flex-col gap-4">
+								<li className="text-md rounded-xl border  border-[#F2F2F2] p-4 backdrop-blur-sm sm:border-2 sm:backdrop-blur-md">
 									Специализиран учебен план
 								</li>
-								<li className="p-4 rounded-xl text-md  border sm:border-2 border-[#F2F2F2] backdrop-blur-sm sm:backdrop-blur-md">
+								<li className="text-md rounded-xl border  border-[#F2F2F2] p-4 backdrop-blur-sm sm:border-2 sm:backdrop-blur-md">
 									Училище интегрирано във ВУЗ
 								</li>
-								<li className="p-4 rounded-xl text-md  border sm:border-2 border-[#F2F2F2] backdrop-blur-sm sm:backdrop-blur-md">
+								<li className="text-md rounded-xl border  border-[#F2F2F2] p-4 backdrop-blur-sm sm:border-2 sm:backdrop-blur-md">
 									Преподават завършили ТУЕС
 								</li>
-								<li className="p-4 rounded-xl text-md  border sm:border-2 border-[#F2F2F2] backdrop-blur-sm sm:backdrop-blur-md">
+								<li className="text-md rounded-xl border  border-[#F2F2F2] p-4 backdrop-blur-sm sm:border-2 sm:backdrop-blur-md">
 									Тясна връзка с ИТ бранша
 								</li>
 							</ul>
 						</div>
-						<div className="w-full lg:w-3/5 xl:w-2/5 shrink-0 rounded-xl overflow-hidden border border-">
+						<div className="border- w-full shrink-0 overflow-hidden rounded-xl border lg:w-3/5 xl:w-2/5">
 							<img src="/assets/apply/whytues.png" alt="Защо ТУЕС?" />
 						</div>
 					</div>
@@ -97,9 +97,9 @@ const ApplyPage = () => (
 				</div>
 			</div>
 			<div className="px-8 pb-8 md:px-12 md:pb-12">
-				<div className="flex flex-col items-stretch lg:flex-row gap-8">
-					<div className="p-8 sm:p-10 rounded-xl border sm:border-2 border-[#F2F2F2] bg-clip-padding  backdrop-filter backdrop-blur-sm bg-opacity-0 drop-shadow-lg sm:backdrop-blur-sm flex flex-col gap-4">
-						<h2 className="bg-gradient text-transparent font-black text-3xl sm:text-5xl bg-clip-text">
+				<div className="flex flex-col items-stretch gap-8 lg:flex-row">
+					<div className="flex flex-col gap-4 rounded-xl border border-[#F2F2F2] bg-opacity-0  bg-clip-padding p-8 drop-shadow-lg backdrop-blur-sm backdrop-filter sm:border-2 sm:p-10 sm:backdrop-blur-sm">
+						<h2 className="bg-gradient bg-clip-text text-3xl font-black text-transparent sm:text-5xl">
 							Как да кандидатствам?
 						</h2>
 						<p className="text-justify">
@@ -107,25 +107,25 @@ const ApplyPage = () => (
 							специалности:
 						</p>
 						<ul className="flex flex-col gap-4">
-							<li className="p-4 rounded-xl text-md  border sm:border-2 border-[#F2F2F2] backdrop-blur-sm sm:backdrop-blur-md">
+							<li className="text-md rounded-xl border  border-[#F2F2F2] p-4 backdrop-blur-sm sm:border-2 sm:backdrop-blur-md">
 								Системно програмиране с код 4810201 – 3 паралелки, всяка по 26 ученици
 							</li>
-							<li className="p-4 rounded-xl text-md  border sm:border-2 border-[#F2F2F2] backdrop-blur-sm sm:backdrop-blur-md">
+							<li className="text-md rounded-xl border  border-[#F2F2F2] p-4 backdrop-blur-sm sm:border-2 sm:backdrop-blur-md">
 								Компютърни мрежи с код 5230502 – 1 паралелка от 26 ученици
 							</li>
 						</ul>
 						<p>Балът се образува от сбора на:</p>
 						<ul className="flex flex-col gap-4">
-							<li className="p-4 rounded-xl text-md  border sm:border-2 border-[#F2F2F2] backdrop-blur-sm sm:backdrop-blur-md">
+							<li className="text-md rounded-xl border  border-[#F2F2F2] p-4 backdrop-blur-sm sm:border-2 sm:backdrop-blur-md">
 								резултата по <b>български език и литература от НВО</b>
 							</li>
-							<li className="p-4 rounded-xl text-md  border sm:border-2 border-[#F2F2F2] backdrop-blur-sm sm:backdrop-blur-md">
+							<li className="text-md rounded-xl border  border-[#F2F2F2] p-4 backdrop-blur-sm sm:border-2 sm:backdrop-blur-md">
 								3 пъти резултата по <b>математика от НВО</b>
 							</li>
-							<li className="p-4 rounded-xl text-md  border sm:border-2 border-[#F2F2F2] backdrop-blur-sm sm:backdrop-blur-md">
+							<li className="text-md rounded-xl border  border-[#F2F2F2] p-4 backdrop-blur-sm sm:border-2 sm:backdrop-blur-md">
 								оценката по <b>математика</b> от свидетелството за завършен 7. клас
 							</li>
-							<li className="p-4 rounded-xl text-md  border sm:border-2 border-[#F2F2F2] backdrop-blur-sm sm:backdrop-blur-md">
+							<li className="text-md rounded-xl border  border-[#F2F2F2] p-4 backdrop-blur-sm sm:border-2 sm:backdrop-blur-md">
 								оценката по <b>физика</b> от свидетелството за завършен 7. клас
 							</li>
 						</ul>

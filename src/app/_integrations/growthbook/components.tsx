@@ -1,6 +1,8 @@
 'use client';
-import { IfFeatureEnabled, useGrowthBook } from '@growthbook/growthbook-react';
+
 import { useEffect, useState } from 'react';
+import { IfFeatureEnabled, useGrowthBook } from '@growthbook/growthbook-react';
+
 import { TFFeature } from './features';
 
 export function IfTfFeatureOn(props: { feature: TFFeature; children: React.ReactNode }) {

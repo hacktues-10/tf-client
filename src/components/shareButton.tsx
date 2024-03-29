@@ -1,7 +1,7 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { TbShare } from 'react-icons/tb';
 
 const ShareButton = (): JSX.Element => {
@@ -32,9 +32,9 @@ const ShareButton = (): JSX.Element => {
 	};
 
 	return (
-		<div className="absolute top-0 right-0 p-4 z-10">
+		<div className="absolute right-0 top-0 z-10 p-4">
 			<button
-				className="flex items-center gap-2 px-4 py-2 bg-bg-color rounded-xl border-2 border-border hover:bg-bg-color-hover"
+				className="hover:bg-bg-color-hover flex items-center gap-2 rounded-xl border-2 border-border bg-bg-color px-4 py-2"
 				onClick={handleCopy}
 			>
 				<TbShare className="h-6 w-6" />

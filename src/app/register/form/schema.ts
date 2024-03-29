@@ -1,6 +1,7 @@
 'use client';
 
 import { error } from 'console';
+
 import { z } from 'zod';
 
 const STUDENT_PARALELS = ['А', 'Б', 'В', 'Г'] as const;

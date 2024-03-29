@@ -26,7 +26,7 @@ const CalculatorField = ({ name, label, min, max, value, error, onChange }: any)
 				type="number"
 				id={name}
 				name={name}
-				className="w-full rounded-md  border sm:border-2 border-[#F2F2F2] bg-transparent backdrop-blur-sm sm:backdrop-blur-md py-3 px-6 text-base font-medium text-body-color outline-none transition-all appearance-none"
+				className="w-full appearance-none  rounded-md border border-[#F2F2F2] bg-transparent px-6 py-3 text-base font-medium text-body-color outline-none backdrop-blur-sm transition-all sm:border-2 sm:backdrop-blur-md"
 				min={min}
 				max={max}
 				value={value}
@@ -78,17 +78,17 @@ const Calculator = () => {
 	}, [calculator]);
 
 	return (
-		<div className="w-full md:w-full lg:w-96 xl:w-[38rem] shrink-0 relative z-10 overflow-hidden rounded-xl p-8 sm:p-10 flex flex-col gap-5 border sm:border-2 border-[#F2F2F2] bg-clip-padding  backdrop-filter backdrop-blur-sm bg-opacity-0 drop-shadow-lg sm:backdrop-blur-sm ">
-			<div className="w-fit flex flex-col gap-1">
-				<h2 className="bg-gradient text-transparent font-black sm:text-5xl text-3xl bg-clip-text">
+		<div className="relative z-10 flex w-full shrink-0 flex-col gap-5 overflow-hidden rounded-xl border border-[#F2F2F2] bg-opacity-0 bg-clip-padding p-8 drop-shadow-lg backdrop-blur-sm backdrop-filter sm:border-2  sm:p-10 sm:backdrop-blur-sm md:w-full lg:w-96 xl:w-[38rem] ">
+			<div className="flex w-fit flex-col gap-1">
+				<h2 className="bg-gradient bg-clip-text text-3xl font-black text-transparent sm:text-5xl">
 					Изчисли си БАЛ-а
 				</h2>
-				<p className="opacity-70 text-sm">
+				<p className="text-sm opacity-70">
 					Друг начин, по който може да си изчислиш бала, е да ползваш този калкулатор
 				</p>
 			</div>
-			<div className="w-full flex flex-col md:flex-row lg:flex-col xl:flex-row items-center justify-around gap-4">
-				<form className="w-full flex flex-col gap-5">
+			<div className="flex w-full flex-col items-center justify-around gap-4 md:flex-row lg:flex-col xl:flex-row">
+				<form className="flex w-full flex-col gap-5">
 					<CalculatorField
 						name="bgl"
 						label="НВО БЕЛ"
@@ -130,14 +130,14 @@ const Calculator = () => {
 					/>
 				</form>
 				{result !== 0 && (
-					<div className="w-48 h-48 p-8  border sm:border-2 border-[#F2F2F2] backdrop-blur-sm sm:backdrop-blur-md aspect-square rounded-full flex items-center justify-center">
-						<p className="bg-gradient text-transparent font-black text-5xl bg-clip-text">
+					<div className="flex aspect-square h-48  w-48 items-center justify-center rounded-full border border-[#F2F2F2] p-8 backdrop-blur-sm sm:border-2 sm:backdrop-blur-md">
+						<p className="bg-gradient bg-clip-text text-5xl font-black text-transparent">
 							{result.toFixed(2)}
 						</p>
 					</div>
 				)}
 				{!result && result === 0 && (
-					<div className="w-48 h-48 p-8  border sm:border-2 border-[#F2F2F2] backdrop-blur-sm sm:backdrop-blur-md aspect-square rounded-full flex items-center justify-center" />
+					<div className="flex aspect-square h-48  w-48 items-center justify-center rounded-full border border-[#F2F2F2] p-8 backdrop-blur-sm sm:border-2 sm:backdrop-blur-md" />
 				)}
 			</div>
 		</div>

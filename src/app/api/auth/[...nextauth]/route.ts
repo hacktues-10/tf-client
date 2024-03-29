@@ -1,13 +1,13 @@
-import NextAuth from "next-auth";
+import NextAuth from 'next-auth';
 
-import { authOptions } from "../options";
+import { authOptions } from '../options';
 
 type AdapterUser = {
-  id: string;
-  email: string;
-  emailVerified: Date | null;
-  name?: string | null;
-  image?: string | null;
+	id: string;
+	email: string;
+	emailVerified: Date | null;
+	name?: string | null;
+	image?: string | null;
 };
 
 const handler = NextAuth(authOptions);
