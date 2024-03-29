@@ -14,6 +14,11 @@ const nextConfig = {
 				destination: '/#schedule',
 				permanent: false,
 			},
+			{
+				source: '/lectors',
+				destination: '/#lectors',
+				permanent: false,
+			},
 		];
 	},
 };
