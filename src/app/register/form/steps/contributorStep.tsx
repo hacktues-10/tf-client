@@ -248,7 +248,7 @@ export default function ContributorStep({
 								}
 							});
 						}}
-						onPrev={null}
+						onPrev={onPrev}
 					/>
 				</form>
 			</Form>
