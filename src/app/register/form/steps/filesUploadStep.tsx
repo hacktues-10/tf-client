@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useUploadContext } from '@/app/register/context/upload';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -9,7 +10,6 @@ import { z } from 'zod';
 import { createPresignedUrl } from '../actions';
 import { FilesReal } from '../schema';
 import StepButtons from './stepButtons';
-import { useUploadContext } from '@/app/register/context/upload';
 
 type FileUploadSchema = z.infer<typeof FilesReal>;
 

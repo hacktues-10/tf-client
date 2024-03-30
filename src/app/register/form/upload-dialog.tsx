@@ -1,12 +1,12 @@
 'use client';
 
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { useUploadContext } from '@/app/register/context/upload';
 import { useEffect, useState } from 'react';
-import invariant from 'tiny-invariant';
-import { TbCheck, TbExclamationCircle, TbLoader2 } from 'react-icons/tb';
-import { cn } from '@/lib/utils';
+import { useUploadContext } from '@/app/register/context/upload';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Progress } from '@/components/ui/progress';
+import { cn } from '@/lib/utils';
+import { TbCheck, TbExclamationCircle, TbLoader2 } from 'react-icons/tb';
+import invariant from 'tiny-invariant';
 
 export default function UploadDialog() {
 	const { uploadingCount, completedCount, errorCount, ongoingUploads, showDialog, hideDialog } = useUploadContext();
@@ -44,7 +44,7 @@ export default function UploadDialog() {
 			}}
 		>
 			{shouldBeShown && (
-				<DialogTrigger className="absolute bottom-0 right-0 p-4 cursor-pointer bg-sand text-black rounded-tl-lg flex items-center gap-2">
+				<DialogTrigger className="absolute bottom-0 right-0 flex cursor-pointer items-center gap-2 rounded-tl-lg bg-sand p-4 text-black">
 					{/*<Loader2 className="animate-spin shrink-0" />*/}
 					<OverlayIcon uploadingCount={uploadingCount} errorCount={errorCount} />
 					{resolveOverlayText({
@@ -55,7 +55,7 @@ export default function UploadDialog() {
 					})}
 				</DialogTrigger>
 			)}
-			<DialogContent className="bg-white overflow-clip">
+			<DialogContent className="overflow-clip bg-white">
 				<DialogHeader>
 					<DialogTitle>{heading}</DialogTitle>
 				</DialogHeader>
@@ -77,7 +77,7 @@ export default function UploadDialog() {
 							</div>
 							<div
 								className={cn(
-									'flex gap-2 text-sm min-w-0',
+									'flex min-w-0 gap-2 text-sm',
 									// FIXME: use actual color here wtf
 									file.status === 'error' && 'text-[red]'
 								)}
@@ -87,8 +87,8 @@ export default function UploadDialog() {
 									{file.status === 'uploading'
 										? `${(file.progress * 100).toFixed(2)}%`
 										: file.status === 'error'
-										? 'Качването не бе успешно'
-										: 'Качено'}
+											? 'Качването не бе успешно'
+											: 'Качено'}
 								</p>
 							</div>
 						</div>
@@ -101,7 +101,7 @@ export default function UploadDialog() {
 
 function ProgressIcon({ status }: { status: 'uploading' | 'complete' | 'error' }) {
 	if (status === 'uploading') {
-		return <TbLoader2 className="animate-spin shrink-0" />;
+		return <TbLoader2 className="shrink-0 animate-spin" />;
 	}
 	if (status === 'complete') {
 		return <TbCheck className="shrink-0" />;
@@ -117,7 +117,7 @@ function OverlayIcon({ uploadingCount, errorCount }: { uploadingCount: number; e
 		return <TbExclamationCircle className="shrink-0" />;
 	}
 	if (uploadingCount) {
-		return <TbLoader2 className="animate-spin shrink-0" />;
+		return <TbLoader2 className="shrink-0 animate-spin" />;
 	}
 	return <TbCheck className="shrink-0" />;
 }

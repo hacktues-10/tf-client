@@ -2,16 +2,16 @@
 
 import { useEffect, useReducer, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import UploadContextProvider from '@/app/register/context/upload';
+import { RegisterProject } from '@/app/register/form/service';
+import UploadDialog from '@/app/register/form/upload-dialog';
 import { useToast } from '@/components/ui/use-toast';
 import { cn } from '@/lib/utils';
 
 import { RegistrationSchema, registrationSchema } from './schema';
-import ProjectStep from './steps/projectStep';
 import ContributorStep from './steps/contributorStep';
 import FileUploadStep from './steps/filesUploadStep';
-import UploadContextProvider from '@/app/register/context/upload';
-import UploadDialog from '@/app/register/form/upload-dialog';
-import { RegisterProject } from '@/app/register/form/service';
+import ProjectStep from './steps/projectStep';
 
 const defaultValues = {
 	contributors: [
@@ -47,7 +47,7 @@ export default function RegisterForm({ email }: { email: string }) {
 			...state,
 			...update,
 		}),
-		{ ...defaultValues },
+		{ ...defaultValues }
 	);
 	const { toast } = useToast();
 	const router = useRouter();
@@ -57,7 +57,7 @@ export default function RegisterForm({ email }: { email: string }) {
 			const localData = JSON.parse(localStorage.getItem('registrationData') ?? '{}');
 
 			const localStorageCurrentStep = JSON.parse(
-				localStorage.getItem('registrationDataCurrentStep') ?? '{}',
+				localStorage.getItem('registrationDataCurrentStep') ?? '{}'
 			).currentStep;
 			if (localStorageCurrentStep >= 1 && localStorageCurrentStep <= 3) {
 				setCurrentStep(localStorageCurrentStep);
@@ -83,7 +83,7 @@ export default function RegisterForm({ email }: { email: string }) {
 				JSON.stringify({
 					...loadedData.data,
 					...stepData,
-				}),
+				})
 			);
 
 			localStorage.setItem('registrationDataCurrentStep', JSON.stringify({ currentStep: newStep }));
@@ -132,11 +132,11 @@ export default function RegisterForm({ email }: { email: string }) {
 			<UploadDialog />
 			<div
 				className={cn(
-					'xl:w-1/4 w-5/6 md:w-3/4 m-5 mt-24 bg-black flex z-30  p-5 rounded-xl',
-					currentStep === 2 && 'mt-28',
+					'z-30 m-5 mt-24 flex w-5/6 rounded-xl bg-black p-5  md:w-3/4 xl:w-1/4',
+					currentStep === 2 && 'mt-28'
 				)}
 			>
-				<div className="space-y-1 w-full">
+				<div className="w-full space-y-1">
 					<ProjectStep
 						className={currentStep === 1 ? '' : 'hidden'}
 						defaultValues={defaultValues}
@@ -147,7 +147,7 @@ export default function RegisterForm({ email }: { email: string }) {
 					<div
 						className={cn(
 							'relative z-30 m-5 mt-24 flex w-5/6 rounded-xl bg-black  p-5 md:w-3/4 xl:w-1/4',
-							currentStep === 2 && 'mt-28',
+							currentStep === 2 && 'mt-28'
 						)}
 					>
 						<div className="w-full space-y-1">
