@@ -191,50 +191,48 @@ export default function EditForm(props: { projectSubmission: ProjectSubmission }
 						</Button>
 					</section>
 					<div className="w-1/2 space-y-8">
-						{!props.projectSubmission.files.video && (
-							<section className="space-y-8">
-								<FormField
-									control={form.control}
-									name="files.video"
-									render={({ field }) => (
-										<FormItem>
-											<FormLabel className="mt-8">Видео</FormLabel>
-											<FormControl>
-												<Input
-													id="video"
-													accept=".mp4"
-													onChange={handleVideoChange}
-													type="file"
-													className="bg-sand text-black hover:cursor-pointer"
-													required={false}
-												/>
-											</FormControl>
-											<FormMessage />
-										</FormItem>
-									)}
-								/>
-								<FormField
-									control={form.control}
-									name="files.thumbnail"
-									render={({ field }) => (
-										<FormItem>
-											<FormLabel className="mt-8">Thumbnail</FormLabel>
-											<FormControl>
-												<Input
-													id="thumbnail"
-													accept=".jpg, .jpeg, .png, .webp"
-													onChange={handleThumbnailChange}
-													type="file"
-													className="bg-sand text-black hover:cursor-pointer"
-													required={false}
-												/>
-											</FormControl>
-											<FormMessage />
-										</FormItem>
-									)}
-								/>
-							</section>
-						)}
+						<section className="space-y-8">
+							<FormField
+								control={form.control}
+								name="files.video"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel className="mt-8">Ново Видео</FormLabel>
+										<FormControl>
+											<Input
+												id="video"
+												accept=".mp4"
+												onChange={handleVideoChange}
+												type="file"
+												className="bg-sand text-black hover:cursor-pointer"
+												required={false}
+											/>
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+							<FormField
+								control={form.control}
+								name="files.thumbnail"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel className="mt-8">Нов Thumbnail</FormLabel>
+										<FormControl>
+											<Input
+												id="thumbnail"
+												accept=".jpg, .jpeg, .png, .webp"
+												onChange={handleThumbnailChange}
+												type="file"
+												className="bg-sand text-black hover:cursor-pointer"
+												required={false}
+											/>
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+						</section>
 						<section className="text-right">
 							{props.projectSubmission.files.images.map((image, index) => (
 								<UploadedFile
