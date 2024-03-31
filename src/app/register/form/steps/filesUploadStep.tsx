@@ -8,10 +8,10 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 import { createPresignedUrl } from '../actions';
-import { FilesReal } from '../schema';
+import { filesSchema } from '../schema';
 import StepButtons from './stepButtons';
 
-type FileUploadSchema = z.infer<typeof FilesReal>;
+type FileUploadSchema = z.infer<typeof filesSchema>;
 
 export default function FileUploadStep({
 	defaultValues,
@@ -30,7 +30,7 @@ export default function FileUploadStep({
 	className?: string;
 }) {
 	const form = useForm<FileUploadSchema>({
-		resolver: zodResolver(FilesReal),
+		resolver: zodResolver(filesSchema),
 		defaultValues: initialData,
 	});
 

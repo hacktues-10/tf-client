@@ -3,12 +3,12 @@
 import { useEffect, useReducer, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import UploadContextProvider from '@/app/register/context/upload';
-import { RegisterProject } from '@/app/register/form/service';
 import UploadDialog from '@/app/register/form/upload-dialog';
 import { useToast } from '@/components/ui/use-toast';
 import { cn } from '@/lib/utils';
 
 import { RegistrationSchema, registrationSchema } from './schema';
+import { registerProject } from './service';
 import ContributorStep from './steps/contributorStep';
 import FileUploadStep from './steps/filesUploadStep';
 import ProjectStep from './steps/projectStep';
@@ -111,7 +111,7 @@ export default function RegisterForm({ email }: { email: string }) {
 		};
 		updateData(mergedData);
 		const parsed = registrationSchema.parse(mergedData);
-		const res = await RegisterProject(parsed);
+		const res = await registerProject(parsed);
 		localStorage.removeItem('registrationData');
 		localStorage.removeItem('registrationDataCurrentStep');
 		if (res.success) {
