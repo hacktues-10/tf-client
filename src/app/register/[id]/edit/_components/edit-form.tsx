@@ -85,7 +85,6 @@ export default function EditForm(props: { projectSubmission: ProjectSubmission }
 		console.log(data);
 		await updateProjectSubmission(data);
 
-		form.reset();
 		setTargetImages(undefined);
 		setTargetVideo(undefined);
 		setTargetThumbnail(undefined);
