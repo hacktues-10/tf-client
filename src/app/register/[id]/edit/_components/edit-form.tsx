@@ -293,7 +293,7 @@ export default function EditForm(props: { projectSubmission: ProjectSubmission }
 								</FormItem>
 							)}
 						/>
-						<Button type="submit" className="bg-sand text-black">
+						<Button type="submit" className="bg-sand text-black" disabled={form.formState.isSubmitting}>
 							<TbPencil className="mr-2" /> Запази промените
 						</Button>
 					</section>
@@ -339,29 +339,29 @@ export default function EditForm(props: { projectSubmission: ProjectSubmission }
 									</FormItem>
 								)}
 							/>
+							<FormField
+								control={form.control}
+								name="files.images"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel>Нови Снимки</FormLabel>
+										<FormControl>
+											<Input
+												multiple
+												id="pictures"
+												onChange={handleFileChange}
+												type="file"
+												accept=".jpg, .jpeg, .png, .webp"
+												className="bg-sand text-black hover:cursor-pointer"
+											/>
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
 						</section>
 						<IfTfFeatureOn feature="tf-register-projects">
 							<section className="space-y-8">
-								<FormField
-									control={form.control}
-									name="files.images"
-									render={({ field }) => (
-										<FormItem>
-											<FormLabel>Нови Снимки</FormLabel>
-											<FormControl>
-												<Input
-													multiple
-													id="pictures"
-													onChange={handleFileChange}
-													type="file"
-													accept=".jpg, .jpeg, .png, .webp"
-													className="bg-sand text-black hover:cursor-pointer"
-												/>
-											</FormControl>
-											<FormMessage />
-										</FormItem>
-									)}
-								/>
 								<FormField
 									control={form.control}
 									name="files.penokarton"
