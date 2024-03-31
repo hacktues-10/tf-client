@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { UseTFFeaturesIsOn } from '@/app/_integrations/growthbook/utlis';
+import { useTFFeatureIsOn } from '@/app/_integrations/growthbook/utlis';
 import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
@@ -22,7 +22,7 @@ export const SignInForm = (props: { isRegister: boolean }) => {
 	const form = useForm<z.infer<typeof signInSchema>>({
 		resolver: zodResolver(signInSchema),
 	});
-	const canSignInStudents = UseTFFeaturesIsOn('tf-register-projects');
+	const canSignInStudents = useTFFeatureIsOn('tf-register-projects');
 
 	const searchParams = useSearchParams();
 	const error = searchParams.get('error');
@@ -55,7 +55,7 @@ export const SignInForm = (props: { isRegister: boolean }) => {
 		// TODO: use redirect: false
 		return signIn('email', {
 			...credentials,
-			callbackUrl: searchParams.get('callbackUrl') ?? '/',
+			callbackUrl: searchParams.get('callbackUrl') ?? '/register',
 		});
 	});
 
