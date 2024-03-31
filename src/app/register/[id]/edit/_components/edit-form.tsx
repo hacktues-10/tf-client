@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { IfTfFeatureOn } from '@/app/_integrations/growthbook/components';
 import { useUploadContext } from '@/app/register/context/upload';
 import { updateProjectSchema, UpdateProjectSchema } from '@/app/register/form/schema';
 import { ProjectSubmission, updateProjectSubmission } from '@/app/register/form/service';
@@ -25,6 +26,10 @@ export default function EditForm(props: { projectSubmission: ProjectSubmission }
 	const [validVideo, setValidVideo] = useState(false);
 	const [targetThumbnail, setTargetThumbnail] = useState<File>();
 	const [validThumbnail, setValidThumbnail] = useState(false);
+	const [targetImages, setTargetImages] = useState<FileList>();
+	const [validImages, setValidImages] = useState(false);
+	const [validPenokarton, setValidPenokarton] = useState(false);
+	const [targetPenokarton, setTargetPenokarton] = useState<File>();
 	const { toast } = useToast();
 	const router = useRouter();
 
@@ -50,6 +55,28 @@ export default function EditForm(props: { projectSubmission: ProjectSubmission }
 			promises.push(addUpload(renamedFile, data.files.thumbnail));
 		}
 
+		if (targetImages) {
+			for (const file of Array.from(targetImages)) {
+				const newBlob = new Blob([file], { type: file.type });
+				const renamedFile = new File([newBlob], `${props.projectSubmission.project.title}-${file.name}`, {
+					type: file.type,
+				});
+				promises.push(addUpload(renamedFile, file.name));
+			}
+		}
+
+		if (targetPenokarton) {
+			const newBlob = new Blob([targetPenokarton], { type: targetPenokarton.type });
+			const renamedFile = new File(
+				[newBlob],
+				`${props.projectSubmission.project.title}-Penokarton-${targetPenokarton.name}`,
+				{
+					type: targetPenokarton.type,
+				}
+			);
+			promises.push(addUpload(renamedFile));
+		}
+
 		await Promise.all(promises);
 		hideDialog();
 		clearCompleted();
@@ -58,6 +85,10 @@ export default function EditForm(props: { projectSubmission: ProjectSubmission }
 		await updateProjectSubmission(data);
 
 		form.reset();
+		setTargetImages(undefined);
+		setTargetVideo(undefined);
+		setTargetThumbnail(undefined);
+		setTargetPenokarton(undefined);
 		toast({
 			title: 'Промените бяха запазени успешно',
 			variant: 'sand',
@@ -96,6 +127,51 @@ export default function EditForm(props: { projectSubmission: ProjectSubmission }
 		}
 	};
 
+	const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		if (e.target.files) {
+			if (e.target.files && e.target.files.length > 5) {
+				form.setError('files.images', {
+					type: 'manual',
+					message: 'Можете да качите най-много 5 снимки',
+				});
+				setValidImages(false);
+				e.target.value = '';
+				return;
+			}
+
+			if (e.target.files) {
+				for (let i = 0; i < e.target.files.length; i++) {
+					if (!e.target.files[i].type.includes('image')) {
+						form.setError('files.images', {
+							type: 'manual',
+							message: 'Можете да качите само снимки в jpg, jpeg, png или webp формат',
+						});
+						setValidImages(false);
+						e.target.value = '';
+						return;
+					}
+
+					if (e.target.files[i].size > 20971520) {
+						form.setError('files.images', {
+							type: 'manual',
+							message: 'Снимките трябва да са по-малки от 20MB',
+						});
+						setValidImages(false);
+						e.target.value = '';
+						return;
+					}
+				}
+			}
+			form.clearErrors('files.images');
+			setTargetImages(e.target.files);
+			const filesArray = Array.from(e.target.files).map(
+				(file) => `${props.projectSubmission.project.title}-${file.name}`
+			);
+			form.setValue('files.images', filesArray);
+			setValidImages(true);
+		}
+	};
+
 	const handleVideoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const file = e.target.files?.[0];
 
@@ -124,6 +200,37 @@ export default function EditForm(props: { projectSubmission: ProjectSubmission }
 			setTargetVideo(file);
 			setValidVideo(true);
 			form.setValue('files.video', `${props.projectSubmission.project.title}-${file.name}`);
+		}
+	};
+
+	const handlePenokartonChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const file = e.target.files?.[0];
+
+		if (file) {
+			if (file.type !== 'application/pdf') {
+				form.setError('files.penokarton', {
+					type: 'manual',
+					message: 'Можете да качите само pdf файл',
+				});
+				setValidPenokarton(false);
+				e.target.value = '';
+				return;
+			}
+
+			if (file.size > 20971520) {
+				form.setError('files.penokarton', {
+					type: 'manual',
+					message: 'Файлът трябва да е по-малък от 20MB',
+				});
+				setValidPenokarton(false);
+				e.target.value = '';
+				return;
+			}
+			form.clearErrors('files.penokarton');
+
+			setTargetPenokarton(file);
+			setValidPenokarton(true);
+			form.setValue('files.penokarton', `${props.projectSubmission.project.title}-Penokarton-${file.name}`);
 		}
 	};
 
@@ -233,6 +340,51 @@ export default function EditForm(props: { projectSubmission: ProjectSubmission }
 								)}
 							/>
 						</section>
+						<IfTfFeatureOn feature="tf-register-projects">
+							<section className="space-y-8">
+								<FormField
+									control={form.control}
+									name="files.images"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Нови Снимки</FormLabel>
+											<FormControl>
+												<Input
+													multiple
+													id="pictures"
+													onChange={handleFileChange}
+													type="file"
+													accept=".jpg, .jpeg, .png, .webp"
+													className="bg-sand text-black hover:cursor-pointer"
+												/>
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={form.control}
+									name="files.penokarton"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel className="mt-8">
+												Смяна на Пенокартон (размер А2, pdf формат)
+											</FormLabel>
+											<FormControl>
+												<Input
+													id="penokarton"
+													accept=".pdf"
+													onChange={handlePenokartonChange}
+													type="file"
+													className="bg-sand text-black hover:cursor-pointer"
+												/>
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+							</section>
+						</IfTfFeatureOn>
 						<section className="text-right">
 							{props.projectSubmission.files.images.map((image, index) => (
 								<UploadedFile

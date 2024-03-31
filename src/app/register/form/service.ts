@@ -1,5 +1,6 @@
 'use server';
 
+import { revalidatePath } from 'next/cache';
 import { getServerSideGrowthBook } from '@/app/_integrations/growthbook/growthbook';
 import { getSession } from '@/app/api/auth/session';
 import { db } from '@/app/db';
@@ -113,6 +114,7 @@ export async function updateProjectSubmission(updateProjectPayload: UpdateProjec
 			demo: updateProjectPayload.project.demo,
 		})
 		.where(eq(projectsSubmission.id, updateProjectPayload.id));
+	revalidatePath(`/register/${updateProjectPayload.id}/edit`);
 }
 
 function getContributorsString(data: RegistrationSchema) {

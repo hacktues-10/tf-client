@@ -39,6 +39,7 @@ const defaultValues = {
 		penokarton: '',
 	},
 } satisfies RegistrationSchema;
+
 export default function RegisterForm({ email }: { email: string }) {
 	const [currentStep, setCurrentStep] = useState(1);
 	const [addContributor, setAddContributor] = useState(false);
