@@ -5,7 +5,7 @@ import { getServerSideGrowthBook } from '@/app/_integrations/growthbook/growthbo
 import { getSession } from '@/app/api/auth/session';
 import { db } from '@/app/db';
 import { projectsSubmission } from '@/app/db/schema';
-import { eq } from 'drizzle-orm';
+import { eq, sql } from 'drizzle-orm';
 import { z } from 'zod';
 
 import type { RegistrationSchema, UpdateProjectSchema } from './schema';
@@ -36,6 +36,18 @@ export async function registerProject(data: RegistrationSchema) {
 	}
 }
 
+function getContributors(projectSubmission: { contributors: string }) {
+	return projectSubmission.contributors.split('\n').map((line: string) => {
+		const [firstName, lastName, gradeParallel, tShirt, email, phoneNumber] = line.split(';');
+		const gradeUnvalidated = gradeParallel.slice(0, -1);
+		const parallelUnvalidated = gradeParallel.slice(-1);
+		const grade = z.union([z.enum(['8', '9', '10', '11', '12']), z.undefined()]).parse(gradeUnvalidated);
+		const parallel = z.union([z.enum(['А', 'Б', 'В', 'Г']), z.undefined()]).parse(parallelUnvalidated);
+		const tshirt = z.union([z.enum(['S', 'M', 'L', 'XL', 'XXL']), z.undefined()]).parse(tShirt);
+		return { firstName, lastName, grade, parallel, tshirt, email, phoneNumber: phoneNumber.slice(1) };
+	});
+}
+
 export async function getProjectSubmission(id: number) {
 	const gb = await getServerSideGrowthBook();
 	if (gb.isOff('tf-edit-projects')) {
@@ -52,16 +64,7 @@ export async function getProjectSubmission(id: number) {
 	if (!projectSubmission) {
 		return null;
 	}
-
-	const contributors = projectSubmission.contributors.split('\n').map((line: string) => {
-		const [firstName, lastName, gradeParallel, tShirt, email, phoneNumber] = line.split(';');
-		const gradeUnvalidated = gradeParallel.slice(0, -1);
-		const parallelUnvalidated = gradeParallel.slice(-1);
-		const grade = z.union([z.enum(['8', '9', '10', '11', '12']), z.undefined()]).parse(gradeUnvalidated);
-		const parallel = z.union([z.enum(['А', 'Б', 'В', 'Г']), z.undefined()]).parse(parallelUnvalidated);
-		const tshirt = z.union([z.enum(['S', 'M', 'L', 'XL', 'XXL']), z.undefined()]).parse(tShirt);
-		return { firstName, lastName, grade, parallel, tshirt, email, phoneNumber: phoneNumber.slice(1) };
-	});
+	const contributors = getContributors(projectSubmission);
 	const submitter = contributors[0];
 	if (submitter?.email !== session.user.email) {
 		return null;
@@ -115,6 +118,22 @@ export async function updateProjectSubmission(updateProjectPayload: UpdateProjec
 		})
 		.where(eq(projectsSubmission.id, updateProjectPayload.id));
 	revalidatePath(`/register/${updateProjectPayload.id}/edit`);
+}
+
+export async function getOwnSubmissions() {
+	const session = await getSession();
+	if (!session?.user?.email) {
+		return [];
+	}
+	const results = await db
+		.select()
+		.from(projectsSubmission)
+		.where(sql`${projectsSubmission.contributors} like '%;'||${session.user.email}||';%'`);
+	return results.filter((projectSubmission) => {
+		const contributors = getContributors(projectSubmission);
+		const submitter = contributors[0];
+		return submitter?.email === session.user?.email;
+	});
 }
 
 function getContributorsString(data: RegistrationSchema) {
