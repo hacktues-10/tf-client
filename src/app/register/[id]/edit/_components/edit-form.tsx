@@ -404,14 +404,14 @@ export default function EditForm(props: { projectSubmission: ProjectSubmission }
 							{props.projectSubmission.files.thumbnail && (
 								<UploadedFile
 									title="Thumbnail"
-									name={getFileName(props.projectSubmission.files.thumbnail)}
+									name={getFileName(props.projectSubmission.files.thumbnail, 2)}
 									path={`${props.projectSubmission.id}/thumbnail`}
 								/>
 							)}
 							{props.projectSubmission.files.penokarton && (
 								<UploadedFile
 									title="Пенокартон"
-									name={getFileName(props.projectSubmission.files.penokarton)}
+									name={getFileName(props.projectSubmission.files.penokarton, 2)}
 									path={`${props.projectSubmission.id}/penokarton`}
 								/>
 							)}
@@ -428,7 +428,7 @@ function UploadedFile({ title, name, path }: { title: string; name: string; path
 		<div className="flex w-full min-w-0 items-center justify-between gap-3">
 			<p>{title}</p>
 			<Button asChild variant="link" className="text-sand">
-				<Link href={`/register/${path}`} target="_blank" className="truncate">
+				<Link href={`/register/${path}/${encodeURIComponent(name)}`} target="_blank" className="truncate">
 					<TbLink className="mr-2" /> {name}
 				</Link>
 			</Button>
@@ -436,7 +436,11 @@ function UploadedFile({ title, name, path }: { title: string; name: string; path
 	);
 }
 
-function getFileName(dbFileName: string) {
-	const start = dbFileName.indexOf('-') + 1;
-	return dbFileName.slice(start);
+function getFileName(dbFileName: string, iterations: number = 1) {
+	while (iterations > 0) {
+		const start = dbFileName.indexOf('-') + 1;
+		dbFileName = dbFileName.slice(start);
+		iterations--;
+	}
+	return dbFileName;
 }
