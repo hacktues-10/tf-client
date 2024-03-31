@@ -137,44 +137,42 @@ export default function RegisterForm({ email }: { email: string }) {
 				)}
 			>
 				<div className="w-full space-y-1">
-					<div className="w-full space-y-1">
-						<ProjectStep
-							className={currentStep === 1 ? '' : 'hidden'}
+					<ProjectStep
+						className={currentStep === 1 ? '' : 'hidden'}
+						defaultValues={defaultValues}
+						initialData={formData}
+						onNext={handleNext}
+						onPrev={handlePrev}
+					/>
+
+					{formData.contributors.map((contributor, index) => (
+						<ContributorStep
+							key={index}
+							className={currentStep === index + 2 ? '' : 'hidden'}
 							defaultValues={defaultValues}
+							index={index}
+							email={email}
 							initialData={formData}
 							onNext={handleNext}
 							onPrev={handlePrev}
+							currentStep={currentStep}
+							setAddContributor={setAddContributor}
+							addContributor={addContributor}
 						/>
-
-						{formData.contributors.map((contributor, index) => (
-							<ContributorStep
-								key={index}
-								className={currentStep === index + 2 ? '' : 'hidden'}
-								defaultValues={defaultValues}
-								index={index}
-								email={email}
-								initialData={formData}
-								onNext={handleNext}
-								onPrev={handlePrev}
-								currentStep={currentStep}
-								setAddContributor={setAddContributor}
-								addContributor={addContributor}
-							/>
-						))}
-						<FileUploadStep
-							className={currentStep === formData.contributors.length + 2 ? '' : 'hidden'}
-							defaultValues={defaultValues}
-							initialData={{
-								...formData,
-								files: {
-									...formData.files,
-									video: formData.files.video || '',
-								},
-							}}
-							onNext={handleSubmit}
-							onPrev={handlePrev}
-						/>
-					</div>
+					))}
+					<FileUploadStep
+						className={currentStep === formData.contributors.length + 2 ? '' : 'hidden'}
+						defaultValues={defaultValues}
+						initialData={{
+							...formData,
+							files: {
+								...formData.files,
+								video: formData.files.video || '',
+							},
+						}}
+						onNext={handleSubmit}
+						onPrev={handlePrev}
+					/>
 				</div>
 			</div>
 		</UploadContextProvider>
