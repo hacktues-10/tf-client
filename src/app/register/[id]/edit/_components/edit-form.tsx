@@ -7,6 +7,7 @@ import { IfTfFeatureOn } from '@/app/_integrations/growthbook/components';
 import { useUploadContext } from '@/app/register/context/upload';
 import { updateProjectSchema, UpdateProjectSchema } from '@/app/register/form/schema';
 import { ProjectSubmission, updateProjectSubmission } from '@/app/register/form/service';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
@@ -239,8 +240,8 @@ export default function EditForm(props: { projectSubmission: ProjectSubmission }
 	return (
 		<Form {...form}>
 			<form onSubmit={onSubmit}>
-				<div className="flex w-screen max-w-3xl items-start justify-between gap-5">
-					<section className="w-1/2 space-y-8">
+				<div className="flex w-screen max-w-3xl flex-col items-center justify-center gap-5 sm:flex-row sm:items-start sm:justify-between">
+					<section className="w-full space-y-8 sm:w-1/2">
 						<FormField
 							control={form.control}
 							name="project.title"
@@ -326,11 +327,159 @@ export default function EditForm(props: { projectSubmission: ProjectSubmission }
 								</FormItem>
 							)}
 						/>
+						<Accordion type="single" collapsible>
+							<AccordionItem value="contributors">
+								<AccordionTrigger>Участници</AccordionTrigger>
+								<AccordionContent>
+									<div className="space-y-8">
+										{props.projectSubmission.contributors.map((contributor, index) => (
+											<div
+												key={JSON.stringify(contributor)}
+												className="flex w-full flex-col justify-between gap-3"
+											>
+												<h2 className="font-semibold">Участник {index + 1}</h2>
+												<FormField
+													control={form.control}
+													name={`contributors.${index}.email`}
+													render={({ field }) => (
+														<FormItem>
+															<FormLabel>Имейл (elsys)</FormLabel>
+															<FormControl>
+																<Input
+																	placeholder="uchenik.2024@elsys-bg.org"
+																	{...field}
+																	disabled={index === 0}
+																/>
+															</FormControl>
+															<FormMessage />
+														</FormItem>
+													)}
+												/>
+												<FormField
+													control={form.control}
+													name={`contributors.${index}.firstName`}
+													render={({ field }) => (
+														<FormItem>
+															<FormLabel>Име</FormLabel>
+															<FormControl>
+																<Input placeholder="Калин" {...field} />
+															</FormControl>
+															<FormMessage />
+														</FormItem>
+													)}
+												/>
+												<FormField
+													control={form.control}
+													name={`contributors.${index}.lastName`}
+													render={({ field }) => (
+														<FormItem>
+															<FormLabel>Фамилия</FormLabel>
+															<FormControl>
+																<Input placeholder="Георгиев" {...field} />
+															</FormControl>
+															<FormMessage />
+														</FormItem>
+													)}
+												/>
+												<FormField
+													control={form.control}
+													name={`contributors.${index}.grade`}
+													render={({ field }) => (
+														<FormItem>
+															<FormLabel>Клас</FormLabel>
+															<FormControl>
+																<Select
+																	onValueChange={field.onChange}
+																	value={field.value}
+																>
+																	<FormControl>
+																		<SelectTrigger>
+																			<SelectValue placeholder="Изберете клас" />
+																		</SelectTrigger>
+																	</FormControl>
+																	<SelectContent className="bg-black">
+																		<SelectItem key="8" value="8">
+																			8
+																		</SelectItem>
+																		<SelectItem key="9" value="9">
+																			9
+																		</SelectItem>
+																		<SelectItem key="10" value="10">
+																			10
+																		</SelectItem>
+																		<SelectItem key="11" value="11">
+																			11
+																		</SelectItem>
+																		<SelectItem key="12" value="12">
+																			12
+																		</SelectItem>
+																	</SelectContent>
+																</Select>
+															</FormControl>
+															<FormMessage />
+														</FormItem>
+													)}
+												/>
+												<FormField
+													control={form.control}
+													name={`contributors.${index}.parallel`}
+													render={({ field }) => (
+														<FormItem>
+															<FormLabel>Паралелка</FormLabel>
+															<FormControl>
+																<Select
+																	onValueChange={field.onChange}
+																	value={field.value}
+																>
+																	<FormControl>
+																		<SelectTrigger>
+																			<SelectValue placeholder="Изберете паралелка" />
+																		</SelectTrigger>
+																	</FormControl>
+																	<SelectContent className="bg-black">
+																		<SelectItem key="A" value="А">
+																			А
+																		</SelectItem>
+																		<SelectItem key="Б" value="Б">
+																			Б
+																		</SelectItem>
+																		<SelectItem key="В" value="В">
+																			В
+																		</SelectItem>
+																		<SelectItem key="Г" value="Г">
+																			Г
+																		</SelectItem>
+																	</SelectContent>
+																</Select>
+															</FormControl>
+															<FormMessage />
+														</FormItem>
+													)}
+												/>
+												<FormField
+													control={form.control}
+													name={`contributors.${index}.phoneNumber`}
+													render={({ field }) => (
+														<FormItem>
+															<FormLabel>Телефонен номер</FormLabel>
+															<FormControl>
+																<Input placeholder="0888888888" {...field} />
+															</FormControl>
+															<FormMessage />
+														</FormItem>
+													)}
+												/>
+											</div>
+										))}
+									</div>
+								</AccordionContent>
+							</AccordionItem>
+						</Accordion>
 						<Button type="submit" className="bg-sand text-black" disabled={form.formState.isSubmitting}>
 							<TbPencil className="mr-2" /> Запази промените
 						</Button>
 					</section>
-					<div className="w-1/2 space-y-8">
+					<div className="w-full space-y-8 sm:w-1/2">
 						<section className="space-y-8">
 							<FormField
 								control={form.control}
