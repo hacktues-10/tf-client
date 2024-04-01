@@ -3,6 +3,8 @@ import { db } from '@/app/db';
 import { projectsSubmission } from '@/app/db/schema';
 import { count } from 'drizzle-orm';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(req: NextRequest) {
 	const results = await db.select({ count: count(projectsSubmission.id) }).from(projectsSubmission);
 	if (results[0]) {
