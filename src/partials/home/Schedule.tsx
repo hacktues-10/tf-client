@@ -121,7 +121,7 @@ function Schedule() {
 										<DialogTrigger>
 											<div
 												className={cn(
-													'mb-4 my-2 rounded-xl flex flex-col justify-center max-w-[200px] sm:max-w-[290px] border sm:border-2 border-[#FEFEFE] hover:border-sand hover:sm:border-b-4 p-4 px-5 backdrop-filter backdrop-blur-sm sm:backdrop-blur-md bg-opacity-0 hover:scale-105 transition-all w-fit duration-300',
+													'mb-4 my-2 rounded-xl flex flex-col justify-center max-w-[200px] sm:max-w-[290px] border sm:border-2 border-[#FEFEFE] hover:border-sand hover:sm:border-b-4 sm:p-4 sm:px-5 p-2 py-3 backdrop-filter backdrop-blur-sm sm:backdrop-blur-md bg-opacity-0 hover:scale-105 transition-all w-fit duration-300',
 													index % 4 == 0 && 'rotate-3 sm:rotate-6 hover:sm:border-l-4 ',
 													index % 4 == 1 && '-rotate-3 sm:-rotate-6 hover:sm:border-r-4 ',
 													index % 4 == 2 && 'rotate-3 sm:rotate-6 hover:sm:border-r-4 ',
@@ -131,7 +131,7 @@ function Schedule() {
 												<img
 													src={item.photo}
 													alt={item.name}
-													className="mb-5 w-[140px] h-[140px] sm:w-[250px] sm:h-[250px] flex items-center justify-center rounded-xl bg-stroke"
+													className="mb-5 mx-auto w-[140px] h-[140px] sm:w-[250px] sm:h-[250px] flex items-center justify-center rounded-xl bg-stroke"
 												/>
 												<h3 className="font-semibold text-lg sm:text-xl">{item.name}</h3>
 												<div className="w-full sm:w-[1px] h-[1px] sm:h-auto shrink-0 bg-white" />
