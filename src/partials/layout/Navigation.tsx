@@ -16,10 +16,14 @@ const LINKS = [
 	// 	href: '/projects',
 	// 	title: 'Проекти',
 	// },
-	// {
-	// 	href: '#schedule',
-	// 	title: 'Програма',
-	// },
+	{
+		href: '/#lectors',
+		title: 'Лектори',
+	},
+	{
+		href: '/#schedule',
+		title: 'Програма',
+	},
 	// {
 	// 	href: '/projects',
 	// 	title: 'Гласуване',
@@ -212,17 +216,43 @@ const Navigation = () => {
 								}
 							>
 								<ul className="block lg:flex">
-									{LINKS.map((link) => (
-										<li
-											className="group relative"
-											onClick={() => setMobileOpen(false)}
-											key={link.title}
-										>
-											<Linky className="!mx-4" href={link.href}>
-												{link.title}
-											</Linky>
-										</li>
-									))}
+									{LINKS.map((link) => {
+										if (day == 1) {
+											return (
+												<li
+													className="group relative"
+													onClick={() => setMobileOpen(false)}
+													key={link.title}
+												>
+													<Linky className="!mx-4" href={link.href}>
+														{link.title == 'Програма'
+															? day == 1
+																? 'Програма - Ден 1'
+																: 'Програма - Ден 2'
+															: link.title}
+													</Linky>
+												</li>
+											);
+										}
+										if (day == 2) {
+											if (link.title != 'Лектори')
+												return (
+													<li
+														className="group relative"
+														onClick={() => setMobileOpen(false)}
+														key={link.title}
+													>
+														<Linky className="!mx-4" href={link.href}>
+															{link.title === 'Програма'
+																? day === (1 as number)
+																	? 'Програма - Ден 1'
+																	: 'Програма - Ден 2'
+																: link.title}
+														</Linky>
+													</li>
+												);
+										}
+									})}
 
 									{SCHOOL_LINKS.map((link) => (
 										<li

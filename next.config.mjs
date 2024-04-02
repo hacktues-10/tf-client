@@ -8,13 +8,4 @@ export default {
 	experimental: {
 		serverActions: true,
 	},
-	async redirects() {
-		return [
-			{
-				source: '/schedule',
-				destination: '/#schedule',
-				permanent: false,
-			},
-		];
-	},
 };
