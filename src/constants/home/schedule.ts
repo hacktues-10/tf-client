@@ -53,7 +53,7 @@ export const SCHEDULE_DAY1 = [
 	{
 		start: '16:30',
 		end: '19:00',
-		title: 'Ученически проекти',
+		title: 'Изложение на ученически проекти',
 		description: `Всеки посетител ще има възможността:
 		<ul class='flex flex-col gap-2 pt-2'>
 			<li class='px-4 py-2 bg-bg-color border border-stroke rounded-xl'>Да разгледа <strong>150 ученически проекта</strong> и да поговори с техните създатели</li>
@@ -70,11 +70,11 @@ export const SCHEDULE_DAY2 = [
 	{
 		start: '9:30',
 		end: '16:30',
-		title: 'Ученически проекти & Battle Bots',
+		title: 'Изложение на ученически проекти & Battle Bots',
 		description: `Всеки посетител ще има възможността:
 		<ul class='flex flex-col gap-2 pt-2'>
 			<li class='px-4 py-2 bg-bg-color border border-stroke rounded-xl'>Да разгледа <strong>150 ученически проекта</strong> и да поговори с техните създатели</li>
-			<li class='px-4 py-2 bg-bg-color border border-stroke rounded-xl'>Финали на Battle Bots</li>
+			<li class='px-4 py-2 bg-bg-color border border-stroke rounded-xl'>Да гледа финали на Battle Bots</li>
 			<li class='px-4 py-2 bg-bg-color border border-stroke rounded-xl'>Да се запознае със спонсорите на събитието</li>
 			<li class='px-4 py-2 bg-bg-color border border-stroke rounded-xl'>Да говори с членове на извънкласни клубове в ТУЕС и с други ученици от училището</li>
 			<li class='px-4 py-2 bg-bg-color border border-stroke rounded-xl'>Да гласува за любимия си ученически проект</li>
