@@ -1,13 +1,14 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import Link from 'next/link';
-import { IfTfFeatureOn } from '@/app/_integrations/growthbook/components';
+import { IfTfFeatureOff, IfTfFeatureOn } from '@/app/_integrations/growthbook/components';
+import { OwnSubmissionsDialog } from '@/app/register/ownSubmissionsDialog';
 import TitleSVG from '@/app/Title';
 import { useDay } from '@/context/day';
 import { TbBallpen, TbClockHour4, TbMapPin } from 'react-icons/tb';
 
-export default function Logos() {
+export default function Logos({ ownSubmissionsDialog }: { ownSubmissionsDialog: React.ReactElement }) {
 	const { day, setDay } = useDay();
 	const [image, setImage] = useState('');
 	useEffect(() => {
@@ -53,6 +54,7 @@ export default function Logos() {
 						<p>Регистрирай проект</p>
 					</Link>
 				</IfTfFeatureOn>
+				<IfTfFeatureOff feature="tf-register-projects">{ownSubmissionsDialog}</IfTfFeatureOff>
 			</div>
 		</div>
 	);
