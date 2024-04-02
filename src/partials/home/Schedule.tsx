@@ -118,7 +118,7 @@ function Schedule() {
 							{LECTORS.map((item, index) => {
 								return (
 									<Dialog key={item.name}>
-										<DialogTrigger>
+										<DialogTrigger className='outline-none'>
 											<div
 												className={cn(
 													'mb-4 my-2 rounded-xl flex flex-col justify-center max-w-[200px] sm:max-w-[290px] border sm:border-2 border-[#FEFEFE] hover:border-sand hover:sm:border-b-4 sm:p-4 sm:px-5 p-2 py-3 backdrop-filter backdrop-blur-sm sm:backdrop-blur-md bg-opacity-0 hover:scale-105 transition-all w-fit duration-300',
