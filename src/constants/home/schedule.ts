@@ -1,29 +1,3 @@
-export const SCHEDULE_DAY2 = [
-	{
-		start: '9:30',
-		end: '16:30',
-		title: 'Ученически проекти',
-		description: `Всеки посетител ще има възможността:
-		<ul class='flex flex-col gap-2 pt-2'>
-			<li class='px-4 py-2 bg-bg-color border border-stroke rounded-xl'>Да разгледа <strong>над 140 ученически проекта</strong> и да поговори с техните създатели</li>
-			<li class='px-4 py-2 bg-bg-color border border-stroke rounded-xl'>Да се запознае със спонсорите на събитието</li>
-			<li class='px-4 py-2 bg-bg-color border border-stroke rounded-xl'>Да говори с членове на извънкласни клубове в ТУЕС и с други ученици от училището</li>
-			<li class='px-4 py-2 bg-bg-color border border-stroke rounded-xl'>Да гласува за любимия си ученически проект</li>
-		</ul>`,
-		icon: '',
-		pos: 'left',
-	},
-	{
-		start: '16:30',
-		end: '19:30',
-		title: 'Закриваща церемония',
-		description:
-			'Време е за награждаване на победителите в различните категории на TUES Fest 2024. Започва се с наградите на нашите спонсори и партньори и след това с почетните първи три места във всяка категория.',
-		icon: '',
-		pos: 'right',
-	},
-];
-
 export const SCHEDULE_DAY1 = [
 	{
 		start: '9:00',
@@ -63,7 +37,7 @@ export const SCHEDULE_DAY1 = [
 		description: `<ul class='flex flex-col gap-2 pt-2'>
 			<li class='px-4 py-2 bg-bg-color border border-stroke rounded-xl'>Изкуствения интелект в съвременното обучение</li>
 			<li class='px-4 py-2 bg-bg-color border border-stroke rounded-xl'>Тайната на вечната младост (и съвсем мъничко безсмъртие)</li>
-			<li class='px-4 py-2 bg-bg-color border border-stroke rounded-xl'>Какво да вземем по пътя си, за да стигнем, където искаме? (може да го промени)</li>
+			<li class='px-4 py-2 bg-bg-color border border-stroke rounded-xl'>Какво да вземем по пътя си, за да стигнем, където искаме?</li>
 		</ul>`,
 		icon: '',
 		pos: 'left',
@@ -82,11 +56,38 @@ export const SCHEDULE_DAY1 = [
 		title: 'Ученически проекти',
 		description: `Всеки посетител ще има възможността:
 		<ul class='flex flex-col gap-2 pt-2'>
-			<li class='px-4 py-2 bg-bg-color border border-stroke rounded-xl'>Да разгледа <strong>над 140 ученически проекта</strong> и да поговори с техните създатели</li>
+			<li class='px-4 py-2 bg-bg-color border border-stroke rounded-xl'>Да разгледа <strong>150 ученически проекта</strong> и да поговори с техните създатели</li>
 			<li class='px-4 py-2 bg-bg-color border border-stroke rounded-xl'>Да се запознае със спонсорите на събитието</li>
 			<li class='px-4 py-2 bg-bg-color border border-stroke rounded-xl'>Да говори с членове на извънкласни клубове в ТУЕС и с други ученици от училището</li>
 			<li class='px-4 py-2 bg-bg-color border border-stroke rounded-xl'>Да гласува за любимия си ученически проект</li>
 		</ul>`,
+		icon: '',
+		pos: 'right',
+	},
+];
+
+export const SCHEDULE_DAY2 = [
+	{
+		start: '9:30',
+		end: '16:30',
+		title: 'Ученически проекти & Battle Bots',
+		description: `Всеки посетител ще има възможността:
+		<ul class='flex flex-col gap-2 pt-2'>
+			<li class='px-4 py-2 bg-bg-color border border-stroke rounded-xl'>Да разгледа <strong>150 ученически проекта</strong> и да поговори с техните създатели</li>
+			<li class='px-4 py-2 bg-bg-color border border-stroke rounded-xl'>Финали на Battle Bots</li>
+			<li class='px-4 py-2 bg-bg-color border border-stroke rounded-xl'>Да се запознае със спонсорите на събитието</li>
+			<li class='px-4 py-2 bg-bg-color border border-stroke rounded-xl'>Да говори с членове на извънкласни клубове в ТУЕС и с други ученици от училището</li>
+			<li class='px-4 py-2 bg-bg-color border border-stroke rounded-xl'>Да гласува за любимия си ученически проект</li>
+		</ul>`,
+		icon: '',
+		pos: 'left',
+	},
+	{
+		start: '16:30',
+		end: '19:30',
+		title: 'Закриваща церемония',
+		description:
+			'Време е за награждаване на победителите в различните категории на TUES Fest 2024. Започва се с наградите на нашите спонсори и партньори и след това с почетните първи три места във всяка категория.',
 		icon: '',
 		pos: 'right',
 	},
@@ -168,6 +169,6 @@ export const LECTORS = [
 		about: 'Випсук 1995',
 		description:
 			'Светозар Георгиев е съосновател на Telerik, Telerik Academy и Campus X. След като прекара 14 години в изграждането на глобална софтуерна компания, сега той се е посветил на споделянето на наученото със следващото поколение български предприемачи. Като съосновател и съизпълнителен директор на Telerik, Светозар изигра важна роля в управлението на компанията от малък стартъп до глобален пазарен лидер, с екип от над 850 души в 11 офиса по целия свят. Днес той е партньор във фонда за рисков капитал Eleven Ventures. Светозар също е активен ментор и съветник, работещ с множество стартиращи компании и обществени организации. Неговата мисия е да помогне на местните технологични и стартиращи екосистеми да се развият и да станат значими сили за положителна промяна в България. В момента е председател на BESCO – Българската Предприемаческа Асоциация, заместник-председател на фондация „Заедно в Час“ и член на Настоятелството на Американския Университет в България. Горд ТУЕС-ар от випуск ’95 и съосновател на АЗТУЕС.',
-		lecture: 'Какво да вземем по пътя си, за да стигнем, където искаме? (може да го промени)',
+		lecture: 'Какво да вземем по пътя си, за да стигнем, където искаме?',
 	},
 ];
