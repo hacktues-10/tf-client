@@ -5,48 +5,36 @@ import { IfTfFeatureOn } from '@/app/_integrations/growthbook/components';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useDay } from '@/context/day';
 import { LECTORS, SCHEDULE_DAY1, SCHEDULE_DAY2 } from '@/constants/home/schedule';
-import { Card } from '@/components/ui/card';
-import Image from 'next/image';
 import { cn } from '@/lib/utils';
+import { useEffect } from 'react';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTrigger } from '@/components/ui/dialog';
 function Schedule() {
 	const { day } = useDay();
 	const dayValue = `day-${day}`;
 
+	useEffect(() => {
+		const hash = window.location.hash;
+		console.log(hash);
+		if (hash === '#lectors') {
+			setTimeout(() => {
+				const el = document.getElementById('lectors');
+				if (el) {
+					el.scrollIntoView({ behavior: 'smooth' });
+				}
+			}, 0);
+		}
+		if (hash === '#schedule') {
+			setTimeout(() => {
+				const el = document.getElementById('schedule');
+				if (el) {
+					el.scrollIntoView({ behavior: 'smooth' });
+				}
+			}, 0);
+		}
+	}, []);
+
 	return (
 		<IfTfFeatureOn feature="schedule">
-			{day == 1 && (
-				<section id="lectors" className="relative z-20 min">
-					<h2 className="bg-gradient text-transparent font-black text-5xl bg-clip-text mb-8">Лектори</h2>
-					<div className="w-full flex justify-center items-center gap-4">
-						<div className="gird inline-grid items-center m-auto grid-cols-2 lg:grid-cols-3 justify-center gap-3">
-							{LECTORS.map((item, index) => {
-								return (
-									<div
-										key={item.name}
-										className={cn(
-											'mb-4 my-2 rounded-xl max-w-[200px] sm:max-w-[290px] border sm:border-2 border-[#FEFEFE] hover:border-sand hover:sm:border-b-4 p-4 px-5 backdrop-filter backdrop-blur-sm sm:backdrop-blur-md bg-opacity-0 hover:scale-105 transition-all w-fit duration-300',
-											index % 4 == 0 && 'rotate-3 sm:rotate-6 hover:sm:border-l-4 ',
-											index % 4 == 1 && '-rotate-3 sm:-rotate-6 hover:sm:border-r-4 ',
-											index % 4 == 2 && 'rotate-3 sm:rotate-6 hover:sm:border-r-4 ',
-											index % 4 == 3 && '-rotate-3 sm:-rotate-6 hover:sm:border-l-4 '
-										)}
-									>
-										<img
-											src={item.photo}
-											alt={item.name}
-											className="mb-5 w-[120px] h-[120px] sm:w-[250px] sm:h-[250px] flex items-center justify-center rounded-xl bg-stroke"
-										/>
-										<h3 className="font-semibold text-lg sm:text-xl">{item.name}</h3>
-										<div className="w-full sm:w-[1px] h-[1px] sm:h-auto shrink-0 bg-white" />
-
-										<i className="opacity-80">{item.about}</i>
-									</div>
-								);
-							})}
-						</div>
-					</div>
-				</section>
-			)}
 			<section id="schedule" className='relative z-20 min-h-screen flex flex-col px-6 md:px-8 py-6 gap-16"'>
 				<Tabs value={`${dayValue}`} className="w-full">
 					<h2 className="bg-gradient text-transparent font-black text-5xl bg-clip-text mb-8">
@@ -122,6 +110,55 @@ function Schedule() {
 					</TabsContent>
 				</Tabs>
 			</section>
+			{day == 1 && (
+				<section id="lectors" className="relative z-20 min">
+					<h2 className="bg-gradient text-transparent font-black text-5xl bg-clip-text mb-8">Лектори</h2>
+					<div className="w-full flex justify-center items-center gap-4">
+						<div className="gird inline-grid items-center m-auto grid-cols-2 lg:grid-cols-3 justify-center gap-3">
+							{LECTORS.map((item, index) => {
+								return (
+									<Dialog key={item.name}>
+										<DialogTrigger>
+											<div
+												className={cn(
+													'mb-4 my-2 rounded-xl max-w-[200px] sm:max-w-[290px] border sm:border-2 border-[#FEFEFE] hover:border-sand hover:sm:border-b-4 p-4 px-5 backdrop-filter backdrop-blur-sm sm:backdrop-blur-md bg-opacity-0 hover:scale-105 transition-all w-fit duration-300',
+													index % 4 == 0 && 'rotate-3 sm:rotate-6 hover:sm:border-l-4 ',
+													index % 4 == 1 && '-rotate-3 sm:-rotate-6 hover:sm:border-r-4 ',
+													index % 4 == 2 && 'rotate-3 sm:rotate-6 hover:sm:border-r-4 ',
+													index % 4 == 3 && '-rotate-3 sm:-rotate-6 hover:sm:border-l-4 '
+												)}
+											>
+												<img
+													src={item.photo}
+													alt={item.name}
+													className="mb-5 w-[120px] h-[120px] sm:w-[250px] sm:h-[250px] flex items-center justify-center rounded-xl bg-stroke"
+												/>
+												<h3 className="font-semibold text-lg sm:text-xl">{item.name}</h3>
+												<div className="w-full sm:w-[1px] h-[1px] sm:h-auto shrink-0 bg-white" />
+
+												<i className="opacity-80">{item.about}</i>
+											</div>
+										</DialogTrigger>
+										<DialogContent className="flex z-50 bg-white">
+											<div>
+												<DialogHeader className="mb-1">
+													<div>
+														<h2 className="font-semibold inline-block mr-2">{item.name}</h2>
+														<span>{item.about}</span>
+													</div>
+												</DialogHeader>
+												<DialogDescription className="bg-white">
+													{item.description}
+												</DialogDescription>
+											</div>
+										</DialogContent>
+									</Dialog>
+								);
+							})}
+						</div>
+					</div>
+				</section>
+			)}
 		</IfTfFeatureOn>
 	);
 }

@@ -17,11 +17,11 @@ const LINKS = [
 	// 	title: 'Проекти',
 	// },
 	{
-		href: '#lectors',
+		href: '/#lectors',
 		title: 'Лектори',
 	},
 	{
-		href: '#schedule',
+		href: '/#schedule',
 		title: 'Програма',
 	},
 	// {
