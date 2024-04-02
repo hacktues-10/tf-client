@@ -35,7 +35,7 @@ function Schedule() {
 
 	return (
 		<IfTfFeatureOn feature="schedule">
-			<section id="schedule" className='relative z-20 min-h-screen flex flex-col px-6 md:px-8 py-6 gap-16"'>
+			<section id="schedule" className='relative z-20 flex flex-col px-6 md:px-8 py-6 gap-16"'>
 				<Tabs value={`${dayValue}`} className="w-full">
 					<h2 className="bg-gradient text-transparent font-black text-5xl bg-clip-text mb-8">
 						Програма - Ден {day}
@@ -136,7 +136,7 @@ function Schedule() {
 												<h3 className="font-semibold text-lg sm:text-xl">{item.name}</h3>
 												<div className="w-full sm:w-[1px] h-[1px] sm:h-auto shrink-0 bg-white" />
 
-												<i className="opacity-80">{item.about}</i>
+												<i className="opacity-80">{item.lecture}</i>
 											</div>
 										</DialogTrigger>
 										<DialogContent className="flex z-50 bg-white">
