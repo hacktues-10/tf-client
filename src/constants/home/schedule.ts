@@ -29,8 +29,7 @@ export const SCHEDULE_DAY1 = [
 		start: '9:00',
 		end: '10:30',
 		title: '35x TUES',
-		description:
-			"<p>Началото на тазгодишното издание на TUES Fest, във <a href='https://goo.gl/maps/14J3ZJbvwqte5ycD7'><u><i>форум 'Джон Атанасов', София Тех Парк</i></u></a> на 21 април.</p>",
+		description: '',
 		icon: '',
 		pos: 'left',
 	},
@@ -73,8 +72,7 @@ export const SCHEDULE_DAY1 = [
 		start: '15:00',
 		end: '16:30',
 		title: 'Battle Bots - полуфинали',
-		description:
-			' да разгледате проектите на нашите ученици и да гласувате за любимия си преди края на изложението.',
+		description: ' Ще имате възможността да се насладите на полуфиналните битки на Battle Bots.',
 		icon: '',
 		pos: 'left',
 	},
