@@ -1,6 +1,7 @@
-import { date, integer, pgTable, pgEnum, serial, timestamp, varchar } from 'drizzle-orm/pg-core';
+import { date, integer, pgEnum, pgTable, serial, timestamp, varchar } from 'drizzle-orm/pg-core';
 
 import { db } from '.';
+
 export const typeEnum = pgEnum('type', ['Софтуер', 'Хардуер', 'Battle Bots', 'Компютърни мрежи']);
 export const users = pgTable('users', {
 	id: serial('id').primaryKey(),

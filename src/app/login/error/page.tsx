@@ -1,11 +1,10 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
-
 // import { HTXLogoDuotone } from '~/app/components/logos';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
+import { ArrowLeft } from 'lucide-react';
 
 export const metadata: Metadata = {
 	title: 'Възникна грешка при влизането',

@@ -1,9 +1,8 @@
 'use client';
 
-import Image from 'next/image';
-
-import { Picture } from '@/app/_projects/[projectId]/page';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
+import { Picture } from '@/app/_projects/[projectId]/page';
 import { TbChevronLeft, TbChevronRight, TbX } from 'react-icons/tb';
 
 const GalleryModal = ({
@@ -109,20 +108,20 @@ const GalleryModal = ({
 	}, [closeModal, modalRef, next, prev]);
 
 	return (
-		<div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-[1001] flex items-center justify-center backdrop-blur-md">
+		<div className="fixed left-0 top-0 z-[1001] flex h-full w-full items-center justify-center bg-black bg-opacity-50 backdrop-blur-md">
 			<div ref={modalRef} className="relative h-full w-full max-w-screen-lg">
-				<div className="absolute top-12 left-0 p-4 z-[1001]">
+				<div className="absolute left-0 top-12 z-[1001] p-4">
 					<button
-						className="flex items-center gap-2 px-4 py-2 bg-bg-color rounded-xl border-2 border-border hover:bg-bg-color-hover"
+						className="hover:bg-bg-color-hover flex items-center gap-2 rounded-xl border-2 border-border bg-bg-color px-4 py-2"
 						onClick={closeModal}
 					>
 						<TbX className="h-6 w-6" />
 						<span className="text-sm">Затвори</span>
 					</button>
 				</div>
-				<div className="absolute top-1/2 left-0 p-4 !pl-10 z-[1001]">
+				<div className="absolute left-0 top-1/2 z-[1001] p-4 !pl-10">
 					<button
-						className="flex items-center gap-2 px-4 py-2 bg-bg-color rounded-xl border-2 border-border hover:bg-border hover:border-stroke transition-all duration-300 ease-in-out"
+						className="flex items-center gap-2 rounded-xl border-2 border-border bg-bg-color px-4 py-2 transition-all duration-300 ease-in-out hover:border-stroke hover:bg-border"
 						onClick={prev}
 					>
 						<span className="text-sm">
@@ -130,9 +129,9 @@ const GalleryModal = ({
 						</span>
 					</button>
 				</div>
-				<div className="absolute top-1/2 right-0 p-4 pr-10 z-[1001]">
+				<div className="absolute right-0 top-1/2 z-[1001] p-4 pr-10">
 					<button
-						className="flex items-center gap-2 px-4 py-2 bg-bg-color rounded-xl border-2 border-border hover:bg-border hover:border-stroke transition-all duration-300 ease-in-out"
+						className="flex items-center gap-2 rounded-xl border-2 border-border bg-bg-color px-4 py-2 transition-all duration-300 ease-in-out hover:border-stroke hover:bg-border"
 						onClick={next}
 					>
 						<span className="text-sm">
@@ -141,13 +140,13 @@ const GalleryModal = ({
 					</button>
 				</div>
 				<div className="h-full">
-					<div className="h-full flex flex-col gap-4">
-						<div className="h-full flex p-4 gap-4 items-center justify-center">
-							<div className="h-full max-h-screen w-full shrink-0 overflow-hidden object-contain flex items-center justify-center">
+					<div className="flex h-full flex-col gap-4">
+						<div className="flex h-full items-center justify-center gap-4 p-4">
+							<div className="flex h-full max-h-screen w-full shrink-0 items-center justify-center overflow-hidden object-contain">
 								<img
 									src={pictures[index]?.url}
 									alt={`снимка ${index + 1} на проект`}
-									className=" object-contain h-full rounded-xl"
+									className=" h-full rounded-xl object-contain"
 								/>
 							</div>
 						</div>
@@ -173,14 +172,14 @@ const Gallery = ({ name, pictures }: { name: string; pictures: Picture[] }) => {
 
 	return (
 		<>
-			<div className="max-w-screen-lg w-full relative h-64 flex flex-col bg-bg-color rounded-xl border-2 border-border">
+			<div className="relative flex h-64 w-full max-w-screen-lg flex-col rounded-xl border-2 border-border bg-bg-color">
 				<div className="h-full">
-					<div className="h-full shrink-0 flex flex-col gap-4">
-						<div className="h-full flex overflow-x-auto p-4 gap-4 items-center justify-start">
+					<div className="flex h-full shrink-0 flex-col gap-4">
+						<div className="flex h-full items-center justify-start gap-4 overflow-x-auto p-4">
 							{pictures?.map((picture, index) => (
 								<div
 									key={picture.url}
-									className="h-full shrink-0 overflow-hidden !aspect-square rounded-xl border-2 border-border"
+									className="!aspect-square h-full shrink-0 overflow-hidden rounded-xl border-2 border-border"
 								>
 									<img
 										src={picture.url}
@@ -188,7 +187,7 @@ const Gallery = ({ name, pictures }: { name: string; pictures: Picture[] }) => {
 										width={512}
 										height={512}
 										onClick={() => openModal(picture)}
-										className="h-full shrink-0 !aspect-square object-cover hover:scale-110 transition-transform duration-300 ease-in-out cursor-pointer"
+										className="!aspect-square h-full shrink-0 cursor-pointer object-cover transition-transform duration-300 ease-in-out hover:scale-110"
 									/>
 								</div>
 							))}

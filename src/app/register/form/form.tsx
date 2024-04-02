@@ -1,13 +1,18 @@
 'use client';
+
+import { useEffect, useReducer, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import UploadContextProvider from '@/app/register/context/upload';
+import UploadDialog from '@/app/register/form/upload-dialog';
+import { useToast } from '@/components/ui/use-toast';
+import { cn } from '@/lib/utils';
+
 import { RegistrationSchema, registrationSchema } from './schema';
-import { useState, useReducer, useEffect } from 'react';
-import ProjectStep from './steps/projectStep';
+import { registerProject } from './service';
 import ContributorStep from './steps/contributorStep';
 import FileUploadStep from './steps/filesUploadStep';
-import { RegisterProject } from './service';
-import { useToast } from '@/components/ui/use-toast';
-import { useRouter } from 'next/navigation';
-import { cn } from '@/lib/utils';
+import ProjectStep from './steps/projectStep';
+
 const defaultValues = {
 	contributors: [
 		{
@@ -34,6 +39,7 @@ const defaultValues = {
 		penokarton: '',
 	},
 } satisfies RegistrationSchema;
+
 export default function RegisterForm({ email }: { email: string }) {
 	const [currentStep, setCurrentStep] = useState(1);
 	const [addContributor, setAddContributor] = useState(false);
@@ -106,7 +112,7 @@ export default function RegisterForm({ email }: { email: string }) {
 		};
 		updateData(mergedData);
 		const parsed = registrationSchema.parse(mergedData);
-		const res = await RegisterProject(parsed);
+		const res = await registerProject(parsed);
 		localStorage.removeItem('registrationData');
 		localStorage.removeItem('registrationDataCurrentStep');
 		if (res.success) {
@@ -123,50 +129,53 @@ export default function RegisterForm({ email }: { email: string }) {
 	}
 
 	return (
-		<div
-			className={cn(
-				'xl:w-1/4 w-5/6 md:w-3/4 m-5 mt-24 bg-black flex z-30  p-5 relative rounded-xl',
-				currentStep === 2 && 'mt-28'
-			)}
-		>
-			<div className="space-y-1 w-full">
-				<ProjectStep
-					className={currentStep === 1 ? '' : 'hidden'}
-					defaultValues={defaultValues}
-					initialData={formData}
-					onNext={handleNext}
-					onPrev={handlePrev}
-				/>
-
-				{formData.contributors.map((contributor, index) => (
-					<ContributorStep
-						key={index}
-						className={currentStep === index + 2 ? '' : 'hidden'}
+		<UploadContextProvider>
+			<UploadDialog />
+			<div
+				className={cn(
+					'z-30 m-5 mt-24 flex w-5/6 rounded-xl bg-black p-5  md:w-3/4 xl:w-1/4',
+					currentStep === 2 && 'mt-28'
+				)}
+			>
+				<div className="w-full space-y-1">
+					<ProjectStep
+						className={currentStep === 1 ? '' : 'hidden'}
 						defaultValues={defaultValues}
-						index={index}
-						email={email}
 						initialData={formData}
 						onNext={handleNext}
 						onPrev={handlePrev}
-						currentStep={currentStep}
-						setAddContributor={setAddContributor}
-						addContributor={addContributor}
 					/>
-				))}
-				<FileUploadStep
-					className={currentStep === formData.contributors.length + 2 ? '' : 'hidden'}
-					defaultValues={defaultValues}
-					initialData={{
-						...formData,
-						files: {
-							...formData.files,
-							video: formData.files.video || '',
-						},
-					}}
-					onNext={handleSubmit}
-					onPrev={handlePrev}
-				/>
+
+					{formData.contributors.map((contributor, index) => (
+						<ContributorStep
+							key={index}
+							className={currentStep === index + 2 ? '' : 'hidden'}
+							defaultValues={defaultValues}
+							index={index}
+							email={email}
+							initialData={formData}
+							onNext={handleNext}
+							onPrev={handlePrev}
+							currentStep={currentStep}
+							setAddContributor={setAddContributor}
+							addContributor={addContributor}
+						/>
+					))}
+					<FileUploadStep
+						className={currentStep === formData.contributors.length + 2 ? '' : 'hidden'}
+						defaultValues={defaultValues}
+						initialData={{
+							...formData,
+							files: {
+								...formData.files,
+								video: formData.files.video || '',
+							},
+						}}
+						onNext={handleSubmit}
+						onPrev={handlePrev}
+					/>
+				</div>
 			</div>
-		</div>
+		</UploadContextProvider>
 	);
 }

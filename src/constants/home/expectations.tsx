@@ -1,5 +1,6 @@
-import { TbBusinessplan, TbQuestionMark, TbScale, TbSchool, TbTerminal2 } from 'react-icons/tb';
 import { PiChalkboardTeacherLight } from 'react-icons/pi';
+import { TbBusinessplan, TbQuestionMark, TbScale, TbSchool, TbTerminal2 } from 'react-icons/tb';
+
 export const EXPECTATIONS = [
 	{
 		icon: <TbTerminal2 size={34} />,

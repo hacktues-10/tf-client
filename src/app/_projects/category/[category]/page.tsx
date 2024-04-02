@@ -1,11 +1,11 @@
 // IMPORTATN - THIS IS THE DUMBES SOLUTION, BUT I WANT SWEEEET SERVER COMPONENTS
 
 import { Suspense } from 'react';
-import { redirect } from 'next/navigation';
-import Projects from '@/partials/projects/Projects';
-import ProjectsLoading from '@/partials/projects/loader/ProjectsLoading';
-import ProjectsPath from '@/partials/layout/ProjectsPath';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
+import ProjectsPath from '@/partials/layout/ProjectsPath';
+import ProjectsLoading from '@/partials/projects/loader/ProjectsLoading';
+import Projects from '@/partials/projects/Projects';
 
 const PATH: {
 	name: string;
@@ -54,7 +54,7 @@ const LinkTab = ({ text, href, current }: { text: string; href: string; current:
 		href={href || '/'}
 		className={`inline-flex items-center justify-center whitespace-nowrap rounded-md ${
 			current ? 'bg-primary' : 'bg-[#353444]'
-		} py-[10px] px-5 text-base font-semibold text-white transition-all hover:bg-primary`}
+		} px-5 py-[10px] text-base font-semibold text-white transition-all hover:bg-primary`}
 	>
 		{text}
 	</Link>
@@ -82,10 +82,10 @@ const ProjectsPage = ({
 			<div className="container">
 				<section className="-mx-4 pt-8">
 					<div className="container">
-						<div className="mb-14 rounded-lg border-2 border-stroke py-4 px-5">
+						<div className="mb-14 rounded-lg border-2 border-stroke px-5 py-4">
 							<div className="-mx-4 flex flex-wrap items-center justify-between">
 								<div className="w-full px-4">
-									<div className="flex flex-wrap gap-4 justify-center lg:justify-start overflow-x-auto">
+									<div className="flex flex-wrap justify-center gap-4 overflow-x-auto lg:justify-start">
 										{TABS?.map((tab) => (
 											<LinkTab
 												key={tab.href}

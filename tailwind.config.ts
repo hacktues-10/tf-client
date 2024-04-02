@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+
 //how to import a font warzon97
 //https://www.youtube.com/watch?v=0Ox2lYq7nq0
 //https://www.youtube.com/watch?v=9rIgJ7u5Rac

@@ -1,41 +1,43 @@
 'use client';
+
 import { Card, CardContent, CardDescription, CardTitle } from '@/components/ui/card';
 import { STATISTICS } from '@/info/statistics';
-import { TbSTurnDown } from 'react-icons/tb';
-import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Cell } from 'recharts';
-import About from './About';
 import { BsPeople } from 'react-icons/bs';
-import { PiProjectorScreenChart } from 'react-icons/pi';
 import { FaRegBuilding } from 'react-icons/fa';
 import { GrAchievement } from 'react-icons/gr';
+import { PiProjectorScreenChart } from 'react-icons/pi';
+import { TbSTurnDown } from 'react-icons/tb';
+import { Bar, BarChart, Cell, ResponsiveContainer, XAxis, YAxis } from 'recharts';
+
+import About from './About';
+
 import './styles.css';
-import { useState } from 'react';
-import { FOLDERS } from '@/info/folders';
-import { FaRegFolder } from 'react-icons/fa';
-import { FaRegFolderOpen } from 'react-icons/fa';
+
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { useEffect } from 'react';
+import { FOLDERS } from '@/info/folders';
+import { FaRegFolder, FaRegFolderOpen } from 'react-icons/fa';
 
 export default function Statistics() {
 	const [selectedFolder, setSelectedFolder] = useState(8);
 
 	return (
-		<div className="w-full rounded-xl  border sm:border-2 border-[#F2F2F2] bg-clip-padding  backdrop-filter backdrop-blur-sm bg-opacity-0 sm:backdrop-blur-md  block">
+		<div className="block w-full  rounded-xl border border-[#F2F2F2] bg-opacity-0  bg-clip-padding backdrop-blur-sm backdrop-filter sm:border-2  sm:backdrop-blur-md">
 			<About />
 			<div className="px-2 md:px-6 lg:px-10 xl:px-14 ">
-				<h2 className="bg-gradient p-4 text-transparent font-black text-4xl sm:text-5xl bg-clip-text">
+				<h2 className="bg-gradient bg-clip-text p-4 text-4xl font-black text-transparent sm:text-5xl">
 					ТУЕС Фест през годините
 				</h2>
-				<div className="block xl:flex w-full">
+				<div className="block w-full xl:flex">
 					<History selectedFolder={selectedFolder} setSelectedFolder={setSelectedFolder} />
 
-					<div className="p-2 hidden xl:block w-full xl:w-1/3">
+					<div className="hidden w-full p-2 xl:block xl:w-1/3">
 						{STATISTICS.map((statistic) => (
 							<Card
 								key={statistic.title}
-								className={`my-4 border-2 border-[#FEFEFE] pl-0 bg-transparent shadow-none pr-6 lg:p-6 pt-6 h-[300px] md:w-full lg:pr-10 text-white overflow-hidden bg-clip-padding backdrop-filter backdrop-blur-sm md:backdrop-blur-md bg-opacity-0 rounded-xl`}
+								className={`my-4 h-[300px] overflow-hidden rounded-xl border-2 border-[#FEFEFE] bg-transparent bg-opacity-0 bg-clip-padding pl-0 pr-6 pt-6 text-white shadow-none backdrop-blur-sm backdrop-filter md:w-full md:backdrop-blur-md lg:p-6 lg:pr-10`}
 							>
-								<div className="flex justify-center m-2">
+								<div className="m-2 flex justify-center">
 									<HeaderIcon icon={statistic.icon} />
 									<CardTitle className="ml-2">{statistic.title}</CardTitle>
 								</div>
@@ -45,17 +47,17 @@ export default function Statistics() {
 							</Card>
 						))}
 					</div>
-					<div className="xl:hidden pt-28 pb-28">
+					<div className="pb-28 pt-28 xl:hidden">
 						<ImagesContainer selectedFolder={selectedFolder} />
 					</div>
 					<ImagesContainer className="hidden xl:block" selectedFolder={selectedFolder} />
-					<div className="p-2 block lg:flex lg:gap-6 xl:hidden w-full xl:w-1/3">
+					<div className="block w-full p-2 lg:flex lg:gap-6 xl:hidden xl:w-1/3">
 						{STATISTICS.map((statistic) => (
 							<Card
 								key={statistic.title}
-								className="my-4 pl-0 shadow-none pr-6 lg:p-6 pt-6 h-[300px] md:mt-10 md:w-full overflow-hidden border border-[#F2F2F2] bg-clip-padding  backdrop-filter backdrop-blur-sm md:backdrop-blur-md bg-opacity-0 lg:pr-10 text-white rounded-xl"
+								className="my-4 h-[300px] overflow-hidden rounded-xl border border-[#F2F2F2] bg-opacity-0 bg-clip-padding pl-0 pr-6 pt-6 text-white shadow-none  backdrop-blur-sm backdrop-filter md:mt-10 md:w-full md:backdrop-blur-md lg:p-6 lg:pr-10"
 							>
-								<div className="flex justify-center m-2">
+								<div className="m-2 flex justify-center">
 									<HeaderIcon icon={statistic.icon} />
 									<CardTitle className="ml-2">{statistic.title}</CardTitle>
 								</div>
@@ -129,11 +131,11 @@ function History({
 	setSelectedFolder: (id: number) => void;
 }) {
 	return (
-		<div className="align-middle flex w-full xl:w-1/6 justify-center xl:mx-10">
-			<div className="grid grid-cols-4 lg:grid-cols-8 xl:grid-cols-2 gap-1 gap-y-0 h-2/3 my-auto">
+		<div className="flex w-full justify-center align-middle xl:mx-10 xl:w-1/6">
+			<div className="my-auto grid h-2/3 grid-cols-4 gap-1 gap-y-0 lg:grid-cols-8 xl:grid-cols-2">
 				{FOLDERS.map((folder) => (
 					<div
-						className="p-5 hover:bg-gradient-to-br sm:hover:cursor-pointer sm:hover:bg-gradient sm:hover:text-black hover:shadow-lg rounded-xl"
+						className="rounded-xl p-5 hover:bg-gradient-to-br hover:shadow-lg sm:hover:cursor-pointer sm:hover:bg-gradient sm:hover:text-black"
 						key={folder.id}
 						onClick={() => setSelectedFolder(folder.id)}
 					>
@@ -177,16 +179,16 @@ function ImagesContainer({ selectedFolder, className }: { selectedFolder: number
 
 	if (folder) {
 		return (
-			<div className={`relative w-full xl:w-1/2 p-10 py-12 ${className}`}>
+			<div className={`relative w-full p-10 py-12 xl:w-1/2 ${className}`}>
 				<div
-					className={`scaleUp absolute overflow-hidden rounded-xl  w-[280px] sm:w-[310px]  lg:w-[360px] xl:w-[400px] 2xl:w-[450px] sm:left-6 lg:-top-4/12 lg:left-1/12 lg:overflow-visible xl:overflow-hidden xl:top-2/12 xl:left-6 top-4/12 left-2 z-20 ${
+					className={`scaleUp absolute left-2 top-4/12  z-20 w-[280px]  overflow-hidden rounded-xl sm:left-6 sm:w-[310px] lg:-top-4/12 lg:left-1/12 lg:w-[360px] lg:overflow-visible xl:left-6 xl:top-2/12 xl:w-[400px] xl:overflow-hidden 2xl:w-[450px] ${
 						isFirstImageVisible ? 'visible' : 'hidden'
 					}`}
 				>
 					<Image key={`${folder.id} image 1`} alt={`${folder?.name} image 1`} src={folder.image1} />
 				</div>
 				<div
-					className={`scaleUp absolute bottom-1/12 w-[280px] sm:w-[310px]  lg:w-[360px] xl:w-[400px] 2xl:w-[450px] sm:right-6 overflow-hidden rounded-xl lg:-bottom-10 lg:right-1/12 lg:overflow-visible xl:overflow-hidden xl:bottom-10 xl:right-10 right-2 z-30 ${
+					className={`scaleUp absolute bottom-1/12 right-2 z-30  w-[280px] overflow-hidden rounded-xl sm:right-6 sm:w-[310px] lg:-bottom-10 lg:right-1/12 lg:w-[360px] lg:overflow-visible xl:bottom-10 xl:right-10 xl:w-[400px] xl:overflow-hidden 2xl:w-[450px] ${
 						isSecondImageVisible ? 'visible' : 'hidden'
 					}`}
 				>

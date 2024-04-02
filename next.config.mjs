@@ -1,6 +1,7 @@
+import './env.mjs';
+
 /** @type {import('next').NextConfig} */
-const path = require('node:path');
-const nextConfig = {
+export default {
 	reactStrictMode: true,
 	swcMinify: true,
 	optimizeFonts: false,
@@ -8,5 +9,3 @@ const nextConfig = {
 		serverActions: true,
 	},
 };
-
-module.exports = nextConfig;

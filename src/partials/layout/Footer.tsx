@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import SullySitting from '@/app/SullySitting';
-import { TbBrandLinktree } from 'react-icons/tb';
 import { Separator } from '@/components/ui/separator';
+import { TbBrandLinktree } from 'react-icons/tb';
 
 const Socials = () => (
 	<div className="flex items-center">
@@ -67,19 +67,19 @@ const Moto = () => {
 	return (
 		<div className="m-1 sm:pl-6">
 			<h1
-				className="!leading-none !tracking-wide text-md text-center font-origin font-normal drop-shadow-lg"
+				className="text-md text-center font-origin font-normal !leading-none !tracking-wide drop-shadow-lg"
 				style={{ fontFamily: 'origin', fontWeight: 800 }}
 			>
 				TUES{' '}
 				<span
 					style={{ fontFamily: 'origin', fontWeight: 800 }}
-					className="!leading-none !tracking-wide text-md text-center font-origin font-normal bg-gradient text-transparent bg-clip-text drop-shadow-lg"
+					className="text-md bg-gradient bg-clip-text text-center font-origin font-normal !leading-none !tracking-wide text-transparent drop-shadow-lg"
 				>
 					Fest
 				</span>{' '}
 				<span
 					style={{ fontFamily: 'origin', fontWeight: 800 }}
-					className="!leading-none !tracking-wide text-md text-center font-origin font-normal drop-shadow-lg"
+					className="text-md text-center font-origin font-normal !leading-none !tracking-wide drop-shadow-lg"
 				>
 					2024
 				</span>
@@ -89,24 +89,24 @@ const Moto = () => {
 };
 
 const Footer = () => (
-	<footer className="mt-32 sm:mt-10 md:mt-14 lg:mt-0 relative z-20 backdrop-filter backdrop-blur-sm sm:backdrop-blur-md bg-opacity-0 border-t sm:border-t-2 border-[#FEFEFE]">
-		<div className=" block sm:flex w-full justify-center sm:justify-between">
-			<div className="justify-center sm:justify-start pt-7 sm:py-7">
+	<footer className="relative z-20 mt-32 border-t border-[#FEFEFE] bg-opacity-0 backdrop-blur-sm backdrop-filter sm:mt-10 sm:border-t-2 sm:backdrop-blur-md md:mt-14 lg:mt-0">
+		<div className=" block w-full justify-center sm:flex sm:justify-between">
+			<div className="justify-center pt-7 sm:justify-start sm:py-7">
 				<Moto />
 			</div>
 			<div className="py-4 sm:py-7">
-				<p className="text-base text-center font-medium text-body-color">
+				<p className="text-center text-base font-medium text-body-color">
 					&copy; 2024 ТУЕС към ТУ-София. Всички права са запазени.
 				</p>
 			</div>
 			<div className="flex justify-center sm:hidden ">
 				<Separator decorative={true} className="w-2/3 " />
 			</div>
-			<div className="flex justify-center sm:justify-end py-4 sm:py-7">
+			<div className="flex justify-center py-4 sm:justify-end sm:py-7">
 				<Socials />
 			</div>
 		</div>
-		<SullySitting className="absolute -top-[110px] sm:-top-[160px] sm:right-1/6 sm:h-[200px] sm:w-[200px] h-[140px] right-10" />
+		<SullySitting className="absolute -top-[110px] right-10 h-[140px] sm:-top-[160px] sm:right-1/6 sm:h-[200px] sm:w-[200px]" />
 	</footer>
 );
 

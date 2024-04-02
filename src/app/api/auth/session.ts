@@ -2,6 +2,7 @@ import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { getServerSession } from 'next-auth';
 import invariant from 'tiny-invariant';
+
 import { authOptions } from './options';
 
 export async function getSession() {

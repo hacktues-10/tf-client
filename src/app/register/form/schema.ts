@@ -1,6 +1,7 @@
 'use client';
 
 import { error } from 'console';
+
 import { z } from 'zod';
 
 const STUDENT_PARALELS = ['А', 'Б', 'В', 'Г'] as const;
@@ -13,7 +14,7 @@ const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/web
 // 	return true;
 // }, 'Your error message here')
 
-const FilesReal = z.object({
+const filesSchema = z.object({
 	files: z.object({
 		images: z.array(z.string()),
 		video: z.string().optional(),
@@ -90,7 +91,7 @@ const projectSchema = z.object({
 		description: z
 			.string()
 			.min(10, { message: 'Невалидно описание на проекта. Трябва да е дълго поне 10 символа.' })
-			.max(2048, { message: 'Твърде дълго описание на проекта.' }),
+			.max(4096, { message: 'Твърде дълго описание на проекта.' }),
 		github: z.string().url({ message: 'Невалиден URL' }),
 		type: z.enum(['Софтуер', 'Хардуер', 'Battle Bots', 'Компютърни мрежи'], {
 			errorMap: (issue, ctx) => ({ message: 'Невалиден тип на проекта' }),
@@ -99,7 +100,14 @@ const projectSchema = z.object({
 	}),
 });
 
-const registrationSchema = projectSchema.merge(contributorSchema).merge(FilesReal);
+const registrationSchema = projectSchema.merge(contributorSchema).merge(filesSchema);
 export type RegistrationSchema = z.infer<typeof registrationSchema>;
 
-export { FilesReal, registrationSchema, contributorSchema, projectSchema };
+const updateProjectSchema = z
+	.object({
+		id: z.number(),
+	})
+	.merge(registrationSchema);
+export type UpdateProjectSchema = z.infer<typeof updateProjectSchema>;
+
+export { filesSchema, registrationSchema, contributorSchema, projectSchema, updateProjectSchema };

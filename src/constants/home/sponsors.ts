@@ -6,37 +6,37 @@ import investorLogo from '@/media/investor.png';
 import karieribgLogo from '@/media/karieribg.png';
 //Partners
 import a1Logo from '@/sponsors/alpha/a1.png';
-//Media
-
-//Alpha sponsors
-import m2m from '@/sponsors/alpha/m2m.png';
 import appolicaLogo from '@/sponsors/alpha/appolica.png';
 import boschECSLogo from '@/sponsors/alpha/bosch-engineering-center-sofia.png';
 import codbexLogo from '@/sponsors/alpha/codbex-orange-logo.png';
 import dxcLogo from '@/sponsors/alpha/dxc.png';
 import elevenVenturesLogo from '@/sponsors/alpha/eleven-ventures.png';
 import limeChainLogo from '@/sponsors/alpha/limechain.png';
+//Media
+
+//Alpha sponsors
+import m2m from '@/sponsors/alpha/m2m.png';
 import sapLogo from '@/sponsors/alpha/sap.png';
 import stenikLogo from '@/sponsors/alpha/stenik.png';
 import tbsLogo from '@/sponsors/alpha/tbs.png';
 import trading212Logo from '@/sponsors/alpha/trading212.png';
 import yettelLogo from '@/sponsors/alpha/yettelLogo.png';
-//Alpha sponsors
-
-//Beta sponsors
-import storpool from '@/sponsors/beta/storpool.png';
 import chaosLogo from '@/sponsors/beta/chaos1.png';
 import devrixLogo from '@/sponsors/beta/devrix.png';
 import experianLogo from '@/sponsors/beta/experian.png';
 import haemimontLogo from '@/sponsors/beta/haemimont.png';
+import ibm from '@/sponsors/beta/ibm.jpg';
 import itGixLogo from '@/sponsors/beta/itGix.png';
+import nettera from '@/sponsors/beta/nettera.png';
 import sirmaLogo from '@/sponsors/beta/sirma.png';
 import stamsoftLogo from '@/sponsors/beta/stamsoft.png';
+//Alpha sponsors
+
+//Beta sponsors
+import storpool from '@/sponsors/beta/storpool.png';
 import strypesLogo from '@/sponsors/beta/strypes.png';
 import telebidProLogo from '@/sponsors/beta/telebidPro.png';
 import tumbaSolutionsLogo from '@/sponsors/beta/tumba-solutions.png';
-import ibm from '@/sponsors/beta/ibm.jpg';
-import nettera from '@/sponsors/beta/nettera.png';
 //Beta sponsors
 
 //Gamma sponsors
@@ -52,13 +52,13 @@ import aztuesLogo from '@/sponsors/partners/aztues.png';
 import boniLogo from '@/sponsors/partners/boni.png';
 import cometLogo from '@/sponsors/partners/comet.png';
 import corporateLogo from '@/sponsors/partners/corporate.png';
+import culligan from '@/sponsors/partners/culligan.jpg';
 import dominosLogo from '@/sponsors/partners/dominos.png';
 import greenCherryLogo from '@/sponsors/partners/green_cherry.png';
 import pureWaterLogo from '@/sponsors/partners/pure_water.png';
 import remoLogo from '@/sponsors/partners/remo-mebeli.png';
 import smartcomLogo from '@/sponsors/partners/smartcom.png';
 import sofiaTechParkLogo from '@/sponsors/partners/sofia-tech-park.png';
-import culligan from '@/sponsors/partners/culligan.jpg';
 
 const ALPHA_SPONSORS = [
 	{

@@ -1,11 +1,11 @@
 'use client';
-import Link from 'next/link';
 
-import { TbMenu2, TbMapPin, TbSchool } from 'react-icons/tb';
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
+import SullyHeader from '@/app/SullyHeader';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useDay } from '@/context/day';
-import SullyHeader from '@/app/SullyHeader';
+import { TbMapPin, TbMenu2, TbSchool } from 'react-icons/tb';
 
 const LINKS = [
 	{
@@ -65,9 +65,9 @@ const Linky = ({
 		<Link
 			href={href}
 			target={target || '_self'}
-			className={`mx-2 flex text-center py-2 text-base font-semibold whitespace-nowrap 
+			className={`mx-2 flex whitespace-nowrap py-2 text-center text-base font-semibold 
 				text-[#bababa]
-			group-hover:text-white lg:mr-0 lg:inline-flex lg:py-6 lg:px-0 ${className}`}
+			group-hover:text-white lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 ${className}`}
 		>
 			{children}
 		</Link>
@@ -184,20 +184,20 @@ const Navigation = () => {
 	return (
 		<header className={navbarClasses.join(' ')}>
 			<div className="container">
-				<div className="relative text-center mx-[-16px] flex items-center justify-between">
+				<div className="relative mx-[-16px] flex items-center justify-between text-center">
 					<div className="w-60 max-w-full px-2 sm:px-4">
 						<Link
 							href="/"
-							className={`header-logo	 block w-full text-md md:text-lg whitespace-nowrap py-2 lg:py-7`}
+							className={`header-logo	 text-md block w-full whitespace-nowrap py-2 md:text-lg lg:py-7`}
 							style={{ fontFamily: 'origin', fontWeight: 800 }}
 						>
-							TUES <span className=" font-normal bg-gradient text-transparent bg-clip-text ">Fest</span>{' '}
+							TUES <span className=" bg-gradient bg-clip-text font-normal text-transparent ">Fest</span>{' '}
 							<br className="text-xl sm:hidden" />
 							2024
 						</Link>
 					</div>
 					<div className="flex w-min items-center justify-between sm:px-4">
-						<div className="lg:absolute lg:left-48  static">
+						<div className="static lg:absolute  lg:left-48">
 							<button
 								onClick={() => setMobileOpen(!mobileOpen)}
 								id="navbarToggler"
@@ -211,7 +211,7 @@ const Navigation = () => {
 								id="navbarCollapse"
 								ref={mobileMenuRef}
 								className={
-									`absolute right-4 top-full w-full max-w-[250px] rounded-lg bg-bg-color shadow-lg lg:static lg:block lg:w-full lg:max-w-full lg:bg-transparent py-3 lg:py-0 lg:px-4 lg:shadow-none xl:px-6` +
+									`absolute right-4 top-full w-full max-w-[250px] rounded-lg bg-bg-color py-3 shadow-lg lg:static lg:block lg:w-full lg:max-w-full lg:bg-transparent lg:px-4 lg:py-0 lg:shadow-none xl:px-6` +
 									(mobileOpen ? ' block' : ' hidden')
 								}
 							>
@@ -257,7 +257,7 @@ const Navigation = () => {
 									{SCHOOL_LINKS.map((link) => (
 										<li
 											key={link.title}
-											className="block lg:hidden group relative"
+											className="group relative block lg:hidden"
 											onClick={() => setMobileOpen(false)}
 										>
 											<Linky className="!mx-4" href={link.href}>
@@ -268,9 +268,9 @@ const Navigation = () => {
 								</ul>
 							</nav>
 						</div>
-						<div className="justify-end items-center pr-20 sm:pr-16 flex lg:pr-0">
+						<div className="flex items-center justify-end pr-20 sm:pr-16 lg:pr-0">
 							<button
-								className="lg:w-44 w-full px-4 py-2 mr-2 hidden xl:flex items-center justify-center gap-2 text-md rounded-lg border border-border"
+								className="text-md mr-3 hidden h-full w-full items-center justify-center gap-2 rounded-lg border border-border px-4 py-2 text-lg lg:w-44 xl:flex"
 								onClick={() => setDesktopOpen(!desktopOpen)}
 								ref={desktopButtonRef}
 							>
@@ -281,7 +281,7 @@ const Navigation = () => {
 								id="navbarCollapse"
 								ref={desktopMenuRef}
 								className={
-									`absolute right-96 top-full w-full justify-center max-w-[250px] rounded-lg bg-bg-color shadow-lg py-3` +
+									`absolute right-96 top-full w-full max-w-[250px] justify-center rounded-lg bg-bg-color py-3 shadow-lg` +
 									(desktopOpen ? ' block' : ' hidden')
 								}
 							>
@@ -302,7 +302,7 @@ const Navigation = () => {
 							<Link
 								href="https://maps.app.goo.gl/RHDd9NVx11hVvQVh6"
 								target="_blank"
-								className="md:w-60 w-full px-4 py-2 mr-2 hidden sm:flex items-center justify-center gap-2 text-lg rounded-lg border border-border"
+								className="mr-2 hidden w-full items-center justify-center gap-2 rounded-lg border border-border px-4 py-2 text-lg sm:flex md:w-60"
 							>
 								<TbMapPin size={24} />
 								<p>{'София Тех Парк'}</p>
@@ -310,7 +310,7 @@ const Navigation = () => {
 
 							<Tabs defaultValue={`${dayValue}`}>
 								<TabsList className="w-[200px] sm:w-min">
-									<div className="flex border-2 rounded-lg  w-min">
+									<div className="flex w-min rounded-lg  border-2">
 										<TabsTrigger value="day-1" onClick={() => setDay(1)} className="text-xl">
 											Ден 1
 										</TabsTrigger>
@@ -321,7 +321,7 @@ const Navigation = () => {
 								</TabsList>
 							</Tabs>
 						</div>
-						<SullyHeader className="absolute top-14 hidden lg:block lg:right-5  h-[200px]" />
+						<SullyHeader className="absolute top-14 hidden h-[200px] lg:right-5  lg:block" />
 					</div>
 				</div>
 			</div>

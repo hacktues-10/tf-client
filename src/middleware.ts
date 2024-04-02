@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-
 import { CheckAuthenticationResponse } from '@/app/api/checkAuthentication/route';
 
 export async function middleware(request: NextRequest) {
@@ -21,5 +20,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-	matcher: ['/register'],
+	matcher: ['/register', '/register/:id/edit'],
 };

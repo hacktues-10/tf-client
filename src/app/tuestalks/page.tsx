@@ -1,6 +1,6 @@
 const TUESTalksPage = () => (
-	<div className="min-h-screen relative flex items-center justify-center !pt-28">
-		<div className="w-full h-full flex items-center justify-center relative">
+	<div className="relative flex min-h-screen items-center justify-center !pt-28">
+		<div className="relative flex h-full w-full items-center justify-center">
 			<iframe
 				id="embedPlayer"
 				src="https://embed.podcasts.apple.com/us/podcast/tues-talks/id1589981184?itsct=podcast_box_player&amp;itscg=30200&amp;ls=1&amp;theme=dark"

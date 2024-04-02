@@ -22,7 +22,7 @@ const VoteButton = ({
 	return (
 		<button
 			onClick={handleVote}
-			className="flex items-center justify-center rounded-md bg-primary py-3 px-4 text-sm font-semibold text-white transition-all hover:bg-opacity-90 sm:px-5"
+			className="flex items-center justify-center rounded-md bg-primary px-4 py-3 text-sm font-semibold text-white transition-all hover:bg-opacity-90 sm:px-5"
 		>
 			Гласувай
 		</button>
