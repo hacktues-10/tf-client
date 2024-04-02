@@ -111,7 +111,7 @@ function Schedule() {
 				</Tabs>
 			</section>
 			{day == 1 && (
-				<section id="lectors" className="relative z-20 min">
+				<section id="lectors" className="relative z-20 p-4 sm:p-0">
 					<h2 className="bg-gradient text-transparent font-black text-5xl bg-clip-text mb-8">Лектори</h2>
 					<div className="w-full flex justify-center items-center gap-4">
 						<div className="gird inline-grid items-center m-auto grid-cols-2 lg:grid-cols-3 justify-center gap-3">
