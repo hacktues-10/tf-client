@@ -8,6 +8,7 @@ import Gallery from '@/partials/projects/project/Gallery';
 import LinksContainer from '@/partials/projects/project/Links';
 import MainInfo from '@/partials/projects/project/MainInfo';
 import { TbChevronLeft, TbChevronRight } from 'react-icons/tb';
+import { getProjectById } from '../actions';
 
 export type Links = {
 	github: string;
@@ -39,60 +40,52 @@ export type Project = {
 	prev_id: number;
 };
 
-const getProject = async (id: string) => {
-	const res = await fetch(`https://tuesfest.bg/data/project/${id}.json`);
-
-	if (!res.ok) {
-		// This will activate the closest `error.js` Error Boundary
-		throw new Error('Failed to fetch data');
-	}
-
-	const project: Project = await res.json();
-	// console.warn(project);
+const getProject = async (id: number) => {
+	const project = getProjectById(id);
 
 	return project;
 };
 
-export async function generateMetadata({ params }: { params: { projectId: string } }) {
-	const project = await getProject(params.projectId);
+// export async function generateMetadata({ params }: { params: { projectId: number } }) {
+// 	const project = await getProject(params.projectId);
 
-	const images = project.pictures?.map((picture) => ({
-		url: picture.url,
-		is_thumbnail: picture.is_thumbnail,
-	}));
+// 	const images = project.pictures?.map((picture) => ({
+// 		url: picture.url,
+// 		is_thumbnail: picture.is_thumbnail,
+// 	}));
 
-	// sort by is_thumbnail - true first
-	images?.sort((a, b) => (a.is_thumbnail ? -1 : 1));
+// 	// sort by is_thumbnail - true first
+// 	images?.sort((a, b) => (a.is_thumbnail ? -1 : 1));
 
-	// TODO: add more metadata + image - thumbnail or first picture
-	return {
-		title: project.name,
-		description: project.description,
-		twitter: {
-			card: 'summary_large_image',
-			title: `${project.name} | TUES Fest 2024`,
-			description: project.description,
-			creator: '@tuesfest',
-			images: images?.map((image) => ({
-				url: image.url,
-			})),
-		},
-		openGraph: {
-			title: `${project.name} | TUES Fest 2024`,
-			description: project.description,
-			url: `https://tuesfest.bg/projects/${project.id}`,
-			siteName: 'TUES Fest 2024',
-			images: images?.map((image) => ({
-				url: image.url,
-			})),
-			locale: 'bg-BG',
-			type: 'website',
-		},
-	};
-}
+// 	// TODO: add more metadata + image - thumbnail or first picture
+// 	return {
+// 		title: project.name,
+// 		description: project.description,
+// 		twitter: {
+// 			card: 'summary_large_image',
+// 			title: `${project.name} | TUES Fest 2024`,
+// 			description: project.description,
+// 			creator: '@tuesfest',
+// 			images: images?.map((image) => ({
+// 				url: image.url,
+// 			})),
+// 		},
+// 		openGraph: {
+// 			title: `${project.name} | TUES Fest 2024`,
+// 			description: project.description,
+// 			url: `https://tuesfest.bg/projects/${project.id}`,
+// 			siteName: 'TUES Fest 2024',
+// 			images: images?.map((image) => ({
+// 				url: image.url,
+// 			})),
+// 			locale: 'bg-BG',
+// 			type: 'website',
+// 		},
+// 	};
+// }
 
-const ProjectPage = async ({ params }: { params: { projectId: string } }) => {
-	const project = await getProject(params.projectId);
+const ProjectPage = async ({ params }: { params: { projectId: number } }) => {
+	const project = await getProjectById(params.projectId);
 
 	if (project === undefined || project === null || project.id === 0) notFound();
 
@@ -106,7 +99,7 @@ const ProjectPage = async ({ params }: { params: { projectId: string } }) => {
 			url: '/projects',
 		},
 		{
-			name: project.name,
+			name: project.title,
 			url: '',
 		},
 	];
@@ -116,8 +109,8 @@ const ProjectPage = async ({ params }: { params: { projectId: string } }) => {
 			<Suspense fallback={<div>Loading...</div>}>
 				<ProjectsPath path={path} />
 			</Suspense>
-
-			<div className="container flex flex-col items-center gap-4 pt-8">
+			<h2>{project.title}</h2>
+			{/* <div className="container flex flex-col items-center gap-4 pt-8">
 				<MainInfo
 					{...project}
 					thumbnail={
@@ -153,7 +146,7 @@ const ProjectPage = async ({ params }: { params: { projectId: string } }) => {
 						)}
 					</div>
 				</div>
-			</div>
+			</div> */}
 		</div>
 	);
 };

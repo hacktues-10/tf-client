@@ -3,6 +3,11 @@ import { db } from "../db"
 import { projectsSubmission } from "../db/schema"
 import { unstable_cache } from "next/cache"
 
+export const getProjectById = async (id: number) => {
+    return (await db.select().from(projectsSubmission).where(eq(projectsSubmission.id, id))).at(0)
+}
+
+
 export const getProjects = unstable_cache( async()=> {
     return await db.select().from(projectsSubmission)
 },

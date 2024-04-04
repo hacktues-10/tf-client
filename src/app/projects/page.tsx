@@ -74,7 +74,7 @@ const ProjectsPage = async () => {
 					<ProjectsPath path={PATH} />
 					<div className="">
 						<section className="pt-8">
-							<div className="mx-4">
+							<div className="m-auto sm:mx-4">
 								<Card className='opacity-100 bg-black text-white m-4 mb-14 rounded-lg border-2 border-stroke px-5 py-4'>
 									<div className="-mx-4 flex z-50 flex-wrap items-center justify-between">
 										<div className="w-full px-4">
@@ -114,7 +114,7 @@ const Project = ({project} :{project: Awaited<ReturnType<typeof getProjects>>[nu
 />
     </div>
     <CardHeader className='flex items-center flex-row justify-between'>
-      <h2 className='text-xl font-semibold hover:text-sand hover:cursor-pointer '>{project.title}</h2>
+      <Link className='text-xl font-semibold hover:text-sand hover:cursor-pointer' href={`/projects/${project.id}`}>{project.title}</Link>
       <YoutubeLink href="/api"/>
     </CardHeader>
   </Card>}
