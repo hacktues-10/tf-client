@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import Link from 'next/link';
-import { Links } from '@/app/_projects/[projectId]/page';
+import { Links } from '@/app/projects/[projectId]/page';
 import { TbBrandGithub, TbGlobe } from 'react-icons/tb';
 
 const Linky = ({ text, url, icon }: { text: string; url: string; icon: ReactNode }) => (

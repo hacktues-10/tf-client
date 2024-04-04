@@ -1,4 +1,4 @@
-import { Creator } from '@/app/_projects/[projectId]/page';
+import { Creator } from '@/app/projects/[projectId]/page';
 
 const Creators = ({ creators }: { creators: Creator[] }) => (
 	<div className="w-full max-w-screen-lg">
