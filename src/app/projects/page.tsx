@@ -88,7 +88,7 @@ const ProjectsPage = async () => {
 								</Card>
 							</div>
 						</section>
-						<div className='w-full m-4 inline-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
+						<div className='w-full sm:m-4 inline-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
 						{projects ? projects.map((project) => <Project key={project.title} project={project}/>) : <div>Loading...</div>}
 						</div>
 				</div>
