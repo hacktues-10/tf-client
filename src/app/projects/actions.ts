@@ -9,7 +9,11 @@ export const getProjectById = async (id: number) => {
 
 
 export const getProjects = unstable_cache( async()=> {
-    return await db.select().from(projectsSubmission)
+    const projects =  await db.select().from(projectsSubmission)
+    return projects.map(project => ({
+      ...project,
+      videoDurationSec: project.videoDurationSec?.toString(),
+  })); 
 },
 ["all-projects"],
 {
@@ -18,7 +22,11 @@ export const getProjects = unstable_cache( async()=> {
 
 
 export const getEmbeddedProjects = unstable_cache( async()=> {
-    return await db.select().from(projectsSubmission).where(eq( projectsSubmission.type, "Хардуер"))
+  const projects =  await db.select().from(projectsSubmission).where(eq( projectsSubmission.type, "Хардуер"))
+    return projects.map(project => ({
+      ...project,
+      videoDurationSec: project.videoDurationSec?.toString(),
+  })); 
 },
 ["embedded-projects"],
 {
@@ -26,7 +34,11 @@ export const getEmbeddedProjects = unstable_cache( async()=> {
 })
 
 export const getSoftwareProjects = unstable_cache( async()=> {
-    return await db.select().from(projectsSubmission).where(eq( projectsSubmission.type, "Софтуер"))
+  const projects =  await db.select().from(projectsSubmission).where(eq( projectsSubmission.type, "Софтуер"))
+    return projects.map(project => ({
+      ...project,
+      videoDurationSec: project.videoDurationSec?.toString(),
+  })); 
 },
 ["software-projects"],
 {
@@ -34,7 +46,11 @@ export const getSoftwareProjects = unstable_cache( async()=> {
 })
 
 export const getNetworkinProjects = unstable_cache( async()=> {
-    return await db.select().from(projectsSubmission).where(eq( projectsSubmission.type, "Компютърни мрежи"))
+  const projects =  await db.select().from(projectsSubmission).where(eq( projectsSubmission.type, "Компютърни мрежи"))
+    return projects.map(project => ({
+      ...project,
+      videoDurationSec: project.videoDurationSec?.toString(),
+  })); 
 },
 ["networking-projects"],
 {
@@ -42,9 +58,13 @@ export const getNetworkinProjects = unstable_cache( async()=> {
 })
 
 export const getBotsProjects = unstable_cache( async()=> {
-    return await db.select().from(projectsSubmission).where(eq( projectsSubmission.type, "Battle Bots"))
+  const projects =   await db.select().from(projectsSubmission).where(eq( projectsSubmission.type, "Battle Bots"))
+    return projects.map(project => ({
+      ...project,
+      videoDurationSec: project.videoDurationSec?.toString(),
+  })); 
 },
-["networking-projects"],
+["bots-projects"],
 {
   revalidate: 20 * 60 * 1000,
 })
