@@ -16,11 +16,11 @@ const Linky = ({ text, url, icon }: { text: string; url: string; icon: ReactNode
 );
 
 const LinksContainer = ({ links }: { links: Links }) => (
-	<div className="mt-4 mx-auto  w-[96%] m-auto md:w-[90%] lg:w-[70%]">
-		<div className="rounded-xl border-2 border-border bg-black">
+	<div className="mt-4 mx-auto opacity-100 text-white w-[96%] m-auto md:w-[90%] lg:w-[70%]">
+		<div className=" bg-black  border-stroke border-2 rounded-xl">
 			<div className="flex flex-col gap-4 px-8 py-4">
 				<div className="flex gap-4">
-					<Linky text="GitHub" url={links.github} icon={<TbBrandGithub size={28} />} />
+					<Linky text="Код на проекта" url={links.github} icon={<TbBrandGithub size={28} />} />
 					{links.demo && <Linky text="Уебсайт" url={links.demo} icon={<TbGlobe size={28} />} />}
 				</div>
 			</div>

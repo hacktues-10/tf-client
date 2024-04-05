@@ -97,10 +97,12 @@ const ProjectsPage =async ({
 	}
 
 
+	projects?.sort(() => Math.random() - 0.5);
+
 	return (
 		<div className="container">
 			<ProjectsPath path={PATH} />
-			<div className="">
+			<div className="mb-28">
 			<section className="pt-8">
 							<div className="mx-4">
 								<Card className='opacity-100 bg-black text-white m-4 mb-14 rounded-lg border-2 border-stroke px-5 py-4'>
@@ -131,22 +133,23 @@ const Project = ({project} :{project: Awaited<ReturnType<typeof getProjects>>[nu
 	return <Card className='max-w-[500px] opacity-100 bg-black text-white m-4'>
     <div className='relative w-[90%] mx-auto mt-4' style={{ paddingTop: '56.25%' }}>
 	<Image 
-  src={`https://pub-40c3b6cf3326458d9e34b64cd71f902c.r2.dev/${project.thumbnail == "" ? project.images.split(", ")[0] : project.thumbnail}`} 
-  alt={project.title}
-  className='absolute top-0 left-0 object-cover rounded-lg'
-  layout='fill'
-  objectFit='cover'
-/>
+	key={project.id}
+	src={`https://pub-40c3b6cf3326458d9e34b64cd71f902c.r2.dev/${project.thumbnail == "" ? project.images.split(", ")[0] : project.thumbnail}`} 
+	alt={project.title}
+	className='absolute top-0 left-0 object-cover rounded-lg'
+	layout='fill'
+	objectFit='cover'
+	/>
     </div>
     <CardHeader className='flex items-center flex-row justify-between'>
-      <h2 className='text-xl font-semibold hover:text-sand hover:cursor-pointer '>{project.title}</h2>
+      <Link className='text-xl font-semibold hover:text-sand hover:cursor-pointer' href={`/projects/${project.id}`}>{project.title}</Link>
       <YoutubeLink href="/api"/>
     </CardHeader>
   </Card>}
 
 const YoutubeLink = ({href} : {href: string}) => {
 	return <div className='m-1 p-1 rounded-lg hover:text-error hover:scale-110 duration-100'>
-		<Link href={href}>
+	<Link href={href}>
 	  <FaYoutube size={32}/>
   </Link>
   </div>}

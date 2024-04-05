@@ -123,7 +123,7 @@ const ProjectPage = async ({ params }: { params: { projectId: number } }) => {
 		<div className="container pt-16 px-8 mb-20">
 			<Card className="px-4 bg-black opacity-100 text-white w-[96%] m-auto md:w-[90%] lg:w-[70%] border-stroke border">
 			<CardHeader className="pt-10">
-				<CardTitle className="text-center">{project.title}</CardTitle>
+				<CardTitle className="text-center text-3xl">{project.title}</CardTitle>
 			</CardHeader>
 			<CardContent className="my-4">
 				<div className="overflow-hidden w-full m-auto rounded-xl border-white border-2">
@@ -135,12 +135,12 @@ const ProjectPage = async ({ params }: { params: { projectId: number } }) => {
 				/>
 				</div>
 				{project.description.length > 250 ? <ScrollArea className='my-4 text-md sm:text-lg h-[150px] overflow-y-scroll'>{project.description}</ScrollArea> : 
-				<CardDescription className='my-4 text-md sm:text-lg'>{project.description}</CardDescription>}
+				<CardDescription className='my-6 text-md sm:text-lg'>{project.description}</CardDescription>}
 				<Creators creators={contributors} />
 			</CardContent>
 		
 			</Card>
-			<div className="mt-4 mx-auto  w-[96%] m-auto md:w-[90%] lg:w-[70%]">
+			<div className="mt-4 mx-auto   w-[96%] m-auto md:w-[90%] lg:w-[70%]">
 			<Gallery name={project.title} pictures={project.images.split(", ")} />
 			</div>
 			<LinksContainer links={links} />
@@ -151,41 +151,3 @@ const ProjectPage = async ({ params }: { params: { projectId: number } }) => {
 
 export default ProjectPage;
 
-
-{/* <div className="container flex flex-col items-center gap-4 pt-8">
-				<MainInfo
-					{...project}
-					thumbnail={
-						project.has_thumbnail
-							? project.pictures?.find((picture) => picture.is_thumbnail)?.url ??
-								project.pictures?.[0]?.url
-							: project.pictures?.[0]?.url
-					}
-				/>
-				<Gallery {...project} />
-				<Description {...project} />
-				<LinksContainer {...project} />
-				<Creators {...project} />
-			</div>
-			<div className="fixed bottom-5 right-0 z-10 w-screen">
-				<div className="container relative">
-					<div className="absolute bottom-0 right-4 flex items-center justify-center gap-4">
-						{project.prev_id !== undefined && project.prev_id !== 0 && (
-							<Link
-								href={`/projects/${project.prev_id}`}
-								className="rounded-xl border border-border bg-bg-color bg-opacity-75 p-2 backdrop-blur-md hover:border-stroke  hover:bg-border"
-							>
-								<TbChevronLeft size={32} />
-							</Link>
-						)}
-						{project.next_id !== undefined && project.next_id !== 0 && (
-							<Link
-								href={`/projects/${project.next_id}`}
-								className="rounded-xl border border-border bg-bg-color bg-opacity-75 p-2 backdrop-blur-md hover:border-stroke hover:bg-border"
-							>
-								<TbChevronRight size={32} />
-							</Link>
-						)}
-					</div>
-				</div>
-			</div> */}

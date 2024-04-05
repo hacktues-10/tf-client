@@ -66,13 +66,15 @@ const LinkTab = ({ text, href, current }: { text: string; href: string; current:
 const ProjectsPage = async () => {
 
 	const projects = await getProjects();
+	//shuffle projects
+	projects.sort(() => Math.random() - 0.5);
 
 	return (
 		<>
 			<IfTfFeatureOn feature="tf-projects">
 				<div className="container">
 					<ProjectsPath path={PATH} />
-					<div className="">
+					<div className="mb-28">
 						<section className="pt-8">
 							<div className="m-auto sm:mx-4">
 								<Card className='opacity-100 bg-black text-white m-4 mb-14 rounded-lg border-2 border-stroke px-5 py-4'>
@@ -106,6 +108,7 @@ const Project = ({project} :{project: Awaited<ReturnType<typeof getProjects>>[nu
 	return <Card className='max-w-[500px] opacity-100 bg-black text-white m-4'>
     <div className='relative w-[90%] mx-auto mt-4' style={{ paddingTop: '56.25%' }}>
 	<Image 
+	key={project.id}
   src={`https://pub-40c3b6cf3326458d9e34b64cd71f902c.r2.dev/${project.thumbnail == "" ? project.images.split(", ")[0] : project.thumbnail}`} 
   alt={project.title}
   className='absolute top-0 left-0 object-cover rounded-lg'
