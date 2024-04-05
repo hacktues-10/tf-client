@@ -9,7 +9,10 @@ import LinksContainer from '@/partials/projects/project/Links';
 import MainInfo from '@/partials/projects/project/MainInfo';
 import { TbChevronLeft, TbChevronRight } from 'react-icons/tb';
 import { getProjectById } from '../actions';
-
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import Video from '@/partials/projects/project/Video';
+import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from '@/components/ui/carousel';
+import { ScrollArea } from '@/components/ui/scroll-area';
 export type Links = {
 	github: string;
 	demo: string;
@@ -88,7 +91,15 @@ const ProjectPage = async ({ params }: { params: { projectId: number } }) => {
 	const project = await getProjectById(params.projectId);
 
 	if (project === undefined || project === null || project.id === 0) notFound();
+	const contributors = project.contributors.split("\n").map((contributor) => {
+		const [firstName,lastName,classNumber,shirt, email, phoneNumber ] = contributor.split(";");
+		return { name: firstName + " " + lastName, class: classNumber };
+	})
 
+	const links = {
+		github: project.github ?? "",
+		demo: project.demo ?? "",
+	};
 	const path = [
 		{
 			name: 'TUES Fest 2024',
@@ -105,12 +116,43 @@ const ProjectPage = async ({ params }: { params: { projectId: number } }) => {
 	];
 
 	return (
-		<div className="pb-8">
-			<Suspense fallback={<div>Loading...</div>}>
-				<ProjectsPath path={path} />
-			</Suspense>
-			<h2>{project.title}</h2>
-			{/* <div className="container flex flex-col items-center gap-4 pt-8">
+		<div className="container">
+		<Suspense fallback={<div>Loading...</div>}>
+			<ProjectsPath path={path} />
+		</Suspense>
+		<div className="container pt-16 px-8 mb-20">
+			<Card className="px-4 bg-black opacity-100 text-white w-[96%] m-auto md:w-[90%] lg:w-[70%] border-stroke border">
+			<CardHeader className="pt-10">
+				<CardTitle className="text-center">{project.title}</CardTitle>
+			</CardHeader>
+			<CardContent className="my-4">
+				<div className="overflow-hidden w-full m-auto rounded-xl border-white border-2">
+				<Video
+					name={project.title}
+					video={
+					"https://www.youtube.com/watch?v=OheemahsBsY&ab_channel=%D0%A2%D0%A3%D0%95%D0%A1"
+					}
+				/>
+				</div>
+				{project.description.length > 250 ? <ScrollArea className='my-4 text-md sm:text-lg h-[150px] overflow-y-scroll'>{project.description}</ScrollArea> : 
+				<CardDescription className='my-4 text-md sm:text-lg'>{project.description}</CardDescription>}
+				<Creators creators={contributors} />
+			</CardContent>
+		
+			</Card>
+			<div className="mt-4 mx-auto  w-[96%] m-auto md:w-[90%] lg:w-[70%]">
+			<Gallery name={project.title} pictures={project.images.split(", ")} />
+			</div>
+			<LinksContainer links={links} />
+		</div>
+		</div>
+	);
+};
+
+export default ProjectPage;
+
+
+{/* <div className="container flex flex-col items-center gap-4 pt-8">
 				<MainInfo
 					{...project}
 					thumbnail={
@@ -147,8 +189,3 @@ const ProjectPage = async ({ params }: { params: { projectId: number } }) => {
 					</div>
 				</div>
 			</div> */}
-		</div>
-	);
-};
-
-export default ProjectPage;

@@ -8,7 +8,7 @@ const Linky = ({ text, url, icon }: { text: string; url: string; icon: ReactNode
 		href={url}
 		target="_blank"
 		rel="noreferrer"
-		className="hover:bg-bg-color-hover flex w-full items-center gap-2 rounded-xl border-2 border-border bg-bg-color px-4 py-2"
+		className="hover:bg-bg-color-hover flex w-full items-center gap-2 rounded-xl border-2 border-border bg-black hover:bg-bg-color px-4 py-2"
 	>
 		{icon}
 		<span className="text-md font-semibold">{text}</span>
@@ -16,8 +16,8 @@ const Linky = ({ text, url, icon }: { text: string; url: string; icon: ReactNode
 );
 
 const LinksContainer = ({ links }: { links: Links }) => (
-	<div className="w-full max-w-screen-lg">
-		<div className="rounded-xl border-2 border-border bg-bg-color">
+	<div className="mt-4 mx-auto  w-[96%] m-auto md:w-[90%] lg:w-[70%]">
+		<div className="rounded-xl border-2 border-border bg-black">
 			<div className="flex flex-col gap-4 px-8 py-4">
 				<div className="flex gap-4">
 					<Linky text="GitHub" url={links.github} icon={<TbBrandGithub size={28} />} />

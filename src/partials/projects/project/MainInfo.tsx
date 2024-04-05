@@ -44,7 +44,7 @@ const MainInfo = ({
 
 export default MainInfo;
 
-// THIS WOULDVE BEEN THE SEXY ONE
+// THIS WOULDVE BEEN THE SEXY ONE - mitko: nz murzi me da vidq kakvo e
 
 /* 					<div className="relative h-full w-full flex flex-col bg-bg-color rounded-xl border-2 border-border">
 						<div className="h-[calc(75%-2rem)] overflow-y-auto">

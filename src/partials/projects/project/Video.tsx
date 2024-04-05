@@ -15,7 +15,7 @@ const Video = ({ name, video }: { name: string; video: string }) => {
 			</p>
 		);
 
-	return <LiteYouTubeEmbed id={id} title={`${name} | TUES Fest 2024`} poster="hqdefault" />;
+	return <LiteYouTubeEmbed id={id} title={`${name} | TUES Fest 2024`} poster="hqdefault"/>;
 };
 
 export default Video;
