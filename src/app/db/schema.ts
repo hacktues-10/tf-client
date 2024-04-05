@@ -1,4 +1,4 @@
-import { date, integer, pgEnum, pgTable, serial, timestamp, varchar } from 'drizzle-orm/pg-core';
+import { bigint, boolean, date, integer, pgEnum, pgTable, serial, timestamp, varchar } from 'drizzle-orm/pg-core';
 
 import { db } from '.';
 
@@ -51,6 +51,9 @@ export const projectsSubmission = pgTable('projects_submission', {
 	thumbnail: varchar('thumbnail').notNull(),
 	video: varchar('video').notNull(),
 	contributors: varchar('contributors').notNull(),
+	youtubeId: varchar('youtube_id').unique(),
+	videoDurationSec: bigint('video_duration_sec', { mode: 'bigint' }),
+	shoudUpload: boolean('shoud_upload').default(true).notNull(),
 });
 
 export const projects = pgTable('projects', {

@@ -1,5 +1,4 @@
 // IMPORTATN - THIS IS THE DUMBES SOLUTION, BUT I WANT SWEEEET SERVER COMPONENTS
-
 import { Suspense } from 'react';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
@@ -143,8 +142,8 @@ const Project = ({project} :{project: Awaited<ReturnType<typeof getProjects>>[nu
     </div>
     <CardHeader className='flex items-center flex-row justify-between'>
       <Link className='text-xl font-semibold hover:text-sand hover:cursor-pointer' href={`/projects/${project.id}`}>{project.title}</Link>
-      <YoutubeLink href="/api"/>
-    </CardHeader>
+
+	  {project.youtubeId && <YoutubeLink href={`https://www.youtube.com/watch?v=${encodeURIComponent(project.youtubeId ?? "")}`}/>}    </CardHeader>
   </Card>}
 
 const YoutubeLink = ({href} : {href: string}) => {

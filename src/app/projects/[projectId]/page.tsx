@@ -13,6 +13,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import Video from '@/partials/projects/project/Video';
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from '@/components/ui/carousel';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import Image from 'next/image';
 export type Links = {
 	github: string;
 	demo: string;
@@ -120,20 +121,31 @@ const ProjectPage = async ({ params }: { params: { projectId: number } }) => {
 		<Suspense fallback={<div>Loading...</div>}>
 			<ProjectsPath path={path} />
 		</Suspense>
-		<div className="container pt-16 px-8 mb-20">
-			<Card className="px-4 bg-black opacity-100 text-white w-[96%] m-auto md:w-[90%] lg:w-[70%] border-stroke border">
+		<div className="container pt-16 sm:px-8 mb-20">
+			<Card className="sm:px-4 bg-black opacity-100 text-white w-full m-auto md:w-[90%] lg:w-[70%] border-stroke border">
 			<CardHeader className="pt-10">
 				<CardTitle className="text-center text-3xl">{project.title}</CardTitle>
 			</CardHeader>
 			<CardContent className="my-4">
-				<div className="overflow-hidden w-full m-auto rounded-xl border-white border-2">
-				<Video
+			{project.youtubeId &&<div className="overflow-hidden w-full m-auto rounded-xl border-white border-2">
+			 <Video
 					name={project.title}
-					video={
-					"https://www.youtube.com/watch?v=OheemahsBsY&ab_channel=%D0%A2%D0%A3%D0%95%D0%A1"
-					}
+					id={project.youtubeId ?? ""}
 				/>
-				</div>
+				
+				</div>}
+				{!project.youtubeId && 
+				<div className="relative m-auto w-full rounded-xl border-white border-2" style={{ paddingTop: '56.25%' }}>
+				<Image 
+					key={project.id}
+					src={`https://pub-40c3b6cf3326458d9e34b64cd71f902c.r2.dev/${project.thumbnail == "" ? project.images.split(", ")[0] : project.thumbnail}`} 
+					alt={project.title}
+					className='absolute top-0 left-0 object-cover rounded-lg'
+					layout='fill'
+					objectFit='cover'
+					/>
+				
+				</div>}
 				{project.description.length > 250 ? <ScrollArea className='my-4 text-md sm:text-lg h-[150px] overflow-y-scroll'>{project.description}</ScrollArea> : 
 				<CardDescription className='my-6 text-md sm:text-lg'>{project.description}</CardDescription>}
 				<Creators creators={contributors} />

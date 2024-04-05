@@ -5,8 +5,7 @@ import LiteYouTubeEmbed from 'react-lite-youtube-embed';
 
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
 
-const Video = ({ name, video }: { name: string; video: string }) => {
-	const id = youtubeParse(video);
+const Video = ({ name, id }: { name: string; id: string }) => {
 
 	if (!id)
 		return (
