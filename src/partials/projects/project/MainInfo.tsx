@@ -27,7 +27,7 @@ const MainInfo = ({
 			<div className="relative aspect-video overflow-hidden rounded-xl border-b-2 border-b-border">
 				{/* Share Button */}
 				<ShareButton />
-				<Video name={name} video={video} />
+				<Video name={name} id={video} />
 			</div>
 			<div className="flex items-center justify-between px-8 py-4">
 				<h2 className="text-2xl font-bold">{name}</h2>
