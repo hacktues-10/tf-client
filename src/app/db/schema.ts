@@ -1,8 +1,10 @@
+import { relations } from 'drizzle-orm';
 import { bigint, boolean, date, integer, pgEnum, pgTable, serial, timestamp, varchar } from 'drizzle-orm/pg-core';
 
 import { db } from '.';
 
 export const typeEnum = pgEnum('type', ['Софтуер', 'Хардуер', 'Battle Bots', 'Компютърни мрежи']);
+
 export const users = pgTable('users', {
 	id: serial('id').primaryKey(),
 	email: varchar('email').notNull(),
@@ -58,7 +60,7 @@ export const projectsSubmission = pgTable('projects_submission', {
 
 export const projects = pgTable('projects', {
 	id: serial('id').primaryKey(),
-	title: varchar('title').notNull(),
+	title: varchar('title').notNull().unique(),
 	penokarton: varchar('penokarton'),
 	demo: varchar('demo'),
 	description: varchar('description').notNull(),
@@ -68,6 +70,15 @@ export const projects = pgTable('projects', {
 	thumbnail: varchar('thumbnail').notNull(),
 	video: varchar('video').notNull(),
 	contributors: varchar('contributors').notNull(),
+	youtubeId: varchar('youtube_id').unique(),
+	submissionId: integer('submission_id').references(() => projectsSubmission.id),
 });
+
+export const projectRelations = relations(projects, ({ one }) => ({
+	projectsSubmission: one(projectsSubmission, {
+		fields: [projects.submissionId],
+		references: [projectsSubmission.id],
+	}),
+}));
 
 export type DrizzleClient = typeof db;
