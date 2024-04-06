@@ -12,10 +12,10 @@ const LINKS = [
 		href: '/',
 		title: 'Начало',
 	},
-	// {
-	// 	href: '/projects',
-	// 	title: 'Проекти',
-	// },
+	{
+		href: '/projects',
+		title: 'Проекти',
+	},
 	{
 		href: '/#lectors',
 		title: 'Лектори',
