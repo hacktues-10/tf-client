@@ -2,6 +2,7 @@
 
 import { use, useEffect } from 'react';
 import Link from 'next/link';
+import { Card } from '@/components/ui/card';
 
 const ProjectsPath = ({
 	path,
@@ -19,8 +20,8 @@ const ProjectsPath = ({
 	return (
 		<section className="pt-28">
 			<div className="container">
-				<div className="rounded-lg border-2 border-stroke bg-bg-color px-8 py-5">
-					<ul className="items-cente flex flex-wrap  gap-3 text-ellipsis">
+				<Card className="mx-4 rounded-lg opacity-100 bg-black text-white border-2 border-stroke px-8 py-5">
+					<ul className="items-cente flex flex-wrap gap-3 text-ellipsis">
 						{path.map((item) => (
 							<>
 								{item?.url ? (
@@ -44,7 +45,7 @@ const ProjectsPath = ({
 							</>
 						))}
 					</ul>
-				</div>
+				</Card>
 			</div>
 		</section>
 	);

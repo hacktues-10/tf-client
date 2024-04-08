@@ -1,5 +1,5 @@
 import ProjectsPath from '@/partials/layout/ProjectsPath';
-
+import { Card } from '@/components/ui/card';
 const PATH: {
 	name: string;
 	url: string;
@@ -16,12 +16,12 @@ const PATH: {
 
 const ProjectsLoading = () => {
 	return (
-		<div>
+		<div className='container'>
 			<ProjectsPath path={PATH} />
-			<div className="container">
-				<section className="-mx-4 pt-8">
-					<div className="container">
-						<div className="mb-14 rounded-lg border-2 border-stroke px-5 py-4">
+			<div className="">
+				<section className="pt-8">
+					<div className="mx-4 ">
+					<Card className='opacity-100 bg-black text-white m-4 mb-14 rounded-lg border-2 border-stroke px-5 py-4'>
 							<div className="-mx-4 flex flex-wrap items-center justify-between">
 								<div className="w-full px-4">
 									<div className="flex flex-wrap justify-center gap-4 overflow-x-auto lg:justify-start">
@@ -43,7 +43,7 @@ const ProjectsLoading = () => {
 									</div>
 								</div>
 							</div>
-						</div>
+						</Card>
 					</div>
 				</section>
 			</div>
