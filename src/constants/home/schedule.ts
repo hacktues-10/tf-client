@@ -12,7 +12,7 @@ export const SCHEDULE_DAY1 = [
 		end: '12:00',
 		title: 'Промяната- единствената константа',
 		description: `<ul class='flex flex-col gap-2 pt-2'>
-			<li class='px-4 py-2 bg-bg-color border border-stroke rounded-xl'>Житейският път след ТУЕС отвъд окена</li>
+			<li class='px-4 py-2 bg-bg-color border border-stroke rounded-xl'>Житейският път след ТУЕС отвъд океана</li>
 			<li class='px-4 py-2 bg-bg-color border border-stroke rounded-xl'>Иновациите, които се раждат на най-неочакваните места</li>
 			<li class='px-4 py-2 bg-bg-color border border-stroke rounded-xl'>Информационните технологии в науката</li>
 		</ul>`,
@@ -108,7 +108,7 @@ export const LECTORS = [
 		about: 'Випуск 1997',
 		description:
 			'След ЕТУЕС, завърших Harvard University (BA) със специалност Математика, след което New York University (MSc) и MIT (PhD) със специалност Теория на Компютърните Науки. Две от значимите ми изобретения са Kademlia (една от първите децентрализирани системи) и Online Codes (първият код за трансмисия на данни през корумпирани канали, който работи в реално време). През годините съм работил в DARPA, Google, Amazon Lab126 и Protocol Labs. Интересувам се от Математиката на езици в най-общ смисъл и механизми за самоуправление на общества, което е темата на неправителствената организация Gov4Git Foundation, която в момента оглавявам. Имам две дечица и прекарвам свободното си време в планините със скално катерене.',
-		lecture: 'Житейският път след ТУЕС отвъд окена',
+		lecture: 'Житейският път след ТУЕС отвъд океана',
 	},
 	{
 		name: 'Яне Френски',
