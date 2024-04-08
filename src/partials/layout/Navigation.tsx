@@ -8,10 +8,10 @@ import { useDay } from '@/context/day';
 import { TbMapPin, TbMenu2, TbSchool } from 'react-icons/tb';
 
 const LINKS = [
-	{
-		href: '/',
-		title: 'Начало',
-	},
+	// {
+	// 	href: '/',
+	// 	title: 'Начало',
+	// },
 	// {
 	// 	href: '/projects',
 	// 	title: 'Проекти',
