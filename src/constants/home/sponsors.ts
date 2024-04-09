@@ -386,7 +386,7 @@ const PARTNERS = [
 
 const MEDIA_PARTNERS = [
 	{
-		name: 'BTV Media Group',
+		name: 'Businessnovinite.bg',
 		logo: btvLogo,
 		url: 'https://businessnovinite.bg/',
 		description:
