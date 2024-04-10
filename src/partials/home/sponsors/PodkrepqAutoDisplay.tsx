@@ -194,7 +194,6 @@ function PodkrepqLogo({
 						: undefined
 				}
 				tabIndex={[prevIndex, liveIndex, nextIndex].includes(index) ? 0 : -1}
-				//how to add a color everywhere only if the podkreqsht name is Yettel Bulgaira
 				className={cn(
 					'group z-0 grid aspect-video place-content-center overflow-clip rounded-lg bg-white p-4 opacity-0 shadow-md transition-all duration-700',
 					index === prevIndex &&
@@ -206,7 +205,9 @@ function PodkrepqLogo({
 						'pointer-events-none opacity-0 [transform:translateY(110%)_rotateX(-90deg)_translateY(100%)]',
 					index === prevPrevIndex &&
 						'pointer-events-none opacity-0 [transform:translateY(-110%)_rotateX(90deg)_translateY(-100%)]',
-					podkrepqsht.name == 'Yettel Bulgaria' && 'bg-[#B4FF00]'
+					podkrepqsht.name == 'Yettel Bulgaria' && 'bg-[#B4FF00]',
+					podkrepqsht.name == 'Инженер.bg' &&
+						'bg-[linear-gradient(180deg,_#24587d_0%,_#1578b2_68%,_#1578b2_100%)]'
 				)}
 				target="_blank"
 			>
