@@ -26,6 +26,11 @@ export type Creator = {
 	class: string;
 };
 
+export type Picture = {
+	url: string;
+	is_thumbnail: boolean;
+};
+
 const getProject = async (id: number) => {
 	const project = getProjectById(id);
 
