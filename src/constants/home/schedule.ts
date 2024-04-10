@@ -10,7 +10,7 @@ export const SCHEDULE_DAY1 = [
 	{
 		start: '10:45',
 		end: '12:00',
-		title: 'Промяната- единствената константа',
+		title: 'Промяната - единствената константа',
 		description: `<ul class='flex flex-col gap-2 pt-2'>
 			<li class='px-4 py-2 bg-bg-color border border-stroke rounded-xl'>Житейският път след ТУЕС отвъд океана</li>
 			<li class='px-4 py-2 bg-bg-color border border-stroke rounded-xl'>Иновациите, които се раждат на най-неочакваните места</li>
