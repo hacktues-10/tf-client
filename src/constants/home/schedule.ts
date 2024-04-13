@@ -9,8 +9,20 @@ export const SCHEDULE_DAY1 = [
 	},
 	{
 		start: '10:45',
-		end: '12:00',
-		title: 'Промяната- единствената константа',
+		end: '11:30',
+		title: 'ТУЕС',
+		description: `<ul class='flex flex-col gap-2 pt-2'>
+			<li class='px-4 py-2 bg-bg-color border border-stroke rounded-xl'>Отвътре навън</li>
+			<li class='px-4 py-2 bg-bg-color border border-stroke rounded-xl'>Общността ТУЕС</li>
+			<li class='px-4 py-2 bg-bg-color border border-stroke rounded-xl'>Животът след ТУЕС. Уроци от моите академични и професионални премеждия.</li>
+		</ul>`,
+		icon: '',
+		pos: 'right',
+	},
+	{
+		start: '11:45',
+		end: '12:45',
+		title: 'Промяната - единствената константа',
 		description: `<ul class='flex flex-col gap-2 pt-2'>
 			<li class='px-4 py-2 bg-bg-color border border-stroke rounded-xl'>Житейският път след ТУЕС отвъд океана</li>
 			<li class='px-4 py-2 bg-bg-color border border-stroke rounded-xl'>Иновациите, които се раждат на най-неочакваните места</li>
@@ -20,8 +32,8 @@ export const SCHEDULE_DAY1 = [
 		pos: 'right',
 	},
 	{
-		start: '12:15',
-		end: '12:50',
+		start: '13:00',
+		end: '13:45',
 		title: 'Киберсигурни',
 		description: `<ul class='flex flex-col gap-2 pt-2'>
 			<li class='px-4 py-2 bg-bg-color border border-stroke rounded-xl'>Приемате ли бисквитки? </li>
@@ -31,7 +43,7 @@ export const SCHEDULE_DAY1 = [
 		pos: 'left',
 	},
 	{
-		start: '13:00',
+		start: '13:45',
 		end: '14:30',
 		title: 'Пътят към бъдещето',
 		description: `<ul class='flex flex-col gap-2 pt-2'>
@@ -100,7 +112,7 @@ export const LECTORS = [
 		about: 'Випуск 2005',
 		description:
 			'Митко завършва ТУЕС през 2005 година, след което заминава в Германия да следва. Получава бакалавърска степен в областта на компютърните науки от Jacobs University в Бремен и заминава за Швейцария, където получава магистърска и докторска степен от Федералния Технологичен Институт в Цюрих. В 2017 година, започва работа в Google, където работи и до момента в областта на компилатори за програми за машинно самообучение.',
-		lecture: 'Животът след ТУЕС. Завърших. И сега какво? - висше образование или работа?',
+		lecture: 'Животът след ТУЕС. Уроци от моите академични и професионални премеждия.',
 	},
 	{
 		name: 'Петър Маймунков',

@@ -17,7 +17,7 @@ export const LECTURES = [
 	},
 	{
 		panel: 'ТУЕС',
-		title: 'Животът след ТУЕС',
+		title: 'Животът след ТУЕС. Уроци от моите академични и професионални премеждия.',
 		lecturer: 'Митко Асенов',
 		lecturer_picture: '',
 		start: '10:00',
