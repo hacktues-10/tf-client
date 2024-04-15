@@ -6,6 +6,7 @@ import { redirect } from 'next/navigation';
 import { Card, CardHeader } from '@/components/ui/card';
 import ProjectsPath from '@/partials/layout/ProjectsPath';
 import ProjectsLoading from '@/partials/projects/loader/ProjectsLoading';
+import { getPublicR2Url } from '@/utils/r2Public';
 import { FaYoutube } from 'react-icons/fa';
 
 import {
@@ -143,7 +144,7 @@ const Project = ({ project }: { project: Awaited<ReturnType<typeof getProjects>>
 			<div className="relative mx-auto mt-4 w-[90%]" style={{ paddingTop: '56.25%' }}>
 				<Image
 					key={project.id}
-					src={`https://pub-40c3b6cf3326458d9e34b64cd71f902c.r2.dev/${project.thumbnail == '' ? project.images.split(', ')[0] : project.thumbnail}`}
+					src={getPublicR2Url(project.thumbnail == '' ? project.images.split(', ')[0] : project.thumbnail)}
 					alt={project.title}
 					className="absolute left-0 top-0 rounded-lg object-cover"
 					layout="fill"
