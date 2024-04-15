@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { CATEGORY } from '@/constants/projects/CATEGORY';
+import CATEGORY_MAP, { CategoryMapValue } from '@/constants/projects/CATEGORY_MAP';
 import { useVoteContext, Vote } from '@/context/vote';
 import { motion } from 'framer-motion';
 import { TbChevronDown, TbChevronUp, TbX } from 'react-icons/tb';
@@ -154,21 +154,29 @@ const VotingModal = ({ closeModal }: { closeModal: () => void }) => {
 	);
 };
 
-const VotingCategory = ({ category, cat, error }: { category: Vote | null; cat: string; error: boolean | null }) => {
+const VotingCategory = ({
+	category,
+	cat,
+	error,
+}: {
+	category: Vote | null;
+	cat: CategoryMapValue;
+	error: boolean | null;
+}) => {
 	const { removeVote } = useVoteContext();
 
 	if (category === null) {
 		return (
 			<Link
-				href={`/projects/category/${cat}`}
+				href={cat.href}
 				className={`flex w-full items-center justify-between py-2 ${error ? '!text-error' : ''}`}
 			>
 				<div className="flex items-center gap-4">
 					<div className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-bg-color" />
-					<p className={`text-md line-clamp-1 font-bold ${error ? '!text-error' : ''}`}>{CATEGORY[cat]}</p>
+					<p className={`text-md line-clamp-1 font-bold ${error ? '!text-error' : ''}`}>{cat.text}</p>
 				</div>
 				<p className="p-2 text-sm font-medium opacity-75 transition-all duration-300 hover:opacity-100">
-					{'<избери>'}
+					Избери
 				</p>
 			</Link>
 		);
@@ -210,7 +218,7 @@ const VotingOverlay = ({ showModal }: { showModal: () => void }) => {
 	const { softwareError, embeddedError, battlebotError, networksError } = getErrors();
 
 	return (
-		<motion.div className="fixed bottom-5 right-0 z-10 w-screen" animate={minimized}>
+		<motion.div className="fixed bottom-5 right-0 z-50 w-screen" animate={minimized}>
 			<div className="container relative">
 				<div className="absolute bottom-0 left-0 flex w-full items-center justify-start sm:w-fit">
 					<div
@@ -221,7 +229,7 @@ const VotingOverlay = ({ showModal }: { showModal: () => void }) => {
 						<div className={`relative ${minimized ? 'h-fit w-full shrink-0' : 'h-16'}`}>
 							<div className="relative flex w-full items-center justify-between px-4">
 								<p className="text-2xl font-bold">
-									Твоят избор
+									Твоят глас
 									<span className="ml-2 text-sm opacity-50">
 										{
 											Object.values({
@@ -252,10 +260,14 @@ const VotingOverlay = ({ showModal }: { showModal: () => void }) => {
 							}`}
 						>
 							<div className="flex w-full flex-col divide-y divide-stroke">
-								<VotingCategory category={embedded} cat="embedded" error={embeddedError} />
-								<VotingCategory category={software} cat="software" error={softwareError} />
-								<VotingCategory category={battlebot} cat="battlebot" error={battlebotError} />
-								<VotingCategory category={networks} cat="networks" error={networksError} />
+								<VotingCategory category={embedded} cat={CATEGORY_MAP.software} error={embeddedError} />
+								<VotingCategory category={software} cat={CATEGORY_MAP.embedded} error={softwareError} />
+								<VotingCategory
+									category={battlebot}
+									cat={CATEGORY_MAP.battlebot}
+									error={battlebotError}
+								/>
+								<VotingCategory category={networks} cat={CATEGORY_MAP.networks} error={networksError} />
 							</div>
 							<button
 								className="flex items-center justify-center rounded-xl border border-border bg-primary bg-opacity-75 px-6 py-2 text-lg font-bold transition-all duration-300 hover:border-stroke hover:bg-primary"

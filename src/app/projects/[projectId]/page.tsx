@@ -44,7 +44,7 @@ export type Project = {
 export async function generateMetadata({ params }: { params: { projectId: number } }) {
 	const project = await getProjectById(params.projectId);
 
-	if (project === undefined || project === null || project.id === 0) return;
+	if (project === undefined || project === null || project.id === 0) notFound();
 
 	return {
 		title: project.title,
@@ -143,7 +143,7 @@ const ProjectPage = async ({ params }: { params: { projectId: number } }) => {
 						<Creators creators={contributors} />
 					</CardContent>
 				</Card>
-				<div className="m-auto mx-auto   mt-4 w-[96%] md:w-[90%] lg:w-[70%]">
+				<div className="m-auto mx-auto mt-4 w-[96%] md:w-[90%] lg:w-[70%]">
 					<Gallery name={project.title} pictures={project.images.split(', ')} />
 				</div>
 				<LinksContainer links={links} />

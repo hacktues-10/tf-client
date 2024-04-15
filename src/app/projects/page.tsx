@@ -1,15 +1,10 @@
-import { Suspense } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { IfTfFeatureOff, IfTfFeatureOn } from '@/app/_integrations/growthbook/components';
-import { Card, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import ProjectsPath from '@/partials/layout/ProjectsPath';
-import ProjectsLoading from '@/partials/projects/loader/ProjectsLoading';
-import Projects from '@/partials/projects/Projects';
-import { getPublicR2Url } from '@/utils/r2Public';
-import { BsYoutube } from 'react-icons/bs';
-import { FaYoutube, FaYoutubeSquare } from 'react-icons/fa';
+import Project from '@/partials/projects/project/Project';
 
+// import Projects from '@/partials/projects/Projects';
 import NotFound from '../not-found';
 import { getProjects } from './actions';
 
@@ -101,46 +96,6 @@ const ProjectsPage = async () => {
 				<NotFound />
 			</IfTfFeatureOff>
 		</>
-	);
-};
-
-const Project = ({ project }: { project: Awaited<ReturnType<typeof getProjects>>[number] }) => {
-	return (
-		<Card className="z-20 m-4 max-w-[500px] bg-black text-white opacity-100">
-			<div className="relative mx-auto mt-4 w-[90%]" style={{ paddingTop: '56.25%' }}>
-				<Image
-					key={project.id}
-					src={getPublicR2Url(project.thumbnail == '' ? project.images.split(', ')[0] : project.thumbnail)}
-					alt={project.title}
-					className="absolute left-0 top-0 rounded-lg object-cover"
-					layout="fill"
-					objectFit="cover"
-				/>
-			</div>
-			<CardHeader className="flex flex-row items-center justify-between">
-				<Link
-					className="text-xl font-semibold hover:cursor-pointer hover:text-sand"
-					href={`/projects/${project.id}`}
-				>
-					{project.title}
-				</Link>
-				{project.youtubeId && (
-					<YoutubeLink
-						href={`https://www.youtube.com/watch?v=${encodeURIComponent(project.youtubeId ?? '')}`}
-					/>
-				)}
-			</CardHeader>
-		</Card>
-	);
-};
-
-const YoutubeLink = ({ href }: { href: string }) => {
-	return (
-		<div className="m-1 rounded-lg p-1 duration-100 hover:scale-110 hover:text-error">
-			<Link href={href}>
-				<FaYoutube size={32} />
-			</Link>
-		</div>
 	);
 };
 

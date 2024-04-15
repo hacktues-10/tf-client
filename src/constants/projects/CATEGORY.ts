@@ -1,8 +1,8 @@
-export const CATEGORY: {
-	[key: string]: string;
-} = {
+const CATEGORY = {
 	software: 'Софтуер',
 	embedded: 'Хардуер',
-	networks: 'Мрежи',
-	battlebot: 'Battle Bot',
-};
+	networks: 'Компютърни мрежи',
+	battlebot: 'Battle Bots',
+} as const;
+
+export default CATEGORY;

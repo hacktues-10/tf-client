@@ -8,6 +8,8 @@ export const getProjectById = async (id: number) => {
 	return (await db.select().from(projects).where(eq(projects.id, id))).at(0);
 };
 
+export type ProjectType = Exclude<Awaited<ReturnType<typeof getProjectById>>, undefined>;
+
 export const getProjects = unstable_cache(
 	async () => {
 		return await db.select().from(projects);
