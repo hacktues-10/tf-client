@@ -8,9 +8,9 @@ import Creators from '@/partials/projects/project/Creators';
 import Gallery from '@/partials/projects/project/Gallery';
 import LinksContainer from '@/partials/projects/project/Links';
 import Video from '@/partials/projects/project/Video';
+import { getPublicR2Url } from '@/utils/r2Public';
 
 import { getProjectById } from '../actions';
-import { getPublicR2Url } from '@/utils/r2Public';
 
 export type Links = {
 	github: string;
@@ -41,47 +41,6 @@ export type Project = {
 	next_id: number;
 	prev_id: number;
 };
-
-export async function generateMetadata({ params }: { params: { projectId: number } }) {
-	const project = await getProject(params.projectId);
-
-	if (!project) {
-		notFound();
-	}
-
-	return {
-		title: project.title,
-		description: project.description,
-		twitter: {
-			card: 'summary_large_image',
-			title: `${project.name} | TUES Fest 2024`,
-			description: project.description,
-			creator: '@tuesfest',
-			images: project.pictures.map((picture) => ({
-				url: picture.url,
-			})),
-		},
-		openGraph: {
-			title: `${project.name} | TUES Fest 2024`,
-			description: project.description,
-			url: `https://tuesfest.bg/projects/${project.id}`,
-			siteName: 'TUES Fest 2024',
-			images: project.pictures.map((picture) => ({
-				url: picture.url,
-			}),
-			locale: 'bg-BG',
-			type: 'website',
-		},
-	};
-	}
-}
-
-const getProject = async (id: number) => {
-	const project = getProjectById(id);
-
-	return project;
-};
-
 export async function generateMetadata({ params }: { params: { projectId: number } }) {
 	const project = await getProjectById(params.projectId);
 
@@ -164,7 +123,9 @@ const ProjectPage = async ({ params }: { params: { projectId: number } }) => {
 							>
 								<Image
 									key={project.id}
-									src={getPublicR2Url(project.thumbnail == '' ? project.images.split(', ')[0] : project.thumbnail)}
+									src={getPublicR2Url(
+										project.thumbnail == '' ? project.images.split(', ')[0] : project.thumbnail
+									)}
 									alt={project.title}
 									className="absolute left-0 top-0 rounded-lg object-cover"
 									layout="fill"
@@ -192,4 +153,3 @@ const ProjectPage = async ({ params }: { params: { projectId: number } }) => {
 };
 
 export default ProjectPage;
-
