@@ -16,7 +16,7 @@ const VoteButton = ({
 	const { addVote } = useVoteContext();
 
 	const handleVote = () => {
-		addVote(category, id, name, thumbnail);
+		void addVote(category, id, name, thumbnail);
 	};
 
 	return (

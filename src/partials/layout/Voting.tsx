@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import CATEGORY_MAP, { CategoryMapValue } from '@/constants/projects/CATEGORY_MAP';
 import { useVoteContext, Vote } from '@/context/vote';
 import { motion } from 'framer-motion';
@@ -23,8 +24,8 @@ const VotingModal = ({ closeModal }: { closeModal: () => void }) => {
 		}
 	};
 
-	const handleVote = () => {
-		if (submitVote()) {
+	const handleVote = async () => {
+		if (await submitVote()) {
 			setShowResult(true);
 			setShowLast(false);
 		}
@@ -229,7 +230,7 @@ const VotingOverlay = ({ showModal }: { showModal: () => void }) => {
 						<div className={`relative ${minimized ? 'h-fit w-full shrink-0' : 'h-16'}`}>
 							<div className="relative flex w-full items-center justify-between px-4">
 								<p className="text-2xl font-bold">
-									Твоят глас
+									Вашият глас
 									<span className="ml-2 text-sm opacity-50">
 										{
 											Object.values({
@@ -309,6 +310,13 @@ const VotingLayout = () => {
 			setShowOverlay(true);
 		}
 	}, [anyVotes]);
+
+	const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
+	const isVotePage = pathname.startsWith('/vote/');
+
+	if (isVotePage) {
+		return null;
+	}
 
 	return (
 		<>

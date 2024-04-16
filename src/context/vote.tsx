@@ -2,6 +2,8 @@
 
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import CATEGORY from '@/constants/projects/CATEGORY';
+import { saveVote } from '@/server/vote';
+import { encodeBitmap, projectIdsToMapString, projectMapStringToIds } from '@/utils/vote-projects-map';
 
 export interface Vote {
 	id: number;
@@ -34,7 +36,7 @@ const VoteContext = createContext(
 		validateVote: () => boolean;
 		validateInfo: () => boolean;
 		validateGivenInfo: (name: string, email: string) => boolean;
-		submitVote: () => boolean;
+		submitVote: () => Promise<boolean>;
 	}
 );
 
@@ -168,51 +170,17 @@ const VoteProvider = ({ children }: { children: React.ReactNode }) => {
 		}
 	};
 
-	const submitVote = () => {
+	const submitVote = async () => {
 		if (validateVote() && validateInfo()) {
-			// api submit vote
-			console.log('submitting vote');
-			fetch('https://api.tuesfest.bg/v1/post/vote', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({
-					software_id: software?.id,
-					embedded_id: embedded?.id,
-					battlebot_id: battlebot?.id,
-					networks_id: networks?.id,
-					name,
-					email,
-				}),
-			})
-				.then((response) => response.json())
-				.then((data) => {
-					console.log('Success:', data);
-					if (data.msg === 'Already voted') {
-						setVotingError('Вече сте гласували');
-					}
-
-					console.error(data.msg);
-					if (data.msg === 'Successfully voted') {
-						console.log('Successfully voted');
-						setVotingError('');
-						setBattlebot(null);
-						setEmbedded(null);
-						setNetworks(null);
-						setSoftware(null);
-						setEmail('');
-						setName('');
-						localStorage?.clear();
-					}
-
-					return true;
-				})
-				.catch((error) => {
-					setVotingError('Грешка при гласуването');
-					console.error('Error:', error);
-				});
-
+			await saveVote({
+				email,
+				name,
+				pm: encodeBitmap(
+					BigInt(projectIdsToMapString([software!.id, embedded!.id, battlebot!.id, networks!.id]))
+				),
+				cf: '',
+				isSpam: false,
+			});
 			return true;
 		} else {
 			setVotingError('Моля попълнете всички полета');
