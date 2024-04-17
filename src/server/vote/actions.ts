@@ -4,6 +4,7 @@ import { headers } from 'next/headers';
 import { db } from '@/app/db';
 import { voters, votes } from '@/app/db/schema';
 import { getProjects } from '@/app/projects/actions';
+import { sendVoteEmail } from '@/server/vote/email';
 import { generateToken } from '@/server/vote/token';
 import { arrayBufferToHex } from '@/utils/hex';
 import {
@@ -97,45 +98,7 @@ export async function saveVote(data: z.infer<typeof submitVoteSchema>) {
 		)
 		.returning();
 
-	const token = await generateToken(existingVoter.id, Date.now() + 1000 * 60 * 60 * 24 * 7);
-
-	const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000';
-
-	// Send mail with mailgun
-	const mailgunApiKey = '0e51f5df62b9dde588b855e734b1e798-19806d14-7676795a';
-	const mailgunDomain = 'mg1.tuesfest.bg';
-	const mailgunFrom = 'noreply@tuesfest.bg';
-	const mailgunTo = input.email;
-	const mailgunSubject = 'Потвърдете своя глас за TUES Fest 2024';
-	const mailgunText = `<p>Здравейте, ${input.name}!</p>
-	
-	<p>Благодарим ви, че гласувахте за вашите любими ученически проекти от TUES Fest 2024!</p>
-	
-	<p>От всичките ${projects.length} проекта, които бяха представени, вие избрахте следните:</p>
-	
-	<ul>
-	${votedProjects.map((p) => `<li><b>${p.title}</b> <i>(Категория „${p.type}“)</i>`).join('\n')}
-	</ul>
-	
-	<p>За да потвърдите гласа си, моля кликнете на следния линк: <a href="${baseUrl}/vote/${token}">Потвърди гласа си</a></p>
-	
-	<p>Поздрави,</p>
-	<p>Екипът на TUES Fest 2024</p>
-	`;
-	const mailgunUrl = `https://api.eu.mailgun.net/v3/${mailgunDomain}/messages`;
-	const mailgunResponse = await fetch(mailgunUrl, {
-		method: 'POST',
-		headers: {
-			Authorization: `Basic ${btoa(`api:${mailgunApiKey}`)}`,
-			'Content-Type': 'application/x-www-form-urlencoded',
-		},
-		body: new URLSearchParams({
-			from: mailgunFrom,
-			to: mailgunTo,
-			subject: mailgunSubject,
-			html: mailgunText,
-		}).toString(),
-	});
+	await sendVoteEmail(existingVoter, votedProjects);
 
 	return {
 		success: true,
