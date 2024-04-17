@@ -4,6 +4,7 @@ import { headers } from 'next/headers';
 import { db } from '@/app/db';
 import { voters, votes } from '@/app/db/schema';
 import { getProjects } from '@/app/projects/actions';
+import { generateToken } from '@/server/vote/token';
 import { arrayBufferToHex } from '@/utils/hex';
 import {
 	decodeBitmap,
@@ -16,7 +17,7 @@ import invariant from 'tiny-invariant';
 import { ulid } from 'ulid';
 import { z } from 'zod';
 
-import { env } from '../../env.mjs';
+import { env } from '../../../env.mjs';
 
 const submitVoteSchema = z.object({
 	email: z.string().email(),
@@ -96,11 +97,7 @@ export async function saveVote(data: z.infer<typeof submitVoteSchema>) {
 		)
 		.returning();
 
-	const expires = Date.now() + 60 * 60 * 1000; // 1 hour
-	const payloadHex = `${existingVoter.id}.${expires}`;
-	const tokenHmac = await crypto.subtle.sign('HMAC', await secret, new TextEncoder().encode(payloadHex));
-	const tokenHex = arrayBufferToHex(tokenHmac);
-	const token = `${payloadHex}.${tokenHex}`;
+	const token = await generateToken(existingVoter.id, Date.now() + 1000 * 60 * 60 * 24 * 7);
 
 	const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000';
 
@@ -144,11 +141,3 @@ export async function saveVote(data: z.infer<typeof submitVoteSchema>) {
 		success: true,
 	};
 }
-
-const secret = crypto.subtle.importKey(
-	'raw',
-	new TextEncoder().encode(env.NEXT_AUTH_SECRET),
-	{ name: 'HMAC', hash: 'SHA-256' },
-	false,
-	['sign']
-);

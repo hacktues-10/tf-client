@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import CATEGORY from '@/constants/projects/CATEGORY';
-import { saveVote } from '@/server/vote';
+import { saveVote } from '@/server/vote/actions';
 import { encodeBitmap, projectIdsToMapString, projectMapStringToIds } from '@/utils/vote-projects-map';
 
 export interface Vote {
