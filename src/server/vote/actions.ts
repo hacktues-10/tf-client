@@ -28,6 +28,8 @@ const submitVoteSchema = z.object({
 	isSpam: z.literal(false),
 });
 
+const MAX_PROJECT_VOTES = 3;
+
 export async function saveVote(data: z.infer<typeof submitVoteSchema>) {
 	const input = submitVoteSchema.parse(data);
 	// TODO: validate captcha
@@ -35,7 +37,15 @@ export async function saveVote(data: z.infer<typeof submitVoteSchema>) {
 
 	const voteIds = projectMapStringToIds(bitmap);
 	if (voteIds.length === 0) {
-		throw new Error('Invalid vote');
+		return {
+			success: false,
+			error: 'Трябва да изберете поне един проект за гласуване.',
+		} as const;
+	} else if (voteIds.length > MAX_PROJECT_VOTES) {
+		return {
+			success: false,
+			error: `Можете да гласувате за най-много ${MAX_PROJECT_VOTES} проекта.`,
+		} as const;
 	}
 
 	const projects = await getProjects();
@@ -47,12 +57,6 @@ export async function saveVote(data: z.infer<typeof submitVoteSchema>) {
 			categoryMap.set(category, []);
 		}
 		categoryMap.get(category)!.push(project.id);
-	}
-
-	for (const ids of categoryMap.values()) {
-		if (hasMultipleIntersections(bitmap, projectIdsToMapString(ids))) {
-			throw new Error('Invalid vote');
-		}
 	}
 
 	const votedProjects = voteIds.map((id) => {
@@ -82,7 +86,7 @@ export async function saveVote(data: z.infer<typeof submitVoteSchema>) {
 				.returning()
 		)[0];
 	}
-	invariant(typeof existingVoter !== 'undefined');
+	invariant(typeof existingVoter !== 'undefined' && existingVoter !== null, 'Voter not created');
 
 	// delete existing votes
 	await db.delete(votes).where(eq(votes.voterId, existingVoter.id));
@@ -102,5 +106,5 @@ export async function saveVote(data: z.infer<typeof submitVoteSchema>) {
 
 	return {
 		success: true,
-	};
+	} as const;
 }

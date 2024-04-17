@@ -172,7 +172,7 @@ const VoteProvider = ({ children }: { children: React.ReactNode }) => {
 
 	const submitVote = async () => {
 		if (validateVote() && validateInfo()) {
-			await saveVote({
+			const response = await saveVote({
 				email,
 				name,
 				pm: encodeBitmap(
@@ -180,8 +180,16 @@ const VoteProvider = ({ children }: { children: React.ReactNode }) => {
 				),
 				cf: '',
 				isSpam: false,
+			}).catch((e) => {
+				return {
+					success: false,
+					error: 'Нещо се обърка при гласуването. Моля, опитайте по-късно.',
+				} as const;
 			});
-			return true;
+			if (!response.success) {
+				setVotingError(response.error);
+			}
+			return response.success;
 		} else {
 			setVotingError('Моля попълнете всички полета');
 			return false;
