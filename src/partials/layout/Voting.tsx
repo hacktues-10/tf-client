@@ -10,11 +10,12 @@ import { motion } from 'framer-motion';
 import { TbChevronDown, TbChevronUp, TbX } from 'react-icons/tb';
 
 const VotingModal = ({ closeModal }: { closeModal: () => void }) => {
+	const { addInfo, validateGivenInfo, getErrors, submitVote, hasVerifiedVote } = useVoteContext();
+
 	const [info, setInfo] = useState({ name: '', email: '' });
 	const [showLast, setShowLast] = useState(false);
-	const [showResult, setShowResult] = useState(false);
+	const [showResult, setShowResult] = useState(hasVerifiedVote);
 
-	const { addInfo, validateGivenInfo, getErrors, submitVote } = useVoteContext();
 	const { emailError, nameError, votingError } = getErrors();
 
 	const handleInfo = () => {
@@ -136,10 +137,12 @@ const VotingModal = ({ closeModal }: { closeModal: () => void }) => {
 									<br />
 									{votingError}
 								</p>
-							) : (
+							) : !hasVerifiedVote ? (
 								<p className="text-success">
 									Гласувахте успешно! Моля, проверете имейла си за линк за потвърждение.
 								</p>
+							) : (
+								<p className="text-success">Вашият глас бе актуализиран успешно!</p>
 							)}
 							<button
 								className="bg-primary-color mt-4 w-full rounded-lg border border-stroke bg-border py-2 font-bold text-white transition-all duration-300 hover:bg-primary"
@@ -213,7 +216,7 @@ const VotingCategory = ({
 
 const VotingOverlay = ({ showModal }: { showModal: () => void }) => {
 	const [minimized, setMinimized] = useState(false);
-	const { getVotes, getErrors } = useVoteContext();
+	const { getVotes, getErrors, hasVerifiedVote, submitVote } = useVoteContext();
 
 	const { software, embedded, battlebot } = getVotes();
 	const { softwareError, embeddedError, battlebotError } = getErrors();
@@ -278,9 +281,15 @@ const VotingOverlay = ({ showModal }: { showModal: () => void }) => {
 							</div>
 							<button
 								className="flex items-center justify-center rounded-xl border border-border bg-primary bg-opacity-75 px-6 py-2 text-lg font-bold transition-all duration-300 hover:border-stroke hover:bg-primary"
-								onClick={showModal}
+								onClick={
+									!hasVerifiedVote
+										? showModal
+										: () => {
+												submitVote().then(showModal);
+											}
+								}
 							>
-								Гласувай
+								{!hasVerifiedVote ? 'Гласувай' : 'Запиши глас'}
 							</button>
 						</div>
 					</div>

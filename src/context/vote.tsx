@@ -37,6 +37,8 @@ const VoteContext = createContext(
 		validateGivenInfo: (name: string, email: string) => boolean;
 		submitVote: () => Promise<boolean>;
 		hasVerifiedVote: boolean;
+		name: string;
+		email: string;
 	}
 );
 
@@ -170,7 +172,13 @@ const VoteProvider = ({ children }: { children: React.ReactNode }) => {
 			const response = await saveVote({
 				email,
 				name,
-				pm: encodeBitmap(BigInt(projectIdsToMapString([software!.id, embedded!.id, battlebot!.id]))),
+				pm: encodeBitmap(
+					BigInt(
+						projectIdsToMapString(
+							[software?.id, embedded?.id, battlebot?.id].filter((id): id is number => !!id)
+						)
+					)
+				),
 				cf: '',
 				isSpam: false,
 			}).catch((e) => {
@@ -255,6 +263,8 @@ const VoteProvider = ({ children }: { children: React.ReactNode }) => {
 				validateGivenInfo,
 				submitVote,
 				hasVerifiedVote,
+				name,
+				email,
 			}}
 		>
 			{children}
