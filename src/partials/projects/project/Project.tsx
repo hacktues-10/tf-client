@@ -38,7 +38,9 @@ const Project = ({ project }: { project: ProjectType }) => {
 				<VoteButton
 					id={project.id}
 					name={project.title}
-					thumbnail={getPublicR2Url(project.thumbnail)}
+					thumbnail={getPublicR2Url(
+						project.thumbnail == '' ? project.images.split(', ')[0] : project.thumbnail
+					)}
 					category={project.type}
 				/>
 			</CardContent>

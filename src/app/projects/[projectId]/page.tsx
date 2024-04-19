@@ -3,11 +3,13 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import CATEGORY from '@/constants/projects/CATEGORY';
 import ProjectsPath from '@/partials/layout/ProjectsPath';
 import Creators from '@/partials/projects/project/Creators';
 import Gallery from '@/partials/projects/project/Gallery';
 import LinksContainer from '@/partials/projects/project/Links';
 import Video from '@/partials/projects/project/Video';
+import VoteButton from '@/partials/projects/project/VoteButton';
 import { getPublicR2Url } from '@/utils/r2Public';
 
 import { getProjectById } from '../actions';
@@ -133,6 +135,16 @@ const ProjectPage = async ({ params }: { params: { projectId: number } }) => {
 								/>
 							</div>
 						)}
+						<div className="mt-4">
+							<VoteButton
+								id={project.id}
+								name={project.title}
+								thumbnail={getPublicR2Url(
+									project.thumbnail == '' ? project.images.split(', ')[0] : project.thumbnail
+								)}
+								category={project.type || CATEGORY.software}
+							/>
+						</div>
 						{project.description.length > 250 ? (
 							<ScrollArea className="text-md my-4 h-[150px] overflow-y-scroll sm:text-lg">
 								{project.description}

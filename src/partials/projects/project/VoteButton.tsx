@@ -1,5 +1,6 @@
 'use client';
 
+import { Button } from '@/components/ui/button';
 import { useVoteContext } from '@/context/vote';
 
 const VoteButton = ({
@@ -13,19 +14,31 @@ const VoteButton = ({
 	thumbnail: string;
 	category: string;
 }) => {
-	const { addVote } = useVoteContext();
+	const { getVotes, addVote, removeVote } = useVoteContext();
+
+	const vote = Object.values(getVotes()).find((v) => v?.id === id);
 
 	const handleVote = () => {
 		void addVote(category, id, name, thumbnail);
 	};
 
+	const handleUnvote = () => {
+		if (!vote?.category) return;
+		void removeVote(vote.category);
+	};
+
+	const handleClick = () => {
+		if (vote) {
+			handleUnvote();
+		} else {
+			handleVote();
+		}
+	};
+
 	return (
-		<button
-			onClick={handleVote}
-			className="flex items-center justify-center rounded-md bg-primary px-4 py-3 text-sm font-semibold text-white transition-all hover:bg-opacity-90 sm:px-5"
-		>
-			Гласувай
-		</button>
+		<Button className="bg-sand text-black" onClick={handleClick} size="lg">
+			{!vote ? 'Гласувай' : 'Премахни глас'}
+		</Button>
 	);
 };
 
