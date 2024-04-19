@@ -74,6 +74,9 @@ const VoteProvider = ({ children }: { children: React.ReactNode }) => {
 
 		setCategory(value);
 		setError(false);
+		setSoftwareError(false);
+		setEmbeddedError(false);
+		setBattlebotError(false);
 	};
 
 	const addInfo = () => {
@@ -121,11 +124,13 @@ const VoteProvider = ({ children }: { children: React.ReactNode }) => {
 	};
 
 	const validateVote = () => {
-		setSoftwareError(software === null);
-		setEmbeddedError(embedded === null);
-		setBattlebotError(battlebot === null);
-
-		return !!(software || embedded || battlebot);
+		const canVote = !!software || !!embedded || !!battlebot;
+		if (!canVote) {
+			setSoftwareError(software === null);
+			setEmbeddedError(embedded === null);
+			setBattlebotError(battlebot === null);
+		}
+		return canVote;
 	};
 
 	const validateInfo = () => {
