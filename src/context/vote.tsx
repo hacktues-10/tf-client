@@ -237,6 +237,18 @@ const VoteProvider = ({ children }: { children: React.ReactNode }) => {
 		if (hasVerifiedVote) setHasVerifiedVote(hasVerifiedVote === 'true');
 	}, []);
 
+	// add event listener on local storage change
+	// if hasVerifiedVote was updated, update the state
+	useEffect(() => {
+		const listener = (e: StorageEvent) => {
+			if (e.key === 'hasVerifiedVote') {
+				setHasVerifiedVote(e.newValue === 'true');
+			}
+		};
+		window.addEventListener('storage', listener);
+		return () => window.removeEventListener('storage', listener);
+	}, []);
+
 	useEffect(() => {
 		console.trace({ name, email });
 	}, [email, name]);
