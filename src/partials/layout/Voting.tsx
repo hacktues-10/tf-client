@@ -215,8 +215,8 @@ const VotingOverlay = ({ showModal }: { showModal: () => void }) => {
 	const [minimized, setMinimized] = useState(false);
 	const { getVotes, getErrors } = useVoteContext();
 
-	const { software, embedded, battlebot, networks } = getVotes();
-	const { softwareError, embeddedError, battlebotError, networksError } = getErrors();
+	const { software, embedded, battlebot } = getVotes();
+	const { softwareError, embeddedError, battlebotError } = getErrors();
 
 	return (
 		<motion.div className="fixed bottom-5 right-0 z-50 w-screen" animate={minimized}>
@@ -237,10 +237,9 @@ const VotingOverlay = ({ showModal }: { showModal: () => void }) => {
 												software,
 												embedded,
 												battlebot,
-												networks,
 											}).filter((v) => v !== null).length
 										}{' '}
-										/ 4
+										/ 3
 									</span>
 								</p>
 								<button
@@ -261,14 +260,21 @@ const VotingOverlay = ({ showModal }: { showModal: () => void }) => {
 							}`}
 						>
 							<div className="flex w-full flex-col divide-y divide-stroke">
-								<VotingCategory category={embedded} cat={CATEGORY_MAP.software} error={embeddedError} />
-								<VotingCategory category={software} cat={CATEGORY_MAP.embedded} error={softwareError} />
+								<VotingCategory
+									category={embedded}
+									cat={{ ...CATEGORY_MAP.software, text: 'Избор 1', href: '/projects' }}
+									error={embeddedError}
+								/>
+								<VotingCategory
+									category={software}
+									cat={{ ...CATEGORY_MAP.embedded, text: 'Избор 2', href: '/projects' }}
+									error={softwareError}
+								/>
 								<VotingCategory
 									category={battlebot}
-									cat={CATEGORY_MAP.battlebot}
+									cat={{ ...CATEGORY_MAP.battlebot, text: 'Избор 3', href: '/projects' }}
 									error={battlebotError}
 								/>
-								<VotingCategory category={networks} cat={CATEGORY_MAP.networks} error={networksError} />
 							</div>
 							<button
 								className="flex items-center justify-center rounded-xl border border-border bg-primary bg-opacity-75 px-6 py-2 text-lg font-bold transition-all duration-300 hover:border-stroke hover:bg-primary"

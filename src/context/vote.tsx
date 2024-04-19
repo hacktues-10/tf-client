@@ -1,9 +1,10 @@
 'use client';
 
-import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import CATEGORY from '@/constants/projects/CATEGORY';
 import { saveVote } from '@/server/vote/actions';
 import { encodeBitmap, projectIdsToMapString, projectMapStringToIds } from '@/utils/vote-projects-map';
+import { set } from 'zod';
 
 export interface Vote {
 	id: number;
@@ -21,14 +22,12 @@ const VoteContext = createContext(
 			software: Vote | null;
 			embedded: Vote | null;
 			battlebot: Vote | null;
-			networks: Vote | null;
 		};
 		anyVotes: () => boolean;
 		getErrors: () => {
 			softwareError: boolean;
 			embeddedError: boolean;
 			battlebotError: boolean;
-			networksError: boolean;
 			emailError: boolean;
 			nameError: boolean;
 			votingError: string;
@@ -46,12 +45,10 @@ const VoteProvider = ({ children }: { children: React.ReactNode }) => {
 	const [software, setSoftware] = useState<Vote | null>(null);
 	const [embedded, setEmbedded] = useState<Vote | null>(null);
 	const [battlebot, setBattlebot] = useState<Vote | null>(null);
-	const [networks, setNetworks] = useState<Vote | null>(null);
 
 	const [softwareError, setSoftwareError] = useState(false);
 	const [embeddedError, setEmbeddedError] = useState(false);
 	const [battlebotError, setBattlebotError] = useState(false);
-	const [networksError, setNetworksError] = useState(false);
 
 	const [email, setEmail] = useState('');
 	const [name, setName] = useState('');
@@ -61,49 +58,39 @@ const VoteProvider = ({ children }: { children: React.ReactNode }) => {
 
 	const [votingError, setVotingError] = useState('');
 
-	const addVote = (category: string, id: number, name: string, image?: string) => {
+	const addVote = (_: string, id: number, name: string, image?: string) => {
+		if (software?.id === id || embedded?.id === id || battlebot?.id === id) return;
+
+		const categories = [
+			[CATEGORY.embedded, embedded, setEmbedded, setEmbeddedError],
+			[CATEGORY.software, software, setSoftware, setSoftwareError],
+			[CATEGORY.battlebot, battlebot, setBattlebot, setBattlebotError],
+		] as const;
+
+		// find empty category or last if all are full
+		const [category, , setCategory, setError] =
+			categories.find(([, vote]) => vote === null) || categories[categories.length - 1];
 		const value = { id, name, image, category };
 
-		switch (category) {
-			case CATEGORY.software:
-				setSoftware(value);
-				setSoftwareError(false);
-				break;
-			case CATEGORY.embedded:
-				setEmbedded(value);
-				setEmbeddedError(false);
-				break;
-			case CATEGORY.battlebot:
-				setBattlebot(value);
-				setBattlebotError(false);
-				break;
-			case CATEGORY.networks:
-				setNetworks(value);
-				setNetworksError(false);
-				break;
-			default:
-				break;
-		}
+		setCategory(value);
+		setError(false);
 	};
 
-	const addInfo = (name: string, email: string) => {
+	const addInfo = () => {
 		setName(name);
 		setEmail(email);
 	};
 
 	const removeVote = (category: string) => {
+		console.log(category);
+		console.log([software, embedded, battlebot]);
 		switch (category) {
-			case CATEGORY.software:
-				setSoftware(null);
-				break;
 			case CATEGORY.embedded:
-				setEmbedded(null);
-				break;
+				setEmbedded(software ? { ...software, category: CATEGORY.embedded } : null);
+			case CATEGORY.software:
+				setSoftware(battlebot ? { ...battlebot, category: CATEGORY.software } : null);
 			case CATEGORY.battlebot:
 				setBattlebot(null);
-				break;
-			case CATEGORY.networks:
-				setNetworks(null);
 				break;
 			default:
 				break;
@@ -115,7 +102,6 @@ const VoteProvider = ({ children }: { children: React.ReactNode }) => {
 			software,
 			embedded,
 			battlebot,
-			networks,
 		};
 	};
 
@@ -124,7 +110,6 @@ const VoteProvider = ({ children }: { children: React.ReactNode }) => {
 			softwareError,
 			embeddedError,
 			battlebotError,
-			networksError,
 			emailError,
 			nameError,
 			votingError,
@@ -132,16 +117,15 @@ const VoteProvider = ({ children }: { children: React.ReactNode }) => {
 	};
 
 	const anyVotes = () => {
-		return software !== null || embedded !== null || battlebot !== null || networks !== null;
+		return software !== null || embedded !== null || battlebot !== null;
 	};
 
 	const validateVote = () => {
 		setSoftwareError(software === null);
 		setEmbeddedError(embedded === null);
 		setBattlebotError(battlebot === null);
-		setNetworksError(networks === null);
 
-		return !!(software && embedded && battlebot && networks);
+		return !!(software || embedded || battlebot);
 	};
 
 	const validateInfo = () => {
@@ -175,9 +159,7 @@ const VoteProvider = ({ children }: { children: React.ReactNode }) => {
 			const response = await saveVote({
 				email,
 				name,
-				pm: encodeBitmap(
-					BigInt(projectIdsToMapString([software!.id, embedded!.id, battlebot!.id, networks!.id]))
-				),
+				pm: encodeBitmap(BigInt(projectIdsToMapString([software!.id, embedded!.id, battlebot!.id]))),
 				cf: '',
 				isSpam: false,
 			}).catch((e) => {
@@ -197,8 +179,8 @@ const VoteProvider = ({ children }: { children: React.ReactNode }) => {
 	};
 
 	useEffect(() => {
-		console.warn(softwareError, embeddedError, battlebotError, networksError);
-	}, [softwareError, embeddedError, battlebotError, networksError]);
+		console.warn(softwareError, embeddedError, battlebotError);
+	}, [softwareError, embeddedError, battlebotError]);
 
 	// save to local storage on change
 	useMemo(() => {
@@ -207,26 +189,22 @@ const VoteProvider = ({ children }: { children: React.ReactNode }) => {
 		localStorage?.setItem(CATEGORY.software, JSON.stringify(software));
 		localStorage?.setItem(CATEGORY.embedded, JSON.stringify(embedded));
 		localStorage?.setItem(CATEGORY.battlebot, JSON.stringify(battlebot));
-		localStorage?.setItem(CATEGORY.networks, JSON.stringify(networks));
-	}, [software, embedded, battlebot, networks]);
+	}, [software, embedded, battlebot]);
 
 	// load from local storage on mount
 	useEffect(() => {
 		const software = localStorage?.getItem(CATEGORY.software);
 		const embedded = localStorage?.getItem(CATEGORY.embedded);
 		const battlebot = localStorage?.getItem(CATEGORY.battlebot);
-		const networks = localStorage?.getItem(CATEGORY.networks);
 
 		console.log('LOADED FROM LOCAL STORAGE');
 		console.log(software);
 		console.log(embedded);
 		console.log(battlebot);
-		console.log(networks);
 
 		if (software) setSoftware(JSON.parse(software));
 		if (embedded) setEmbedded(JSON.parse(embedded));
 		if (battlebot) setBattlebot(JSON.parse(battlebot));
-		if (networks) setNetworks(JSON.parse(networks));
 	}, []);
 
 	useEffect(() => {
@@ -234,9 +212,8 @@ const VoteProvider = ({ children }: { children: React.ReactNode }) => {
 			software,
 			embedded,
 			battlebot,
-			networks,
 		});
-	}, [software, embedded, battlebot, networks]);
+	}, [software, embedded, battlebot]);
 
 	return (
 		<Provider
