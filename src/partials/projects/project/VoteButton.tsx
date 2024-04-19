@@ -1,5 +1,6 @@
 'use client';
 
+import { IfTfFeatureOn } from '@/app/_integrations/growthbook/components';
 import { Button } from '@/components/ui/button';
 import { useVoteContext } from '@/context/vote';
 
@@ -36,9 +37,11 @@ const VoteButton = ({
 	};
 
 	return (
-		<Button className="bg-sand text-black" onClick={handleClick} size="lg">
-			{!vote ? 'Гласувай' : 'Премахни глас'}
-		</Button>
+		<IfTfFeatureOn feature="tf-vote-projects">
+			<Button className="bg-sand text-black" onClick={handleClick} size="lg">
+				{!vote ? 'Гласувай' : 'Премахни глас'}
+			</Button>
+		</IfTfFeatureOn>
 	);
 };
 

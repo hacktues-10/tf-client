@@ -124,14 +124,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 					<AuthProvider>
 						<DayProvider>
 							<Navigation />
-							<VoteProvider>
-								{/*@ts-expect-error */}
-								<GrowthBookServerProvider>
+							{/*@ts-expect-error */}
+							<GrowthBookServerProvider>
+								<VoteProvider>
 									<SullyAnimation />
 									{children}
-								</GrowthBookServerProvider>
-								<VotingLayout />
-							</VoteProvider>
+									<VotingLayout />
+								</VoteProvider>
+							</GrowthBookServerProvider>
 							<Toaster />
 							<Footer />
 							<Analytics />
