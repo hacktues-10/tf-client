@@ -36,6 +36,7 @@ const VoteContext = createContext(
 		validateInfo: () => boolean;
 		validateGivenInfo: (name: string, email: string) => boolean;
 		submitVote: () => Promise<boolean>;
+		hasVerifiedVote: boolean;
 	}
 );
 
@@ -57,6 +58,8 @@ const VoteProvider = ({ children }: { children: React.ReactNode }) => {
 	const [nameError, setNameError] = useState(false);
 
 	const [votingError, setVotingError] = useState('');
+
+	const [hasVerifiedVote, setHasVerifiedVote] = useState(false);
 
 	const addVote = (_: string, id: number, name: string, image?: string) => {
 		if (software?.id === id || embedded?.id === id || battlebot?.id === id) return;
@@ -179,6 +182,8 @@ const VoteProvider = ({ children }: { children: React.ReactNode }) => {
 			if (!response.success) {
 				setVotingError(response.error);
 			}
+			localStorage?.setItem('email', email);
+			localStorage?.setItem('name', name);
 			return response.success;
 		} else {
 			setVotingError('Моля попълнете всички полета');
@@ -206,17 +211,22 @@ const VoteProvider = ({ children }: { children: React.ReactNode }) => {
 		const battlebot = localStorage?.getItem(CATEGORY.battlebot);
 		const email = localStorage?.getItem('email');
 		const name = localStorage?.getItem('name');
+		const hasVerifiedVote = localStorage?.getItem('hasVerifiedVote');
 
 		console.log('LOADED FROM LOCAL STORAGE');
 		console.log(software);
 		console.log(embedded);
 		console.log(battlebot);
-		console.log(email);
-		console.log(name);
+		console.log({ email });
+		console.log({ name });
+		console.log({ hasVerifiedVote });
 
 		if (software) setSoftware(JSON.parse(software));
 		if (embedded) setEmbedded(JSON.parse(embedded));
 		if (battlebot) setBattlebot(JSON.parse(battlebot));
+		if (email) setEmail(email);
+		if (name) setName(name);
+		if (hasVerifiedVote) setHasVerifiedVote(hasVerifiedVote === 'true');
 	}, []);
 
 	useEffect(() => {
@@ -244,6 +254,7 @@ const VoteProvider = ({ children }: { children: React.ReactNode }) => {
 				validateInfo,
 				validateGivenInfo,
 				submitVote,
+				hasVerifiedVote,
 			}}
 		>
 			{children}
