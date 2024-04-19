@@ -1,14 +1,34 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/app/db';
-import { projectsSubmission } from '@/app/db/schema';
-import { count } from 'drizzle-orm';
+import { projects, projectsSubmission, voters, votes } from '@/app/db/schema';
+import { getPublicR2Url } from '@/utils/r2Public';
+import { and, count, eq, not } from 'drizzle-orm';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
-	const results = await db.select({ count: count(projectsSubmission.id) }).from(projectsSubmission);
-	if (results[0]) {
-		return new NextResponse(results[0].count.toString());
+	const res = await db
+		.select()
+		.from(votes)
+		.leftJoin(voters, eq(voters.id, votes.voterId))
+		.leftJoin(projects, eq(projects.id, votes.projectId))
+		.where(and(not(votes.isBlocked), voters.isVerified));
+	const ids = new Map<number, { id: number; title: string; thumbnailUrl: string; coeff: number }>();
+	for (const row of res) {
+		if (!row.projects) continue;
+		if (!ids.has(row.projects.id)) {
+			ids.set(row.projects.id, {
+				id: row.projects.id,
+				title: row.projects.title,
+				thumbnailUrl: getPublicR2Url(row.projects.thumbnail),
+				coeff: 0,
+			});
+		}
+		ids.get(row.projects.id)!.coeff++;
 	}
-	return new NextResponse('0');
+	for (const [youtubeId, value] of ids) {
+		value.coeff /= res.length;
+	}
+	const videosToVote = Array.from(ids.values()).sort((a, b) => b.coeff - a.coeff);
+	return NextResponse.json(videosToVote);
 }
