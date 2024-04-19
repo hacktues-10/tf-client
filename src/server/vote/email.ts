@@ -1,12 +1,16 @@
 import { projects, voters } from '@/app/db/schema';
 import { generateToken } from '@/server/vote/token';
 
+import { env } from '../../../env.mjs';
+
 export async function sendVoteEmail(
 	voter: typeof voters.$inferSelect,
 	votedProjects: (typeof projects.$inferSelect)[]
 ) {
 	const token = await generateToken(voter.id, Date.now() + 1000 * 60 * 60);
-	const url = `${process.env.VERCEL_ENV}/vote/${token}`;
+	const baseUrl =
+		process.env.VERCEL_URL ?? env.VERCEL_ENV === 'development' ? 'http://localhost:3000' : 'https://tuesfest.bg';
+	const url = `${baseUrl}/vote/${token}`;
 	const subject = 'Потвърдете гласа си за TUES Fest 2024';
 	const html = `<p>Здравейте, ${voter.name}!</p>
 	
@@ -18,7 +22,7 @@ export async function sendVoteEmail(
 	${votedProjects.map((p) => `<li><b>${p.title}</b> <i>(Категория „${p.type}“)</i>`).join('\n')}
 	</ul>
 	
-	<p>За да потвърдите гласа си, моля кликнете на следния линк: <a href="${url}">Потвърди гласа си</a></p>
+	<p>За да потвърдите гласа си, моля кликнете на следния линк: <a href="${url}">Потвърди моя глас</a></p>
 	
 	<p>Поздрави,</p>
 	<p>Екипът на TUES Fest 2024</p>

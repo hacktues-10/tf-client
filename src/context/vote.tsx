@@ -79,7 +79,7 @@ const VoteProvider = ({ children }: { children: React.ReactNode }) => {
 		setBattlebotError(false);
 	};
 
-	const addInfo = () => {
+	const addInfo = (name: string, email: string) => {
 		setName(name);
 		setEmail(email);
 	};
@@ -130,6 +130,9 @@ const VoteProvider = ({ children }: { children: React.ReactNode }) => {
 			setEmbeddedError(embedded === null);
 			setBattlebotError(battlebot === null);
 		}
+		if (!canVote) {
+			console.error('No votes');
+		}
 		return canVote;
 	};
 
@@ -170,7 +173,7 @@ const VoteProvider = ({ children }: { children: React.ReactNode }) => {
 			}).catch((e) => {
 				return {
 					success: false,
-					error: 'Нещо се обърка при гласуването. Моля, опитайте по-късно.',
+					error: '',
 				} as const;
 			});
 			if (!response.success) {
@@ -194,23 +197,31 @@ const VoteProvider = ({ children }: { children: React.ReactNode }) => {
 		localStorage?.setItem(CATEGORY.software, JSON.stringify(software));
 		localStorage?.setItem(CATEGORY.embedded, JSON.stringify(embedded));
 		localStorage?.setItem(CATEGORY.battlebot, JSON.stringify(battlebot));
-	}, [software, embedded, battlebot]);
+	}, [anyVotes, software, embedded, battlebot]);
 
 	// load from local storage on mount
 	useEffect(() => {
 		const software = localStorage?.getItem(CATEGORY.software);
 		const embedded = localStorage?.getItem(CATEGORY.embedded);
 		const battlebot = localStorage?.getItem(CATEGORY.battlebot);
+		const email = localStorage?.getItem('email');
+		const name = localStorage?.getItem('name');
 
 		console.log('LOADED FROM LOCAL STORAGE');
 		console.log(software);
 		console.log(embedded);
 		console.log(battlebot);
+		console.log(email);
+		console.log(name);
 
 		if (software) setSoftware(JSON.parse(software));
 		if (embedded) setEmbedded(JSON.parse(embedded));
 		if (battlebot) setBattlebot(JSON.parse(battlebot));
 	}, []);
+
+	useEffect(() => {
+		console.trace({ name, email });
+	}, [email, name]);
 
 	useEffect(() => {
 		console.log({
