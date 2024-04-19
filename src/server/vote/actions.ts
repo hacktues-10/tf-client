@@ -1,6 +1,7 @@
 'use server';
 
 import { headers } from 'next/headers';
+import { getServerSideGrowthBook } from '@/app/_integrations/growthbook/growthbook';
 import { db } from '@/app/db';
 import { voters, votes } from '@/app/db/schema';
 import { getProjects } from '@/app/projects/actions';
@@ -31,7 +32,23 @@ const submitVoteSchema = z.object({
 const MAX_PROJECT_VOTES = 3;
 
 export async function saveVote(data: z.infer<typeof submitVoteSchema>) {
-	const input = submitVoteSchema.parse(data);
+	const gb = await getServerSideGrowthBook();
+	if (gb.isOff('tf-vote-projects')) {
+		return {
+			success: false,
+			error: 'Гласуването е затворено.',
+		} as const;
+	}
+
+	const res = submitVoteSchema.safeParse(data);
+	if (!res.success) {
+		return {
+			success: false,
+			error: 'Невалидни данни.',
+		} as const;
+	}
+	const input = res.data;
+
 	// TODO: validate captcha
 	const bitmap = decodeBitmap(input.pm).toString();
 
