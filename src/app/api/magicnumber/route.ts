@@ -20,7 +20,9 @@ export async function GET(req: NextRequest) {
 			ids.set(row.projects.id, {
 				id: row.projects.id,
 				title: row.projects.title,
-				thumbnailUrl: getPublicR2Url(row.projects.thumbnail),
+				thumbnailUrl: row.projects.thumbnail
+					? getPublicR2Url(row.projects.thumbnail)
+					: getPublicR2Url(row.projects.images.split(', ')[0]),
 				coeff: 0,
 			});
 		}
