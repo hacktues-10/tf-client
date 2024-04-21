@@ -2,5 +2,6 @@ import { headers } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 
 export function GET(_: NextRequest) {
-	return NextResponse.json(headers());
+	const theHeaders = Array.from(headers().entries());
+	return NextResponse.json(theHeaders);
 }
