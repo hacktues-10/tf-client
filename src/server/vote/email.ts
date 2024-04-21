@@ -27,9 +27,9 @@ export async function sendVoteEmail(
 	<p>Екипът на TUES Fest 2024</p>
 	`;
 
-	// const mailgunApiKey = '0e51f5df62b9dde588b855e734b1e798-19806d14-7676795a';
-	const mailgunApiKey = '69abaf1cb36e9067e345b8751da32404-19806d14-a74ef52f';
-	const mailgunDomain = 'mg2.tuesfest.bg';
+	const mailgunApiKey = '0e51f5df62b9dde588b855e734b1e798-19806d14-7676795a';
+	// const mailgunApiKey = '69abaf1cb36e9067e345b8751da32404-19806d14-a74ef52f';
+	const mailgunDomain = 'mg1.tuesfest.bg';
 	// const mailgunDomain = 'sandboxde7b443027114ef588091cf834f1d074.mailgun.org';
 	const mailgunUrl = `https://api.eu.mailgun.net/v3/${mailgunDomain}/messages`;
 	// const mailgunUrl = `https://api.mailgun.net/v3/${mailgunDomain}/messages`;
