@@ -23,6 +23,7 @@ export default {
 			{
 				source: '/vote',
 				destination: '/projects',
+				permanent: false,
 			},
 		];
 	},
