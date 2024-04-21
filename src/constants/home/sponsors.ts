@@ -64,6 +64,7 @@ import pureWaterLogo from '@/sponsors/partners/pure_water.png';
 import remoLogo from '@/sponsors/partners/remo-mebeli.png';
 import smartcomLogo from '@/sponsors/partners/smartcom.png';
 import sofiaTechParkLogo from '@/sponsors/partners/sofia-tech-park.png';
+import obektiBgLogo from '@/media/obekti.jpg';
 
 const ALPHA_SPONSORS = [
 	{
