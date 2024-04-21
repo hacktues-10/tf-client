@@ -119,7 +119,9 @@ export async function saveVote(data: z.infer<typeof submitVoteSchema>) {
 		)
 		.returning();
 
-	await sendVoteEmail(existingVoter, votedProjects);
+	if (!existingVoter.isVerified) {
+		await sendVoteEmail(existingVoter, votedProjects);
+	}
 
 	return {
 		success: true,
