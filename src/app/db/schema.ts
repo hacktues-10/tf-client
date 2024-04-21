@@ -1,5 +1,16 @@
 import { relations } from 'drizzle-orm';
-import { bigint, boolean, date, integer, pgEnum, pgTable, serial, timestamp, varchar } from 'drizzle-orm/pg-core';
+import {
+	bigint,
+	boolean,
+	date,
+	index,
+	integer,
+	pgEnum,
+	pgTable,
+	serial,
+	timestamp,
+	varchar,
+} from 'drizzle-orm/pg-core';
 
 import { db } from '.';
 
@@ -80,5 +91,32 @@ export const projectRelations = relations(projects, ({ one }) => ({
 		references: [projectsSubmission.id],
 	}),
 }));
+
+export const voters = pgTable(
+	'voters',
+	{
+		// ulid
+		id: varchar('id').primaryKey(),
+		createIpHash: varchar('create_ip_hash').notNull(),
+		email: varchar('email').notNull(),
+		name: varchar('name').notNull(),
+		emailHash: varchar('email_hash').notNull().unique(),
+		createdAt: timestamp('created_at').defaultNow().notNull(),
+		isVerified: boolean('is_verified').default(false).notNull(),
+	},
+	(t) => ({
+		emailHashIndex: index().on(t.emailHash),
+	})
+);
+
+export const votes = pgTable('votes', {
+	id: serial('id').primaryKey(),
+	voterId: varchar('voter_id').references(() => voters.id),
+	projectId: integer('project_id').references(() => projects.id),
+	votedAt: timestamp('voted_at').defaultNow().notNull(),
+	ipHash: varchar('ip_hash').notNull(),
+	isBlocked: boolean('is_blocked').default(false).notNull(),
+	createdAt: timestamp('created_at').defaultNow().notNull(),
+});
 
 export type DrizzleClient = typeof db;

@@ -4,8 +4,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { Card, CardHeader } from '@/components/ui/card';
+import CATEGORY from '@/constants/projects/CATEGORY';
+import CATEGORY_LIST from '@/constants/projects/CATEGORY_LIST';
+import CATEGORY_MAP from '@/constants/projects/CATEGORY_MAP';
 import ProjectsPath from '@/partials/layout/ProjectsPath';
 import ProjectsLoading from '@/partials/projects/loader/ProjectsLoading';
+import Project from '@/partials/projects/project/Project';
+import { getPublicR2Url } from '@/utils/r2Public';
 import { FaYoutube } from 'react-icons/fa';
 
 import {
@@ -36,26 +41,10 @@ const TABS = [
 		category: 'all',
 		href: '/projects',
 	},
-	{
-		text: 'Хардуер',
-		category: 'embedded',
-		href: '/projects/category/embedded',
-	},
-	{
-		text: 'Софтуер',
-		category: 'software',
-		href: '/projects/category/software',
-	},
-	{
-		text: 'Battle Bots',
-		category: 'battlebot',
-		href: '/projects/category/battlebot',
-	},
-	{
-		text: 'Мрежи',
-		category: 'networks',
-		href: '/projects/category/networks',
-	},
+	CATEGORY_MAP.embedded,
+	CATEGORY_MAP.software,
+	CATEGORY_MAP.battlebot,
+	{ ...CATEGORY_MAP.networks, text: 'Мрежи' },
 ];
 
 const LinkTab = ({ text, href, current }: { text: string; href: string; current: boolean }) => (
@@ -76,16 +65,14 @@ const ProjectsPage = async ({
 		category: string;
 	};
 }) => {
-	const { category } = params;
+	const category = params.category.toString();
 
-	console.log('sadasdas', category);
-
-	// if category not in [software, embedded, battlebots, networks, all]
-	// redirect to /projects
-
-	if (!['software', 'embedded', 'battlebot', 'networks', 'all'].includes(category)) {
+	if (!Object.hasOwn(CATEGORY, category)) {
+		console.log(CATEGORY, category);
 		redirect('/projects');
 	}
+
+	console.log('category', category);
 
 	let projects;
 
@@ -137,43 +124,4 @@ const ProjectsPage = async ({
 	);
 };
 
-const Project = ({ project }: { project: Awaited<ReturnType<typeof getProjects>>[number] }) => {
-	return (
-		<Card className="z-20 m-4 max-w-[500px] bg-black text-white opacity-100">
-			<div className="relative mx-auto mt-4 w-[90%]" style={{ paddingTop: '56.25%' }}>
-				<Image
-					key={project.id}
-					src={`https://pub-40c3b6cf3326458d9e34b64cd71f902c.r2.dev/${project.thumbnail == '' ? project.images.split(', ')[0] : project.thumbnail}`}
-					alt={project.title}
-					className="absolute left-0 top-0 rounded-lg object-cover"
-					layout="fill"
-					objectFit="cover"
-				/>
-			</div>
-			<CardHeader className="flex flex-row items-center justify-between">
-				<Link
-					className="text-xl font-semibold hover:cursor-pointer hover:text-sand"
-					href={`/projects/${project.id}`}
-				>
-					{project.title}
-				</Link>
-				{project.youtubeId && (
-					<YoutubeLink
-						href={`https://www.youtube.com/watch?v=${encodeURIComponent(project.youtubeId ?? '')}`}
-					/>
-				)}
-			</CardHeader>
-		</Card>
-	);
-};
-
-const YoutubeLink = ({ href }: { href: string }) => {
-	return (
-		<div className="m-1 rounded-lg p-1 duration-100 hover:scale-110 hover:text-error">
-			<Link href={href}>
-				<FaYoutube size={32} />
-			</Link>
-		</div>
-	);
-};
 export default ProjectsPage;

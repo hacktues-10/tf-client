@@ -1,75 +1,59 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { useVoteContext } from '@/context/vote';
-import { TbBrandYoutube } from 'react-icons/tb';
+import type { ProjectType } from '@/app/projects/actions';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import VoteButton from '@/partials/projects/project/VoteButton';
+import { getPublicR2Url } from '@/utils/r2Public';
+import { FaYoutube } from 'react-icons/fa';
+import invariant from 'tiny-invariant';
 
-import VoteButton from './VoteButton';
-
-const Project = ({
-	id,
-	name,
-	thumbnail,
-	video,
-	category,
-}: {
-	id: number;
-	name: string;
-	thumbnail: string;
-	video?: string;
-	category: string;
-}) => {
+const Project = ({ project }: { project: ProjectType }) => {
+	invariant(project.type);
 	return (
-		<div className="w-full shrink-0 px-4 md:w-1/2 lg:w-1/3 2xl:w-1/4">
-			<div className="mb-10 rounded-xl border border-stroke bg-bg-color p-[18px]">
-				<Link href={`/projects/${id}`}>
-					<div className="relative mb-5 aspect-video overflow-hidden rounded-lg">
-						<Image
-							src={thumbnail}
-							alt={name}
-							width={1280}
-							height={720}
-							className="aspect-video rounded-lg bg-dark object-cover"
-						/>
-					</div>
-				</Link>
-				<div>
-					<h3>
-						<Link
-							href={`/projects/${id}`}
-							title={name}
-							className={`mb-3 line-clamp-1 inline-block text-lg font-semibold text-white hover:text-primary`}
-						>
-							{name}
-						</Link>
-					</h3>
-
-					<div className="flex items-center justify-between border-t-2 border-stroke pt-5">
-						{/* <VoteButton id={id} name={name} thumbnail={thumbnail} category={category} /> */}
-						{/* <Link
-							href={`/projects/${id}`}
-							className="flex items-center justify-center rounded-md text-sm font-semibold text-white hover:text-primary sm:px-5"
-						>
-							виж проекта
-						</Link> */}
-						<Link
-							href={`/projects/${id}`}
-							className="flex items-center justify-center rounded-md bg-primary px-4 py-3 text-sm font-semibold text-white transition-all hover:bg-opacity-90 sm:px-5"
-						>
-							Виж проекта
-						</Link>
-						{video && (
-							<Link
-								href={video}
-								target="_blank"
-								rel="noopener noreferrer"
-								className="flex items-center justify-center rounded-md text-sm font-semibold text-white hover:text-primary sm:px-5"
-							>
-								<TbBrandYoutube size={32} />
-							</Link>
-						)}
-					</div>
-				</div>
+		<Card className="z-20 m-4 max-w-[500px] bg-black text-white opacity-100">
+			<div className="relative mx-auto mt-4 w-[90%]" style={{ paddingTop: '56.25%' }}>
+				<Image
+					key={project.id}
+					src={getPublicR2Url(project.thumbnail == '' ? project.images.split(', ')[0] : project.thumbnail)}
+					alt={project.title}
+					className="absolute left-0 top-0 rounded-lg object-cover"
+					layout="fill"
+					objectFit="cover"
+				/>
 			</div>
+			<CardHeader className="flex flex-row items-center justify-between">
+				<Link
+					className="text-xl font-semibold hover:cursor-pointer hover:text-sand"
+					href={`/projects/${project.id}`}
+				>
+					{project.title}
+				</Link>
+				{project.youtubeId && (
+					<YoutubeLink
+						href={`https://www.youtube.com/watch?v=${encodeURIComponent(project.youtubeId ?? '')}`}
+					/>
+				)}
+			</CardHeader>
+			<CardContent>
+				<VoteButton
+					id={project.id}
+					name={project.title}
+					thumbnail={getPublicR2Url(
+						project.thumbnail == '' ? project.images.split(', ')[0] : project.thumbnail
+					)}
+					category={project.type}
+				/>
+			</CardContent>
+		</Card>
+	);
+};
+
+const YoutubeLink = ({ href }: { href: string }) => {
+	return (
+		<div className="m-1 rounded-lg p-1 duration-100 hover:scale-110 hover:text-error">
+			<Link href={href}>
+				<FaYoutube size={32} />
+			</Link>
 		</div>
 	);
 };
