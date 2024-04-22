@@ -37,11 +37,11 @@ const VoteButton = ({
 	};
 
 	return (
-		// <IfTfFeatureOn feature="tf-vote-projects">
-		<Button className="bg-sand text-black" onClick={handleClick} size="lg">
-			{!vote ? 'Гласувай' : 'Премахни глас'}
-		</Button>
-		// </IfTfFeatureOn>
+		<IfTfFeatureOn feature="tf-vote-projects">
+			<Button className="bg-sand text-black" onClick={handleClick} size="lg">
+				{!vote ? 'Гласувай' : 'Премахни глас'}
+			</Button>
+		</IfTfFeatureOn>
 	);
 };
 

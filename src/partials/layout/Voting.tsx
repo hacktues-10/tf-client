@@ -334,12 +334,10 @@ const VotingLayout = () => {
 	}
 
 	return (
-		// <IfTfFeatureOn feature="tf-vote-projects">
-		<>
+		<IfTfFeatureOn feature="tf-vote-projects">
 			{showOverlay && !showModal && <VotingOverlay showModal={continueVoting} />}
 			{showModal && <VotingModal closeModal={closeModal} />}
-		</>
-		// </IfTfFeatureOn>
+		</IfTfFeatureOn>
 	);
 };
 
