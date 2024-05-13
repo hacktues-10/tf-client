@@ -1,4 +1,5 @@
 import { promises as fs } from 'fs';
+import path from 'path';
 
 export const getProjectById = async (id: string) => {
 	//get all projects
@@ -9,8 +10,9 @@ export const getProjectById = async (id: string) => {
 
 export const getProjects = async () => {
 	try {
-		// Read the file with fs.promises.readFile which returns a promise
-		const data = await fs.readFile('projects.json', 'utf8'); // Correctly using await with promises
+		const filePath = path.join(process.cwd(), 'public', 'projects.json');
+		console.log(filePath);
+		const data = await fs.readFile(filePath, 'utf8'); // Correctly using await with promises
 		// Parse the JSON data
 		const projects = JSON.parse(data);
 		return projects;
