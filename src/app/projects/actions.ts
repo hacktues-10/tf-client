@@ -11,7 +11,6 @@ export const getProjectById = async (id: string) => {
 export const getProjects = async () => {
 	try {
 		const filePath = path.join(process.cwd(), 'public', 'projects.json');
-		console.log(filePath);
 		const data = await fs.readFile(filePath, 'utf8'); // Correctly using await with promises
 		// Parse the JSON data
 		const projects = JSON.parse(data);
