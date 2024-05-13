@@ -8,17 +8,17 @@ export const getProjectById = async (id: string) => {
 	return res.find((project: any) => project.id === Number(id));
 };
 
+export type ProjectType = Exclude<Awaited<ReturnType<typeof getProjectById>>, undefined>;
+
 export const getProjects = async () => {
 	try {
 		const filePath = path.join(process.cwd(), 'public', 'projects.json');
-		const data = await fs.readFile(filePath, 'utf8'); // Correctly using await with promises
-		// Parse the JSON data
+		const data = await fs.readFile(filePath, 'utf8');
 		const projects = JSON.parse(data);
 		return projects;
 	} catch (err) {
-		// Handle errors (both from readFile and JSON.parse)
 		console.error('Error:', err);
-		return []; // Return an empty array or rethrow the error depending on your use case
+		return [];
 	}
 };
 
@@ -29,7 +29,10 @@ export const getEmbeddedProjects = async () => {
 
 export const getSoftwareProjects = async () => {
 	const res = await getProjects();
-	return res.filter((project: any) => project.type === 'Софтуер');
+	console.log('res', res.length);
+	const a = res.filter((project: any) => project.type === 'Софтуер');
+	console.log(a.length);
+	return a;
 };
 
 export const getNetworkinProjects = async () => {

@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { ProjectType } from '@/app/projects/actions';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import VoteButton from '@/partials/projects/project/VoteButton';
+// import VoteButton from '@/partials/projects/project/VoteButton';
 import { getPublicR2Url } from '@/utils/r2Public';
 import { FaYoutube } from 'react-icons/fa';
 import invariant from 'tiny-invariant';
@@ -34,7 +34,7 @@ const Project = ({ project }: { project: ProjectType }) => {
 					/>
 				)}
 			</CardHeader>
-			<CardContent>
+			{/* <CardContent>
 				<VoteButton
 					id={project.id}
 					name={project.title}
@@ -43,7 +43,7 @@ const Project = ({ project }: { project: ProjectType }) => {
 					)}
 					category={project.type}
 				/>
-			</CardContent>
+			</CardContent> */}
 		</Card>
 	);
 };

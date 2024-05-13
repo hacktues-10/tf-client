@@ -9,7 +9,7 @@ import Creators from '@/partials/projects/project/Creators';
 import Gallery from '@/partials/projects/project/Gallery';
 import LinksContainer from '@/partials/projects/project/Links';
 import Video from '@/partials/projects/project/Video';
-import VoteButton from '@/partials/projects/project/VoteButton';
+// import VoteButton from '@/partials/projects/project/VoteButton';
 import { getPublicR2Url } from '@/utils/r2Public';
 
 import { getProjectById } from '../actions';

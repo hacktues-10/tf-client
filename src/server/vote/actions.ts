@@ -77,7 +77,7 @@ export async function saveVote(data: z.infer<typeof submitVoteSchema>) {
 	}
 
 	const votedProjects = voteIds.map((id) => {
-		const result = projects.find((project) => project.id === id);
+		const result = projects.find((project: any) => project.id === id);
 		if (!result) throw new Error('Invalid vote');
 		return result;
 	});
