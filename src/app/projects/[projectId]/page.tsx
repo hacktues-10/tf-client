@@ -31,13 +31,7 @@ export type Picture = {
 	is_thumbnail: boolean;
 };
 
-const getProject = async (id: number) => {
-	const project = getProjectById(id);
-
-	return project;
-};
-
-export async function generateMetadata({ params }: { params: { projectId: number } }) {
+export async function generateMetadata({ params }: { params: { projectId: string } }) {
 	const project = await getProjectById(params.projectId);
 
 	if (project === undefined || project === null || project.id === 0) return;
@@ -50,7 +44,7 @@ export async function generateMetadata({ params }: { params: { projectId: number
 			title: `${project.title} | TUES Fest 2024`,
 			description: project.description,
 			creator: '@tuesfest',
-			images: project.images.split(', ').map((picture) => ({
+			images: project.images.split(', ').map((picture: any) => ({
 				url: picture,
 			})),
 		},
@@ -59,7 +53,7 @@ export async function generateMetadata({ params }: { params: { projectId: number
 			description: project.description,
 			url: `https://tuesfest.bg/projects/${project.id}`,
 			siteName: 'TUES Fest 2024',
-			images: project.images.split(', ').map((picture) => ({
+			images: project.images.split(', ').map((picture: any) => ({
 				url: picture,
 			})),
 			locale: 'bg-BG',
@@ -68,11 +62,11 @@ export async function generateMetadata({ params }: { params: { projectId: number
 	};
 }
 
-const ProjectPage = async ({ params }: { params: { projectId: number } }) => {
+const ProjectPage = async ({ params }: { params: { projectId: string } }) => {
 	const project = await getProjectById(params.projectId);
 
 	if (project === undefined || project === null || project.id === 0) notFound();
-	const contributors = project.contributors.split('\n').map((contributor) => {
+	const contributors = project.contributors.split('\n').map((contributor: any) => {
 		const [firstName, lastName, classNumber, shirt, email, phoneNumber] = contributor.split(';');
 		return { name: firstName + ' ' + lastName, class: classNumber };
 	});
@@ -107,19 +101,19 @@ const ProjectPage = async ({ params }: { params: { projectId: number } }) => {
 						<CardTitle className="text-center text-3xl">{project.title}</CardTitle>
 					</CardHeader>
 					<CardContent className="my-4">
-						{project.youtubeId && (
+						{project.youtube_id && (
 							<div className="m-auto w-full overflow-hidden rounded-xl border-2 border-white">
-								<Video name={project.title} id={project.youtubeId ?? ''} />
+								<Video name={project.title} id={project.youtube_id ?? ''} />
 							</div>
 						)}
-						{!project.youtubeId && (
+						{!project.youtube_id && (
 							<div
 								className="relative m-auto w-full rounded-xl border-2 border-white"
 								style={{ paddingTop: '56.25%' }}
 							>
 								<Image
 									key={project.id}
-									src={`https://pub-40c3b6cf3326458d9e34b64cd71f902c.r2.dev/${project.thumbnail == '' ? project.images.split(', ')[0] : project.thumbnail}`}
+									src={`/assets/projects/${project.thumbnail == '' ? project.images.split(', ')[0] : project.thumbnail}`}
 									alt={project.title}
 									className="absolute left-0 top-0 rounded-lg object-cover"
 									layout="fill"

@@ -10,7 +10,7 @@ const GalleryModal = ({
 	startingIndex,
 	closeModal,
 }: {
-	pictures:string[];
+	pictures: string[];
 	startingIndex: number;
 	closeModal: () => void;
 }) => {
@@ -161,8 +161,6 @@ const Gallery = ({ name, pictures }: { name: string; pictures: string[] }) => {
 	const [modal, setModal] = useState(false);
 	const [index, setIndex] = useState(0);
 
-	console.log(pictures)
-
 	const openModal = (picture: string) => {
 		setIndex(pictures.indexOf(picture));
 		setModal(true);
@@ -174,7 +172,7 @@ const Gallery = ({ name, pictures }: { name: string; pictures: string[] }) => {
 
 	return (
 		<>
-			<div className="relative flex h-64 w-full mx-auto flex-col rounded-xl border-2 border-stroke bg-black">
+			<div className="relative mx-auto flex h-64 w-full flex-col rounded-xl border-2 border-stroke bg-black">
 				<div className="h-full">
 					<div className="flex h-full shrink-0 flex-col gap-4">
 						<div className="flex h-full items-center justify-start gap-4 overflow-x-auto p-4">
@@ -184,7 +182,7 @@ const Gallery = ({ name, pictures }: { name: string; pictures: string[] }) => {
 									className="!aspect-square h-full shrink-0 overflow-hidden rounded-xl border-2 border-border"
 								>
 									<img
-										src={`https://pub-40c3b6cf3326458d9e34b64cd71f902c.r2.dev/${picture}`}
+										src={`/assets/projects/${picture}`}
 										alt={`снимка ${index + 1} от проект ${name}`}
 										width={512}
 										height={512}

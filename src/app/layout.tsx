@@ -119,22 +119,22 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			</head>
 			<body className=" h-full w-screen items-center justify-center overflow-hidden overflow-x-hidden overflow-y-scroll bg-[url(./bg.svg)] bg-repeat text-white">
 				<div className="">
-					<AuthProvider>
-						<DayProvider>
-							<Navigation />
-							{/* <VoteProvider> */}
-							{/*@ts-expect-error */}
-							<GrowthBookServerProvider>
-								<SullyAnimation />
-								{children}
-							</GrowthBookServerProvider>
-							{/* <VotingLayout /> */}
-							{/* </VoteProvider> */}
-							<Toaster />
-							<Footer />
-							<Analytics />
-						</DayProvider>
-					</AuthProvider>
+					{/* <AuthProvider> */}
+					<DayProvider>
+						<Navigation />
+						{/* <VoteProvider> */}
+						{/*@ts-expect-error */}
+						<GrowthBookServerProvider>
+							<SullyAnimation />
+							{children}
+						</GrowthBookServerProvider>
+						{/* <VotingLayout /> */}
+						{/* </VoteProvider> */}
+						<Toaster />
+						<Footer />
+						<Analytics />
+					</DayProvider>
+					{/* </AuthProvider> */}
 				</div>
 			</body>
 		</html>

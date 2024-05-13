@@ -62,7 +62,6 @@ const LinkTab = ({ text, href, current }: { text: string; href: string; current:
 
 const ProjectsPage = async () => {
 	const projects = await getProjects();
-	//shuffle projects
 	projects.sort(() => Math.random() - 0.5);
 
 	return (
@@ -88,7 +87,7 @@ const ProjectsPage = async () => {
 						</section>
 						<div className="inline-grid w-full grid-cols-1 sm:m-4 md:grid-cols-2 lg:grid-cols-3">
 							{projects ? (
-								projects.map((project) => <Project key={project.title} project={project} />)
+								projects.map((project: any) => <Project key={project.title} project={project} />)
 							) : (
 								<div>Loading...</div>
 							)}
@@ -109,7 +108,7 @@ const Project = ({ project }: { project: Awaited<ReturnType<typeof getProjects>>
 			<div className="relative mx-auto mt-4 w-[90%]" style={{ paddingTop: '56.25%' }}>
 				<Image
 					key={project.id}
-					src={`https://pub-40c3b6cf3326458d9e34b64cd71f902c.r2.dev/${project.thumbnail == '' ? project.images.split(', ')[0] : project.thumbnail}`}
+					src={`/assets/projects/${project.thumbnail == '' ? project.images.split(', ')[0] : project.thumbnail}`}
 					alt={project.title}
 					className="absolute left-0 top-0 rounded-lg object-cover"
 					layout="fill"

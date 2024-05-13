@@ -78,8 +78,6 @@ const ProjectsPage = async ({
 }) => {
 	const { category } = params;
 
-	console.log('sadasdas', category);
-
 	// if category not in [software, embedded, battlebots, networks, all]
 	// redirect to /projects
 
@@ -126,7 +124,7 @@ const ProjectsPage = async ({
 				<Suspense fallback={<ProjectsLoading />}>
 					<div className="inline-grid w-full grid-cols-1 sm:m-4 md:grid-cols-2 lg:grid-cols-3">
 						{projects ? (
-							projects.map((project) => <Project key={project.title} project={project} />)
+							projects.map((project: any) => <Project key={project.title} project={project} />)
 						) : (
 							<div>Loading...</div>
 						)}

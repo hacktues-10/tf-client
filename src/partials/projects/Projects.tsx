@@ -51,7 +51,6 @@ const Projects = async ({ category }: { category: string }) => {
 	const projects: Project[] = await getProjects(category);
 
 	if (!projects || !projects?.length) return null;
-
 	return (
 		<div className="-mx-4 flex flex-wrap items-stretch justify-center">
 			{projects.map((project) => (
