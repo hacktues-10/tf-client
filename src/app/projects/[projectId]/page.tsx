@@ -1,18 +1,16 @@
 import { Suspense } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import CATEGORY from '@/constants/projects/CATEGORY';
 import ProjectsPath from '@/partials/layout/ProjectsPath';
 import Creators from '@/partials/projects/project/Creators';
-import Description from '@/partials/projects/project/Description';
 import Gallery from '@/partials/projects/project/Gallery';
 import LinksContainer from '@/partials/projects/project/Links';
-import MainInfo from '@/partials/projects/project/MainInfo';
 import Video from '@/partials/projects/project/Video';
-import { TbChevronLeft, TbChevronRight } from 'react-icons/tb';
+import VoteButton from '@/partials/projects/project/VoteButton';
+import { getPublicR2Url } from '@/utils/r2Public';
 
 import { getProjectById } from '../actions';
 
@@ -34,7 +32,7 @@ export type Picture = {
 export async function generateMetadata({ params }: { params: { projectId: string } }) {
 	const project = await getProjectById(params.projectId);
 
-	if (project === undefined || project === null || project.id === 0) return;
+	if (project === undefined || project === null || project.id === 0) notFound();
 
 	return {
 		title: project.title,
@@ -121,6 +119,16 @@ const ProjectPage = async ({ params }: { params: { projectId: string } }) => {
 								/>
 							</div>
 						)}
+						{/* <div className="mt-4">
+							<VoteButton
+								id={project.id}
+								name={project.title}
+								thumbnail={getPublicR2Url(
+									project.thumbnail == '' ? project.images.split(', ')[0] : project.thumbnail
+								)}
+								category={project.type || CATEGORY.software}
+							/>
+						</div> */}
 						{project.description.length > 250 ? (
 							<ScrollArea className="text-md my-4 h-[150px] overflow-y-scroll sm:text-lg">
 								{project.description}
@@ -131,7 +139,7 @@ const ProjectPage = async ({ params }: { params: { projectId: string } }) => {
 						<Creators creators={contributors} />
 					</CardContent>
 				</Card>
-				<div className="m-auto mx-auto   mt-4 w-[96%] md:w-[90%] lg:w-[70%]">
+				<div className="m-auto mx-auto mt-4 w-[96%] md:w-[90%] lg:w-[70%]">
 					<Gallery name={project.title} pictures={project.images.split(', ')} />
 				</div>
 				<LinksContainer links={links} />

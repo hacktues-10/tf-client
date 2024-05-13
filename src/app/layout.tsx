@@ -9,6 +9,8 @@ import './globals.css';
 import { GrowthBookServerProvider } from '@/app/_integrations/growthbook/GrowthBookServerProvider';
 import { Toaster } from '@/components/ui/toaster';
 import { DayProvider } from '@/context/day';
+import VoteProvider from '@/context/vote';
+import VotingLayout from '@/partials/layout/Voting';
 
 // import VoteProvider from '@/context/vote';
 // import VotingLayout from '@/partials/layout/Voting';

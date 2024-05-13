@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { Picture } from '@/app/projects/[projectId]/page';
+import { getPublicR2Url } from '@/utils/r2Public';
 import { TbChevronLeft, TbChevronRight, TbX } from 'react-icons/tb';
 
 const GalleryModal = ({
@@ -144,7 +145,7 @@ const GalleryModal = ({
 						<div className="flex h-full items-center justify-center gap-4 p-4">
 							<div className="flex h-full max-h-screen w-full shrink-0 items-center justify-center overflow-hidden object-contain">
 								<img
-									src={`https://pub-40c3b6cf3326458d9e34b64cd71f902c.r2.dev/${pictures[index]}`}
+									src={getPublicR2Url(pictures[index])}
 									alt={`снимка ${index + 1} на проект`}
 									className=" h-full rounded-xl object-contain"
 								/>

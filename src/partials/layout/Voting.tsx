@@ -1,19 +1,21 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
-import { CATEGORY } from '@/constants/projects/CATEGORY';
+import { IfTfFeatureOn } from '@/app/_integrations/growthbook/components';
+import { useTFFeatureIsOn } from '@/app/_integrations/growthbook/utlis';
+import CATEGORY_MAP, { CategoryMapValue } from '@/constants/projects/CATEGORY_MAP';
 import { useVoteContext, Vote } from '@/context/vote';
 import { motion } from 'framer-motion';
 import { TbChevronDown, TbChevronUp, TbX } from 'react-icons/tb';
 
 const VotingModal = ({ closeModal }: { closeModal: () => void }) => {
+	const { addInfo, validateGivenInfo, getErrors, submitVote, hasVerifiedVote } = useVoteContext();
+
 	const [info, setInfo] = useState({ name: '', email: '' });
 	const [showLast, setShowLast] = useState(false);
-	const [showResult, setShowResult] = useState(false);
+	const [showResult, setShowResult] = useState(hasVerifiedVote);
 
-	const { addInfo, validateGivenInfo, getErrors, submitVote } = useVoteContext();
 	const { emailError, nameError, votingError } = getErrors();
 
 	const handleInfo = () => {
@@ -23,8 +25,8 @@ const VotingModal = ({ closeModal }: { closeModal: () => void }) => {
 		}
 	};
 
-	const handleVote = () => {
-		if (submitVote()) {
+	const handleVote = async () => {
+		if (await submitVote()) {
 			setShowResult(true);
 			setShowLast(false);
 		}
@@ -135,10 +137,12 @@ const VotingModal = ({ closeModal }: { closeModal: () => void }) => {
 									<br />
 									{votingError}
 								</p>
-							) : (
+							) : !hasVerifiedVote ? (
 								<p className="text-success">
 									Гласувахте успешно! Моля, проверете имейла си за линк за потвърждение.
 								</p>
+							) : (
+								<p className="text-success">Вашият глас бе актуализиран успешно!</p>
 							)}
 							<button
 								className="bg-primary-color mt-4 w-full rounded-lg border border-stroke bg-border py-2 font-bold text-white transition-all duration-300 hover:bg-primary"
@@ -154,21 +158,29 @@ const VotingModal = ({ closeModal }: { closeModal: () => void }) => {
 	);
 };
 
-const VotingCategory = ({ category, cat, error }: { category: Vote | null; cat: string; error: boolean | null }) => {
+const VotingCategory = ({
+	category,
+	cat,
+	error,
+}: {
+	category: Vote | null;
+	cat: CategoryMapValue;
+	error: boolean | null;
+}) => {
 	const { removeVote } = useVoteContext();
 
 	if (category === null) {
 		return (
 			<Link
-				href={`/projects/category/${cat}`}
+				href={cat.href}
 				className={`flex w-full items-center justify-between py-2 ${error ? '!text-error' : ''}`}
 			>
 				<div className="flex items-center gap-4">
 					<div className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-bg-color" />
-					<p className={`text-md line-clamp-1 font-bold ${error ? '!text-error' : ''}`}>{CATEGORY[cat]}</p>
+					<p className={`text-md line-clamp-1 font-bold ${error ? '!text-error' : ''}`}>{cat.text}</p>
 				</div>
 				<p className="p-2 text-sm font-medium opacity-75 transition-all duration-300 hover:opacity-100">
-					{'<избери>'}
+					Избери
 				</p>
 			</Link>
 		);
@@ -204,13 +216,13 @@ const VotingCategory = ({ category, cat, error }: { category: Vote | null; cat: 
 
 const VotingOverlay = ({ showModal }: { showModal: () => void }) => {
 	const [minimized, setMinimized] = useState(false);
-	const { getVotes, getErrors } = useVoteContext();
+	const { getVotes, getErrors, hasVerifiedVote, submitVote } = useVoteContext();
 
-	const { software, embedded, battlebot, networks } = getVotes();
-	const { softwareError, embeddedError, battlebotError, networksError } = getErrors();
+	const { software, embedded, battlebot } = getVotes();
+	const { softwareError, embeddedError, battlebotError } = getErrors();
 
 	return (
-		<motion.div className="fixed bottom-5 right-0 z-10 w-screen" animate={minimized}>
+		<motion.div className="fixed bottom-5 right-0 z-50 w-screen" animate={minimized}>
 			<div className="container relative">
 				<div className="absolute bottom-0 left-0 flex w-full items-center justify-start sm:w-fit">
 					<div
@@ -221,17 +233,16 @@ const VotingOverlay = ({ showModal }: { showModal: () => void }) => {
 						<div className={`relative ${minimized ? 'h-fit w-full shrink-0' : 'h-16'}`}>
 							<div className="relative flex w-full items-center justify-between px-4">
 								<p className="text-2xl font-bold">
-									Твоят избор
+									Вашият глас
 									<span className="ml-2 text-sm opacity-50">
 										{
 											Object.values({
 												software,
 												embedded,
 												battlebot,
-												networks,
 											}).filter((v) => v !== null).length
 										}{' '}
-										/ 4
+										/ 3
 									</span>
 								</p>
 								<button
@@ -252,16 +263,33 @@ const VotingOverlay = ({ showModal }: { showModal: () => void }) => {
 							}`}
 						>
 							<div className="flex w-full flex-col divide-y divide-stroke">
-								<VotingCategory category={embedded} cat="embedded" error={embeddedError} />
-								<VotingCategory category={software} cat="software" error={softwareError} />
-								<VotingCategory category={battlebot} cat="battlebot" error={battlebotError} />
-								<VotingCategory category={networks} cat="networks" error={networksError} />
+								<VotingCategory
+									category={embedded}
+									cat={{ ...CATEGORY_MAP.software, text: 'Избор 1', href: '/projects' }}
+									error={embeddedError}
+								/>
+								<VotingCategory
+									category={software}
+									cat={{ ...CATEGORY_MAP.embedded, text: 'Избор 2', href: '/projects' }}
+									error={softwareError}
+								/>
+								<VotingCategory
+									category={battlebot}
+									cat={{ ...CATEGORY_MAP.battlebot, text: 'Избор 3', href: '/projects' }}
+									error={battlebotError}
+								/>
 							</div>
 							<button
 								className="flex items-center justify-center rounded-xl border border-border bg-primary bg-opacity-75 px-6 py-2 text-lg font-bold transition-all duration-300 hover:border-stroke hover:bg-primary"
-								onClick={showModal}
+								onClick={
+									!hasVerifiedVote
+										? showModal
+										: () => {
+												submitVote().then(showModal);
+											}
+								}
 							>
-								Гласувай
+								{!hasVerifiedVote ? 'Гласувай' : 'Запиши глас'}
 							</button>
 						</div>
 					</div>
@@ -298,11 +326,18 @@ const VotingLayout = () => {
 		}
 	}, [anyVotes]);
 
+	const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
+	const isVotePage = pathname.startsWith('/vote/');
+
+	if (isVotePage) {
+		return null;
+	}
+
 	return (
-		<>
+		<IfTfFeatureOn feature="tf-vote-projects">
 			{showOverlay && !showModal && <VotingOverlay showModal={continueVoting} />}
 			{showModal && <VotingModal closeModal={closeModal} />}
-		</>
+		</IfTfFeatureOn>
 	);
 };
 

@@ -1,14 +1,11 @@
-import { Suspense } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { IfTfFeatureOff, IfTfFeatureOn } from '@/app/_integrations/growthbook/components';
-import { Card, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardHeader } from '@/components/ui/card';
 import ProjectsPath from '@/partials/layout/ProjectsPath';
-import ProjectsLoading from '@/partials/projects/loader/ProjectsLoading';
-import Projects from '@/partials/projects/Projects';
-import { BsYoutube } from 'react-icons/bs';
-import { FaYoutube, FaYoutubeSquare } from 'react-icons/fa';
+import { FaYoutube } from 'react-icons/fa';
 
+// import Projects from '@/partials/projects/Projects';
 import NotFound from '../not-found';
 import { getProjects } from './actions';
 
