@@ -13,7 +13,6 @@ import VotingLayout from '@/partials/layout/Voting';
 
 // import VoteProvider from '@/context/vote';
 // import VotingLayout from '@/partials/layout/Voting';
-import AuthProvider from './_context/auth-provider';
 import SullyAnimation from './SullyAnimation';
 
 export const metadata = {
@@ -120,19 +119,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			</head>
 			<body className=" h-full w-screen items-center justify-center overflow-hidden overflow-x-hidden overflow-y-scroll bg-[url(./bg.svg)] bg-repeat text-white">
 				<div className="">
-					<AuthProvider>
-						<DayProvider>
-							<Navigation />
-							<VoteProvider>
-								<SullyAnimation />
-								{children}
-								<VotingLayout />
-							</VoteProvider>
-							<Toaster />
-							<Footer />
-							<Analytics />
-						</DayProvider>
-					</AuthProvider>
+					<DayProvider>
+						<Navigation />
+						<VoteProvider>
+							<SullyAnimation />
+							{children}
+							<VotingLayout />
+						</VoteProvider>
+						<Toaster />
+						<Footer />
+						<Analytics />
+					</DayProvider>
 				</div>
 			</body>
 		</html>
