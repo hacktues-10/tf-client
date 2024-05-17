@@ -6,6 +6,10 @@ import invariant from 'tiny-invariant';
 import { db } from '../db';
 import { projects } from '../db/schema';
 
+function getPublicR2Url(fileName: string) {
+	return `https://pub-40c3b6cf3326458d9e34b64cd71f902c.r2.dev/${encodeURIComponent(fileName)}`;
+}
+
 function convertProject(project: {
 	contributors: string;
 	images: string;
@@ -31,8 +35,8 @@ function convertProject(project: {
 		title: project.title,
 		category: Object.keys(CATEGORY).find((key) => CATEGORY[key as keyof typeof CATEGORY] === project.type)!,
 		description: project.description,
-		thumbnail: project.thumbnail,
-		images: project.images.split(', '),
+		thumbnail: project.thumbnail ? getPublicR2Url(project.thumbnail) : null,
+		images: project.images.split(', ').map(getPublicR2Url),
 		links: {
 			repoUrls: project.github.split(', '),
 			demoUrl: project.demo,

@@ -1,9 +1,6 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
-import { Picture } from '@/app/projects/[projectId]/page';
-import { getPublicR2Url } from '@/utils/r2Public';
 import { TbChevronLeft, TbChevronRight, TbX } from 'react-icons/tb';
 
 const GalleryModal = ({
@@ -145,7 +142,7 @@ const GalleryModal = ({
 						<div className="flex h-full items-center justify-center gap-4 p-4">
 							<div className="flex h-full max-h-screen w-full shrink-0 items-center justify-center overflow-hidden object-contain">
 								<img
-									src={getPublicR2Url(images[index])}
+									src={images[index]}
 									alt={`снимка ${index + 1} на проект`}
 									className=" h-full rounded-xl object-contain"
 								/>
@@ -179,17 +176,17 @@ const Gallery = ({ name, images }: { name: string; images: string[] }) => {
 				<div className="h-full">
 					<div className="flex h-full shrink-0 flex-col gap-4">
 						<div className="flex h-full items-center justify-start gap-4 overflow-x-auto p-4">
-							{images?.map((picture, index) => (
+							{images.map((image, index) => (
 								<div
-									key={picture}
+									key={image}
 									className="!aspect-square h-full shrink-0 overflow-hidden rounded-xl border-2 border-border"
 								>
 									<img
-										src={getPublicR2Url(picture)}
+										src={image}
 										alt={`снимка ${index + 1} от проект ${name}`}
 										width={512}
 										height={512}
-										onClick={() => openModal(picture)}
+										onClick={() => openModal(image)}
 										className="!aspect-square h-full shrink-0 cursor-pointer object-cover transition-transform duration-300 ease-in-out hover:scale-110"
 									/>
 								</div>

@@ -3,7 +3,6 @@ import Link from 'next/link';
 import type { ProjectType } from '@/app/projects/actions';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import VoteButton from '@/partials/projects/project/VoteButton';
-import { getPublicR2Url } from '@/utils/r2Public';
 import { FaYoutube } from 'react-icons/fa';
 
 const Project = ({ project }: { project: ProjectType }) => {
@@ -12,7 +11,7 @@ const Project = ({ project }: { project: ProjectType }) => {
 			<div className="relative mx-auto mt-4 w-[90%]" style={{ paddingTop: '56.25%' }}>
 				<Image
 					key={project.id}
-					src={getPublicR2Url(project.thumbnail == '' ? project.images[0] : project.thumbnail)}
+					src={project.thumbnail || project.images[0]}
 					alt={project.title}
 					className="absolute left-0 top-0 rounded-lg object-cover"
 					layout="fill"
@@ -36,7 +35,7 @@ const Project = ({ project }: { project: ProjectType }) => {
 				<VoteButton
 					id={project.id}
 					name={project.title}
-					thumbnail={getPublicR2Url(project.thumbnail == '' ? project.images[0] : project.thumbnail)}
+					thumbnail={project.thumbnail || project.images[0]}
 					category={project.category}
 				/>
 			</CardContent>

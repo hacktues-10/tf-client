@@ -3,14 +3,12 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import CATEGORY from '@/constants/projects/CATEGORY';
 import ProjectsPath from '@/partials/layout/ProjectsPath';
 import Contributors from '@/partials/projects/project/Contributors';
 import Gallery from '@/partials/projects/project/Gallery';
 import LinksContainer from '@/partials/projects/project/Links';
 import Video from '@/partials/projects/project/Video';
 import VoteButton from '@/partials/projects/project/VoteButton';
-import { getPublicR2Url } from '@/utils/r2Public';
 
 import { getProjectById } from '../actions';
 
@@ -117,7 +115,7 @@ const ProjectPage = async ({ params }: { params: { projectId: number } }) => {
 							>
 								<Image
 									key={project.id}
-									src={getPublicR2Url(project.thumbnail || project.images[0])}
+									src={project.thumbnail || project.images[0]}
 									alt={project.title}
 									className="absolute left-0 top-0 rounded-lg object-cover"
 									layout="fill"
@@ -129,7 +127,7 @@ const ProjectPage = async ({ params }: { params: { projectId: number } }) => {
 							<VoteButton
 								id={project.id}
 								name={project.title}
-								thumbnail={getPublicR2Url(project.thumbnail || project.images[0])}
+								thumbnail={project.thumbnail || project.images[0]}
 								category={project.category}
 							/>
 						</div>
