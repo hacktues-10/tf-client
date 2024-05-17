@@ -1,11 +1,9 @@
 import Link from 'next/link';
-import { IfTfFeatureOff, IfTfFeatureOn } from '@/app/_integrations/growthbook/components';
 import { Card } from '@/components/ui/card';
 import ProjectsPath from '@/partials/layout/ProjectsPath';
 import Project from '@/partials/projects/project/Project';
 
 // import Projects from '@/partials/projects/Projects';
-import NotFound from '../not-found';
 import { getProjects } from './actions';
 
 const PATH: {
@@ -62,40 +60,33 @@ const ProjectsPage = async () => {
 	projects.sort(() => Math.random() - 0.5);
 
 	return (
-		<>
-			<IfTfFeatureOn feature="tf-projects">
-				<div className="container">
-					<ProjectsPath path={PATH} />
-					<div className="mb-28">
-						<section className="pt-8">
-							<div className="m-auto sm:mx-4">
-								<Card className="m-4 mb-14 rounded-lg border-2 border-stroke bg-black px-5 py-4 text-white opacity-100">
-									<div className="z-50 -mx-4 flex flex-wrap items-center justify-between">
-										<div className="w-full px-4">
-											<div className="flex flex-wrap justify-center gap-4 overflow-x-auto lg:justify-start">
-												{TABS.map((tab) => (
-													<LinkTab key={tab.href} {...tab} current={tab.text === 'Всички'} />
-												))}
-											</div>
-										</div>
+		<div className="container">
+			<ProjectsPath path={PATH} />
+			<div className="mb-28">
+				<section className="pt-8">
+					<div className="m-auto sm:mx-4">
+						<Card className="m-4 mb-14 rounded-lg border-2 border-stroke bg-black px-5 py-4 text-white opacity-100">
+							<div className="z-50 -mx-4 flex flex-wrap items-center justify-between">
+								<div className="w-full px-4">
+									<div className="flex flex-wrap justify-center gap-4 overflow-x-auto lg:justify-start">
+										{TABS.map((tab) => (
+											<LinkTab key={tab.href} {...tab} current={tab.text === 'Всички'} />
+										))}
 									</div>
-								</Card>
+								</div>
 							</div>
-						</section>
-						<div className="inline-grid w-full grid-cols-1 sm:m-4 md:grid-cols-2 lg:grid-cols-3">
-							{projects ? (
-								projects.map((project) => <Project key={project.title} project={project} />)
-							) : (
-								<div>Loading...</div>
-							)}
-						</div>
+						</Card>
 					</div>
+				</section>
+				<div className="inline-grid w-full grid-cols-1 sm:m-4 md:grid-cols-2 lg:grid-cols-3">
+					{projects ? (
+						projects.map((project) => <Project key={project.title} project={project} />)
+					) : (
+						<div>Loading...</div>
+					)}
 				</div>
-			</IfTfFeatureOn>
-			<IfTfFeatureOff feature="tf-projects">
-				<NotFound />
-			</IfTfFeatureOff>
-		</>
+			</div>
+		</div>
 	);
 };
 

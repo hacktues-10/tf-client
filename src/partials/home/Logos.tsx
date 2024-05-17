@@ -1,11 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { IfTfFeatureOn } from '@/app/_integrations/growthbook/components';
 import TitleSVG from '@/app/Title';
 import { useDay } from '@/context/day';
-import { TbBallpen, TbClockHour4, TbMapPin } from 'react-icons/tb';
+import { TbClockHour4, TbMapPin } from 'react-icons/tb';
 
 export default function Logos() {
 	const { day, setDay } = useDay();
@@ -44,15 +42,6 @@ export default function Logos() {
 					<TbClockHour4 size={24} />
 					<p>20 и 21 април</p>
 				</div>
-				<IfTfFeatureOn feature="tf-register-projects">
-					<Link
-						href="/register"
-						className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg border border-black bg-[#fbebb7] px-4 py-2 text-lg text-black sm:border-2"
-					>
-						<TbBallpen size={24} />
-						<p>Регистрирай проект</p>
-					</Link>
-				</IfTfFeatureOn>
 			</div>
 		</div>
 	);

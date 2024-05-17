@@ -1,25 +1,16 @@
 'use server';
 
 import { headers } from 'next/headers';
-import { getServerSideGrowthBook } from '@/app/_integrations/growthbook/growthbook';
 import { db } from '@/app/db';
 import { voters, votes } from '@/app/db/schema';
 import { getProjects } from '@/app/projects/actions';
 import { sendVoteEmail } from '@/server/vote/email';
-import { generateToken } from '@/server/vote/token';
 import { arrayBufferToHex } from '@/utils/hex';
-import {
-	decodeBitmap,
-	hasMultipleIntersections,
-	projectIdsToMapString,
-	projectMapStringToIds,
-} from '@/utils/vote-projects-map';
+import { decodeBitmap, projectMapStringToIds } from '@/utils/vote-projects-map';
 import { eq } from 'drizzle-orm';
 import invariant from 'tiny-invariant';
 import { ulid } from 'ulid';
 import { z } from 'zod';
-
-import { env } from '../../../env.mjs';
 
 const submitVoteSchema = z.object({
 	email: z.string().email(),
@@ -32,14 +23,6 @@ const submitVoteSchema = z.object({
 const MAX_PROJECT_VOTES = 3;
 
 export async function saveVote(data: z.infer<typeof submitVoteSchema>) {
-	const gb = await getServerSideGrowthBook();
-	if (gb.isOff('tf-vote-projects')) {
-		return {
-			success: false,
-			error: 'Гласуването е затворено.',
-		} as const;
-	}
-
 	const res = submitVoteSchema.safeParse(data);
 	if (!res.success) {
 		return {

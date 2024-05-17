@@ -1,9 +1,8 @@
 'use client';
 
 import { useEffect } from 'react';
-import { IfTfFeatureOn } from '@/app/_integrations/growthbook/components';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTrigger } from '@/components/ui/dialog';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Tabs, TabsContent } from '@/components/ui/tabs';
 import { LECTORS, SCHEDULE_DAY1, SCHEDULE_DAY2 } from '@/constants/home/schedule';
 import { useDay } from '@/context/day';
 import { cn } from '@/lib/utils';
@@ -34,7 +33,7 @@ function Schedule() {
 	}, []);
 
 	return (
-		<IfTfFeatureOn feature="schedule">
+		<>
 			<section id="schedule" className='gap-16" relative z-20 flex flex-col px-6 py-6 md:px-8'>
 				<Tabs value={`${dayValue}`} className="w-full">
 					<h2 className="mb-8 bg-gradient bg-clip-text text-5xl font-black text-transparent">
@@ -159,7 +158,7 @@ function Schedule() {
 					</div>
 				</section>
 			)}
-		</IfTfFeatureOn>
+		</>
 	);
 }
 

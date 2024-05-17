@@ -6,7 +6,6 @@ import { Analytics } from '@vercel/analytics/react';
 import './animation.css';
 import './globals.css';
 
-import { GrowthBookServerProvider } from '@/app/_integrations/growthbook/GrowthBookServerProvider';
 import { Toaster } from '@/components/ui/toaster';
 import { DayProvider } from '@/context/day';
 import VoteProvider from '@/context/vote';
@@ -124,14 +123,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 					<AuthProvider>
 						<DayProvider>
 							<Navigation />
-							{/*@ts-expect-error */}
-							<GrowthBookServerProvider>
-								<VoteProvider>
-									<SullyAnimation />
-									{children}
-									<VotingLayout />
-								</VoteProvider>
-							</GrowthBookServerProvider>
+							<VoteProvider>
+								<SullyAnimation />
+								{children}
+								<VotingLayout />
+							</VoteProvider>
 							<Toaster />
 							<Footer />
 							<Analytics />
