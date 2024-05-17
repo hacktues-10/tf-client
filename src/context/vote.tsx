@@ -1,10 +1,9 @@
 'use client';
 
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import CATEGORY from '@/constants/projects/CATEGORY';
 import { saveVote } from '@/server/vote/actions';
-import { encodeBitmap, projectIdsToMapString, projectMapStringToIds } from '@/utils/vote-projects-map';
-import { set } from 'zod';
+import { encodeBitmap, projectIdsToMapString } from '@/utils/vote-projects-map';
 
 export interface Vote {
 	id: number;
