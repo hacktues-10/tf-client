@@ -1,4 +1,5 @@
 import { unstable_cache } from 'next/cache';
+import CATEGORY from '@/constants/projects/CATEGORY';
 import { eq } from 'drizzle-orm';
 
 import { db } from '../db';
@@ -12,7 +13,7 @@ export type ProjectType = Exclude<Awaited<ReturnType<typeof getProjectById>>, un
 
 export const getProjects = unstable_cache(
 	async () => {
-		return await db.select().from(projects);
+		return db.select().from(projects);
 	},
 	['all-projects'],
 	{
@@ -20,41 +21,11 @@ export const getProjects = unstable_cache(
 	}
 );
 
-export const getEmbeddedProjects = unstable_cache(
-	async () => {
-		return await db.select().from(projects).where(eq(projects.type, 'Хардуер'));
+export const getProjectsByCategory = unstable_cache(
+	async (category: (typeof CATEGORY)[keyof typeof CATEGORY]) => {
+		return db.select().from(projects).where(eq(projects.type, category));
 	},
-	['embedded-projects'],
-	{
-		revalidate: 20 * 60 * 1000,
-	}
-);
-
-export const getSoftwareProjects = unstable_cache(
-	async () => {
-		return await db.select().from(projects).where(eq(projects.type, 'Софтуер'));
-	},
-	['software-projects'],
-	{
-		revalidate: 20 * 60 * 1000,
-	}
-);
-
-export const getNetworkinProjects = unstable_cache(
-	async () => {
-		return await db.select().from(projects).where(eq(projects.type, 'Компютърни мрежи'));
-	},
-	['networking-projects'],
-	{
-		revalidate: 20 * 60 * 1000,
-	}
-);
-
-export const getBotsProjects = unstable_cache(
-	async () => {
-		return await db.select().from(projects).where(eq(projects.type, 'Battle Bots'));
-	},
-	['bots-projects'],
+	['projects-by-category'],
 	{
 		revalidate: 20 * 60 * 1000,
 	}

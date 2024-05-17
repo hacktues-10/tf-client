@@ -12,5 +12,6 @@ const submitVoteSchema = z.object({
 export async function saveVote(data: z.infer<typeof submitVoteSchema>) {
 	return {
 		success: false,
+		error: 'изтрих всичкия код, защото не ми се занимава с това',
 	};
 }

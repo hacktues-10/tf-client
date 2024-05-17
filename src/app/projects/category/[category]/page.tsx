@@ -1,25 +1,15 @@
 // IMPORTATN - THIS IS THE DUMBES SOLUTION, BUT I WANT SWEEEET SERVER COMPONENTS
 import { Suspense } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { Card, CardHeader } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import CATEGORY from '@/constants/projects/CATEGORY';
-import CATEGORY_LIST from '@/constants/projects/CATEGORY_LIST';
 import CATEGORY_MAP from '@/constants/projects/CATEGORY_MAP';
 import ProjectsPath from '@/partials/layout/ProjectsPath';
 import ProjectsLoading from '@/partials/projects/loader/ProjectsLoading';
 import Project from '@/partials/projects/project/Project';
-import { getPublicR2Url } from '@/utils/r2Public';
-import { FaYoutube } from 'react-icons/fa';
 
-import {
-	getBotsProjects,
-	getEmbeddedProjects,
-	getNetworkinProjects,
-	getProjects,
-	getSoftwareProjects,
-} from '../../actions';
+import { getProjectsByCategory } from '../../actions';
 
 const PATH: {
 	name: string;
@@ -72,21 +62,7 @@ const ProjectsPage = async ({
 		redirect('/projects');
 	}
 
-	console.log('category', category);
-
-	let projects;
-
-	if (category == 'all') {
-		projects = await getProjects();
-	} else if (category == 'software') {
-		projects = await getSoftwareProjects();
-	} else if (category == 'embedded') {
-		projects = await getEmbeddedProjects();
-	} else if (category == 'networks') {
-		projects = await getNetworkinProjects();
-	} else if (category == 'battlebot') {
-		projects = await getBotsProjects();
-	}
+	const projects = await getProjectsByCategory(CATEGORY[category as keyof typeof CATEGORY]);
 
 	projects?.sort(() => Math.random() - 0.5);
 
