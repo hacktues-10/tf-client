@@ -1,80 +1,20 @@
+import React from 'react';
 import { unstable_cache } from 'next/cache';
-import CATEGORY from '@/constants/projects/CATEGORY';
-import { eq } from 'drizzle-orm';
-import invariant from 'tiny-invariant';
+import TF2024ProjectsAdapter from '@/app/projects/adapter';
 
-import { db } from '../db';
-import { projects } from '../db/schema';
+const adapter = TF2024ProjectsAdapter();
 
-function getPublicR2Url(fileName: string) {
-	return `https://pub-40c3b6cf3326458d9e34b64cd71f902c.r2.dev/${encodeURIComponent(fileName)}`;
-}
-
-function convertProject(project: {
-	contributors: string;
-	images: string;
-	type: 'Софтуер' | 'Хардуер' | 'Battle Bots' | 'Компютърни мрежи' | null;
-	id: number;
-	title: string;
-	penokarton: string | null;
-	demo: string | null;
-	description: string;
-	github: string;
-	thumbnail: string;
-	video: string;
-	youtubeId: string | null;
-	submissionId: number | null;
-}) {
-	const contributors = project.contributors.split('\n').map((contributor) => {
-		const [firstName, lastName, classNumber, ,] = contributor.split(';');
-		return { name: firstName + ' ' + lastName, class: classNumber };
-	});
-	invariant(project.type !== null);
-	return {
-		id: project.id,
-		title: project.title,
-		category: Object.keys(CATEGORY).find((key) => CATEGORY[key as keyof typeof CATEGORY] === project.type)!,
-		description: project.description,
-		thumbnail: project.thumbnail ? getPublicR2Url(project.thumbnail) : null,
-		images: project.images.split(', ').map(getPublicR2Url),
-		links: {
-			repoUrls: project.github.split(', '),
-			demoUrl: project.demo,
-		},
-		youtubeId: project.youtubeId,
-		contributors,
-	};
-}
-
-export const getProjectById = async (id: number) => {
-	const project = (await db.select().from(projects).where(eq(projects.id, id))).at(0);
-	if (!project) return null;
-	return convertProject(project);
-};
+// TODO: add cache
+export const getProjectById = React.cache(adapter.getProjectById);
 
 export type ProjectType = Exclude<Awaited<ReturnType<typeof getProjectById>>, null>;
 
-export const getProjects = unstable_cache(
-	async () => {
-		return db
-			.select()
-			.from(projects)
-			.then((ps) => ps.map(convertProject));
-	},
-	['all-projects'],
-	{
-		revalidate: 20 * 60 * 1000,
-	}
-);
+export const getProjects = unstable_cache(React.cache(adapter.getProjects), ['all-projects'], {
+	revalidate: 20 * 60 * 1000,
+});
 
 export const getProjectsByCategory = unstable_cache(
-	async (category: (typeof CATEGORY)[keyof typeof CATEGORY]) => {
-		return db
-			.select()
-			.from(projects)
-			.where(eq(projects.type, category))
-			.then((ps) => ps.map(convertProject));
-	},
+	React.cache(adapter.getProjectsByCategory),
 	['projects-by-category'],
 	{
 		revalidate: 20 * 60 * 1000,

@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { StaticImageData } from 'next/image';
 import { TbChevronLeft, TbChevronRight, TbX } from 'react-icons/tb';
 
 const GalleryModal = ({
@@ -8,7 +9,7 @@ const GalleryModal = ({
 	startingIndex,
 	closeModal,
 }: {
-	images: string[];
+	images: StaticImageData[];
 	startingIndex: number;
 	closeModal: () => void;
 }) => {
@@ -142,7 +143,7 @@ const GalleryModal = ({
 						<div className="flex h-full items-center justify-center gap-4 p-4">
 							<div className="flex h-full max-h-screen w-full shrink-0 items-center justify-center overflow-hidden object-contain">
 								<img
-									src={images[index]}
+									src={images[index].src}
 									alt={`снимка ${index + 1} на проект`}
 									className=" h-full rounded-xl object-contain"
 								/>
@@ -155,14 +156,14 @@ const GalleryModal = ({
 	);
 };
 
-const Gallery = ({ name, images }: { name: string; images: string[] }) => {
+const Gallery = ({ name, images }: { name: string; images: StaticImageData[] }) => {
 	const [modal, setModal] = useState(false);
 	const [index, setIndex] = useState(0);
 
 	console.log(images);
 
-	const openModal = (picture: string) => {
-		setIndex(images.indexOf(picture));
+	const openModal = (index: number) => {
+		setIndex(index);
 		setModal(true);
 	};
 
@@ -178,15 +179,15 @@ const Gallery = ({ name, images }: { name: string; images: string[] }) => {
 						<div className="flex h-full items-center justify-start gap-4 overflow-x-auto p-4">
 							{images.map((image, index) => (
 								<div
-									key={image}
+									key={image.src}
 									className="!aspect-square h-full shrink-0 overflow-hidden rounded-xl border-2 border-border"
 								>
 									<img
-										src={image}
+										src={image.src}
 										alt={`снимка ${index + 1} от проект ${name}`}
 										width={512}
 										height={512}
-										onClick={() => openModal(image)}
+										onClick={() => openModal(index)}
 										className="!aspect-square h-full shrink-0 cursor-pointer object-cover transition-transform duration-300 ease-in-out hover:scale-110"
 									/>
 								</div>

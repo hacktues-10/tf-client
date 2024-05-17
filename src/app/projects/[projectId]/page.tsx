@@ -41,10 +41,11 @@ export type Project = {
 	next_id: number;
 	prev_id: number;
 };
-export async function generateMetadata({ params }: { params: { projectId: number } }) {
-	const project = await getProjectById(params.projectId);
+export async function generateMetadata({ params }: { params: { projectId: string } }) {
+	const projectId = parseInt(params.projectId, 10);
+	const project = await getProjectById(projectId);
 
-	if (project === undefined || project === null || project.id === 0) notFound();
+	if (project === undefined || project === null) notFound();
 
 	return {
 		title: project.title,
@@ -54,8 +55,8 @@ export async function generateMetadata({ params }: { params: { projectId: number
 			title: `${project.title} | TUES Fest 2024`,
 			description: project.description,
 			creator: '@tuesfest',
-			images: project.images.map((picture) => ({
-				url: picture,
+			images: project.images.map((image) => ({
+				url: image.src,
 			})),
 		},
 		openGraph: {
@@ -63,8 +64,8 @@ export async function generateMetadata({ params }: { params: { projectId: number
 			description: project.description,
 			url: `https://tuesfest.bg/projects/${project.id}`,
 			siteName: 'TUES Fest 2024',
-			images: project.images.map((picture) => ({
-				url: picture,
+			images: project.images.map((image) => ({
+				url: image.src,
 			})),
 			locale: 'bg-BG',
 			type: 'website',
@@ -72,10 +73,10 @@ export async function generateMetadata({ params }: { params: { projectId: number
 	};
 }
 
-const ProjectPage = async ({ params }: { params: { projectId: number } }) => {
-	const project = await getProjectById(params.projectId);
-
-	if (project === undefined || project === null || project.id === 0) notFound();
+const ProjectPage = async ({ params }: { params: { projectId: string } }) => {
+	const projectId = parseInt(params.projectId, 10);
+	const project = await getProjectById(projectId);
+	if (!project) notFound();
 
 	const path = [
 		{
@@ -127,7 +128,7 @@ const ProjectPage = async ({ params }: { params: { projectId: number } }) => {
 							<VoteButton
 								id={project.id}
 								name={project.title}
-								thumbnail={project.thumbnail || project.images[0]}
+								thumbnail={(project.thumbnail || project.images[0]).src}
 								category={project.category}
 							/>
 						</div>

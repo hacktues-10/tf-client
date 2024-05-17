@@ -35,7 +35,7 @@ const Project = ({ project }: { project: ProjectType }) => {
 				<VoteButton
 					id={project.id}
 					name={project.title}
-					thumbnail={project.thumbnail || project.images[0]}
+					thumbnail={(project.thumbnail || project.images[0]).src}
 					category={project.category}
 				/>
 			</CardContent>
