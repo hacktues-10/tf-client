@@ -7,11 +7,11 @@ import { getPublicR2Url } from '@/utils/r2Public';
 import { TbChevronLeft, TbChevronRight, TbX } from 'react-icons/tb';
 
 const GalleryModal = ({
-	pictures,
+	images,
 	startingIndex,
 	closeModal,
 }: {
-	pictures: string[];
+	images: string[];
 	startingIndex: number;
 	closeModal: () => void;
 }) => {
@@ -19,20 +19,20 @@ const GalleryModal = ({
 	const modalRef = useRef<HTMLDivElement>(null);
 
 	const next = useCallback(() => {
-		if (index === pictures.length - 1) {
+		if (index === images.length - 1) {
 			setIndex(0);
 		} else {
 			setIndex(index + 1);
 		}
-	}, [index, pictures.length]);
+	}, [index, images.length]);
 
 	const prev = useCallback(() => {
 		if (index === 0) {
-			setIndex(pictures.length - 1);
+			setIndex(images.length - 1);
 		} else {
 			setIndex(index - 1);
 		}
-	}, [index, pictures.length]);
+	}, [index, images.length]);
 
 	useEffect(() => {
 		const handleKeyDown = (e: KeyboardEvent) => {
@@ -145,7 +145,7 @@ const GalleryModal = ({
 						<div className="flex h-full items-center justify-center gap-4 p-4">
 							<div className="flex h-full max-h-screen w-full shrink-0 items-center justify-center overflow-hidden object-contain">
 								<img
-									src={getPublicR2Url(pictures[index])}
+									src={getPublicR2Url(images[index])}
 									alt={`снимка ${index + 1} на проект`}
 									className=" h-full rounded-xl object-contain"
 								/>
@@ -158,14 +158,14 @@ const GalleryModal = ({
 	);
 };
 
-const Gallery = ({ name, pictures }: { name: string; pictures: string[] }) => {
+const Gallery = ({ name, images }: { name: string; images: string[] }) => {
 	const [modal, setModal] = useState(false);
 	const [index, setIndex] = useState(0);
 
-	console.log(pictures);
+	console.log(images);
 
 	const openModal = (picture: string) => {
-		setIndex(pictures.indexOf(picture));
+		setIndex(images.indexOf(picture));
 		setModal(true);
 	};
 
@@ -179,7 +179,7 @@ const Gallery = ({ name, pictures }: { name: string; pictures: string[] }) => {
 				<div className="h-full">
 					<div className="flex h-full shrink-0 flex-col gap-4">
 						<div className="flex h-full items-center justify-start gap-4 overflow-x-auto p-4">
-							{pictures?.map((picture, index) => (
+							{images?.map((picture, index) => (
 								<div
 									key={picture}
 									className="!aspect-square h-full shrink-0 overflow-hidden rounded-xl border-2 border-border"
@@ -198,7 +198,7 @@ const Gallery = ({ name, pictures }: { name: string; pictures: string[] }) => {
 					</div>
 				</div>
 			</div>
-			{modal && <GalleryModal pictures={pictures} startingIndex={index} closeModal={closeModal} />}
+			{modal && <GalleryModal images={images} startingIndex={index} closeModal={closeModal} />}
 		</>
 	);
 };

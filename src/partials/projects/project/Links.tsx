@@ -20,40 +20,40 @@ const LinksContainer = ({ links }: { links: Links }) => (
 		<div className=" rounded-xl  border-2 border-stroke bg-black">
 			<div className="flex flex-col gap-4 px-8 py-4">
 				<div className="flex gap-4">
-					<GithubLink github={links.github} />
-					{links.demo && <Linky text="Уебсайт" url={links.demo} icon={<TbGlobe size={28} />} />}
+					<GithubLink repoUrls={links.repoUrls} />
+					{links.demoUrl && <Linky text="Уебсайт" url={links.demoUrl} icon={<TbGlobe size={28} />} />}
 				</div>
 			</div>
 		</div>
 	</div>
 );
 
-const GithubIcon = ({ github, size }: { github: string; size: number }) => {
-	if (github.includes('https://github.com')) {
+const GithubIcon = ({ repoUrl, size }: { repoUrl: string; size: number }) => {
+	if (repoUrl.includes('https://github.com')) {
 		return <TbBrandGithub size={size} />;
 	}
-	if (github.includes('https://drive.google.com')) {
+	if (repoUrl.includes('https://drive.google.com')) {
 		return <TbBrandGoogleDrive size={size} />;
 	}
 	return <TbBrandGit size={size} />;
 };
 
-const GithubLink = ({ github }: { github: string }) => {
-	if (github.includes(', ')) {
+const GithubLink = ({ repoUrls }: { repoUrls: string[] }) => {
+	if (repoUrls.length !== 1) {
 		return (
 			<>
-				{github.split(', ').map((link, i) => (
+				{repoUrls.map((url, i) => (
 					<Linky
 						key={i}
-						text={new URL(link).pathname}
-						url={link}
-						icon={<GithubIcon github={link} size={28} />}
+						text={new URL(url).pathname}
+						url={url}
+						icon={<GithubIcon repoUrl={url} size={28} />}
 					/>
 				))}
 			</>
 		);
 	}
-	return <Linky text="Код на проекта" url={github} icon={<GithubIcon github={github} size={28} />} />;
+	return <Linky text="Код на проекта" url={repoUrls[0]} icon={<GithubIcon repoUrl={repoUrls[0]} size={28} />} />;
 };
 
 export default LinksContainer;
