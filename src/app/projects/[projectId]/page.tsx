@@ -10,7 +10,7 @@ import LinksContainer from '@/partials/projects/project/Links';
 import Video from '@/partials/projects/project/Video';
 import VoteButton from '@/partials/projects/project/VoteButton';
 
-import { getProjectById } from '../actions';
+import { getProjectById, getProjects } from '../actions';
 
 export type Links = {
 	repoUrls: string[];
@@ -71,6 +71,13 @@ export async function generateMetadata({ params }: { params: { projectId: string
 			type: 'website',
 		},
 	};
+}
+
+export async function generateStaticParams() {
+	const projects = await getProjects();
+	return projects.map((project) => ({
+		projectId: project.id.toString(),
+	}));
 }
 
 const ProjectPage = async ({ params }: { params: { projectId: string } }) => {

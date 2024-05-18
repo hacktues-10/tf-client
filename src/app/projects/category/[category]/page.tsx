@@ -48,6 +48,12 @@ const LinkTab = ({ text, href, current }: { text: string; href: string; current:
 	</Link>
 );
 
+export function generateStaticParams() {
+	return Object.keys(CATEGORY).map((category) => ({
+		category,
+	}));
+}
+
 const ProjectsPage = async ({
 	params,
 }: {
