@@ -64,11 +64,10 @@ const ProjectsPage = async ({
 	const category = params.category.toString();
 
 	if (!Object.hasOwn(CATEGORY, category)) {
-		console.log(CATEGORY, category);
 		redirect('/projects');
 	}
 
-	const projects = await getProjectsByCategory(CATEGORY[category as keyof typeof CATEGORY]);
+	const projects = await getProjectsByCategory(category);
 
 	projects?.sort(() => Math.random() - 0.5);
 
