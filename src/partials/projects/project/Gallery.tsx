@@ -145,7 +145,7 @@ const GalleryModal = ({
 						<div className="flex h-full items-center justify-center gap-4 p-4">
 							<div className="flex h-full max-h-screen w-full shrink-0 items-center justify-center overflow-hidden object-contain">
 								<img
-									src={getPublicR2Url(pictures[index])}
+									src={`/assets/projects/${pictures[index]}`}
 									alt={`снимка ${index + 1} на проект`}
 									className=" h-full rounded-xl object-contain"
 								/>

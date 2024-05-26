@@ -9,8 +9,8 @@ import Creators from '@/partials/projects/project/Creators';
 import Gallery from '@/partials/projects/project/Gallery';
 import LinksContainer from '@/partials/projects/project/Links';
 import Video from '@/partials/projects/project/Video';
+
 // import VoteButton from '@/partials/projects/project/VoteButton';
-import { getPublicR2Url } from '@/utils/r2Public';
 
 import { getProjectById } from '../actions';
 
@@ -140,7 +140,14 @@ const ProjectPage = async ({ params }: { params: { projectId: string } }) => {
 					</CardContent>
 				</Card>
 				<div className="m-auto mx-auto mt-4 w-[96%] md:w-[90%] lg:w-[70%]">
-					<Gallery name={project.title} pictures={project.images.split(', ')} />
+					<Gallery
+						name={project.title}
+						pictures={
+							splitImageNames(project.images).length < 1
+								? [project.thumbnail]
+								: splitImageNames(project.images)
+						}
+					/>
 				</div>
 				<LinksContainer links={links} />
 			</div>
@@ -149,3 +156,20 @@ const ProjectPage = async ({ params }: { params: { projectId: string } }) => {
 };
 
 export default ProjectPage;
+
+function splitImageNames(input: string): string[] {
+	const parts = input.split(/, /);
+	const regex = /\.(png|jpeg|jpg)$/;
+	const images = [];
+
+	for (let i = 0; i < parts.length; i++) {
+		if (regex.test(parts[i])) {
+			images.push(parts[i].trim());
+		} else if (i < parts.length - 1) {
+			images.push(parts[i].trim() + ', ' + parts[i + 1].trim());
+			i++;
+		}
+	}
+
+	return images;
+}
