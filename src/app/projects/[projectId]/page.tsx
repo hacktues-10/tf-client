@@ -3,23 +3,21 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import CATEGORY from '@/constants/projects/CATEGORY';
 import ProjectsPath from '@/partials/layout/ProjectsPath';
-import Creators from '@/partials/projects/project/Creators';
+import Contributors from '@/partials/projects/project/Contributors';
 import Gallery from '@/partials/projects/project/Gallery';
 import LinksContainer from '@/partials/projects/project/Links';
 import Video from '@/partials/projects/project/Video';
 import VoteButton from '@/partials/projects/project/VoteButton';
-import { getPublicR2Url } from '@/utils/r2Public';
 
-import { getProjectById } from '../actions';
+import { getProjectById, getProjects } from '../actions';
 
 export type Links = {
-	github: string;
-	demo: string;
+	repoUrls: string[];
+	demoUrl: string | null;
 };
 
-export type Creator = {
+export type Contributor = {
 	name: string;
 	class: string;
 };
@@ -31,22 +29,23 @@ export type Picture = {
 
 export type Project = {
 	id: number;
-	name: string;
+	title: string;
 	description: string;
 	video: string;
 	type: string;
 	category: string;
 	has_thumbnail: boolean;
 	links: Links;
-	creators: Creator[];
-	pictures: Picture[];
+	creators: Contributor[];
+	images: Picture[];
 	next_id: number;
 	prev_id: number;
 };
-export async function generateMetadata({ params }: { params: { projectId: number } }) {
-	const project = await getProjectById(params.projectId);
+export async function generateMetadata({ params }: { params: { projectId: string } }) {
+	const projectId = parseInt(params.projectId, 10);
+	const project = await getProjectById(projectId);
 
-	if (project === undefined || project === null || project.id === 0) notFound();
+	if (project === undefined || project === null) notFound();
 
 	return {
 		title: project.title,
@@ -56,8 +55,8 @@ export async function generateMetadata({ params }: { params: { projectId: number
 			title: `${project.title} | TUES Fest 2024`,
 			description: project.description,
 			creator: '@tuesfest',
-			images: project.images.split(', ').map((picture) => ({
-				url: picture,
+			images: project.images.map((image) => ({
+				url: image.src,
 			})),
 		},
 		openGraph: {
@@ -65,8 +64,8 @@ export async function generateMetadata({ params }: { params: { projectId: number
 			description: project.description,
 			url: `https://tuesfest.bg/projects/${project.id}`,
 			siteName: 'TUES Fest 2024',
-			images: project.images.split(', ').map((picture) => ({
-				url: picture,
+			images: project.images.map((image) => ({
+				url: image.src,
 			})),
 			locale: 'bg-BG',
 			type: 'website',
@@ -74,19 +73,18 @@ export async function generateMetadata({ params }: { params: { projectId: number
 	};
 }
 
-const ProjectPage = async ({ params }: { params: { projectId: number } }) => {
-	const project = await getProjectById(params.projectId);
+export async function generateStaticParams() {
+	const projects = await getProjects();
+	return projects.map((project) => ({
+		projectId: project.id.toString(),
+	}));
+}
 
-	if (project === undefined || project === null || project.id === 0) notFound();
-	const contributors = project.contributors.split('\n').map((contributor) => {
-		const [firstName, lastName, classNumber, shirt, email, phoneNumber] = contributor.split(';');
-		return { name: firstName + ' ' + lastName, class: classNumber };
-	});
+const ProjectPage = async ({ params }: { params: { projectId: string } }) => {
+	const projectId = parseInt(params.projectId, 10);
+	const project = await getProjectById(projectId);
+	if (!project) notFound();
 
-	const links = {
-		github: project.github ?? '',
-		demo: project.demo ?? '',
-	};
 	const path = [
 		{
 			name: 'TUES Fest 2024',
@@ -115,7 +113,7 @@ const ProjectPage = async ({ params }: { params: { projectId: number } }) => {
 					<CardContent className="my-4">
 						{project.youtubeId && (
 							<div className="m-auto w-full overflow-hidden rounded-xl border-2 border-white">
-								<Video name={project.title} id={project.youtubeId ?? ''} />
+								<Video name={project.title} id={project.youtubeId} />
 							</div>
 						)}
 						{!project.youtubeId && (
@@ -125,9 +123,7 @@ const ProjectPage = async ({ params }: { params: { projectId: number } }) => {
 							>
 								<Image
 									key={project.id}
-									src={getPublicR2Url(
-										project.thumbnail == '' ? project.images.split(', ')[0] : project.thumbnail
-									)}
+									src={project.thumbnail || project.images[0]}
 									alt={project.title}
 									className="absolute left-0 top-0 rounded-lg object-cover"
 									layout="fill"
@@ -139,10 +135,8 @@ const ProjectPage = async ({ params }: { params: { projectId: number } }) => {
 							<VoteButton
 								id={project.id}
 								name={project.title}
-								thumbnail={getPublicR2Url(
-									project.thumbnail == '' ? project.images.split(', ')[0] : project.thumbnail
-								)}
-								category={project.type || CATEGORY.software}
+								thumbnail={(project.thumbnail || project.images[0]).src}
+								category={project.category}
 							/>
 						</div>
 						{project.description.length > 250 ? (
@@ -152,13 +146,16 @@ const ProjectPage = async ({ params }: { params: { projectId: number } }) => {
 						) : (
 							<CardDescription className="text-md my-6 sm:text-lg">{project.description}</CardDescription>
 						)}
-						<Creators creators={contributors} />
+						<Contributors contributors={project.contributors} />
 					</CardContent>
 				</Card>
 				<div className="m-auto mx-auto mt-4 w-[96%] md:w-[90%] lg:w-[70%]">
-					<Gallery name={project.title} pictures={project.images.split(', ')} />
+					<Gallery
+						name={project.title}
+						images={project.images.length > 0 ? project.images : [project.thumbnail!]}
+					/>
 				</div>
-				<LinksContainer links={links} />
+				<LinksContainer links={project.links} />
 			</div>
 		</div>
 	);

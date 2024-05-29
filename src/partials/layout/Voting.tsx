@@ -2,8 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { IfTfFeatureOn } from '@/app/_integrations/growthbook/components';
-import { useTFFeatureIsOn } from '@/app/_integrations/growthbook/utlis';
 import CATEGORY_MAP, { CategoryMapValue } from '@/constants/projects/CATEGORY_MAP';
 import { useVoteContext, Vote } from '@/context/vote';
 import { motion } from 'framer-motion';
@@ -334,10 +332,12 @@ const VotingLayout = () => {
 	}
 
 	return (
-		<IfTfFeatureOn feature="tf-vote-projects">
-			{showOverlay && !showModal && <VotingOverlay showModal={continueVoting} />}
-			{showModal && <VotingModal closeModal={closeModal} />}
-		</IfTfFeatureOn>
+		null && (
+			<>
+				{showOverlay && !showModal && <VotingOverlay showModal={continueVoting} />}
+				{showModal && <VotingModal closeModal={closeModal} />}
+			</>
+		)
 	);
 };
 

@@ -1,17 +1,15 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
-import { Picture } from '@/app/projects/[projectId]/page';
-import { getPublicR2Url } from '@/utils/r2Public';
+import { StaticImageData } from 'next/image';
 import { TbChevronLeft, TbChevronRight, TbX } from 'react-icons/tb';
 
 const GalleryModal = ({
-	pictures,
+	images,
 	startingIndex,
 	closeModal,
 }: {
-	pictures: string[];
+	images: StaticImageData[];
 	startingIndex: number;
 	closeModal: () => void;
 }) => {
@@ -19,20 +17,20 @@ const GalleryModal = ({
 	const modalRef = useRef<HTMLDivElement>(null);
 
 	const next = useCallback(() => {
-		if (index === pictures.length - 1) {
+		if (index === images.length - 1) {
 			setIndex(0);
 		} else {
 			setIndex(index + 1);
 		}
-	}, [index, pictures.length]);
+	}, [index, images.length]);
 
 	const prev = useCallback(() => {
 		if (index === 0) {
-			setIndex(pictures.length - 1);
+			setIndex(images.length - 1);
 		} else {
 			setIndex(index - 1);
 		}
-	}, [index, pictures.length]);
+	}, [index, images.length]);
 
 	useEffect(() => {
 		const handleKeyDown = (e: KeyboardEvent) => {
@@ -145,7 +143,7 @@ const GalleryModal = ({
 						<div className="flex h-full items-center justify-center gap-4 p-4">
 							<div className="flex h-full max-h-screen w-full shrink-0 items-center justify-center overflow-hidden object-contain">
 								<img
-									src={getPublicR2Url(pictures[index])}
+									src={images[index].src}
 									alt={`снимка ${index + 1} на проект`}
 									className=" h-full rounded-xl object-contain"
 								/>
@@ -158,14 +156,14 @@ const GalleryModal = ({
 	);
 };
 
-const Gallery = ({ name, pictures }: { name: string; pictures: string[] }) => {
+const Gallery = ({ name, images }: { name: string; images: StaticImageData[] }) => {
 	const [modal, setModal] = useState(false);
 	const [index, setIndex] = useState(0);
 
-	console.log(pictures);
+	console.log(images);
 
-	const openModal = (picture: string) => {
-		setIndex(pictures.indexOf(picture));
+	const openModal = (index: number) => {
+		setIndex(index);
 		setModal(true);
 	};
 
@@ -179,17 +177,17 @@ const Gallery = ({ name, pictures }: { name: string; pictures: string[] }) => {
 				<div className="h-full">
 					<div className="flex h-full shrink-0 flex-col gap-4">
 						<div className="flex h-full items-center justify-start gap-4 overflow-x-auto p-4">
-							{pictures?.map((picture, index) => (
+							{images.map((image, index) => (
 								<div
-									key={picture}
+									key={image.src}
 									className="!aspect-square h-full shrink-0 overflow-hidden rounded-xl border-2 border-border"
 								>
 									<img
-										src={getPublicR2Url(picture)}
+										src={image.src}
 										alt={`снимка ${index + 1} от проект ${name}`}
 										width={512}
 										height={512}
-										onClick={() => openModal(picture)}
+										onClick={() => openModal(index)}
 										className="!aspect-square h-full shrink-0 cursor-pointer object-cover transition-transform duration-300 ease-in-out hover:scale-110"
 									/>
 								</div>
@@ -198,7 +196,7 @@ const Gallery = ({ name, pictures }: { name: string; pictures: string[] }) => {
 					</div>
 				</div>
 			</div>
-			{modal && <GalleryModal pictures={pictures} startingIndex={index} closeModal={closeModal} />}
+			{modal && <GalleryModal images={images} startingIndex={index} closeModal={closeModal} />}
 		</>
 	);
 };
