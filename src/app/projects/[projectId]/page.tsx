@@ -150,7 +150,10 @@ const ProjectPage = async ({ params }: { params: { projectId: string } }) => {
 					</CardContent>
 				</Card>
 				<div className="m-auto mx-auto mt-4 w-[96%] md:w-[90%] lg:w-[70%]">
-					<Gallery name={project.title} images={project.images} />
+					<Gallery
+						name={project.title}
+						images={project.images.length > 0 ? project.images : [project.thumbnail!]}
+					/>
 				</div>
 				<LinksContainer links={project.links} />
 			</div>
